@@ -1,0 +1,1296 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kelas X • Analisis Data</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary-color: #8B5CF6;
+      --secondary-color: #7C3AED;
+      --accent-color: #A78BFA;
+      --success-color: #10B981;
+      --warning-color: #F59E0B;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
+      line-height: 1.6;
+      color: #1F2937;
+      background: #F8F9FA;
+    }
+
+    /* NAVBAR */
+    .navbar {
+      background: linear-gradient(135deg, #8B5CF6 0%, #7C3AED 100%);
+      color: #fff;
+      padding: 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+    }
+
+    .navbar-content {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .navbar-title {
+      font-size: 2rem;
+      font-weight: 800;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.35);
+    }
+
+    .navbar-sub {
+      font-size: 0.9rem;
+      opacity: 0.95;
+      font-weight: 600;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.35);
+    }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(135deg, #8B5CF6 0%, #7C3AED 100%);
+      color: #fff;
+      padding: 2rem 1rem;
+      text-align: center;
+      border-bottom: 5px solid #FFE66D;
+    }
+
+    .hero-emoji {
+      font-size: 2.3rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .hero h1 {
+      font-size: 1.9rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .hero p {
+      opacity: 0.98;
+      font-size: 1.05rem;
+    }
+
+    /* CONTAINER */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    section {
+      margin: 2rem 0;
+    }
+
+    section h2 {
+      color: var(--primary-color);
+      font-size: 1.6rem;
+      margin-bottom: 1rem;
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+      border-left: 5px solid var(--secondary-color);
+      padding-left: 0.8rem;
+    }
+
+    /* CARDS */
+    .card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 1.2rem;
+      margin-bottom: 1.2rem;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      border-left: 5px solid var(--secondary-color);
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.25);
+    }
+
+    .card h3 {
+      color: var(--primary-color);
+      margin-bottom: 0.7rem;
+      font-size: 1.2rem;
+    }
+
+    .card p {
+      color: #4B5563;
+      margin-bottom: 0.6rem;
+    }
+
+    .content-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem;
+      margin: 0.8rem 0 1.2rem 0;
+    }
+
+    .content-box {
+      background: #fff;
+      padding: 1.2rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+      border-top: 4px solid var(--primary-color);
+      transition: all 0.3s ease;
+    }
+
+    .content-box:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    }
+
+    .content-box h4 {
+      color: var(--primary-color);
+      margin-bottom: 0.6rem;
+      font-size: 1.1rem;
+    }
+
+    .tip-box {
+      background: linear-gradient(135deg, #8B5CF6 0%, #EC4899 100%);
+      color: #fff;
+      padding: 1.1rem;
+      border-radius: 10px;
+      margin: 1rem 0;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    .tip-box h4 {
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .fact-box {
+      background: linear-gradient(135deg, #1E88E5 0%, #00ACC1 100%);
+      color: #fff;
+      padding: 1.1rem;
+      border-radius: 10px;
+      margin: 1rem 0;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    .warning-box {
+      background: linear-gradient(135deg, #F59E0B 0%, #EF4444 100%);
+      color: #fff;
+      padding: 1.1rem;
+      border-radius: 10px;
+      margin: 1rem 0;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    .success-box {
+      background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+      color: #fff;
+      padding: 1.1rem;
+      border-radius: 10px;
+      margin: 1rem 0;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    .steps-timeline {
+      position: relative;
+      padding-left: 2rem;
+      margin: 1.5rem 0;
+    }
+
+    .steps-timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: linear-gradient(to bottom, #8B5CF6, #7C3AED);
+    }
+
+    .step-item {
+      position: relative;
+      padding: 1rem;
+      margin-bottom: 1.5rem;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    }
+
+    .step-item::before {
+      content: '';
+      position: absolute;
+      left: -2.4rem;
+      top: 1.2rem;
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      background: #8B5CF6;
+      border: 3px solid #fff;
+      box-shadow: 0 0 0 2px #8B5CF6;
+    }
+
+    .step-item h4 {
+      color: var(--primary-color);
+      margin-bottom: 0.5rem;
+    }
+
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+      background: #fff;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    }
+
+    .comparison-table th {
+      background: linear-gradient(135deg, #8B5CF6, #7C3AED);
+      color: #fff;
+      padding: 0.8rem;
+      text-align: left;
+      font-weight: 700;
+    }
+
+    .comparison-table td {
+      padding: 0.8rem;
+      border-bottom: 1px solid #E5E7EB;
+    }
+
+    .comparison-table tr:hover {
+      background: #F3F4F6;
+    }
+
+    .download-box {
+      background: linear-gradient(135deg, #8B5CF6 0%, #7C3AED 100%);
+      color: #fff;
+      padding: 1.5rem;
+      border-radius: 12px;
+      margin: 1.5rem 0;
+      text-align: center;
+      box-shadow: 0 6px 20px rgba(139,92,246,0.3);
+    }
+
+    .download-box h4 {
+      font-size: 1.3rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .btn-download {
+      display: inline-block;
+      background: #fff;
+      color: #8B5CF6;
+      padding: 0.8rem 1.5rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.1rem;
+      margin: 0.5rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    .btn-download:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+    }
+
+    .tool-badge {
+      display: inline-block;
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin: 0.3rem 0.2rem;
+    }
+
+    .badge-excel {
+      background: #D1FAE5;
+      color: #059669;
+    }
+
+    .badge-python {
+      background: #DBEAFE;
+      color: #1D4ED8;
+    }
+
+    .badge-r {
+      background: #FEE2E2;
+      color: #DC2626;
+    }
+
+    .badge-tableau {
+      background: #FEF3C7;
+      color: #D97706;
+    }
+
+    /* VIDEO */
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1rem;
+    }
+
+    .video-card {
+      background: #fff;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .video-card:hover {
+      transform: translateY(-8px);
+    }
+
+    .video-thumbnail {
+      width: 100%;
+      height: 150px;
+      background: linear-gradient(135deg, #8B5CF6, #7C3AED);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.4rem;
+      color: #fff;
+    }
+
+    .video-info {
+      padding: 0.9rem;
+    }
+
+    .video-info h4 {
+      margin-bottom: 0.4rem;
+      font-size: 1rem;
+      color: #111827;
+    }
+
+    .video-info p {
+      font-size: 0.85rem;
+      color: #6B7280;
+      margin-bottom: 0.6rem;
+    }
+
+    .video-link {
+      display: inline-block;
+      background: #8B5CF6;
+      color: #fff;
+      padding: 0.45rem 0.8rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: all 0.25s ease;
+    }
+
+    .video-link:hover {
+      background: #7C3AED;
+      transform: translateY(-2px);
+    }
+
+    /* QUIZ */
+    .game-section {
+      background: linear-gradient(135deg, #8B5CF6 0%, #7C3AED 100%);
+      color: #fff;
+      padding: 1.25rem 1rem;
+      border-radius: 14px;
+      margin: 1.4rem 0;
+    }
+
+    .game-section h3 {
+      color: #fff;
+      margin-bottom: 0.9rem;
+      font-size: 1.2rem;
+    }
+
+    .game-container {
+      background: rgba(255,255,255,0.96);
+      color: #111827;
+      padding: 0.9rem;
+      border-radius: 10px;
+      margin-bottom: 0.8rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .game-question {
+      font-weight: 700;
+      margin-bottom: 0.6rem;
+      font-size: 1rem;
+      color: #111827;
+    }
+
+    .quiz-options {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0.6rem;
+    }
+
+    .quiz-option {
+      background: #f3f4f6;
+      border: 2px solid #e5e7eb;
+      padding: 0.7rem 0.8rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-weight: 600;
+      font-size: 0.92rem;
+      color: #1F2937;
+    }
+
+    .quiz-option:hover {
+      background: #EDE9FE;
+      border-color: #8B5CF6;
+      transform: translateX(4px);
+    }
+
+    .quiz-option.correct {
+      background: var(--success-color);
+      border-color: var(--success-color);
+      color: #fff;
+    }
+
+    .quiz-option.incorrect {
+      background: #EF4444;
+      border-color: #EF4444;
+      color: #fff;
+    }
+
+    .result-message {
+      margin-top: 0.6rem;
+      padding: 0.7rem;
+      border-radius: 8px;
+      text-align: center;
+      font-weight: 700;
+      font-size: 0.95rem;
+      display: none;
+    }
+
+    .result-message.show {
+      display: block;
+    }
+
+    .result-message.correct {
+      background: var(--success-color);
+      color: #fff;
+    }
+
+    .result-message.incorrect {
+      background: #EF4444;
+      color: #fff;
+    }
+
+    .progress-container {
+      background: #e5e7eb;
+      border-radius: 10px;
+      margin: 0.8rem 0 1rem 0;
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      height: 20px;
+      background: linear-gradient(90deg, #8B5CF6, #7C3AED);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.8rem;
+      transition: width 0.25s ease;
+    }
+
+    .score-display {
+      text-align: center;
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--primary-color);
+      margin: 0.6rem 0;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #111827;
+      color: #fff;
+      text-align: center;
+      padding: 1rem 0.8rem;
+      margin-top: 2rem;
+    }
+
+    .footer-content h3 {
+      color: #FFD700;
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+    }
+
+    .footer-content p {
+      opacity: 0.9;
+      font-size: 0.8rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .social-media {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin: 0.8rem 0 0.5rem 0;
+      flex-wrap: wrap;
+    }
+
+    .social-icon {
+      width: 34px;
+      height: 34px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      transition: all 0.25s ease;
+      text-decoration: none;
+    }
+
+    .social-icon.whatsapp {
+      background: #25D366;
+      color: #fff;
+    }
+
+    .social-icon.whatsapp:hover {
+      background: #128C7E;
+      transform: scale(1.08) rotate(3deg);
+    }
+
+    .social-icon.youtube {
+      background: #FF0000;
+      color: #fff;
+    }
+
+    .social-icon.youtube:hover {
+      background: #CC0000;
+      transform: scale(1.08) rotate(-3deg);
+    }
+
+    .social-icon.instagram {
+      background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+      color: #fff;
+    }
+
+    .social-icon.instagram:hover {
+      transform: scale(1.08);
+    }
+
+    .social-icon.facebook {
+      background: #1877F2;
+      color: #fff;
+    }
+
+    .social-icon.facebook:hover {
+      background: #145DBF;
+      transform: scale(1.08) rotate(-2deg);
+    }
+
+    @media (max-width: 768px) {
+      .navbar-title {
+        font-size: 1.6rem;
+      }
+
+      .hero h1 {
+        font-size: 1.4rem;
+      }
+
+      section h2 {
+        font-size: 1.3rem;
+      }
+
+      .content-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .comparison-table {
+        font-size: 0.85rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="navbar-content">
+      <div class="navbar-title">📊 Analisis Data</div>
+      <div class="navbar-sub">Kelas X • Pengertian & Teknik Analisis Data</div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-emoji">📊📈📉</div>
+      <h1>Data: Pengertian & Teknik Analisis Data</h1>
+      <p>Mengubah data mentah menjadi informasi berharga melalui teknik analisis data untuk pengambilan keputusan yang tepat</p>
+    </div>
+  </section>
+
+  <div class="container">
+    <!-- PENGERTIAN DATA -->
+    <section>
+      <h2>📚 Pengertian Data dan Analisis Data</h2>
+
+      <div class="card">
+        <h3>Apa itu Data?</h3>
+        <p><strong>Data</strong> berasal dari kata "datum" (Latin) yang berarti "sesuatu yang diberikan". Secara istilah, data adalah kumpulan informasi atau keterangan yang diperoleh dari pengamatan, pengukuran, atau penelitian.</p>
+
+        <div class="fact-box">
+          <h4>📊 Bentuk-Bentuk Data</h4>
+          <ul style="list-style-position: inside; margin-left: 0.6rem;">
+            <li>• <strong>Angka/Numerik:</strong> 100, 25.5, 1000000 (data penjualan, suhu, populasi)</li>
+            <li>• <strong>Teks/Karakter:</strong> Nama, alamat, deskripsi produk</li>
+            <li>• <strong>Gambar:</strong> Foto produk, grafik, diagram, infografis</li>
+            <li>• <strong>Suara/Audio:</strong> Rekaman wawancara, musik, podcast</li>
+            <li>• <strong>Video:</strong> Tutorial, presentasi, live streaming</li>
+            <li>• <strong>Boolean:</strong> True/False, Yes/No, 1/0</li>
+          </ul>
+        </div>
+
+        <div class="success-box">
+          <h4>✅ Pengertian Analisis Data</h4>
+          <p><strong>Analisis data</strong> adalah proses pengolahan, pemeriksaan, pembersihan, transformasi, dan pemodelan data untuk menemukan informasi yang berguna, menyimpulkan kesimpulan, dan mendukung pengambilan keputusan.</p>
+          
+          <p style="margin-top: 0.8rem;"><strong>Menurut Para Ahli:</strong></p>
+          <ul style="list-style-position: inside; margin-left: 0.6rem; margin-top: 0.5rem;">
+            <li>• <strong>Patton (1980):</strong> Proses mengatur data, mengorganisasikannya ke dalam pola, kategori, dan uraian dasar</li>
+            <li>• <strong>Taylor (1975):</strong> Proses merinci usaha formal untuk menemukan tema dan merumuskan ide</li>
+            <li>• <strong>Lexy J. Moleong (2002):</strong> Proses mengatur urutan data, mengorganisasi ke dalam pola untuk mendapatkan kesimpulan</li>
+          </ul>
+        </div>
+
+        <div class="tip-box">
+          <h4>🎯 Tujuan Analisis Data</h4>
+          <ul style="list-style-position: inside; margin-left: 0.6rem;">
+            <li>• <strong>Mengubah data mentah</strong> menjadi informasi yang berguna dan mudah dipahami</li>
+            <li>• <strong>Menemukan pola & tren</strong> yang tersembunyi dalam data</li>
+            <li>• <strong>Membantu pengambilan keputusan</strong> yang lebih baik dan berbasis fakta</li>
+            <li>• <strong>Memprediksi kejadian masa depan</strong> berdasarkan data historis</li>
+            <li>• <strong>Mengurangi risiko</strong> dalam bisnis dan penelitian</li>
+            <li>• <strong>Meningkatkan efisiensi</strong> operasional dan produktivitas</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- JENIS DATA -->
+    <section>
+      <h2>🗂️ Jenis-Jenis Data</h2>
+
+      <div class="card">
+        <h3>Klasifikasi Data</h3>
+
+        <div class="content-grid">
+          <div class="content-box">
+            <h4>1. Data Kualitatif (Kategorikal)</h4>
+            <p style="font-size: 0.9rem; margin-bottom: 0.7rem;"><strong>Data kualitatif</strong> adalah data yang menggambarkan sifat, karakteristik, atau kategori yang tidak bisa diukur dengan angka.</p>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>Bersifat deskriptif:</strong> Menjelaskan dengan kata-kata</li>
+              <li>• <strong>Subjektif:</strong> Bergantung pada interpretasi</li>
+              <li>• <strong>Contoh:</strong> Warna (merah, biru), gender (laki-laki, perempuan), pendapat (setuju, tidak setuju)</li>
+              <li>• <strong>Dapat di-ranking:</strong> Ordinal (sangat puas, puas, tidak puas)</li>
+            </ul>
+          </div>
+
+          <div class="content-box">
+            <h4>2. Data Kuantitatif (Numerik)</h4>
+            <p style="font-size: 0.9rem; margin-bottom: 0.7rem;"><strong>Data kuantitatif</strong> adalah data yang dapat dihitung, diukur, dan dinyatakan dalam bentuk angka.</p>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>Bersifat objektif:</strong> Dapat diukur dengan pasti</li>
+              <li>• <strong>Dapat dihitung:</strong> Operasi matematika & statistik</li>
+              <li>• <strong>Contoh:</strong> Tinggi badan (170 cm), umur (17 tahun), nilai ujian (85), suhu (30°C)</li>
+              <li>• <strong>Tipe:</strong> Diskrit (1, 2, 3) & Kontinu (1.5, 2.75)</li>
+            </ul>
+          </div>
+        </div>
+
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th>Aspek</th>
+              <th>Data Kualitatif</th>
+              <th>Data Kuantitatif</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Bentuk</strong></td>
+              <td>Kata-kata, kategori, deskripsi</td>
+              <td>Angka, numerik</td>
+            </tr>
+            <tr>
+              <td><strong>Sifat</strong></td>
+              <td>Subjektif, interpretatif</td>
+              <td>Objektif, terukur</td>
+            </tr>
+            <tr>
+              <td><strong>Contoh</strong></td>
+              <td>Merah, Puas, Baik</td>
+              <td>25, 85.5, 1000</td>
+            </tr>
+            <tr>
+              <td><strong>Analisis</strong></td>
+              <td>Analisis tematik, konten</td>
+              <td>Statistik, matematika</td>
+            </tr>
+            <tr>
+              <td><strong>Visualisasi</strong></td>
+              <td>Word cloud, diagram kategori</td>
+              <td>Grafik, chart, histogram</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="tip-box">
+          <h4>💡 Transformasi Data</h4>
+          <p style="margin-bottom: 0;">Data kualitatif dapat diubah menjadi kuantitatif melalui <strong>coding</strong> atau <strong>skala</strong>. Contoh: "Sangat Puas" = 5, "Puas" = 4, "Netral" = 3, "Tidak Puas" = 2, "Sangat Tidak Puas" = 1. Ini memungkinkan analisis statistik pada data kategorikal!</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- JENIS ANALISIS -->
+    <section>
+      <h2>🔍 Jenis-Jenis Analisis Data</h2>
+
+      <div class="card">
+        <h3>Teknik Analisis Data</h3>
+
+        <div class="content-grid">
+          <div class="content-box">
+            <h4>1. Analisis Deskriptif</h4>
+            <p style="font-size: 0.9rem; margin-bottom: 0.7rem;"><strong>Analisis deskriptif</strong> menggambarkan data apa adanya tanpa menarik kesimpulan umum.</p>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>Tujuan:</strong> Merangkum & mendeskripsikan data</li>
+              <li>• <strong>Teknik:</strong> Mean, median, modus, standar deviasi, frekuensi</li>
+              <li>• <strong>Output:</strong> Tabel, grafik, diagram, chart</li>
+              <li>• <strong>Contoh:</strong> "Rata-rata nilai kelas adalah 75", "80% siswa lulus ujian"</li>
+              <li>• <strong>Visualisasi:</strong> Bar chart, pie chart, histogram, line graph</li>
+            </ul>
+          </div>
+
+          <div class="content-box">
+            <h4>2. Analisis Inferensial</h4>
+            <p style="font-size: 0.9rem; margin-bottom: 0.7rem;"><strong>Analisis inferensial</strong> menarik kesimpulan yang mengeneralisasi sampel terhadap populasi.</p>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>Tujuan:</strong> Prediksi & generalisasi data</li>
+              <li>• <strong>Teknik:</strong> Uji hipotesis, regresi, ANOVA, korelasi</li>
+              <li>• <strong>Output:</strong> Hasil perhitungan statistik (p-value, confidence interval)</li>
+              <li>• <strong>Contoh:</strong> "Ada hubungan signifikan antara jam belajar dengan nilai ujian"</li>
+              <li>• <strong>Kegunaan:</strong> Riset ilmiah, survey, eksperimen</li>
+            </ul>
+          </div>
+
+          <div class="content-box">
+            <h4>3. Analisis Prediktif</h4>
+            <p style="font-size: 0.9rem; margin-bottom: 0.7rem;"><strong>Analisis prediktif</strong> menggunakan data historis untuk memprediksi kejadian masa depan.</p>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>Tujuan:</strong> Forecasting & prediksi</li>
+              <li>• <strong>Teknik:</strong> Machine Learning, regresi, time series</li>
+              <li>• <strong>Output:</strong> Model prediksi, probabilitas</li>
+              <li>• <strong>Contoh:</strong> Prediksi penjualan bulan depan, cuaca besok</li>
+              <li>• <strong>Tools:</strong> Python (scikit-learn), R, SPSS</li>
+            </ul>
+          </div>
+
+          <div class="content-box">
+            <h4>4. Analisis Preskriptif</h4>
+            <p style="font-size: 0.9rem; margin-bottom: 0.7rem;"><strong>Analisis preskriptif</strong> memberikan rekomendasi tindakan berdasarkan hasil analisis.</p>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>Tujuan:</strong> Memberikan solusi & rekomendasi</li>
+              <li>• <strong>Teknik:</strong> Optimization, simulation, decision analysis</li>
+              <li>• <strong>Output:</strong> Action plan, rekomendasi strategis</li>
+              <li>• <strong>Contoh:</strong> "Untuk meningkatkan penjualan, fokus marketing ke segment usia 18-25"</li>
+              <li>• <strong>Kegunaan:</strong> Business intelligence, strategic planning</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="fact-box">
+          <h4>📊 Statistik Deskriptif - Ukuran Pemusatan Data</h4>
+          <ul style="list-style-position: inside; margin-left: 0.6rem;">
+            <li>• <strong>Mean (Rata-rata):</strong> Jumlah semua nilai dibagi banyaknya data. Contoh: (70+80+90)/3 = 80</li>
+            <li>• <strong>Median (Nilai Tengah):</strong> Nilai di tengah setelah data diurutkan. Contoh: 70, 80, 90 → Median = 80</li>
+            <li>• <strong>Modus:</strong> Nilai yang paling sering muncul. Contoh: 70, 70, 80, 90 → Modus = 70</li>
+            <li>• <strong>Range (Jangkauan):</strong> Nilai maksimum - minimum. Contoh: 90 - 70 = 20</li>
+            <li>• <strong>Standar Deviasi:</strong> Ukuran penyebaran data dari rata-rata</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- LANGKAH ANALISIS -->
+    <section>
+      <h2>🎯 Langkah-Langkah Analisis Data</h2>
+
+      <div class="card">
+        <h3>Proses Analisis Data (5 Tahap)</h3>
+
+        <div class="steps-timeline">
+          <div class="step-item">
+            <h4>1. Pengumpulan Data (Data Collection)</h4>
+            <p style="font-size: 0.9rem; margin-bottom: 0.5rem;">Mengumpulkan data dari berbagai sumber yang relevan dengan penelitian atau masalah yang ingin dipecahkan.</p>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>Teknik:</strong> Survei/Angket, Observasi, Wawancara, Eksperimen, Dokumentasi</li>
+              <li>• <strong>Sumber:</strong> Database, API, web scraping, sensor IoT, social media</li>
+              <li>• <strong>Tools:</strong> Google Forms, Survey Monkey, kuesioner online</li>
+              <li>• <strong>Penting:</strong> Pastikan data valid, reliabel, dan representatif</li>
+            </ul>
+          </div>
+
+          <div class="step-item">
+            <h4>2. Pembersihan Data (Data Cleaning)</h4>
+            <p style="font-size: 0.9rem; margin-bottom: 0.5rem;">Menghapus atau memperbaiki data yang tidak relevan, duplikat, tidak lengkap, atau error.</p>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>Hapus duplikat:</strong> Data yang sama tercatat 2x</li>
+              <li>• <strong>Handle missing data:</strong> Isi dengan mean/median atau hapus</li>
+              <li>• <strong>Fix error:</strong> Typo, format salah (tanggal, angka)</li>
+              <li>• <strong>Remove outliers:</strong> Data ekstrem yang tidak wajar</li>
+              <li>• <strong>Tools:</strong> Excel, Python (Pandas), R</li>
+            </ul>
+          </div>
+
+          <div class="step-item">
+            <h4>3. Eksplorasi & Analisis Data (Data Analysis)</h4>
+            <p style="font-size: 0.9rem; margin-bottom: 0.5rem;">Menggunakan teknik statistik dan metode analisis untuk menemukan pola, tren, dan insight dari data.</p>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>Statistik deskriptif:</strong> Mean, median, modus, standar deviasi</li>
+              <li>• <strong>Korelasi:</strong> Hubungan antar variabel</li>
+              <li>• <strong>Segmentasi:</strong> Grouping data berdasarkan kategori</li>
+              <li>• <strong>Trend analysis:</strong> Pola perubahan data dari waktu ke waktu</li>
+              <li>• <strong>Tools:</strong> Excel, SPSS, R, Python</li>
+            </ul>
+          </div>
+
+          <div class="step-item">
+            <h4>4. Visualisasi Data (Data Visualization)</h4>
+            <p style="font-size: 0.9rem; margin-bottom: 0.5rem;">Menyajikan hasil analisis dalam bentuk grafik, chart, atau dashboard yang mudah dipahami.</p>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>Bar chart:</strong> Perbandingan kategori</li>
+              <li>• <strong>Line graph:</strong> Tren waktu</li>
+              <li>• <strong>Pie chart:</strong> Proporsi/persentase</li>
+              <li>• <strong>Scatter plot:</strong> Korelasi 2 variabel</li>
+              <li>• <strong>Heatmap:</strong> Intensitas data</li>
+              <li>• <strong>Tools:</strong> Excel, Tableau, Power BI, Google Data Studio, Python (Matplotlib, Seaborn)</li>
+            </ul>
+          </div>
+
+          <div class="step-item">
+            <h4>5. Interpretasi & Kesimpulan (Interpretation)</h4>
+            <p style="font-size: 0.9rem; margin-bottom: 0.5rem;">Menarik kesimpulan dari hasil analisis dan memberikan rekomendasi tindakan.</p>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>Jawab pertanyaan penelitian:</strong> Sesuai tujuan awal</li>
+              <li>• <strong>Identifikasi insight:</strong> Temuan penting & menarik</li>
+              <li>• <strong>Buat rekomendasi:</strong> Action plan berdasarkan data</li>
+              <li>• <strong>Komunikasi hasil:</strong> Laporan, presentasi, dashboard</li>
+              <li>• <strong>Evaluasi:</strong> Apakah hipotesis terbukti?</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="success-box">
+          <h4>✅ Best Practices Analisis Data</h4>
+          <ul style="list-style-position: inside; margin-left: 0.6rem;">
+            <li>• <strong>Start with questions:</strong> Tentukan tujuan & pertanyaan penelitian sebelum analisis</li>
+            <li>• <strong>Know your data:</strong> Pahami struktur, tipe, dan kualitas data</li>
+            <li>• <strong>Clean first, analyze later:</strong> Data bersih = hasil akurat</li>
+            <li>• <strong>Visualize to understand:</strong> Grafik membantu menemukan pola</li>
+            <li>• <strong>Document your process:</strong> Catat semua langkah untuk reproducibility</li>
+            <li>• <strong>Validate results:</strong> Cross-check dengan sumber lain</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- TOOLS -->
+    <section>
+      <h2>🛠️ Tools Analisis Data</h2>
+
+      <div class="card">
+        <h3>Software & Platform untuk Analisis Data</h3>
+
+        <div class="content-grid">
+          <div class="content-box">
+            <h4>Microsoft Excel / Google Sheets</h4>
+            <span class="tool-badge badge-excel">Beginner Friendly</span>
+            <ul style="list-style-position: inside; font-size: 0.85rem; margin-top: 0.5rem;">
+              <li>• <strong>Kelebihan:</strong> Mudah digunakan, UI intuitif, banyak fungsi built-in</li>
+              <li>• <strong>Fitur:</strong> Pivot table, chart, formula (SUM, AVERAGE, IF), filter, sort</li>
+              <li>• <strong>Cocok untuk:</strong> Analisis data kecil-menengah (ribuan row)</li>
+              <li>• <strong>Limitasi:</strong> Lambat untuk data besar (jutaan row)</li>
+            </ul>
+          </div>
+
+          <div class="content-box">
+            <h4>Python (Pandas, NumPy)</h4>
+            <span class="tool-badge badge-python">Programming</span>
+            <ul style="list-style-position: inside; font-size: 0.85rem; margin-top: 0.5rem;">
+              <li>• <strong>Kelebihan:</strong> Powerful, flexible, bisa handle data besar, open source</li>
+              <li>• <strong>Library:</strong> Pandas (data manipulation), NumPy (numeric), Matplotlib/Seaborn (viz)</li>
+              <li>• <strong>Cocok untuk:</strong> Data science, machine learning, big data</li>
+              <li>• <strong>Learning curve:</strong> Perlu belajar programming</li>
+            </ul>
+          </div>
+
+          <div class="content-box">
+            <h4>R Programming</h4>
+            <span class="tool-badge badge-r">Statistical</span>
+            <ul style="list-style-position: inside; font-size: 0.85rem; margin-top: 0.5rem;">
+              <li>• <strong>Kelebihan:</strong> Dibuat khusus untuk statistik & analisis data</li>
+              <li>• <strong>Package:</strong> ggplot2 (viz), dplyr (data manipulation), tidyr</li>
+              <li>• <strong>Cocok untuk:</strong> Riset akademik, statistik advanced</li>
+              <li>• <strong>Komunitas:</strong> Besar & aktif (CRAN)</li>
+            </ul>
+          </div>
+
+          <div class="content-box">
+            <h4>Tableau / Power BI</h4>
+            <span class="tool-badge badge-tableau">Visualization</span>
+            <ul style="list-style-position: inside; font-size: 0.85rem; margin-top: 0.5rem;">
+              <li>• <strong>Kelebihan:</strong> Drag & drop, beautiful viz, interactive dashboard</li>
+              <li>• <strong>Fitur:</strong> Real-time data, sharing dashboard, collaboration</li>
+              <li>• <strong>Cocok untuk:</strong> Business intelligence, reporting, presentation</li>
+              <li>• <strong>Harga:</strong> Tableau paid, Power BI freemium</li>
+            </ul>
+          </div>
+
+          <div class="content-box">
+            <h4>SPSS</h4>
+            <span class="tool-badge badge-excel">Statistical</span>
+            <ul style="list-style-position: inside; font-size: 0.85rem; margin-top: 0.5rem;">
+              <li>• <strong>Kelebihan:</strong> GUI friendly, banyak test statistik built-in</li>
+              <li>• <strong>Fitur:</strong> Uji T, ANOVA, regresi, cluster, factor analysis</li>
+              <li>• <strong>Cocok untuk:</strong> Riset akademik (skripsi, tesis), survey analysis</li>
+              <li>• <strong>Harga:</strong> Paid (lisensi mahal)</li>
+            </ul>
+          </div>
+
+          <div class="content-box">
+            <h4>Google Colab</h4>
+            <span class="tool-badge badge-python">Cloud-based</span>
+            <ul style="list-style-position: inside; font-size: 0.85rem; margin-top: 0.5rem;">
+              <li>• <strong>Kelebihan:</strong> Free, cloud-based, Jupyter Notebook, GPU gratis</li>
+              <li>• <strong>Bahasa:</strong> Python (Pandas, NumPy, Scikit-learn)</li>
+              <li>• <strong>Cocok untuk:</strong> Belajar data science, prototyping, sharing code</li>
+              <li>• <strong>Akses:</strong> Hanya perlu browser & akun Google</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="tip-box">
+          <h4>💡 Rekomendasi untuk Pemula</h4>
+          <p style="margin-bottom: 0.5rem;">Untuk <strong>kelas X</strong>, mulai dengan:</p>
+          <ol style="list-style-position: inside; margin-left: 0.6rem;">
+            <li>1. <strong>Excel/Google Sheets:</strong> Belajar dasar formula, pivot table, chart</li>
+            <li>2. <strong>Google Colab + Python:</strong> Belajar Pandas untuk data manipulation</li>
+            <li>3. <strong>Kaggle:</strong> Platform belajar data science dengan dataset gratis & tutorial</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- BIG DATA -->
+    <section>
+      <h2>🌐 Memahami Big Data</h2>
+
+      <div class="card">
+        <h3>Big Data - Data dalam Jumlah Besar</h3>
+        <p><strong>Big Data</strong> adalah kumpulan data yang sangat besar, kompleks, dan berkembang dengan cepat sehingga sulit diproses dengan tools tradisional. Big data dikarakterisasi dengan <strong>4V</strong>:</p>
+
+        <div class="content-grid">
+          <div class="content-box">
+            <h4>Volume</h4>
+            <p style="font-size: 0.9rem;">Besarnya jumlah data yang dihasilkan dan dikumpulkan.</p>
+            <ul style="list-style-position: inside; font-size: 0.85rem; margin-top: 0.5rem;">
+              <li>• <strong>Skala:</strong> Terabyte (TB), Petabyte (PB), Exabyte (EB)</li>
+              <li>• <strong>Contoh:</strong> Facebook mengumpulkan 4 PB data/hari</li>
+              <li>• <strong>Sumber:</strong> Social media, sensor IoT, transaction logs</li>
+            </ul>
+          </div>
+
+          <div class="content-box">
+            <h4>Velocity</h4>
+            <p style="font-size: 0.9rem;">Kecepatan data dihasilkan, diproses, dan dianalisis.</p>
+            <ul style="list-style-position: inside; font-size: 0.85rem; margin-top: 0.5rem;">
+              <li>• <strong>Real-time:</strong> Data streaming langsung</li>
+              <li>• <strong>Contoh:</strong> Stock market data, sensor suhu real-time, Twitter stream</li>
+              <li>• <strong>Challenge:</strong> Process data secepat data masuk</li>
+            </ul>
+          </div>
+
+          <div class="content-box">
+            <h4>Variety</h4>
+            <p style="font-size: 0.9rem;">Keragaman jenis dan format data.</p>
+            <ul style="list-style-position: inside; font-size: 0.85rem; margin-top: 0.5rem;">
+              <li>• <strong>Structured:</strong> Database, Excel (.csv, .xlsx)</li>
+              <li>• <strong>Semi-structured:</strong> JSON, XML</li>
+              <li>• <strong>Unstructured:</strong> Text, image, video, audio, social media posts</li>
+            </ul>
+          </div>
+
+          <div class="content-box">
+            <h4>Veracity</h4>
+            <p style="font-size: 0.9rem;">Keakuratan dan kepercayaan data.</p>
+            <ul style="list-style-position: inside; font-size: 0.85rem; margin-top: 0.5rem;">
+              <li>• <strong>Quality:</strong> Seberapa valid & reliable data</li>
+              <li>• <strong>Challenge:</strong> Data bias, noise, missing values</li>
+              <li>• <strong>Penting:</strong> Garbage in = Garbage out (GIGO)</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="fact-box">
+          <h4>📊 Contoh Big Data</h4>
+          <ul style="list-style-position: inside; margin-left: 0.6rem;">
+            <li>• <strong>Google:</strong> 3.5 miliar search queries per hari</li>
+            <li>• <strong>YouTube:</strong> 500 jam video di-upload setiap menit</li>
+            <li>• <strong>Facebook:</strong> 4 Petabyte data baru per hari</li>
+            <li>• <strong>Twitter:</strong> 500 juta tweets per hari</li>
+            <li>• <strong>Netflix:</strong> 200+ juta subscribers, data streaming & preferences</li>
+            <li>• <strong>Waze:</strong> Real-time traffic data dari jutaan pengguna</li>
+          </ul>
+        </div>
+
+        <div class="warning-box">
+          <h4>⚠️ Tantangan Big Data</h4>
+          <ul style="list-style-position: inside; margin-left: 0.6rem;">
+            <li>• <strong>Storage:</strong> Perlu infrastruktur besar untuk menyimpan</li>
+            <li>• <strong>Processing:</strong> Butuh komputer powerful & distributed computing</li>
+            <li>• <strong>Privacy:</strong> Risiko kebocoran data pribadi</li>
+            <li>• <strong>Security:</strong> Target hacker karena data berharga</li>
+            <li>• <strong>Cost:</strong> Infrastructure & talent mahal</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIDEO -->
+    <section>
+      <h2>🎥 Video Pembelajaran</h2>
+      <div class="video-grid">
+        <div class="video-card">
+          <div class="video-thumbnail">📊</div>
+          <div class="video-info">
+            <h4>Pengantar Analisis Data</h4>
+            <p>Pengertian data dan analisis data untuk pemula.</p>
+            <a class="video-link" href="https://www.youtube.com/results?search_query=analisis+data+kelas+10+informatika" target="_blank">Tonton</a>
+          </div>
+        </div>
+
+        <div class="video-card">
+          <div class="video-thumbnail">📈</div>
+          <div class="video-info">
+            <h4>Statistik Deskriptif</h4>
+            <p>Mean, median, modus, dan standar deviasi.</p>
+            <a class="video-link" href="https://www.youtube.com/results?search_query=statistik+deskriptif+mean+median+modus" target="_blank">Tonton</a>
+          </div>
+        </div>
+
+        <div class="video-card">
+          <div class="video-thumbnail">📉</div>
+          <div class="video-info">
+            <h4>Excel untuk Analisis Data</h4>
+            <p>Tutorial Pivot Table dan Chart di Excel.</p>
+            <a class="video-link" href="https://www.youtube.com/results?search_query=excel+analisis+data+pivot+table" target="_blank">Tonton</a>
+          </div>
+        </div>
+
+        <div class="video-card">
+          <div class="video-thumbnail">🐍</div>
+          <div class="video-info">
+            <h4>Python Pandas Basics</h4>
+            <p>Belajar data manipulation dengan Python Pandas.</p>
+            <a class="video-link" href="https://www.youtube.com/results?search_query=python+pandas+tutorial+bahasa+indonesia" target="_blank">Tonton</a>
+          </div>
+        </div>
+
+        <div class="video-card">
+          <div class="video-thumbnail">🌐</div>
+          <div class="video-info">
+            <h4>Big Data Explained</h4>
+            <p>Penjelasan tentang Big Data dan 4V.</p>
+            <a class="video-link" href="https://www.youtube.com/results?search_query=big+data+explained" target="_blank">Tonton</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- QUIZ -->
+    <section>
+      <h2>🎮 Kuis Analisis Data</h2>
+      <div class="game-section">
+        <h3>Uji Pemahaman Materi</h3>
+
+        <div class="progress-container">
+          <div id="progressBar" class="progress-bar" style="width: 0%;">0%</div>
+        </div>
+
+        <div class="game-container">
+          <div class="game-question">1. Data yang menggambarkan sifat atau kategori dan tidak dapat diukur dengan angka disebut...</div>
+          <div class="quiz-options" onclick="checkAnswer(event, 'kualitatif', 1)">
+            <div class="quiz-option">A) Data Kualitatif</div>
+            <div class="quiz-option">B) Data Kuantitatif</div>
+            <div class="quiz-option">C) Data Numerik</div>
+            <div class="quiz-option">D) Data Diskrit</div>
+          </div>
+          <div id="result1" class="result-message"></div>
+        </div>
+
+        <div class="game-container">
+          <div class="game-question">2. Jenis analisis yang menggambarkan data apa adanya dengan output berupa grafik dan tabel adalah...</div>
+          <div class="quiz-options" onclick="checkAnswer(event, 'deskriptif', 2)">
+            <div class="quiz-option">A) Analisis Inferensial</div>
+            <div class="quiz-option">B) Analisis Deskriptif</div>
+            <div class="quiz-option">C) Analisis Prediktif</div>
+            <div class="quiz-option">D) Analisis Preskriptif</div>
+          </div>
+          <div id="result2" class="result-message"></div>
+        </div>
+
+        <div class="game-container">
+          <div class="game-question">3. Nilai tengah setelah data diurutkan disebut...</div>
+          <div class="quiz-options" onclick="checkAnswer(event, 'median', 3)">
+            <div class="quiz-option">A) Mean (Rata-rata)</div>
+            <div class="quiz-option">B) Median</div>
+            <div class="quiz-option">C) Modus</div>
+            <div class="quiz-option">D) Range</div>
+          </div>
+          <div id="result3" class="result-message"></div>
+        </div>
+
+        <div class="game-container">
+          <div class="game-question">4. Karakteristik Big Data yang menunjukkan besarnya jumlah data adalah...</div>
+          <div class="quiz-options" onclick="checkAnswer(event, 'volume', 4)">
+            <div class="quiz-option">A) Volume</div>
+            <div class="quiz-option">B) Velocity</div>
+            <div class="quiz-option">C) Variety</div>
+            <div class="quiz-option">D) Veracity</div>
+          </div>
+          <div id="result4" class="result-message"></div>
+        </div>
+
+        <div class="game-container">
+          <div class="game-question">5. Langkah pertama dalam proses analisis data adalah...</div>
+          <div class="quiz-options" onclick="checkAnswer(event, 'pengumpulan', 5)">
+            <div class="quiz-option">A) Pembersihan Data</div>
+            <div class="quiz-option">B) Pengumpulan Data (Data Collection)</div>
+            <div class="quiz-option">C) Visualisasi Data</div>
+            <div class="quiz-option">D) Interpretasi Data</div>
+          </div>
+          <div id="result5" class="result-message"></div>
+        </div>
+
+        <div id="scoreDisplay" class="score-display">Skor: 0/5</div>
+      </div>
+    </section>
+
+    <!-- DOWNLOAD -->
+    <section>
+      <h2>📥 Download Materi</h2>
+      
+      <div class="download-box">
+        <h4>📄 Panduan Lengkap Analisis Data</h4>
+        <p style="margin-bottom: 1rem;">Download materi, cheat sheet statistik, template Excel, dan tutorial Pandas!</p>
+        <a href="#" class="btn-download" onclick="alert('File akan segera tersedia. Hubungi guru untuk mendapatkan file.'); return false;">
+          📥 Download Materi PDF
+        </a>
+        <a href="#" class="btn-download" onclick="alert('File akan segera tersedia. Hubungi guru untuk mendapatkan file.'); return false;">
+          📥 Download Template Excel
+        </a>
+      </div>
+    </section>
+
+    <!-- CLOSING -->
+    <section>
+      <div class="card" style="background: linear-gradient(135deg, rgba(139,92,246,0.06), rgba(124,58,237,0.08)); border-left: 5px solid #8B5CF6; text-align: center;">
+        <h3 style="margin-bottom: 0.6rem;">Kesimpulan</h3>
+        <p style="text-align: center; line-height: 1.8;">
+          Analisis data adalah keterampilan penting di era digital untuk mengubah data mentah menjadi informasi berharga yang mendukung pengambilan keputusan. Dengan memahami jenis data (kualitatif vs kuantitatif), teknik analisis (deskriptif, inferensial, prediktif, preskriptif), dan mengikuti 5 langkah analisis data (pengumpulan, pembersihan, analisis, visualisasi, interpretasi), Anda dapat mengekstrak insight dari data untuk memecahkan masalah nyata. Tools seperti Excel, Python, R, dan Tableau memudahkan proses analisis, sementara konsep Big Data membuka peluang untuk menganalisis data dalam skala massive. Data is the new oil - siapa yang bisa menganalisis data, dia yang menguasai masa depan!
+        </p>
+        <p style="text-align: center; margin-top: 0.8rem; font-weight: 600; color: var(--primary-color);">
+          "In God we trust, all others must bring data!" - W. Edwards Deming 📊🚀
+        </p>
+      </div>
+    </section>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-content">
+      <h3>Platform Pembelajaran Interaktif untuk Siswa & Siswi <strong>Ypi Nurul Hadina</strong></h3>
+
+      <div class="social-media">
+        <a class="social-icon whatsapp" href="https://wa.me/6289504440411" target="_blank">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" width="18" height="18"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884"/></svg>
+        </a>
+
+        <a class="social-icon youtube" href="https://www.youtube.com/channel/UCNmOH6L2xq6C15EkQlx_FpQ" target="_blank">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" width="18" height="18"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+        </a>
+
+        <a class="social-icon instagram" href="https://instagram.com/ypinurulhadina" target="_blank">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" width="18" height="18"><path d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.319 1.347 20.651.935 19.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.015 3.585-.074 4.85c-.061 1.17-.256 1.805-.421 2.227-.224.562-.479.96-.899 1.382-.419.419-.824.679-1.38.896-.42.164-1.065.36-2.235.413-1.274.057-1.649.07-4.859.07-3.211 0-3.586-.015-4.859-.074-1.171-.061-1.816-.256-2.236-.421-.569-.224-.96-.479-1.379-.899-.421-.419-.69-.824-.9-1.38-.165-.42-.359-1.065-.42-2.235-.045-1.26-.061-1.649-.061-4.844 0-3.196.016-3.586.061-4.861.061-1.17.255-1.814.42-2.234.21-.57.479-.96.9-1.381.419-.419.81-.689 1.379-.898.42-.166 1.051-.361 2.221-.421 1.275-.045 1.65-.06 4.859-.06l.045.03zm0 3.678c-3.405 0-6.162 2.76-6.162 6.162 0 3.405 2.76 6.162 6.162 6.162 3.405 0 6.162-2.76 6.162-6.162 0-3.405-2.76-6.162-6.162-6.162zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm7.846-10.405c0 .795-.646 1.44-1.44 1.44-.795 0-1.44-.646-1.44-1.44 0-.794.646-1.439 1.44-1.439.793-.001 1.44.645 1.44 1.439z"/></svg>
+        </a>
+
+        <a class="social-icon facebook" href="https://www.facebook.com/fauzan.reza.7" target="_blank">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" width="18" height="18"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        </a>
+      </div>
+
+      <p style="margin-top: 0.6rem; font-size: 0.7rem; opacity: 0.85;">©2025 Portal Siswa Informatika. MA PLUS & SMP IT.<br>Oleh : <strong>Fauzan Reza, S.T</strong> (Guru Informatika)</p>
+    </div>
+  </footer>
+
+  <script>
+    let score = 0;
+
+    function checkAnswer(event, key, questionNumber) {
+      if (!event.target.classList.contains('quiz-option')) return;
+
+      const options = event.target.parentElement.querySelectorAll('.quiz-option');
+      const resultMsg = document.getElementById('result' + questionNumber);
+
+      options.forEach(opt => {
+        opt.classList.remove('correct', 'incorrect');
+        opt.style.pointerEvents = 'none';
+      });
+
+      const selectedText = event.target.textContent.toLowerCase();
+
+      if (selectedText.includes(key.toLowerCase())) {
+        event.target.classList.add('correct');
+        resultMsg.textContent = '✅ Benar! Bagus sekali! 🎉';
+        resultMsg.classList.add('show', 'correct');
+        score++;
+      } else {
+        event.target.classList.add('incorrect');
+        options.forEach(opt => {
+          if (opt.textContent.toLowerCase().includes(key.toLowerCase())) {
+            opt.classList.add('correct');
+          }
+        });
+        resultMsg.textContent = '❌ Kurang tepat. Lihat jawaban yang hijau!';
+        resultMsg.classList.add('show', 'incorrect');
+      }
+
+      updateScore();
+      updateProgress();
+    }
+
+    function updateScore() {
+      document.getElementById('scoreDisplay').textContent = `Skor: ${score}/5`;
+    }
+
+    function updateProgress() {
+      const progress = Math.round((score / 5) * 100);
+      const bar = document.getElementById('progressBar');
+      bar.style.width = progress + '%';
+      bar.textContent = progress + '%';
+    }
+  </script>
+</body>
+</html>

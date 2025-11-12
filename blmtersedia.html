@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Materi Belum Tersedia - Informatika</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Poppins", sans-serif;
+      background: linear-gradient(135deg, #0a3d2e, #f5b700, #ffffff);
+      background-attachment: fixed;
+      color: #222;
+      text-align: center;
+    }
+
+    .container {
+      background: rgba(255,255,255,0.9);
+      margin: 80px auto;
+      padding: 50px;
+      max-width: 750px;
+      border-radius: 25px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+    }
+
+    h1 {
+      color: #0a3d2e;
+      font-size: 2.2em;
+      margin-bottom: 15px;
+    }
+
+    p {
+      font-size: 1.1em;
+      color: #333;
+      line-height: 1.7;
+    }
+
+    .emoji {
+      font-size: 4em;
+      margin-bottom: 20px;
+    }
+
+    .loader {
+      border: 6px solid #eee;
+      border-top: 6px solid #f5b700;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      animation: spin 1.5s linear infinite;
+      margin: 30px auto;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .video-section {
+      margin-top: 50px;
+      padding: 20px;
+      background: rgba(255,255,255,0.95);
+      border-radius: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    iframe {
+      width: 100%;
+      max-width: 720px;
+      height: 405px;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+
+    /* Form laporan kecil */
+    .report-form {
+      margin-top: 40px;
+      background: rgba(255,255,255,0.9);
+      padding: 25px;
+      border-radius: 20px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .report-form h3 {
+      color: #0a3d2e;
+      margin-bottom: 10px;
+      font-size: 1.3em;
+    }
+
+    label {
+      display: block;
+      font-weight: 600;
+      margin-top: 10px;
+      color: #0a3d2e;
+      text-align: left;
+    }
+
+    select {
+      width: 100%;
+      padding: 10px;
+      border-radius: 10px;
+      border: 2px solid #ccc;
+      font-size: 0.95em;
+      transition: border-color 0.3s;
+    }
+
+    select:focus {
+      border-color: #0a3d2e;
+      outline: none;
+    }
+
+    .whatsapp-button {
+      display: inline-block;
+      background-color: #25D366;
+      color: white;
+      padding: 12px 20px;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1em;
+      margin-top: 20px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .whatsapp-button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+    }
+
+    .footer {
+      margin-top: 60px;
+      background: #0a3d2e;
+      color: white;
+      padding: 20px;
+      border-top: 5px solid #f5b700;
+      border-radius: 20px 20px 0 0;
+    }
+
+    .footer a {
+      color: #f5b700;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="emoji">📚</div>
+    <h1>Mohon Maaf 🙏</h1>
+    <p>
+      Saat ini <strong>Materi pembelajaran belum tersedia</strong> di halaman ini.  
+      Guru sedang menyiapkan konten terbaik agar proses belajar kamu menjadi lebih mudah dan menarik.
+    </p>
+    <div class="loader"></div>
+    <p>
+      Mohon kesediaannya untuk <strong>menunggu pembaruan materi</strong> dari guru.  
+      Terima kasih atas pengertian dan semangat belajarnya 💪
+    </p>
+
+    <!-- Video Pembelajaran -->
+    <div class="video-section">
+      <h2>🎬 Sambil Menunggu, Yuk Tonton Video Informatika Ini!</h2>
+      <iframe src="https://www.youtube.com/embed/nKIu9yen5nc"
+        title="Video Pembelajaran Informatika"
+        allowfullscreen>
+      </iframe>
+    </div>
+
+    <!-- Form laporan kecil -->
+    <div class="report-form">
+      <h3>📝 Laporkan Materi yang Belum Tersedia</h3>
+      <form id="materiForm">
+        <label for="tingkat">Tingkat Kelas</label>
+        <select id="tingkat" required>
+          <option value="">-- Pilih Tingkat --</option>
+          <option value="SMP">SMP</option>
+          <option value="SMA">SMA</option>
+        </select>
+
+        <label for="kelas">Kelas</label>
+        <select id="kelas" required>
+          <option value="">-- Pilih Kelas --</option>
+        </select>
+
+        <label for="tema">Tema Materi</label>
+        <select id="tema" required>
+          <option value="">-- Pilih Tema --</option>
+          <option value="Sistem Komputer">Sistem Komputer</option>
+          <option value="Jaringan Komputer">Jaringan Komputer</option>
+          <option value="Pemrograman">Pemrograman</option>
+          <option value="Visualisasi Data">Visualisasi Data</option>
+          <option value="Keamanan Digital">Keamanan Digital</option>
+        </select>
+
+        <label for="submateri">Sub Materi</label>
+        <select id="submateri" required>
+          <option value="">-- Pilih Sub Materi --</option>
+          <option value="Peran Sistem Operasi dan Driver">Peran Sistem Operasi dan Driver</option>
+          <option value="Algoritma dan Bahasa Pemrograman">Algoritma dan Bahasa Pemrograman</option>
+          <option value="Pengolahan Data dengan Excel">Pengolahan Data dengan Excel</option>
+          <option value="Keamanan Jaringan">Keamanan Jaringan</option>
+          <option value="Etika dan Keamanan Digital">Etika dan Keamanan Digital</option>
+        </select>
+
+        <a id="wa-link" class="whatsapp-button" target="_blank">💬 Kirim ke Guru via WhatsApp</a>
+      </form>
+    </div>
+  </div>
+
+ <footer class="footer">
+     &copy; 2025 Platform Belajar Informatika — Kelas MA.<br>
+  Oleh: <strong>Fauzan Reza, S.T</strong> (Guru Informatika <strong>YPI Nurul Hadina</strong>)
+    </footer>
+
+  <script>
+    const form = document.getElementById("materiForm");
+    const waLink = document.getElementById("wa-link");
+    const tingkatSelect = document.getElementById("tingkat");
+    const kelasSelect = document.getElementById("kelas");
+
+    // Update kelas berdasarkan tingkat
+    tingkatSelect.addEventListener("change", () => {
+      const tingkat = tingkatSelect.value;
+      kelasSelect.innerHTML = "<option value=''>-- Pilih Kelas --</option>";
+      if (tingkat === "SMP") {
+        kelasSelect.innerHTML += `
+          <option value="Kelas 7">Kelas 7</option>
+          <option value="Kelas 8">Kelas 8</option>
+          <option value="Kelas 9">Kelas 9</option>`;
+      } else if (tingkat === "SMA") {
+        kelasSelect.innerHTML += `
+          <option value="Kelas 10">Kelas 10</option>
+          <option value="Kelas 11">Kelas 11</option>
+          <option value="Kelas 12">Kelas 12</option>`;
+      }
+    });
+
+    // Generate pesan WA otomatis
+    form.addEventListener("change", () => {
+      const tingkat = tingkatSelect.value;
+      const kelas = kelasSelect.value;
+      const tema = document.getElementById("tema").value;
+      const submateri = document.getElementById("submateri").value;
+
+      if (tingkat && kelas && tema && submateri) {
+        const pesan = `Assalamu'alaikum, Pak Fauzan. Saya ingin melaporkan bahwa materi Informatika ${tingkat} (${kelas}) dengan tema "${tema}" dan submateri "${submateri}" belum tersedia di website pembelajaran. Mohon arahannya, Pak. Terima kasih.`;
+        const encodedPesan = encodeURIComponent(pesan);
+        const nomorWA = "6289504440411";
+        waLink.href = `https://wa.me/${nomorWA}?text=${encodedPesan}`;
+      }
+    });
+  </script>
+
+</body>
+</html>

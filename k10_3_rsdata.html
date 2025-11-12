@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kelas X • Rangkuman & Kesimpulan Materi Data</title>
+  <style>
+    :root {
+      --primary-color: #4f46e5;
+      --secondary-color: #818cf8;
+      --background-color: #f8fafc;
+      --card-bg: #fff;
+      --text-main: #1e293b;
+      --shadow: rgba(63, 63, 111, 0.1);
+    }
+    body {
+      margin: 0; 
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: var(--background-color);
+      color: var(--text-main);
+      line-height: 1.6;
+    }
+    nav.navbar {
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      color: white;
+      padding: 1rem 1.5rem;
+      box-shadow: 0 4px 16px var(--shadow);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    nav .navbar-content {
+      max-width: 1150px;
+      margin: auto;
+    }
+    nav .navbar-title {
+      font-size: 2rem;
+      font-weight: 900;
+      letter-spacing: -0.7px;
+    }
+    nav .navbar-sub {
+      font-weight: 500;
+      font-size: 0.9rem;
+      opacity: 0.85;
+    }
+    section.hero {
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      color: #fff;
+      padding: 3rem 1rem 2rem 1rem;
+      text-align: center;
+      border-bottom: 5px solid #facc15;
+    }
+    .hero-emoji {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+    .hero h1 {
+      font-size: 2.25rem;
+      margin-bottom: 1rem;
+      font-weight: 800;
+    }
+    .hero p {
+      max-width: 720px;
+      margin: 0 auto;
+      opacity: 0.95;
+      font-size: 1.1rem;
+      line-height: 1.5;
+    }
+    .badge-highlight {
+      background-color: #fde047;
+      color: var(--primary-color);
+      font-weight: 700;
+      padding: 0.3rem 1.2rem;
+      border-radius: 100px;
+      font-size: 1.03rem;
+      letter-spacing: 1.1px;
+      display: inline-block;
+      margin-top: 1rem;
+    }
+    .container {
+      max-width: 1100px;
+      margin: 2rem auto 4rem auto;
+      padding: 0 1.25rem;
+    }
+    section h2 {
+      color: var(--primary-color);
+      border-left: 5px solid var(--secondary-color);
+      padding-left: 1rem;
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .card {
+      background: var(--card-bg);
+      padding: 1.3rem 1.5rem;
+      border-radius: 16px;
+      box-shadow: 0 4px 20px var(--shadow);
+      border-left: 6px solid var(--primary-color);
+      margin-bottom: 1.6rem;
+      transition: box-shadow 0.25s ease, transform 0.25s ease;
+    }
+    .card:hover {
+      box-shadow: 0 10px 40px var(--shadow);
+      transform: translateY(-6px);
+    }
+    .card h3 {
+      color: var(--secondary-color);
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    .card p {
+      font-size: 1.05rem;
+      color: var(--text-main);
+      line-height: 1.65;
+    }
+    ul.summary-list {
+      margin-left: 1.2rem;
+      margin-top: 0.6rem;
+      list-style-type: disc;
+      font-size: 1.04rem;
+    }
+    ul.summary-list li {
+      margin-bottom: 0.45rem;
+      max-width: 700px;
+    }
+    .conclusion-box {
+      background: linear-gradient(105deg, #818cf8cc 0%, #4f46e599 100%);
+      color: white;
+      font-weight: 700;
+      text-align: center;
+      padding: 1.8rem 1.2rem;
+      font-size: 1.2rem;
+      border-radius: 16px;
+      box-shadow: 0 0 22px #7c3aed85;
+      margin-top: 2rem;
+      max-width: 850px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    /* Footer from last uploaded html */
+    footer {
+      background: #111827;
+      color: #fff;
+      text-align: center;
+      padding: 1rem 0.8rem;
+      margin-top: 2rem;
+    }
+    .footer-content h3 {
+      color: #FFD700;
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+    }
+    .footer-content p {
+      opacity: 0.9;
+      font-size: 0.8rem;
+      margin-bottom: 0.3rem;
+    }
+    .social-media {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin: 0.8rem 0 0.5rem 0;
+      flex-wrap: wrap;
+    }
+    .social-icon {
+      width: 34px;
+      height: 34px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      transition: all 0.25s ease;
+      text-decoration: none;
+    }
+    .social-icon.whatsapp {
+      background: #25D366;
+      color: #fff;
+    }
+    .social-icon.whatsapp:hover {
+      background: #128C7E;
+      transform: scale(1.08) rotate(3deg);
+    }
+    .social-icon.youtube {
+      background: #FF0000;
+      color: #fff;
+    }
+    .social-icon.youtube:hover {
+      background: #CC0000;
+      transform: scale(1.08) rotate(-3deg);
+    }
+    .social-icon.instagram {
+      background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+      color: #fff;
+    }
+    .social-icon.instagram:hover {
+      transform: scale(1.08);
+    }
+    .social-icon.facebook {
+      background: #1877F2;
+      color: #fff;
+    }
+    .social-icon.facebook:hover {
+      background: #145DBF;
+      transform: scale(1.08) rotate(-2deg);
+    }
+    @media (max-width: 720px) {
+      section h2 {
+        font-size: 1.3rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="navbar-content">
+    <div class="navbar-title">📊 Rangkuman Materi Data</div>
+    <div class="navbar-sub">Kelas X • Pengantar Data, Analisis, Visualisasi & Publikasi</div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-emoji">📝📊📚</div>
+  <h1>Rangkuman dan Kesimpulan Materi Data</h1>
+  <p>Mengenal pengertian data, cara menganalisisnya, membuat visualisasi yang menarik, hingga cara mempublikasikannya dengan efektif dan aman.</p>
+  <span class="badge-highlight">#DataUntukSemua</span>
+</section>
+
+<div class="container">
+
+  <section>
+    <h2>📌 Pengantar Materi Data</h2>
+    <div class="card">
+      <h3>Inti Pengertian Data</h3>
+      <p>Data adalah kumpulan fakta, angka, atau informasi yang diperoleh melalui pengamatan dan pengukuran. Bentuk data ada beragam: angka, teks, gambar, suara, dan video.</p>
+      <ul class="summary-list">
+        <li>Data kualitatif bersifat deskriptif, menggambarkan kategori & sifat.</li>
+        <li>Data kuantitatif berupa angka dan dapat dihitung.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2>🔍 Analisis & Interpretasi Data</h2>
+    <div class="card">
+      <h3>Rangkuman Analisis Data</h3>
+      <p>Analisis data bertujuan mengolah dan menafsirkan data untuk menemukan pola, tren, dan insight guna pengambilan keputusan.</p>
+      <ul class="summary-list">
+        <li>Analisis statistik deskriptif, korelasi, analisis tren waktu, dan perbandingan antar kelompok.</li>
+        <li>Interpretasi merupakan proses memberi makna dan konteks dari hasil analisis.</li>
+        <li>Keduanya saling melengkapi untuk menghasilkan insight yang berguna.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2>🎨 Visualisasi Data</h2>
+    <div class="card">
+      <h3>Mengapa Visualisasi?</h3>
+      <p>Visualisasi membantu menyampaikan data kompleks menjadi bentuk yang mudah dimengerti dan menarik perhatian.</p>
+      <ul class="summary-list">
+        <li>Jenis grafik populer: bar chart, line chart, pie chart, scatter plot, histogram, dan heatmap.</li>
+        <li>Pilih grafik sesuai tujuan untuk hasil presentasi terbaik.</li>
+        <li>Visualisasi mempercepat pengambilan keputusan dan komunikasi data.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <h2>🌐 Publikasi Data</h2>
+    <div class="card">
+      <h3>Langkah Publikasi yang Efektif</h3>
+      <ul class="summary-list">
+        <li>Pilih platform publikasi: blog, website, media sosial, atau dashboard interaktif.</li>
+        <li>Buat materi menarik berupa infografis, video, slide, atau PDF.</li>
+        <li>Promosikan dengan membagikan tautan dan berinteraksi dengan audiens.</li>
+        <li>Selalu perbarui data dan tanggapi feedback untuk kualitas lebih baik.</li>
+        <li>Perhatikan privasi dan keamanan data terutama jika mengandung data pribadi.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="conclusion-box">
+    <p>
+      Kesimpulannya, menguasai data mulai dari pengolahan, analisis, visualisasi, hingga publikasi adalah kunci penting dalam era digital.
+      Dengan keterampilan ini, siswa dapat mengubah angka membosankan menjadi cerita yang kuat dan memengaruhi keputusan berharga.
+      Jadilah pengambil keputusan yang cerdas dan kreatif melalui pemahaman data yang baik!
+    </p>
+  </section>
+</div>
+
+<footer>
+  <div class="footer-content">
+    <h3>Platform Pembelajaran Interaktif untuk Siswa & Siswi <strong>Ypi Nurul Hadina</strong></h3>
+
+    <div class="social-media">
+      <a class="social-icon whatsapp" href="https://wa.me/6289504440411" target="_blank">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" width="18" height="18"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884"/></svg>
+      </a>
+      <a class="social-icon youtube" href="https://www.youtube.com/channel/UCNmOH6L2xq6C15EkQlx_FpQ" target="_blank">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" width="18" height="18"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+      </a>
+      <a class="social-icon instagram" href="https://instagram.com/ypinurulhadina" target="_blank">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" width="18" height="18"><path d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.319 1.347 20.651.935 19.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.015 3.585-.074 4.85c-.061 1.17-.256 1.805-.421 2.227-.224.562-.479.96-.899 1.382-.419.419-.824.679-1.38.896-.42.164-1.065.36-2.235.413-1.274.057-1.649.07-4.859.07-3.211 0-3.586-.015-4.859-.074-1.171-.061-1.816-.256-2.236-.421-.569-.224-.96-.479-1.379-.899-.421-.419-.69-.824-.9-1.38-.165-.42-.359-1.065-.42-2.235-.045-1.26-.061-1.649-.061-4.844 0-3.196.016-3.586.061-4.861.061-1.17.255-1.814.42-2.234.21-.57.479-.96.9-1.381.419-.419.81-.689 1.379-.898.42-.166 1.051-.361 2.221-.421 1.275-.045 1.65-.06 4.859-.06l.045.03zm0 3.678c-3.405 0-6.162 2.76-6.162 6.162 0 3.405 2.76 6.162 6.162 6.162 3.405 0 6.162-2.76 6.162-6.162 0-3.405-2.76-6.162-6.162-6.162zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm7.846-10.405c0 .795-.646 1.44-1.44 1.44-.795 0-1.44-.646-1.44-1.44 0-.794.646-1.439 1.44-1.439.793-.001 1.44.645 1.44 1.439z"/></svg>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

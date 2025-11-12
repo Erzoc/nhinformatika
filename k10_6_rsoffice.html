@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kelas X • Rangkuman Microsoft Office</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary-color: #0078D4;
+      --secondary-color: #00A4EF;
+      --excel-color: #217346;
+      --word-color: #2B579A;
+      --powerpoint-color: #D24726;
+      --success-color: #10B981;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
+      line-height: 1.6;
+      color: #1F2937;
+      background: #F8F9FA;
+    }
+
+    /* NAVBAR */
+    .navbar {
+      background: linear-gradient(135deg, #0078D4 0%, #00A4EF 100%);
+      color: #fff;
+      padding: 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+    }
+
+    .navbar-content {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .navbar-title {
+      font-size: 2rem;
+      font-weight: 800;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.35);
+    }
+
+    .navbar-sub {
+      font-size: 0.9rem;
+      opacity: 0.95;
+      font-weight: 600;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.35);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+      margin-top: 0.8rem;
+    }
+
+    .nav-link {
+      background: rgba(255,255,255,0.2);
+      padding: 0.35rem 0.7rem;
+      border-radius: 6px;
+      text-decoration: none;
+      color: #fff;
+      font-size: 0.8rem;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .nav-link:hover {
+      background: rgba(255,255,255,0.3);
+      transform: translateY(-2px);
+    }
+
+    .nav-link.active {
+      background: #FFE66D;
+      color: #0078D4;
+    }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(135deg, #0078D4 0%, #00A4EF 100%);
+      color: #fff;
+      padding: 2.5rem 1rem;
+      text-align: center;
+      border-bottom: 5px solid #FFE66D;
+    }
+
+    .hero-emoji {
+      font-size: 2.5rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .hero h1 {
+      font-size: 2.2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero p {
+      opacity: 0.98;
+      font-size: 1.1rem;
+    }
+
+    .badge {
+      display: inline-block;
+      background: #FFE66D;
+      color: #0078D4;
+      padding: 0.4rem 1rem;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      margin-top: 0.8rem;
+    }
+
+    /* CONTAINER */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    section {
+      margin: 2rem 0;
+    }
+
+    section h2 {
+      color: var(--primary-color);
+      font-size: 1.7rem;
+      margin-bottom: 1rem;
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+      border-left: 5px solid var(--secondary-color);
+      padding-left: 0.8rem;
+    }
+
+    /* CARDS */
+    .card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 1.3rem;
+      margin-bottom: 1.2rem;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      border-left: 5px solid var(--secondary-color);
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.2);
+    }
+
+    .card h3 {
+      color: var(--primary-color);
+      margin-bottom: 0.7rem;
+      font-size: 1.3rem;
+    }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.2rem;
+      margin: 1rem 0;
+    }
+
+    .summary-card {
+      background: #fff;
+      padding: 1.2rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+      border-top: 5px solid var(--primary-color);
+      transition: all 0.3s ease;
+    }
+
+    .summary-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    }
+
+    .summary-card h4 {
+      color: var(--primary-color);
+      margin-bottom: 0.6rem;
+      font-size: 1.1rem;
+    }
+
+    .chapter-nav {
+      background: #f9fafb;
+      padding: 1.5rem;
+      border-radius: 12px;
+      margin: 1.5rem 0;
+      border: 2px solid #e5e7eb;
+    }
+
+    .chapter-nav h4 {
+      color: #1F2937;
+      margin-bottom: 1rem;
+      font-size: 1.2rem;
+    }
+
+    .chapter-links {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem;
+    }
+
+    .chapter-link {
+      background: #fff;
+      padding: 1rem;
+      border-radius: 8px;
+      text-decoration: none;
+      color: #1F2937;
+      border: 2px solid #e5e7eb;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .chapter-link:hover {
+      border-color: #0078D4;
+      transform: translateY(-3px);
+      box-shadow: 0 4px 12px rgba(0,120,212,0.2);
+    }
+
+    .chapter-icon {
+      font-size: 2rem;
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(135deg, #0078D4, #00A4EF);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .chapter-text h5 {
+      font-size: 1rem;
+      margin-bottom: 0.2rem;
+      color: #0078D4;
+    }
+
+    .chapter-text p {
+      font-size: 0.85rem;
+      color: #6B7280;
+    }
+
+    .tip-box {
+      background: linear-gradient(135deg, #8B5CF6 0%, #EC4899 100%);
+      color: #fff;
+      padding: 1.2rem;
+      border-radius: 10px;
+      margin: 1rem 0;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    .tip-box h4 {
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .fact-box {
+      background: linear-gradient(135deg, #1E88E5 0%, #00ACC1 100%);
+      color: #fff;
+      padding: 1.2rem;
+      border-radius: 10px;
+      margin: 1rem 0;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    .success-box {
+      background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+      color: #fff;
+      padding: 1.2rem;
+      border-radius: 10px;
+      margin: 1rem 0;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    .download-box {
+      background: linear-gradient(135deg, #0078D4 0%, #00A4EF 100%);
+      color: #fff;
+      padding: 2rem;
+      border-radius: 12px;
+      margin: 1.5rem 0;
+      text-align: center;
+      box-shadow: 0 6px 20px rgba(0,120,212,0.4);
+    }
+
+    .download-box h4 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .btn-download {
+      display: inline-block;
+      background: #fff;
+      color: #0078D4;
+      padding: 0.9rem 1.8rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.1rem;
+      margin: 0.5rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    .btn-download:hover {
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+    }
+
+    .key-points {
+      background: #f9fafb;
+      padding: 1.5rem;
+      border-radius: 10px;
+      border-left: 5px solid #0078D4;
+      margin: 1rem 0;
+    }
+
+    .key-points h4 {
+      color: #0078D4;
+      margin-bottom: 0.8rem;
+    }
+
+    .office-icon {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      font-weight: 700;
+      margin: 0.3rem;
+      font-size: 0.9rem;
+    }
+
+    .word-icon {
+      background: #2B579A;
+      color: #fff;
+    }
+
+    .excel-icon {
+      background: #217346;
+      color: #fff;
+    }
+
+    .powerpoint-icon {
+      background: #D24726;
+      color: #fff;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #111827;
+      color: #fff;
+      text-align: center;
+      padding: 1rem 0.8rem;
+      margin-top: 2rem;
+    }
+
+    .footer-content h3 {
+      color: #FFD700;
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+    }
+
+    .footer-content p {
+      opacity: 0.9;
+      font-size: 0.8rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .social-media {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin: 0.8rem 0 0.5rem 0;
+      flex-wrap: wrap;
+    }
+
+    .social-icon {
+      width: 34px;
+      height: 34px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      transition: all 0.25s ease;
+      text-decoration: none;
+    }
+
+    .social-icon.whatsapp {
+      background: #25D366;
+      color: #fff;
+    }
+
+    .social-icon.whatsapp:hover {
+      background: #128C7E;
+      transform: scale(1.08) rotate(3deg);
+    }
+
+    .social-icon.youtube {
+      background: #FF0000;
+      color: #fff;
+    }
+
+    .social-icon.youtube:hover {
+      background: #CC0000;
+      transform: scale(1.08) rotate(-3deg);
+    }
+
+    .social-icon.instagram {
+      background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+      color: #fff;
+    }
+
+    .social-icon.instagram:hover {
+      transform: scale(1.08);
+    }
+
+    .social-icon.facebook {
+      background: #1877F2;
+      color: #fff;
+    }
+
+    .social-icon.facebook:hover {
+      background: #145DBF;
+      transform: scale(1.08) rotate(-2deg);
+    }
+
+    @media (max-width: 768px) {
+      .navbar-title {
+        font-size: 1.5rem;
+      }
+
+      .nav-links {
+        gap: 0.4rem;
+      }
+
+      .nav-link {
+        font-size: 0.7rem;
+        padding: 0.3rem 0.5rem;
+      }
+
+      .hero h1 {
+        font-size: 1.5rem;
+      }
+
+      section h2 {
+        font-size: 1.3rem;
+      }
+
+      .summary-grid, .chapter-links {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="navbar-content">
+      <div class="navbar-title">📚 Rangkuman Microsoft Office</div>
+      <div class="nav-links">
+        <a href="k10_6_office1.html" class="nav-link">Integrasi Office</a>
+        <a href="k10_6_office2.html" class="nav-link">Fitur Lanjut</a>
+        <a href="#" class="nav-link active">Rangkuman</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-emoji">💼📊📄</div>
+      <h1>Rangkuman: Aplikasi Komputer Microsoft Office</h1>
+      <p>Ringkasan lengkap Integrasi Antaraplikasi Office dan Fitur Tingkat Lanjut untuk produktivitas maksimal</p>
+      <span class="badge">✅ RANGKUMAN LENGKAP</span>
+    </div>
+  </section>
+
+  <div class="container">
+    <!-- NAVIGASI CHAPTER -->
+    <section>
+      <div class="chapter-nav">
+        <h4>📖 Akses Cepat ke Materi Lengkap</h4>
+        <div class="chapter-links">
+          <a href="k10_6_office1.html" class="chapter-link">
+            <div class="chapter-icon">🔗</div>
+            <div class="chapter-text">
+              <h5>Bab 1</h5>
+              <p>Integrasi Antaraplikasi Office</p>
+            </div>
+          </a>
+
+          <a href="k10_6_office2.html" class="chapter-link">
+            <div class="chapter-icon">⚡</div>
+            <div class="chapter-text">
+              <h5>Bab 2</h5>
+              <p>Fitur Tingkat Lanjut Office</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- BAB 1: INTEGRASI OFFICE -->
+    <section>
+      <h2>🔗 Ringkasan: Integrasi Antaraplikasi Office</h2>
+
+      <div class="card">
+        <h3>Menghubungkan Excel, Word, dan PowerPoint</h3>
+        <p>Integrasi antaraplikasi adalah kemampuan untuk berbagi dan menghubungkan data antara Excel, Word, dan PowerPoint sehingga data dapat digunakan secara efisien tanpa duplikasi.</p>
+
+        <div style="text-align: center; margin: 1.5rem 0;">
+          <span class="office-icon excel-icon">📊 Excel</span>
+          <span style="font-size: 1.5rem;">↔️</span>
+          <span class="office-icon word-icon">📄 Word</span>
+          <span style="font-size: 1.5rem;">↔️</span>
+          <span class="office-icon powerpoint-icon">📽️ PowerPoint</span>
+        </div>
+
+        <div class="summary-grid">
+          <div class="summary-card">
+            <h4>📊➡️📄 Excel ke Word</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>Copy-Paste biasa:</strong> Data statis, tidak update</li>
+              <li>• <strong>Paste Special:</strong> Keep source formatting</li>
+              <li>• <strong>Paste Link:</strong> Data ter-link, update otomatis</li>
+              <li>• <strong>Insert Object:</strong> Embed file Excel</li>
+              <li>• <strong>Update link:</strong> Klik kanan → Update Link</li>
+            </ul>
+          </div>
+
+          <div class="summary-card">
+            <h4>📊➡️📽️ Excel ke PowerPoint</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>Copy-Paste langsung:</strong> Tabel di slide</li>
+              <li>• <strong>Paste Special:</strong> Excel Worksheet Object</li>
+              <li>• <strong>Paste as Picture:</strong> Statis sebagai gambar</li>
+              <li>• <strong>Paste Link:</strong> Dynamic update</li>
+              <li>• Font besar (18pt+) untuk presentasi</li>
+            </ul>
+          </div>
+
+          <div class="summary-card">
+            <h4>📄➡️📽️ Word ke PowerPoint</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>Copy-Paste text:</strong> Langsung paste ke text box</li>
+              <li>• <strong>Copy table:</strong> Tabel dari Word ke slide</li>
+              <li>• <strong>Import Outline:</strong> New Slide → Slides from Outline</li>
+              <li>• <strong>Insert Object:</strong> Embed dokumen Word</li>
+              <li>• Gunakan Heading Styles untuk structure</li>
+            </ul>
+          </div>
+
+          <div class="summary-card">
+            <h4>📈 Chart Excel ke Word/PPT</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>Copy-Paste chart:</strong> Pilih paste option</li>
+              <li>• <strong>Use Destination Theme:</strong> Ikuti theme dokumen</li>
+              <li>• <strong>Keep Source Formatting:</strong> Format Excel</li>
+              <li>• <strong>Paste Link:</strong> Update otomatis dari Excel</li>
+              <li>• <strong>Picture:</strong> Statis, ukuran file kecil</li>
+              <li>• <strong>Edit data:</strong> Klik kanan chart → Edit Data</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="key-points">
+          <h4>🎯 Poin Penting Integrasi Office</h4>
+          <ol style="list-style-position: inside; margin-left: 0.6rem; line-height: 1.9;">
+            <li>Integrasi menghemat waktu dengan menghindari input data berulang</li>
+            <li><strong>Copy-Paste biasa:</strong> Data statis, untuk dokumen final yang dibagikan</li>
+            <li><strong>Paste Link:</strong> Data dynamic, update otomatis saat source berubah</li>
+            <li><strong>Paste Special</strong> (Ctrl + Alt + V): Kontrol format & link</li>
+            <li>File sumber harus tetap di lokasi yang sama untuk Paste Link</li>
+            <li><strong>Update Link:</strong> Klik kanan objek → Update Link untuk refresh data</li>
+            <li>Chart bisa di-paste sebagai: Object (editable), Picture (statis), atau Link (dynamic)</li>
+            <li>Untuk presentasi di komputer lain, gunakan Paste (bukan Link) atau Embed</li>
+            <li><strong>Import Outline:</strong> Word dengan Heading Styles → PowerPoint slide otomatis</li>
+            <li>Best practice: Paste as Picture untuk dokumen yang akan diprint atau dikirim</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- BAB 2: FITUR LANJUT -->
+    <section>
+      <h2>⚡ Ringkasan: Fitur Tingkat Lanjut Office</h2>
+
+      <div class="card">
+        <h3>Fitur Canggih untuk Produktivitas Maksimal</h3>
+        <p>Fitur-fitur lanjut Office memungkinkan otomasi, kontrol data, dan presentasi profesional yang meningkatkan efisiensi kerja secara signifikan.</p>
+
+        <div class="summary-grid">
+          <div class="summary-card">
+            <h4>📄 Table of Contents (Word)</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>Gunakan Heading Styles:</strong> Heading 1, 2, 3</li>
+              <li>• <strong>Insert TOC:</strong> References → Table of Contents</li>
+              <li>• <strong>Update TOC:</strong> Klik TOC → Update Table</li>
+              <li>• <strong>Customize:</strong> Custom Table of Contents untuk atur format</li>
+              <li>• <strong>Multilevel List:</strong> Untuk numbering otomatis (1, 1.1, 1.1.1)</li>
+              <li>• <strong>Navigation:</strong> Ctrl + Click pada entry untuk jump ke section</li>
+              <li>• Update entire table jika ada perubahan heading</li>
+            </ul>
+          </div>
+
+          <div class="summary-card">
+            <h4>✉️ Mail Merge (Word)</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>Data Source:</strong> Buat Excel dengan header & data</li>
+              <li>• <strong>Start Mail Merge:</strong> Mailings → Start Mail Merge → Letters</li>
+              <li>• <strong>Select Recipients:</strong> Use Existing List → pilih Excel</li>
+              <li>• <strong>Insert Merge Fields:</strong> &lt;&lt;Nama&gt;&gt;, &lt;&lt;Alamat&gt;&gt;</li>
+              <li>• <strong>Preview Results:</strong> Lihat hasil sebelum finish</li>
+              <li>• <strong>Finish & Merge:</strong> Edit Individual Documents / Print / Email</li>
+              <li>• Hemat waktu untuk ratusan/ribuan surat!</li>
+            </ul>
+          </div>
+
+          <div class="summary-card">
+            <h4>📊 Sort & Filter (Excel)</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>Sort A-Z:</strong> Urutkan ascending/descending</li>
+              <li>• <strong>Multi-level Sort:</strong> Data → Sort, bisa sort by 2+ kolom</li>
+              <li>• <strong>Filter:</strong> Data → Filter (Ctrl + Shift + L)</li>
+              <li>• <strong>Text Filters:</strong> Contains, Begins With, Equals</li>
+              <li>• <strong>Number Filters:</strong> Greater Than, Between, Top 10</li>
+              <li>• <strong>Date Filters:</strong> This Week, Last Month, Custom</li>
+              <li>• <strong>Clear Filter:</strong> Drop-down → Clear Filter From</li>
+            </ul>
+          </div>
+
+          <div class="summary-card">
+            <h4>✅ Data Validation (Excel)</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>Whole Number:</strong> Validasi angka bulat (umur, quantity)</li>
+              <li>• <strong>Decimal:</strong> Angka desimal (harga, nilai)</li>
+              <li>• <strong>List (Dropdown):</strong> Pilihan terbatas, user friendly</li>
+              <li>• <strong>Date:</strong> Validasi tanggal dalam range tertentu</li>
+              <li>• <strong>Text Length:</strong> Batasi panjang karakter (NIK, HP)</li>
+              <li>• <strong>Custom Formula:</strong> Validasi kompleks dengan formula</li>
+              <li>• <strong>Input Message:</strong> Petunjuk saat sel dipilih</li>
+              <li>• <strong>Error Alert:</strong> Pesan error jika input salah</li>
+            </ul>
+          </div>
+
+          <div class="summary-card">
+            <h4>📽️ Slide Show Settings (PowerPoint)</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>Set Up Show:</strong> Atur tipe show (speaker, kiosk, window)</li>
+              <li>• <strong>Custom Slide Show:</strong> Buat versi berbeda dari file sama</li>
+              <li>• <strong>Rehearse Timings:</strong> Latih & rekam timing otomatis</li>
+              <li>• <strong>Hide Slides:</strong> Sembunyikan slide tanpa hapus</li>
+              <li>• <strong>Presenter View:</strong> Notes, timer, next slide preview</li>
+              <li>• <strong>Pen & Laser:</strong> Highlight saat presentasi</li>
+              <li>• <strong>Shortcuts:</strong> Number + Enter (jump), B (black), W (white)</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="key-points">
+          <h4>🎯 Poin Penting Fitur Lanjut</h4>
+          <ol style="list-style-position: inside; margin-left: 0.6rem; line-height: 1.9;">
+            <li><strong>Table of Contents:</strong> Gunakan Heading Styles, update dengan 1 klik</li>
+            <li><strong>Mail Merge:</strong> 1000 surat dalam menit, Excel sebagai data source</li>
+            <li>Mail Merge field format: &lt;&lt;FieldName&gt;&gt;</li>
+            <li><strong>Sort:</strong> Multi-level sort untuk kriteria bertingkat</li>
+            <li><strong>Filter:</strong> Ctrl + Shift + L untuk toggle filter on/off</li>
+            <li>Filter hanya menyembunyikan data, tidak menghapus</li>
+            <li><strong>Data Validation List:</strong> Source bisa dari range atau typed list</li>
+            <li>Validation Error Alert style: Stop (reject), Warning (bisa lanjut), Info</li>
+            <li><strong>Custom Slide Show:</strong> Buat versi presentasi pendek & panjang</li>
+            <li><strong>Presenter View:</strong> Wajib untuk presentasi profesional (Alt + F5)</li>
+            <li>Rehearse Timings untuk latih dan set auto-advance timing</li>
+            <li>Hide Slides untuk backup content yang tidak selalu ditampilkan</li>
+            <li>Convert range ke Table (Ctrl + T) untuk fitur sort/filter otomatis</li>
+            <li>Named Range untuk Data Validation List lebih mudah dikelola</li>
+            <li>Heading 1 = Slide title, Heading 2 = Bullet level 1 (Import Outline)</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- KEY TAKEAWAYS -->
+    <section>
+      <h2>🎯 Key Takeaways: 20 Poin Penting</h2>
+
+      <div class="card" style="background: linear-gradient(135deg, rgba(0,120,212,0.05), rgba(0,164,239,0.05)); border-left: 5px solid #0078D4;">
+        <h3>💡 20 Hal yang Harus Dikuasai</h3>
+        <ol style="list-style-position: inside; margin-left: 0.6rem; line-height: 2.2; font-size: 0.95rem;">
+          <li>Integrasi Office menghemat waktu dengan menghindari input data berulang</li>
+          <li>Paste Special (Ctrl + Alt + V) untuk kontrol format dan link data</li>
+          <li>Paste Link membuat data update otomatis, tapi file source harus tetap di tempat</li>
+          <li>Paste as Picture untuk dokumen final yang akan dibagikan/print</li>
+          <li>Import Outline dari Word ke PowerPoint menggunakan Heading Styles</li>
+          <li>Table of Contents Word: Gunakan Heading Styles, update dengan 1 klik</li>
+          <li>Mail Merge: Excel sebagai data source, field format &lt;&lt;FieldName&gt;&gt;</li>
+          <li>Mail Merge bisa untuk Letters, Labels, Envelopes, Email Messages</li>
+          <li>Sort Excel: Multi-level sort untuk urutkan berdasarkan 2+ kolom</li>
+          <li>Filter Excel: Ctrl + Shift + L, hanya menyembunyikan bukan menghapus</li>
+          <li>Advanced Filter untuk criteria range kompleks dengan OR/AND logic</li>
+          <li>Data Validation: List (dropdown) paling sering digunakan</li>
+          <li>Validation Input Message untuk petunjuk, Error Alert untuk warning</li>
+          <li>Named Range untuk Data Validation List lebih mudah maintain</li>
+          <li>Custom Slide Show untuk buat versi presentasi berbeda dari file sama</li>
+          <li>Rehearse Timings untuk latih presentasi dan set auto-advance</li>
+          <li>Presenter View (Alt + F5): Notes, timer, next slide preview</li>
+          <li>Hide Slides untuk backup content tanpa menghapus</li>
+          <li>Pen tools (Ctrl + P) dan Laser Pointer (Ctrl + L) saat presentasi</li>
+          <li>Shortcut presentasi: Number + Enter (jump), B (black), W (white), Esc (exit)</li>
+        </ol>
+      </div>
+
+      <div class="fact-box">
+        <h4>📊 Quick Facts</h4>
+        <ul style="list-style-position: inside; margin-left: 0.6rem;">
+          <li>• <strong>Productivity boost:</strong> Fitur lanjut Office bisa hemat 50-70% waktu kerja</li>
+          <li>• <strong>Mail Merge:</strong> Bisa handle 10,000+ records tanpa masalah</li>
+          <li>• <strong>Data Validation:</strong> Mengurangi error input hingga 90%</li>
+          <li>• <strong>Filter:</strong> Analisis data 10x lebih cepat dibanding manual</li>
+          <li>• <strong>TOC:</strong> Update 100 halaman daftar isi dalam 1 detik</li>
+          <li>• <strong>Job requirement:</strong> 80% lowongan kerja office memerlukan skill Office advanced</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- SHORTCUTS SUMMARY -->
+    <section>
+      <h2>⌨️ Keyboard Shortcuts Ringkasan</h2>
+
+      <div class="card">
+        <h3>Shortcut Penting untuk Efisiensi</h3>
+
+        <div class="summary-grid">
+          <div class="summary-card">
+            <h4>Universal Office</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <code>Ctrl + C</code> = Copy</li>
+              <li>• <code>Ctrl + V</code> = Paste</li>
+              <li>• <code>Ctrl + Alt + V</code> = Paste Special</li>
+              <li>• <code>Ctrl + Z</code> = Undo</li>
+              <li>• <code>Ctrl + Y</code> = Redo</li>
+              <li>• <code>Ctrl + A</code> = Select All</li>
+            </ul>
+          </div>
+
+          <div class="summary-card">
+            <h4>Word Shortcuts</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <code>Alt + Shift + O</code> = Table of Contents</li>
+              <li>• <code>Ctrl + Enter</code> = Page Break</li>
+              <li>• <code>Ctrl + Shift + N</code> = Normal style</li>
+              <li>• <code>Alt + Ctrl + 1</code> = Heading 1</li>
+              <li>• <code>Alt + Ctrl + 2</code> = Heading 2</li>
+            </ul>
+          </div>
+
+          <div class="summary-card">
+            <h4>Excel Shortcuts</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <code>Ctrl + Shift + L</code> = Filter toggle</li>
+              <li>• <code>Alt + Down Arrow</code> = Open filter dropdown</li>
+              <li>• <code>Ctrl + T</code> = Create Table</li>
+              <li>• <code>Alt + H, S, S</code> = Sort dialog</li>
+              <li>• <code>Alt + D, L</code> = Data Validation</li>
+            </ul>
+          </div>
+
+          <div class="summary-card">
+            <h4>PowerPoint Shortcuts</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <code>F5</code> = Start from beginning</li>
+              <li>• <code>Shift + F5</code> = Start from current</li>
+              <li>• <code>Alt + F5</code> = Presenter View</li>
+              <li>• <code>Ctrl + P</code> = Pen (saat presentasi)</li>
+              <li>• <code>Ctrl + L</code> = Laser Pointer</li>
+              <li>• <code>B</code> = Black screen (pause)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DOWNLOAD SECTION -->
+    <section>
+      <h2>📥 Download Materi Lengkap</h2>
+      
+      <div class="download-box">
+        <h4>📚 Paket Lengkap: Microsoft Office Advanced</h4>
+        <p style="margin-bottom: 1.5rem; font-size: 1.05rem;">Download rangkuman lengkap, cheat sheet shortcuts, dan file latihan praktik!</p>
+        
+        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+          <a href="#" class="btn-download" onclick="alert('File akan segera tersedia. Hubungi guru untuk mendapatkan file lengkap.'); return false;">
+            📥 Rangkuman Lengkap PDF
+          </a>
+          <a href="#" class="btn-download" onclick="alert('File akan segera tersedia. Hubungi guru untuk mendapatkan file lengkap.'); return false;">
+            📥 Cheat Sheet Shortcuts
+          </a>
+          <a href="#" class="btn-download" onclick="alert('File akan segera tersedia. Hubungi guru untuk mendapatkan file lengkap.'); return false;">
+            📥 File Latihan
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- PENUTUP -->
+    <section>
+      <div class="card" style="background: linear-gradient(135deg, rgba(0,120,212,0.06), rgba(0,164,239,0.08)); border-left: 5px solid #FFE66D; text-align: center; padding: 2rem;">
+        <h3 style="margin-bottom: 1rem; font-size: 1.5rem;">🎉 Selamat! Anda Telah Menguasai Office Advanced</h3>
+        <p style="margin-bottom: 1.5rem; line-height: 1.9; font-size: 1.05rem;">
+          Anda sekarang memahami cara mengintegrasikan Excel, Word, dan PowerPoint secara efisien, serta menguasai fitur-fitur lanjut seperti Table of Contents, Mail Merge, Sort & Filter, Data Validation, dan Slide Show Settings. Skill-skill ini sangat berharga di dunia kerja dan akan meningkatkan produktivitas Anda secara signifikan!
+        </p>
+
+        <div style="background: rgba(255,230,109,0.15); padding: 1.5rem; border-radius: 10px; margin: 1.5rem 0;">
+          <p style="font-weight: 700; color: #0078D4; font-size: 1.3rem; margin-bottom: 0.8rem;">💡 Ingat Selalu:</p>
+          <p style="font-size: 1.1rem; line-height: 1.8;">
+            <em>"Efficiency is doing things right; effectiveness is doing the right things."</em><br/>
+            <span style="font-size: 0.9rem; opacity: 0.8;">- Peter Drucker</span>
+          </p>
+          <p style="font-size: 0.95rem; margin-top: 0.8rem;">
+            💼 Master the Tools • ⚡ Work Smarter • 🎯 Be Productive • 🚀 Excel in Career
+          </p>
+        </div>
+
+        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem;">
+          <a href="k10_6_office1.html" style="display: inline-block; background: #6B7280; color: #fff; padding: 0.8rem 1.8rem; border-radius: 8px; text-decoration: none; font-weight: 600;">
+            🔄 Review: Integrasi Office
+          </a>
+          <a href="k10_6_office2.html" style="display: inline-block; background: #6B7280; color: #fff; padding: 0.8rem 1.8rem; border-radius: 8px; text-decoration: none; font-weight: 600;">
+            🔄 Review: Fitur Lanjut
+          </a>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-content">
+      <h3>Platform Pembelajaran Interaktif untuk Siswa & Siswi <strong>Ypi Nurul Hadina</strong></h3>
+
+      <div class="social-media">
+        <a class="social-icon whatsapp" href="https://wa.me/6289504440411" target="_blank">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" width="18" height="18"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884"/></svg>
+        </a>
+
+        <a class="social-icon youtube" href="https://www.youtube.com/channel/UCNmOH6L2xq6C15EkQlx_FpQ" target="_blank">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" width="18" height="18"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+        </a>
+
+        <a class="social-icon instagram" href="https://instagram.com/ypinurulhadina" target="_blank">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" width="18" height="18"><path d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.319 1.347 20.651.935 19.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.015 3.585-.074 4.85c-.061 1.17-.256 1.805-.421 2.227-.224.562-.479.96-.899 1.382-.419.419-.824.679-1.38.896-.42.164-1.065.36-2.235.413-1.274.057-1.649.07-4.859.07-3.211 0-3.586-.015-4.859-.074-1.171-.061-1.816-.256-2.236-.421-.569-.224-.96-.479-1.379-.899-.421-.419-.69-.824-.9-1.38-.165-.42-.359-1.065-.42-2.235-.045-1.26-.061-1.649-.061-4.844 0-3.196.016-3.586.061-4.861.061-1.17.255-1.814.42-2.234.21-.57.479-.96.9-1.381.419-.419.81-.689 1.379-.898.42-.166 1.051-.361 2.221-.421 1.275-.045 1.65-.06 4.859-.06l.045.03zm0 3.678c-3.405 0-6.162 2.76-6.162 6.162 0 3.405 2.76 6.162 6.162 6.162 3.405 0 6.162-2.76 6.162-6.162 0-3.405-2.76-6.162-6.162-6.162zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm7.846-10.405c0 .795-.646 1.44-1.44 1.44-.795 0-1.44-.646-1.44-1.44 0-.794.646-1.439 1.44-1.439.793-.001 1.44.645 1.44 1.439z"/></svg>
+        </a>
+
+        <a class="social-icon facebook" href="https://www.facebook.com/fauzan.reza.7" target="_blank">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" width="18" height="18"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        </a>
+      </div>
+
+      <p style="margin-top: 0.6rem; font-size: 0.7rem; opacity: 0.85;">©2025 Portal Siswa Informatika. MA PLUS & SMP IT.<br>Oleh : <strong>Fauzan Reza, S.T</strong> (Guru Informatika)</p>
+    </div>
+  </footer>
+
+</body>
+</html>

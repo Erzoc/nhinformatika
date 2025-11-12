@@ -1,0 +1,1501 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kelas X • Fitur Lanjut Microsoft Office</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary-color: #0078D4;
+      --secondary-color: #00A4EF;
+      --excel-color: #217346;
+      --word-color: #2B579A;
+      --powerpoint-color: #D24726;
+      --success-color: #10B981;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
+      line-height: 1.6;
+      color: #1F2937;
+      background: #F8F9FA;
+    }
+
+    /* NAVBAR */
+    .navbar {
+      background: linear-gradient(135deg, #0078D4 0%, #00A4EF 100%);
+      color: #fff;
+      padding: 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+    }
+
+    .navbar-content {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .navbar-title {
+      font-size: 2rem;
+      font-weight: 800;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.35);
+    }
+
+    .navbar-sub {
+      font-size: 0.9rem;
+      opacity: 0.95;
+      font-weight: 600;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.35);
+    }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(135deg, #0078D4 0%, #00A4EF 100%);
+      color: #fff;
+      padding: 2rem 1rem;
+      text-align: center;
+      border-bottom: 5px solid #FFE66D;
+    }
+
+    .hero-emoji {
+      font-size: 2.3rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .hero h1 {
+      font-size: 1.9rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .hero p {
+      opacity: 0.98;
+      font-size: 1.05rem;
+    }
+
+    /* CONTAINER */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    section {
+      margin: 2rem 0;
+    }
+
+    section h2 {
+      color: var(--primary-color);
+      font-size: 1.6rem;
+      margin-bottom: 1rem;
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+      border-left: 5px solid var(--secondary-color);
+      padding-left: 0.8rem;
+    }
+
+    /* CARDS */
+    .card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 1.2rem;
+      margin-bottom: 1.2rem;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      border-left: 5px solid var(--secondary-color);
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.25);
+    }
+
+    .card h3 {
+      color: var(--primary-color);
+      margin-bottom: 0.7rem;
+      font-size: 1.2rem;
+    }
+
+    .card p {
+      color: #4B5563;
+      margin-bottom: 0.6rem;
+    }
+
+    .step-box {
+      background: #f9fafb;
+      padding: 1rem;
+      border-radius: 8px;
+      margin: 0.8rem 0;
+      border-left: 4px solid var(--primary-color);
+    }
+
+    .step-box h4 {
+      color: var(--primary-color);
+      margin-bottom: 0.5rem;
+      font-size: 1rem;
+    }
+
+    .step-list {
+      list-style-position: inside;
+      margin-left: 0.6rem;
+    }
+
+    .step-list li {
+      margin-bottom: 0.5rem;
+      font-size: 0.9rem;
+    }
+
+    .tip-box {
+      background: linear-gradient(135deg, #8B5CF6 0%, #EC4899 100%);
+      color: #fff;
+      padding: 1.1rem;
+      border-radius: 10px;
+      margin: 1rem 0;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    .tip-box h4 {
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .warning-box {
+      background: linear-gradient(135deg, #F59E0B 0%, #EF4444 100%);
+      color: #fff;
+      padding: 1.1rem;
+      border-radius: 10px;
+      margin: 1rem 0;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    .success-box {
+      background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+      color: #fff;
+      padding: 1.1rem;
+      border-radius: 10px;
+      margin: 1rem 0;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    .fact-box {
+      background: linear-gradient(135deg, #1E88E5 0%, #00ACC1 100%);
+      color: #fff;
+      padding: 1.1rem;
+      border-radius: 10px;
+      margin: 1rem 0;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    .office-icon {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      font-weight: 700;
+      margin: 0.3rem;
+      font-size: 0.9rem;
+    }
+
+    .word-icon {
+      background: #2B579A;
+      color: #fff;
+    }
+
+    .excel-icon {
+      background: #217346;
+      color: #fff;
+    }
+
+    .powerpoint-icon {
+      background: #D24726;
+      color: #fff;
+    }
+
+    .method-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem;
+      margin: 1rem 0;
+    }
+
+    .method-card {
+      background: #fff;
+      padding: 1rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+      border-top: 4px solid var(--primary-color);
+    }
+
+    .method-card h4 {
+      color: var(--primary-color);
+      margin-bottom: 0.6rem;
+    }
+
+    .download-box {
+      background: linear-gradient(135deg, #0078D4 0%, #00A4EF 100%);
+      color: #fff;
+      padding: 1.5rem;
+      border-radius: 12px;
+      margin: 1.5rem 0;
+      text-align: center;
+      box-shadow: 0 6px 20px rgba(0,120,212,0.3);
+    }
+
+    .download-box h4 {
+      font-size: 1.3rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .btn-download {
+      display: inline-block;
+      background: #fff;
+      color: #0078D4;
+      padding: 0.8rem 1.5rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.1rem;
+      margin: 0.5rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    .btn-download:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+    }
+
+    /* VIDEO */
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1rem;
+    }
+
+    .video-card {
+      background: #fff;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .video-card:hover {
+      transform: translateY(-8px);
+    }
+
+    .video-thumbnail {
+      width: 100%;
+      height: 150px;
+      background: linear-gradient(135deg, #0078D4, #00A4EF);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.4rem;
+      color: #fff;
+    }
+
+    .video-info {
+      padding: 0.9rem;
+    }
+
+    .video-info h4 {
+      margin-bottom: 0.4rem;
+      font-size: 1rem;
+      color: #111827;
+    }
+
+    .video-info p {
+      font-size: 0.85rem;
+      color: #6B7280;
+      margin-bottom: 0.6rem;
+    }
+
+    .video-link {
+      display: inline-block;
+      background: #0078D4;
+      color: #fff;
+      padding: 0.45rem 0.8rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: all 0.25s ease;
+    }
+
+    .video-link:hover {
+      background: #00A4EF;
+      transform: translateY(-2px);
+    }
+
+    /* QUIZ */
+    .game-section {
+      background: linear-gradient(135deg, #0078D4 0%, #00A4EF 100%);
+      color: #fff;
+      padding: 1.25rem 1rem;
+      border-radius: 14px;
+      margin: 1.4rem 0;
+    }
+
+    .game-section h3 {
+      color: #fff;
+      margin-bottom: 0.9rem;
+      font-size: 1.2rem;
+    }
+
+    .game-container {
+      background: rgba(255,255,255,0.96);
+      color: #111827;
+      padding: 0.9rem;
+      border-radius: 10px;
+      margin-bottom: 0.8rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .game-question {
+      font-weight: 700;
+      margin-bottom: 0.6rem;
+      font-size: 1rem;
+      color: #111827;
+    }
+
+    .quiz-options {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0.6rem;
+    }
+
+    .quiz-option {
+      background: #f3f4f6;
+      border: 2px solid #e5e7eb;
+      padding: 0.7rem 0.8rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-weight: 600;
+      font-size: 0.92rem;
+      color: #1F2937;
+    }
+
+    .quiz-option:hover {
+      background: #DBEAFE;
+      border-color: #0078D4;
+      transform: translateX(4px);
+    }
+
+    .quiz-option.correct {
+      background: var(--success-color);
+      border-color: var(--success-color);
+      color: #fff;
+    }
+
+    .quiz-option.incorrect {
+      background: #EF4444;
+      border-color: #EF4444;
+      color: #fff;
+    }
+
+    .result-message {
+      margin-top: 0.6rem;
+      padding: 0.7rem;
+      border-radius: 8px;
+      text-align: center;
+      font-weight: 700;
+      font-size: 0.95rem;
+      display: none;
+    }
+
+    .result-message.show {
+      display: block;
+    }
+
+    .result-message.correct {
+      background: var(--success-color);
+      color: #fff;
+    }
+
+    .result-message.incorrect {
+      background: #EF4444;
+      color: #fff;
+    }
+
+    .progress-container {
+      background: #e5e7eb;
+      border-radius: 10px;
+      margin: 0.8rem 0 1rem 0;
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      height: 20px;
+      background: linear-gradient(90deg, #0078D4, #00A4EF);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.8rem;
+      transition: width 0.25s ease;
+    }
+
+    .score-display {
+      text-align: center;
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--primary-color);
+      margin: 0.6rem 0;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #111827;
+      color: #fff;
+      text-align: center;
+      padding: 1rem 0.8rem;
+      margin-top: 2rem;
+    }
+
+    .footer-content h3 {
+      color: #FFD700;
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+    }
+
+    .footer-content p {
+      opacity: 0.9;
+      font-size: 0.8rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .social-media {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin: 0.8rem 0 0.5rem 0;
+      flex-wrap: wrap;
+    }
+
+    .social-icon {
+      width: 34px;
+      height: 34px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      transition: all 0.25s ease;
+      text-decoration: none;
+    }
+
+    .social-icon.whatsapp {
+      background: #25D366;
+      color: #fff;
+    }
+
+    .social-icon.whatsapp:hover {
+      background: #128C7E;
+      transform: scale(1.08) rotate(3deg);
+    }
+
+    .social-icon.youtube {
+      background: #FF0000;
+      color: #fff;
+    }
+
+    .social-icon.youtube:hover {
+      background: #CC0000;
+      transform: scale(1.08) rotate(-3deg);
+    }
+
+    .social-icon.instagram {
+      background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+      color: #fff;
+    }
+
+    .social-icon.instagram:hover {
+      transform: scale(1.08);
+    }
+
+    .social-icon.facebook {
+      background: #1877F2;
+      color: #fff;
+    }
+
+    .social-icon.facebook:hover {
+      background: #145DBF;
+      transform: scale(1.08) rotate(-2deg);
+    }
+
+    @media (max-width: 768px) {
+      .navbar-title {
+        font-size: 1.6rem;
+      }
+
+      .hero h1 {
+        font-size: 1.4rem;
+      }
+
+      section h2 {
+        font-size: 1.3rem;
+      }
+
+      .method-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="navbar-content">
+      <div class="navbar-title">⚡ Fitur Lanjut Microsoft Office</div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-emoji">📄📊📽️</div>
+      <h1>Fitur Tingkat Lanjut Microsoft Office</h1>
+      <p>Menguasai fitur-fitur canggih Word, Excel, dan PowerPoint untuk meningkatkan produktivitas dan profesionalitas kerja</p>
+    </div>
+  </section>
+
+  <div class="container">
+    <!-- INTRO -->
+    <section>
+      <h2>📚 Pengenalan Fitur Lanjut Office</h2>
+
+      <div class="card">
+        <h3>Mengapa Perlu Menguasai Fitur Lanjut?</h3>
+        <p>Fitur-fitur lanjut Microsoft Office memungkinkan Anda bekerja lebih <strong>efisien, profesional, dan otomatis</strong>. Dengan menguasai fitur-fitur ini, pekerjaan yang sebelumnya memakan waktu berjam-jam bisa diselesaikan dalam hitungan menit.</p>
+
+        <div style="text-align: center; margin: 1.5rem 0;">
+          <span class="office-icon word-icon">📄 Word Advanced</span>
+          <span class="office-icon excel-icon">📊 Excel Advanced</span>
+          <span class="office-icon powerpoint-icon">📽️ PowerPoint Advanced</span>
+        </div>
+
+        <div class="success-box">
+          <h4>✅ Manfaat Menguasai Fitur Lanjut</h4>
+          <ul style="list-style-position: inside; margin-left: 0.6rem;">
+            <li>• <strong>Efisiensi waktu:</strong> Otomasi pekerjaan berulang (mail merge, validasi data)</li>
+            <li>• <strong>Profesionalitas:</strong> Dokumen terstruktur dengan daftar isi otomatis</li>
+            <li>• <strong>Akurasi data:</strong> Validasi dan filter mencegah error input</li>
+            <li>• <strong>Presentasi efektif:</strong> Pengaturan slide yang strategis</li>
+            <li>• <strong>Kompetitif:</strong> Skill yang sangat dicari di dunia kerja</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- WORD: TABLE OF CONTENTS -->
+    <section>
+      <h2>📄 Daftar Isi Otomatis pada Word</h2>
+
+      <div class="card">
+        <h3>Table of Contents (TOC) - Daftar Isi Otomatis</h3>
+        <p><strong>Table of Contents</strong> adalah fitur Word yang membuat daftar isi secara otomatis berdasarkan heading styles. Fitur ini sangat berguna untuk dokumen panjang seperti skripsi, laporan, proposal, atau buku.</p>
+
+        <div class="step-box">
+          <h4>Langkah 1: Gunakan Heading Styles</h4>
+          <p style="font-size: 0.85rem; margin-bottom: 0.5rem;">Sebelum membuat TOC, pastikan dokumen menggunakan <strong>Heading Styles</strong> untuk struktur hierarki.</p>
+          <ol class="step-list">
+            <li>Pilih judul BAB atau bagian utama → klik <strong>Heading 1</strong> (di tab Home → Styles)</li>
+            <li>Pilih sub-judul → klik <strong>Heading 2</strong></li>
+            <li>Pilih sub-sub-judul → klik <strong>Heading 3</strong></li>
+            <li>Ulangi untuk seluruh dokumen</li>
+          </ol>
+          <p style="font-size: 0.8rem; margin-top: 0.5rem; color: #6B7280;"><strong>Contoh struktur:</strong></p>
+          <ul style="font-size: 0.8rem; margin-left: 1rem;">
+            <li>• <strong>Heading 1:</strong> BAB I PENDAHULUAN</li>
+            <li>• <strong>Heading 2:</strong> 1.1 Latar Belakang</li>
+            <li>• <strong>Heading 3:</strong> 1.1.1 Sejarah Masalah</li>
+          </ul>
+        </div>
+
+        <div class="step-box">
+          <h4>Langkah 2: Insert Table of Contents</h4>
+          <ol class="step-list">
+            <li>Posisikan kursor di halaman tempat daftar isi akan diletakkan (biasanya setelah cover/abstrak)</li>
+            <li>Klik tab <strong>References</strong> di ribbon</li>
+            <li>Klik <strong>Table of Contents</strong></li>
+            <li>Pilih style yang diinginkan:
+              <ul style="margin-left: 1rem; margin-top: 0.3rem;">
+                <li>- <strong>Automatic Table 1:</strong> Format standar dengan judul "Contents"</li>
+                <li>- <strong>Automatic Table 2:</strong> Format standar dengan judul "Table of Contents"</li>
+                <li>- <strong>Custom Table of Contents:</strong> Atur sendiri format & level heading</li>
+              </ul>
+            </li>
+            <li>Daftar isi akan muncul secara otomatis!</li>
+          </ol>
+        </div>
+
+        <div class="step-box">
+          <h4>Langkah 3: Update Table of Contents</h4>
+          <p style="font-size: 0.85rem; margin-bottom: 0.5rem;">Jika ada perubahan heading atau nomor halaman:</p>
+          <ol class="step-list">
+            <li>Klik pada Table of Contents</li>
+            <li>Klik <strong>Update Table</strong> (atau klik kanan → Update Field)</li>
+            <li>Pilih:
+              <ul style="margin-left: 1rem; margin-top: 0.3rem;">
+                <li>- <strong>Update page numbers only:</strong> Hanya update nomor halaman</li>
+                <li>- <strong>Update entire table:</strong> Update judul & nomor halaman</li>
+              </ul>
+            </li>
+            <li>Klik <strong>OK</strong></li>
+          </ol>
+        </div>
+
+        <div class="tip-box">
+          <h4>💡 Tips Table of Contents</h4>
+          <ul style="list-style-position: inside; margin-left: 0.6rem;">
+            <li>• <strong>Customize:</strong> Klik Table of Contents → Custom Table of Contents untuk atur font, tab leader, level</li>
+            <li>• <strong>Page break:</strong> Insert page break (Ctrl + Enter) sebelum TOC agar TOC ada di halaman sendiri</li>
+            <li>• <strong>Numbering:</strong> Gunakan <strong>Multilevel List</strong> untuk numbering otomatis (1, 1.1, 1.1.1)</li>
+            <li>• <strong>Navigation:</strong> Ctrl + Click pada entry TOC untuk langsung jump ke bagian tersebut</li>
+            <li>• <strong>Remove TOC:</strong> Klik Table of Contents → Remove Table of Contents</li>
+          </ul>
+        </div>
+
+        <div class="success-box">
+          <h4>✅ Keuntungan TOC Otomatis</h4>
+          <ul style="list-style-position: inside; margin-left: 0.6rem;">
+            <li>• <strong>Update otomatis:</strong> Tidak perlu edit manual jika ada perubahan</li>
+            <li>• <strong>Akurat:</strong> Nomor halaman selalu benar</li>
+            <li>• <strong>Profesional:</strong> Tampilan rapi dan terstruktur</li>
+            <li>• <strong>Hemat waktu:</strong> Tidak perlu buat daftar isi manual</li>
+            <li>• <strong>Navigasi mudah:</strong> Bisa klik untuk jump ke section</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- WORD: MAIL MERGE -->
+    <section>
+      <h2>✉️ Membuat Surat Massal dengan Word (Mail Merge)</h2>
+
+      <div class="card">
+        <h3>Mail Merge - Surat Massal Otomatis</h3>
+        <p><strong>Mail Merge</strong> adalah fitur Word untuk membuat dokumen massal (surat, label, amplop, email) dengan data yang berbeda-beda secara otomatis. Sangat berguna untuk undangan, sertifikat, surat edaran, dll.</p>
+
+        <div class="fact-box">
+          <h4>🎯 Contoh Penggunaan Mail Merge</h4>
+          <ul style="list-style-position: inside; margin-left: 0.6rem;">
+            <li>• <strong>Surat undangan:</strong> 100 undangan dengan nama & alamat berbeda</li>
+            <li>• <strong>Sertifikat:</strong> Ratusan sertifikat dengan nama peserta berbeda</li>
+            <li>• <strong>Label alamat:</strong> Cetak label surat untuk mailing list</li>
+            <li>• <strong>Email blast:</strong> Kirim email personalized ke banyak penerima</li>
+          </ul>
+        </div>
+
+        <div class="step-box">
+          <h4>Persiapan: Buat Data Source (Excel)</h4>
+          <p style="font-size: 0.85rem; margin-bottom: 0.5rem;">Buat file Excel dengan data yang akan digunakan:</p>
+          <ol class="step-list">
+            <li>Buka Excel, buat tabel dengan header di baris pertama</li>
+            <li>Contoh kolom: <code>Nama</code>, <code>Alamat</code>, <code>Kota</code>, <code>NoHP</code></li>
+            <li>Isi data di baris berikutnya (1 baris = 1 penerima)</li>
+            <li>Save file Excel (misal: <code>DataPenerima.xlsx</code>)</li>
+          </ol>
+          <p style="font-size: 0.8rem; margin-top: 0.5rem; padding: 0.5rem; background: #f3f4f6; border-radius: 5px;">
+            <strong>Contoh data Excel:</strong><br>
+            <code>Nama | Alamat | Kota</code><br>
+            <code>Budi Santoso | Jl. Merdeka 10 | Jakarta</code><br>
+            <code>Siti Aminah | Jl. Sudirman 25 | Bandung</code>
+          </p>
+        </div>
+
+        <div class="step-box">
+          <h4>Langkah 1: Start Mail Merge</h4>
+          <ol class="step-list">
+            <li>Buka Word, buat dokumen surat template (tanpa nama & alamat spesifik)</li>
+            <li>Klik tab <strong>Mailings</strong></li>
+            <li>Klik <strong>Start Mail Merge</strong> → pilih jenis dokumen:
+              <ul style="margin-left: 1rem; margin-top: 0.3rem;">
+                <li>- <strong>Letters:</strong> Untuk surat</li>
+                <li>- <strong>Labels:</strong> Untuk label alamat</li>
+                <li>- <strong>Envelopes:</strong> Untuk amplop</li>
+                <li>- <strong>Email Messages:</strong> Untuk email</li>
+              </ul>
+            </li>
+          </ol>
+        </div>
+
+        <div class="step-box">
+          <h4>Langkah 2: Select Recipients (Pilih Data Source)</h4>
+          <ol class="step-list">
+            <li>Klik <strong>Select Recipients</strong> → <strong>Use an Existing List</strong></li>
+            <li>Browse dan pilih file Excel yang sudah dibuat</li>
+            <li>Klik <strong>OK</strong></li>
+            <li>Data Excel akan ter-link dengan dokumen Word</li>
+          </ol>
+        </div>
+
+        <div class="step-box">
+          <h4>Langkah 3: Insert Merge Fields</h4>
+          <ol class="step-list">
+            <li>Posisikan kursor di tempat yang ingin diisi data (misal: tempat nama penerima)</li>
+            <li>Klik <strong>Insert Merge Field</strong></li>
+            <li>Pilih field yang diinginkan (misal: <code>Nama</code>)</li>
+            <li>Field akan muncul seperti: <code>&lt;&lt;Nama&gt;&gt;</code></li>
+            <li>Ulangi untuk field lain (Alamat, Kota, dll)</li>
+          </ol>
+          <p style="font-size: 0.8rem; margin-top: 0.5rem; padding: 0.5rem; background: #f3f4f6; border-radius: 5px;">
+            <strong>Contoh template surat:</strong><br>
+            <code>Kepada Yth.<br>&lt;&lt;Nama&gt;&gt;<br>&lt;&lt;Alamat&gt;&gt;<br>&lt;&lt;Kota&gt;&gt;</code>
+          </p>
+        </div>
+
+        <div class="step-box">
+          <h4>Langkah 4: Preview & Finish Merge</h4>
+          <ol class="step-list">
+            <li>Klik <strong>Preview Results</strong> untuk melihat hasil merge</li>
+            <li>Gunakan arrow (◀ ▶) untuk lihat dokumen satu per satu</li>
+            <li>Jika sudah OK, klik <strong>Finish & Merge</strong></li>
+            <li>Pilih:
+              <ul style="margin-left: 1rem; margin-top: 0.3rem;">
+                <li>- <strong>Edit Individual Documents:</strong> Buat dokumen Word baru berisi semua surat</li>
+                <li>- <strong>Print Documents:</strong> Langsung print semua surat</li>
+                <li>- <strong>Send Email Messages:</strong> Kirim email ke semua penerima</li>
+              </ul>
+            </li>
+          </ol>
+        </div>
+
+        <div class="tip-box">
+          <h4>💡 Tips Mail Merge</h4>
+          <ul style="list-style-position: inside; margin-left: 0.6rem;">
+            <li>• <strong>Filter recipients:</strong> Klik Edit Recipient List untuk filter data (misal: hanya Kota = Jakarta)</li>
+            <li>• <strong>Rules:</strong> Gunakan Rules untuk kondisi IF-THEN (misal: sapaan "Bapak" atau "Ibu")</li>
+            <li>• <strong>Greeting line:</strong> Klik Insert Greeting Line untuk format sapaan otomatis</li>
+            <li>• <strong>Save template:</strong> Save dokumen Word (template + link Excel) untuk digunakan lagi</li>
+            <li>• <strong>Update data:</strong> Edit Excel, lalu di Word klik Update Labels/Preview untuk refresh</li>
+          </ul>
+        </div>
+
+        <div class="success-box">
+          <h4>✅ Keuntungan Mail Merge</h4>
+          <ul style="list-style-position: inside; margin-left: 0.6rem;">
+            <li>• <strong>Hemat waktu:</strong> 1000 surat dibuat dalam menit!</li>
+            <li>• <strong>Akurat:</strong> Tidak ada typo nama/alamat</li>
+            <li>• <strong>Personalisasi:</strong> Setiap surat terlihat personal</li>
+            <li>• <strong>Profesional:</strong> Konsisten & rapi</li>
+            <li>• <strong>Reusable:</strong> Template bisa dipakai berulang kali</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXCEL: SORT & FILTER -->
+    <section>
+      <h2>📊 Fitur Sort dan Filter pada Excel</h2>
+
+      <div class="card">
+        <h3>Sort & Filter - Mengurutkan dan Menyaring Data</h3>
+        <p><strong>Sort (Urutkan)</strong> dan <strong>Filter (Saring)</strong> adalah fitur Excel untuk mengorganisir dan menampilkan data sesuai kriteria tertentu. Sangat penting untuk analisis data besar.</p>
+
+        <div class="step-box">
+          <h4>SORT - Mengurutkan Data</h4>
+          <p style="font-size: 0.85rem; margin-bottom: 0.5rem;"><strong>Sort</strong> mengurutkan data berdasarkan kolom tertentu (A-Z, Z-A, terkecil-terbesar, dll).</p>
+          
+          <h4 style="margin-top: 1rem;">Metode 1: Sort Sederhana</h4>
+          <ol class="step-list">
+            <li>Pilih satu sel dalam tabel data</li>
+            <li>Klik tab <strong>Data</strong></li>
+            <li>Klik <strong>Sort A to Z</strong> (ascending) atau <strong>Sort Z to A</strong> (descending)</li>
+            <li>Data akan diurutkan berdasarkan kolom yang dipilih</li>
+          </ol>
+
+          <h4 style="margin-top: 1rem;">Metode 2: Sort Lanjutan (Multi-Level)</h4>
+          <ol class="step-list">
+            <li>Pilih range data (termasuk header)</li>
+            <li>Klik tab <strong>Data</strong> → <strong>Sort</strong></li>
+            <li>Di dialog Sort:
+              <ul style="margin-left: 1rem; margin-top: 0.3rem;">
+                <li>- Centang <strong>"My data has headers"</strong> jika ada header</li>
+                <li>- <strong>Sort by:</strong> Pilih kolom pertama (misal: Nama)</li>
+                <li>- <strong>Sort On:</strong> Values (atau Cell Color, Font Color)</li>
+                <li>- <strong>Order:</strong> A to Z atau Z to A</li>
+              </ul>
+            </li>
+            <li>Klik <strong>Add Level</strong> untuk sort kriteria kedua (misal: Then by Nilai)</li>
+            <li>Klik <strong>OK</strong></li>
+          </ol>
+        </div>
+
+        <div class="step-box">
+          <h4>FILTER - Menyaring Data</h4>
+          <p style="font-size: 0.85rem; margin-bottom: 0.5rem;"><strong>Filter</strong> menampilkan hanya data yang memenuhi kriteria, menyembunyikan yang tidak.</p>
+          
+          <h4 style="margin-top: 1rem;">Langkah Menggunakan Filter</h4>
+          <ol class="step-list">
+            <li>Pilih satu sel dalam tabel data</li>
+            <li>Klik tab <strong>Data</strong> → <strong>Filter</strong> (atau Ctrl + Shift + L)</li>
+            <li>Drop-down arrow akan muncul di setiap header kolom</li>
+            <li>Klik drop-down arrow pada kolom yang ingin difilter</li>
+            <li>Pilih kriteria:
+              <ul style="margin-left: 1rem; margin-top: 0.3rem;">
+                <li>- <strong>Checkboxes:</strong> Centang/uncheck value yang ingin ditampilkan</li>
+                <li>- <strong>Text Filters:</strong> Contains, Begins With, Ends With, dll</li>
+                <li>- <strong>Number Filters:</strong> Equals, Greater Than, Between, Top 10, dll</li>
+                <li>- <strong>Date Filters:</strong> Today, This Week, Last Month, dll</li>
+              </ul>
+            </li>
+            <li>Klik <strong>OK</strong></li>
+            <li>Data yang tidak memenuhi kriteria akan disembunyikan</li>
+          </ol>
+        </div>
+
+        <div class="method-grid">
+          <div class="method-card">
+            <h4>Clear Filter</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• Klik drop-down arrow → <strong>Clear Filter From [Kolom]</strong></li>
+              <li>• Atau: Data → Clear (untuk clear semua filter)</li>
+            </ul>
+          </div>
+
+          <div class="method-card">
+            <h4>Advanced Filter</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• Data → <strong>Advanced</strong></li>
+              <li>• Bisa filter dengan criteria range kompleks</li>
+              <li>• Bisa copy result ke lokasi lain</li>
+              <li>• Support OR & AND logic</li>
+            </ul>
+          </div>
+
+          <div class="method-card">
+            <h4>Filter by Color</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• Klik drop-down → <strong>Filter by Color</strong></li>
+              <li>• Pilih cell color atau font color</li>
+              <li>• Tampilkan hanya sel dengan warna tertentu</li>
+            </ul>
+          </div>
+
+          <div class="method-card">
+            <h4>Custom AutoFilter</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• Number Filters → <strong>Custom Filter</strong></li>
+              <li>• Bisa kombinasi 2 kondisi (AND/OR)</li>
+              <li>• Misal: Nilai >= 70 AND <= 90</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="tip-box">
+          <h4>💡 Tips Sort & Filter</h4>
+          <ul style="list-style-position: inside; margin-left: 0.6rem;">
+            <li>• <strong>Table format:</strong> Convert range ke Table (Ctrl + T) untuk fitur sort/filter otomatis</li>
+            <li>• <strong>Freeze panes:</strong> View → Freeze Panes agar header tetap terlihat saat scroll</li>
+            <li>• <strong>Custom sort:</strong> Bisa sort by custom list (misal: Jan, Feb, Mar bukan alphabetical)</li>
+            <li>• <strong>Case sensitive:</strong> Klik Options di Sort dialog untuk sort case-sensitive</li>
+            <li>• <strong>Shortcut:</strong> Alt + Down Arrow untuk buka filter dropdown dengan keyboard</li>
+          </ul>
+        </div>
+
+        <div class="success-box">
+          <h4>✅ Keuntungan Sort & Filter</h4>
+          <ul style="list-style-position: inside; margin-left: 0.6rem;">
+            <li>• <strong>Analisis cepat:</strong> Temukan data penting dengan cepat</li>
+            <li>• <strong>Organisasi data:</strong> Data teratur dan mudah dibaca</li>
+            <li>• <strong>Find insights:</strong> Identifikasi pola & trend</li>
+            <li>• <strong>Laporan:</strong> Buat laporan spesifik dengan filter</li>
+            <li>• <strong>Decision making:</strong> Data-driven decision lebih akurat</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXCEL: DATA VALIDATION -->
+    <section>
+      <h2>✅ Validasi Data pada Excel</h2>
+
+      <div class="card">
+        <h3>Data Validation - Kontrol Input Data</h3>
+        <p><strong>Data Validation</strong> adalah fitur Excel untuk membatasi jenis data yang bisa diinput ke dalam sel. Fitur ini mencegah error input dan memastikan data konsisten.</p>
+
+        <div class="fact-box">
+          <h4>🎯 Manfaat Data Validation</h4>
+          <ul style="list-style-position: inside; margin-left: 0.6rem;">
+            <li>• <strong>Cegah error:</strong> Hanya data valid yang bisa diinput</li>
+            <li>• <strong>Konsistensi:</strong> Format data seragam</li>
+            <li>• <strong>Dropdown list:</strong> User tinggal pilih dari list</li>
+            <li>• <strong>Custom message:</strong> Beri instruksi atau warning</li>
+            <li>• <strong>Quality control:</strong> Data berkualitas tinggi</li>
+          </ul>
+        </div>
+
+        <div class="step-box">
+          <h4>Cara Membuat Data Validation</h4>
+          <ol class="step-list">
+            <li>Pilih sel atau range yang ingin diberi validasi</li>
+            <li>Klik tab <strong>Data</strong> → <strong>Data Validation</strong></li>
+            <li>Di tab <strong>Settings</strong>:
+              <ul style="margin-left: 1rem; margin-top: 0.3rem;">
+                <li>- <strong>Allow:</strong> Pilih jenis data yang diperbolehkan</li>
+                <li>- Atur kriteria sesuai kebutuhan</li>
+              </ul>
+            </li>
+            <li>Klik <strong>OK</strong></li>
+          </ol>
+        </div>
+
+        <div class="method-grid">
+          <div class="method-card">
+            <h4>1. Whole Number (Angka Bulat)</h4>
+            <p style="font-size: 0.85rem; margin-bottom: 0.5rem;"><strong>Gunakan untuk:</strong> Umur, jumlah, quantity</p>
+            <ul style="list-style-position: inside; font-size: 0.8rem;">
+              <li>• Allow: <strong>Whole Number</strong></li>
+              <li>• Data: Between, Greater than, Less than, dll</li>
+              <li>• Minimum & Maximum value</li>
+              <li>• Contoh: Umur antara 17-25 tahun</li>
+            </ul>
+          </div>
+
+          <div class="method-card">
+            <h4>2. Decimal (Desimal)</h4>
+            <p style="font-size: 0.85rem; margin-bottom: 0.5rem;"><strong>Gunakan untuk:</strong> Harga, nilai, persentase</p>
+            <ul style="list-style-position: inside; font-size: 0.8rem;">
+              <li>• Allow: <strong>Decimal</strong></li>
+              <li>• Data: Between 0 dan 100 (untuk %)</li>
+              <li>• Atau Greater than 0 (untuk harga)</li>
+              <li>• Contoh: Nilai ujian 0-100</li>
+            </ul>
+          </div>
+
+          <div class="method-card">
+            <h4>3. List (Dropdown)</h4>
+            <p style="font-size: 0.85rem; margin-bottom: 0.5rem;"><strong>Gunakan untuk:</strong> Kategori, pilihan terbatas</p>
+            <ul style="list-style-position: inside; font-size: 0.8rem;">
+              <li>• Allow: <strong>List</strong></li>
+              <li>• Source: Ketik list (misal: Laki-laki,Perempuan)</li>
+              <li>• Atau: Pilih range sel yang berisi list</li>
+              <li>• Dropdown arrow akan muncul di sel</li>
+            </ul>
+          </div>
+
+          <div class="method-card">
+            <h4>4. Date (Tanggal)</h4>
+            <p style="font-size: 0.85rem; margin-bottom: 0.5rem;"><strong>Gunakan untuk:</strong> Tanggal lahir, deadline</p>
+            <ul style="list-style-position: inside; font-size: 0.8rem;">
+              <li>• Allow: <strong>Date</strong></li>
+              <li>• Data: Between, Greater than, Less than</li>
+              <li>• Start date & End date</li>
+              <li>• Contoh: Tanggal antara 1/1/2000 - 31/12/2010</li>
+            </ul>
+          </div>
+
+          <div class="method-card">
+            <h4>5. Text Length (Panjang Teks)</h4>
+            <p style="font-size: 0.85rem; margin-bottom: 0.5rem;"><strong>Gunakan untuk:</strong> NIK, No HP, Kode</p>
+            <ul style="list-style-position: inside; font-size: 0.8rem;">
+              <li>• Allow: <strong>Text Length</strong></li>
+              <li>• Data: Equal to, Between</li>
+              <li>• Length value</li>
+              <li>• Contoh: NIK harus 16 digit</li>
+            </ul>
+          </div>
+
+          <div class="method-card">
+            <h4>6. Custom (Formula)</h4>
+            <p style="font-size: 0.85rem; margin-bottom: 0.5rem;"><strong>Gunakan untuk:</strong> Validasi kompleks</p>
+            <ul style="list-style-position: inside; font-size: 0.8rem;">
+              <li>• Allow: <strong>Custom</strong></li>
+              <li>• Formula: Tulis formula yang return TRUE/FALSE</li>
+              <li>• Contoh: =AND(A1>0, A1<100)</li>
+              <li>• Sangat fleksibel!</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="step-box">
+          <h4>Input Message (Pesan Petunjuk)</h4>
+          <p style="font-size: 0.85rem; margin-bottom: 0.5rem;">Tambahkan pesan yang muncul saat sel dipilih:</p>
+          <ol class="step-list">
+            <li>Di dialog Data Validation, klik tab <strong>Input Message</strong></li>
+            <li>Centang <strong>"Show input message when cell is selected"</strong></li>
+            <li>Title: Judul pesan (misal: "Petunjuk Input")</li>
+            <li>Input message: Pesan lengkap (misal: "Masukkan umur antara 17-25 tahun")</li>
+            <li>Pesan akan muncul saat user klik sel tersebut</li>
+          </ol>
+        </div>
+
+        <div class="step-box">
+          <h4>Error Alert (Pesan Error)</h4>
+          <p style="font-size: 0.85rem; margin-bottom: 0.5rem;">Tambahkan pesan error jika input salah:</p>
+          <ol class="step-list">
+            <li>Klik tab <strong>Error Alert</strong></li>
+            <li>Centang <strong>"Show error alert after invalid data is entered"</strong></li>
+            <li>Style: Pilih jenis alert:
+              <ul style="margin-left: 1rem; margin-top: 0.3rem;">
+                <li>- <strong>Stop:</strong> Input ditolak (merah X)</li>
+                <li>- <strong>Warning:</strong> Warning tapi bisa lanjut (kuning !)</li>
+                <li>- <strong>Information:</strong> Info saja (biru i)</li>
+              </ul>
+            </li>
+            <li>Title: Judul error (misal: "Input Tidak Valid")</li>
+            <li>Error message: Pesan error (misal: "Umur harus antara 17-25 tahun!")</li>
+          </ol>
+        </div>
+
+        <div class="tip-box">
+          <h4>💡 Tips Data Validation</h4>
+          <ul style="list-style-position: inside; margin-left: 0.6rem;">
+            <li>• <strong>Named range:</strong> Buat named range untuk list, lebih mudah dikelola</li>
+            <li>• <strong>Dynamic list:</strong> Gunakan Table atau OFFSET formula untuk list yang bisa bertambah</li>
+            <li>• <strong>Copy validation:</strong> Copy sel dengan validation (Ctrl + C → Ctrl + V) akan ikut copy validationnya</li>
+            <li>• <strong>Circle invalid:</strong> Data → Circle Invalid Data untuk highlight data yang tidak valid</li>
+            <li>• <strong>Remove validation:</strong> Data Validation → Clear All</li>
+          </ul>
+        </div>
+
+        <div class="warning-box">
+          <h4>⚠️ Catatan Penting</h4>
+          <ul style="list-style-position: inside; margin-left: 0.6rem;">
+            <li>• Validation hanya berlaku untuk input manual, tidak untuk copy-paste atau formula result</li>
+            <li>• User bisa bypass validation dengan copy-paste dari luar</li>
+            <li>• Untuk keamanan maksimal, protect sheet dan hanya unlock sel yang boleh diedit</li>
+          </ul>
+        </div>
+
+        <div class="success-box">
+          <h4>✅ Keuntungan Data Validation</h4>
+          <ul style="list-style-position: inside; margin-left: 0.6rem;">
+            <li>• <strong>Data quality:</strong> Data akurat dan konsisten</li>
+            <li>• <strong>User friendly:</strong> Dropdown memudahkan input</li>
+            <li>• <strong>Prevent errors:</strong> Mengurangi human error</li>
+            <li>• <strong>Standardisasi:</strong> Format data seragam</li>
+            <li>• <strong>Efficient:</strong> Tidak perlu validasi manual</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- POWERPOINT: SLIDE SHOW SETTINGS -->
+    <section>
+      <h2>📽️ Mengatur Penayangan Slide pada PowerPoint</h2>
+
+      <div class="card">
+        <h3>Slide Show Settings - Kontrol Presentasi</h3>
+        <p>PowerPoint memiliki berbagai fitur untuk <strong>mengatur cara presentasi ditampilkan</strong>, dari custom show, rehearse timing, hingga presenter view. Fitur-fitur ini membuat presentasi lebih profesional dan efektif.</p>
+
+        <div class="step-box">
+          <h4>1. Slide Show Modes</h4>
+          <p style="font-size: 0.85rem; margin-bottom: 0.5rem;">Ada beberapa mode untuk menampilkan presentasi:</p>
+          <ul class="step-list">
+            <li><strong>From Beginning (F5):</strong> Mulai dari slide 1</li>
+            <li><strong>From Current Slide (Shift + F5):</strong> Mulai dari slide yang sedang dipilih</li>
+            <li><strong>Presenter View:</strong> Mode khusus untuk presenter (lihat notes, timer, preview)</li>
+            <li><strong>Reading View:</strong> Mode baca di window (bukan fullscreen)</li>
+          </ul>
+        </div>
+
+        <div class="step-box">
+          <h4>2. Set Up Show (Atur Pertunjukan)</h4>
+          <p style="font-size: 0.85rem; margin-bottom: 0.5rem;">Mengatur bagaimana slide show akan ditampilkan:</p>
+          <ol class="step-list">
+            <li>Klik <strong>Slide Show</strong> tab → <strong>Set Up Show</strong></li>
+            <li>Di dialog Set Up Show, pilih opsi:
+              <ul style="margin-left: 1rem; margin-top: 0.3rem;">
+                <li><strong>Show type:</strong>
+                  <ul style="margin-left: 1rem;">
+                    <li>- <strong>Presented by a speaker:</strong> Mode presentasi standar (fullscreen)</li>
+                    <li>- <strong>Browsed by an individual:</strong> User navigasi sendiri (window mode)</li>
+                    <li>- <strong>Browsed at a kiosk:</strong> Auto-play loop (untuk booth/display)</li>
+                  </ul>
+                </li>
+                <li><strong>Show options:</strong>
+                  <ul style="margin-left: 1rem;">
+                    <li>- <strong>Loop continuously:</strong> Presentasi berulang terus</li>
+                    <li>- <strong>Show without narration:</strong> Tanpa audio narration</li>
+                    <li>- <strong>Show without animation:</strong> Tanpa animasi</li>
+                  </ul>
+                </li>
+                <li><strong>Show slides:</strong>
+                  <ul style="margin-left: 1rem;">
+                    <li>- <strong>All:</strong> Semua slide</li>
+                    <li>- <strong>From-To:</strong> Slide tertentu saja (misal: slide 5-10)</li>
+                    <li>- <strong>Custom Show:</strong> Set slide custom yang sudah dibuat</li>
+                  </ul>
+                </li>
+                <li><strong>Advance slides:</strong>
+                  <ul style="margin-left: 1rem;">
+                    <li>- <strong>Manually:</strong> Klik untuk next slide</li>
+                    <li>- <strong>Using timings:</strong> Otomatis sesuai timing yang diset</li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>Klik <strong>OK</strong></li>
+          </ol>
+        </div>
+
+        <div class="step-box">
+          <h4>3. Custom Slide Show</h4>
+          <p style="font-size: 0.85rem; margin-bottom: 0.5rem;">Buat beberapa versi presentasi dari file yang sama:</p>
+          <ol class="step-list">
+            <li>Klik <strong>Slide Show</strong> → <strong>Custom Slide Show</strong> → <strong>Custom Shows</strong></li>
+            <li>Klik <strong>New</strong></li>
+            <li>Beri nama custom show (misal: "Versi Singkat")</li>
+            <li>Pilih slide yang ingin dimasukkan ke custom show (dari daftar sebelah kiri → Add)</li>
+            <li>Atur urutan dengan tombol panah atas/bawah</li>
+            <li>Klik <strong>OK</strong></li>
+            <li>Untuk play: Slide Show → Custom Slide Show → pilih nama show</li>
+          </ol>
+          <p style="font-size: 0.8rem; margin-top: 0.5rem; color: #6B7280;"><strong>Kegunaan:</strong> Buat versi berbeda untuk audiens berbeda (misal: versi lengkap 30 menit, versi ringkas 10 menit)</p>
+        </div>
+
+        <div class="step-box">
+          <h4>4. Rehearse Timings (Latihan Waktu)</h4>
+          <p style="font-size: 0.85rem; margin-bottom: 0.5rem;">Latih presentasi dan rekam timing otomatis:</p>
+          <ol class="step-list">
+            <li>Klik <strong>Slide Show</strong> → <strong>Rehearse Timings</strong></li>
+            <li>Presentasi akan mulai dengan timer di pojok</li>
+            <li>Presentasikan seperti biasa, klik untuk next slide saat siap</li>
+            <li>Timer akan merekam durasi setiap slide</li>
+            <li>Setelah selesai, klik <strong>Yes</strong> untuk save timing</li>
+            <li>Timing akan tersimpan dan bisa digunakan untuk auto-advance</li>
+          </ol>
+        </div>
+
+        <div class="step-box">
+          <h4>5. Hide Slides (Sembunyikan Slide)</h4>
+          <p style="font-size: 0.85rem; margin-bottom: 0.5rem;">Sembunyikan slide tertentu tanpa menghapusnya:</p>
+          <ol class="step-list">
+            <li>Klik kanan pada slide (di panel thumbnail)</li>
+            <li>Pilih <strong>Hide Slide</strong></li>
+            <li>Slide akan diberi tanda garis miring pada nomor</li>
+            <li>Slide tidak akan muncul saat presentasi, tapi masih ada di file</li>
+            <li>Untuk unhide: Klik kanan → Hide Slide lagi (toggle)</li>
+          </ol>
+          <p style="font-size: 0.8rem; margin-top: 0.5rem; color: #6B7280;"><strong>Kegunaan:</strong> Slide backup atau detail teknis yang tidak selalu ditampilkan</p>
+        </div>
+
+        <div class="step-box">
+          <h4>6. Presenter View (Tampilan Presenter)</h4>
+          <p style="font-size: 0.85rem; margin-bottom: 0.5rem;">Mode khusus untuk presenter (jika pakai 2 layar):</p>
+          <ul class="step-list">
+            <li><strong>Aktifkan:</strong> Slide Show → centang <strong>Use Presenter View</strong></li>
+            <li><strong>Fitur Presenter View:</strong>
+              <ul style="margin-left: 1rem; margin-top: 0.3rem;">
+                <li>- <strong>Current slide:</strong> Slide yang sedang ditampilkan</li>
+                <li>- <strong>Notes:</strong> Catatan presenter (tidak terlihat audiens)</li>
+                <li>- <strong>Next slide preview:</strong> Preview slide berikutnya</li>
+                <li>- <strong>Timer:</strong> Waktu presentasi berjalan</li>
+                <li>- <strong>Navigation:</strong> Jump ke slide tertentu dengan cepat</li>
+                <li>- <strong>Zoom:</strong> Zoom in ke bagian tertentu di slide</li>
+                <li>- <strong>Pen tools:</strong> Highlight atau tulis di slide</li>
+              </ul>
+            </li>
+            <li><strong>Shortcut:</strong> Alt + F5 untuk buka Presenter View</li>
+          </ul>
+        </div>
+
+        <div class="method-grid">
+          <div class="method-card">
+            <h4>Slide Transition Settings</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• Transitions tab → pilih efek transisi</li>
+              <li>• Duration: Atur kecepatan transisi</li>
+              <li>• Advance Slide: On Click atau After (otomatis dengan timing)</li>
+              <li>• Apply To All: Terapkan ke semua slide</li>
+            </ul>
+          </div>
+
+          <div class="method-card">
+            <h4>Animation Settings</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• Animations tab → Add Animation</li>
+              <li>• Entrance, Emphasis, Exit, Motion Paths</li>
+              <li>• Timing: Start (On Click / With Previous / After Previous)</li>
+              <li>• Duration & Delay</li>
+            </ul>
+          </div>
+
+          <div class="method-card">
+            <h4>Pen & Laser Pointer</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• Saat presentasi: Klik kanan → Pointer Options</li>
+              <li>• Laser Pointer (Ctrl + L): Pointer merah</li>
+              <li>• Pen (Ctrl + P): Tulis/gambar di slide</li>
+              <li>• Highlighter: Highlight text</li>
+              <li>• Eraser (E): Hapus ink</li>
+            </ul>
+          </div>
+
+          <div class="method-card">
+            <h4>Navigation Shortcuts</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• Number + Enter: Jump ke slide tertentu</li>
+              <li>• B: Black screen (Pause)</li>
+              <li>• W: White screen</li>
+              <li>• S: Stop/Resume auto-advance</li>
+              <li>• Esc: Exit slide show</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="tip-box">
+          <h4>💡 Tips Presentasi Profesional</h4>
+          <ul style="list-style-position: inside; margin-left: 0.6rem;">
+            <li>• <strong>Rehearse:</strong> Latih dengan Rehearse Timings sebelum presentasi sesungguhnya</li>
+            <li>• <strong>Backup slides:</strong> Gunakan Hide Slide untuk slide Q&A atau detail teknis</li>
+            <li>• <strong>Custom show:</strong> Siapkan versi pendek & panjang untuk fleksibilitas waktu</li>
+            <li>• <strong>Presenter View:</strong> Manfaatkan notes untuk tidak lupa poin penting</li>
+            <li>• <strong>Remote control:</strong> Gunakan remote clicker untuk navigasi tanpa laptop</li>
+            <li>• <strong>Test equipment:</strong> Test proyektor & audio sebelum presentasi</li>
+          </ul>
+        </div>
+
+        <div class="success-box">
+          <h4>✅ Keuntungan Mengatur Slide Show</h4>
+          <ul style="list-style-position: inside; margin-left: 0.6rem;">
+            <li>• <strong>Kontrol penuh:</strong> Atur cara presentasi sesuai kebutuhan</li>
+            <li>• <strong>Profesional:</strong> Timing & transisi yang smooth</li>
+            <li>• <strong>Fleksibel:</strong> Custom show untuk audiens berbeda</li>
+            <li>• <strong>Confident:</strong> Presenter View bantu ingat poin penting</li>
+            <li>• <strong>Interactive:</strong> Pen tools untuk highlight & engage audiens</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIDEO -->
+    <section>
+      <h2>🎥 Video Tutorial</h2>
+      <div class="video-grid">
+        <div class="video-card">
+          <div class="video-thumbnail">📄</div>
+          <div class="video-info">
+            <h4>Table of Contents Word</h4>
+            <p>Cara membuat daftar isi otomatis di Word.</p>
+            <a class="video-link" href="https://www.youtube.com/results?search_query=table+of+contents+word+tutorial" target="_blank">Tonton</a>
+          </div>
+        </div>
+
+        <div class="video-card">
+          <div class="video-thumbnail">✉️</div>
+          <div class="video-info">
+            <h4>Mail Merge Tutorial</h4>
+            <p>Tutorial lengkap membuat surat massal dengan mail merge.</p>
+            <a class="video-link" href="https://www.youtube.com/results?search_query=mail+merge+word+tutorial" target="_blank">Tonton</a>
+          </div>
+        </div>
+
+        <div class="video-card">
+          <div class="video-thumbnail">📊</div>
+          <div class="video-info">
+            <h4>Excel Sort & Filter</h4>
+            <p>Cara menggunakan sort dan filter di Excel.</p>
+            <a class="video-link" href="https://www.youtube.com/results?search_query=excel+sort+filter+tutorial" target="_blank">Tonton</a>
+          </div>
+        </div>
+
+        <div class="video-card">
+          <div class="video-thumbnail">✅</div>
+          <div class="video-info">
+            <h4>Data Validation Excel</h4>
+            <p>Tutorial data validation dan dropdown list Excel.</p>
+            <a class="video-link" href="https://www.youtube.com/results?search_query=excel+data+validation+tutorial" target="_blank">Tonton</a>
+          </div>
+        </div>
+
+        <div class="video-card">
+          <div class="video-thumbnail">📽️</div>
+          <div class="video-info">
+            <h4>PowerPoint Slide Show Settings</h4>
+            <p>Mengatur penayangan slide profesional di PowerPoint.</p>
+            <a class="video-link" href="https://www.youtube.com/results?search_query=powerpoint+slide+show+settings+tutorial" target="_blank">Tonton</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- QUIZ -->
+    <section>
+      <h2>🎮 Kuis Fitur Lanjut Office</h2>
+      <div class="game-section">
+        <h3>Uji Pemahaman Materi</h3>
+
+        <div class="progress-container">
+          <div id="progressBar" class="progress-bar" style="width: 0%;">0%</div>
+        </div>
+
+        <div class="game-container">
+          <div class="game-question">1. Untuk membuat daftar isi otomatis di Word, dokumen harus menggunakan...</div>
+          <div class="quiz-options" onclick="checkAnswer(event, 'heading', 1)">
+            <div class="quiz-option">A) Font yang sama</div>
+            <div class="quiz-option">B) Heading Styles (Heading 1, 2, 3)</div>
+            <div class="quiz-option">C) Numbering</div>
+            <div class="quiz-option">D) Bold text</div>
+          </div>
+          <div id="result1" class="result-message"></div>
+        </div>
+
+        <div class="game-container">
+          <div class="game-question">2. Fitur Word untuk membuat surat massal dengan data berbeda-beda disebut...</div>
+          <div class="quiz-options" onclick="checkAnswer(event, 'mail merge', 2)">
+            <div class="quiz-option">A) Copy-Paste</div>
+            <div class="quiz-option">B) Mail Merge</div>
+            <div class="quiz-option">C) Find & Replace</div>
+            <div class="quiz-option">D) Macro</div>
+          </div>
+          <div id="result2" class="result-message"></div>
+        </div>
+
+        <div class="game-container">
+          <div class="game-question">3. Shortcut untuk mengaktifkan Filter di Excel adalah...</div>
+          <div class="quiz-options" onclick="checkAnswer(event, 'ctrl + shift + l', 3)">
+            <div class="quiz-option">A) Ctrl + F</div>
+            <div class="quiz-option">B) Ctrl + Shift + L</div>
+            <div class="quiz-option">C) Alt + F</div>
+            <div class="quiz-option">D) Ctrl + L</div>
+          </div>
+          <div id="result3" class="result-message"></div>
+        </div>
+
+        <div class="game-container">
+          <div class="game-question">4. Data Validation di Excel berguna untuk...</div>
+          <div class="quiz-options" onclick="checkAnswer(event, 'kontrol', 4)">
+            <div class="quiz-option">A) Menghitung data otomatis</div>
+            <div class="quiz-option">B) Mengontrol jenis data yang bisa diinput</div>
+            <div class="quiz-option">C) Membuat grafik</div>
+            <div class="quiz-option">D) Sort data</div>
+          </div>
+          <div id="result4" class="result-message"></div>
+        </div>
+
+        <div class="game-container">
+          <div class="game-question">5. Mode PowerPoint yang menampilkan notes dan timer untuk presenter adalah...</div>
+          <div class="quiz-options" onclick="checkAnswer(event, 'presenter', 5)">
+            <div class="quiz-option">A) Slide Show Mode</div>
+            <div class="quiz-option">B) Reading View</div>
+            <div class="quiz-option">C) Presenter View</div>
+            <div class="quiz-option">D) Normal View</div>
+          </div>
+          <div id="result5" class="result-message"></div>
+        </div>
+
+        <div id="scoreDisplay" class="score-display">Skor: 0/5</div>
+      </div>
+    </section>
+
+    <!-- DOWNLOAD -->
+    <section>
+      <h2>📥 Download Materi</h2>
+      
+      <div class="download-box">
+        <h4>📄 Panduan Lengkap Fitur Lanjut Office</h4>
+        <p style="margin-bottom: 1rem;">Download tutorial step-by-step, cheat sheet, dan latihan praktik.</p>
+        <a href="#" class="btn-download" onclick="alert('File akan segera tersedia. Hubungi guru untuk mendapatkan file.'); return false;">
+          📥 Download Panduan PDF
+        </a>
+        <a href="#" class="btn-download" onclick="alert('File akan segera tersedia. Hubungi guru untuk mendapatkan file.'); return false;">
+          📥 Download File Latihan
+        </a>
+      </div>
+    </section>
+
+    <!-- CLOSING -->
+    <section>
+      <div class="card" style="background: linear-gradient(135deg, rgba(0,120,212,0.06), rgba(0,164,239,0.08)); border-left: 5px solid #0078D4; text-align: center;">
+        <h3 style="margin-bottom: 0.6rem;">Kesimpulan</h3>
+        <p style="text-align: center; line-height: 1.8;">
+          Menguasai fitur-fitur lanjut Microsoft Office seperti Table of Contents, Mail Merge, Sort & Filter, Data Validation, dan Slide Show Settings akan meningkatkan produktivitas dan profesionalitas kerja Anda secara signifikan. Fitur-fitur ini adalah skill wajib di dunia kerja modern yang sangat dihargai oleh perusahaan.
+        </p>
+        <p style="text-align: center; margin-top: 0.8rem; font-weight: 600; color: var(--primary-color);">
+          "Work smarter, not harder with advanced Office features!" 💼⚡
+        </p>
+      </div>
+    </section>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-content">
+      <h3>Platform Pembelajaran Interaktif untuk Siswa & Siswi <strong>Ypi Nurul Hadina</strong></h3>
+
+      <div class="social-media">
+        <a class="social-icon whatsapp" href="https://wa.me/6289504440411" target="_blank">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" width="18" height="18"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884"/></svg>
+        </a>
+
+        <a class="social-icon youtube" href="https://www.youtube.com/channel/UCNmOH6L2xq6C15EkQlx_FpQ" target="_blank">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" width="18" height="18"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+        </a>
+
+        <a class="social-icon instagram" href="https://instagram.com/ypinurulhadina" target="_blank">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" width="18" height="18"><path d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.319 1.347 20.651.935 19.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.015 3.585-.074 4.85c-.061 1.17-.256 1.805-.421 2.227-.224.562-.479.96-.899 1.382-.419.419-.824.679-1.38.896-.42.164-1.065.36-2.235.413-1.274.057-1.649.07-4.859.07-3.211 0-3.586-.015-4.859-.074-1.171-.061-1.816-.256-2.236-.421-.569-.224-.96-.479-1.379-.899-.421-.419-.69-.824-.9-1.38-.165-.42-.359-1.065-.42-2.235-.045-1.26-.061-1.649-.061-4.844 0-3.196.016-3.586.061-4.861.061-1.17.255-1.814.42-2.234.21-.57.479-.96.9-1.381.419-.419.81-.689 1.379-.898.42-.166 1.051-.361 2.221-.421 1.275-.045 1.65-.06 4.859-.06l.045.03zm0 3.678c-3.405 0-6.162 2.76-6.162 6.162 0 3.405 2.76 6.162 6.162 6.162 3.405 0 6.162-2.76 6.162-6.162 0-3.405-2.76-6.162-6.162-6.162zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm7.846-10.405c0 .795-.646 1.44-1.44 1.44-.795 0-1.44-.646-1.44-1.44 0-.794.646-1.439 1.44-1.439.793-.001 1.44.645 1.44 1.439z"/></svg>
+        </a>
+
+        <a class="social-icon facebook" href="https://www.facebook.com/fauzan.reza.7" target="_blank">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" width="18" height="18"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        </a>
+      </div>
+
+      <p style="margin-top: 0.6rem; font-size: 0.7rem; opacity: 0.85;">©2025 Portal Siswa Informatika. MA PLUS & SMP IT.<br>Oleh : <strong>Fauzan Reza, S.T</strong> (Guru Informatika)</p>
+    </div>
+  </footer>
+
+  <script>
+    let score = 0;
+
+    function checkAnswer(event, key, questionNumber) {
+      if (!event.target.classList.contains('quiz-option')) return;
+
+      const options = event.target.parentElement.querySelectorAll('.quiz-option');
+      const resultMsg = document.getElementById('result' + questionNumber);
+
+      options.forEach(opt => {
+        opt.classList.remove('correct', 'incorrect');
+        opt.style.pointerEvents = 'none';
+      });
+
+      const selectedText = event.target.textContent.toLowerCase();
+
+      if (selectedText.includes(key.toLowerCase())) {
+        event.target.classList.add('correct');
+        resultMsg.textContent = '✅ Benar! Bagus sekali! 🎉';
+        resultMsg.classList.add('show', 'correct');
+        score++;
+      } else {
+        event.target.classList.add('incorrect');
+        options.forEach(opt => {
+          if (opt.textContent.toLowerCase().includes(key.toLowerCase())) {
+            opt.classList.add('correct');
+          }
+        });
+        resultMsg.textContent = '❌ Kurang tepat. Lihat jawaban yang hijau!';
+        resultMsg.classList.add('show', 'incorrect');
+      }
+
+      updateScore();
+      updateProgress();
+    }
+
+    function updateScore() {
+      document.getElementById('scoreDisplay').textContent = `Skor: ${score}/5`;
+    }
+
+    function updateProgress() {
+      const progress = Math.round((score / 5) * 100);
+      const bar = document.getElementById('progressBar');
+      bar.style.width = progress + '%';
+      bar.textContent = progress + '%';
+    }
+  </script>
+</body>
+</html>

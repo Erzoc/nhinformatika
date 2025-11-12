@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kelas XII • Data • Rangkuman Lengkap</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary-color: #FF6B6B;
+      --secondary-color: #4ECDC4;
+      --accent-color: #FFE66D;
+      --dark-color: #111827;
+      --light-color: #F8F9FA;
+      --success-color: #10B981;
+      --danger-color: #EF4444;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
+      line-height: 1.6;
+      color: #1F2937;
+      background: var(--light-color);
+    }
+
+    /* NAVBAR */
+    .navbar {
+      background: linear-gradient(135deg, #1B5E20 0%, #FFD700 100%);
+      color: #fff;
+      padding: 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+    }
+
+    .navbar-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .navbar-title {
+      font-size: 2rem;
+      font-weight: 800;
+      letter-spacing: 0.3px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.35);
+      animation: navPulse 2.4s ease-in-out infinite;
+      display: flex;
+      gap: 0.6rem;
+      align-items: center;
+    }
+
+    .navbar-sub {
+      font-size: 0.9rem;
+      opacity: 0.95;
+      font-weight: 600;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.35);
+    }
+
+    @keyframes navPulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.03); }
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+    }
+
+    .nav-link {
+      background: rgba(255,255,255,0.2);
+      padding: 0.35rem 0.7rem;
+      border-radius: 6px;
+      text-decoration: none;
+      color: #fff;
+      font-size: 0.8rem;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .nav-link:hover {
+      background: rgba(255,255,255,0.3);
+      transform: translateY(-2px);
+    }
+
+    .nav-link.active {
+      background: #FFD700;
+      color: #1B5E20;
+    }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: #fff;
+      padding: 2.5rem 1rem;
+      text-align: center;
+      border-bottom: 5px solid #FFD700;
+    }
+
+    .hero-content {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .hero-emoji {
+      font-size: 2.5rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .hero h1 {
+      font-size: 2.2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero p {
+      opacity: 0.98;
+      font-size: 1.1rem;
+    }
+
+    .badge {
+      display: inline-block;
+      background: #FFD700;
+      color: #1B5E20;
+      padding: 0.4rem 1rem;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      margin-top: 0.8rem;
+    }
+
+    /* CONTAINER */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    section {
+      margin: 2rem 0;
+    }
+
+    section h2 {
+      color: var(--primary-color);
+      font-size: 1.7rem;
+      margin-bottom: 1rem;
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+      border-left: 5px solid var(--secondary-color);
+      padding-left: 0.8rem;
+    }
+
+    /* CARDS */
+    .card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 1.3rem;
+      margin-bottom: 1.2rem;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      border-left: 5px solid var(--secondary-color);
+      transition: transform 0.35s ease, box-shadow 0.35s ease, border-left-color 0.35s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.2);
+      border-left-color: #FFD700;
+    }
+
+    .card h3 {
+      color: var(--primary-color);
+      margin-bottom: 0.7rem;
+      font-size: 1.3rem;
+      display: flex;
+      gap: 0.4rem;
+      align-items: center;
+    }
+
+    .card p {
+      color: #4B5563;
+      margin-bottom: 0.6rem;
+    }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.2rem;
+      margin: 1rem 0;
+    }
+
+    .summary-card {
+      background: #fff;
+      padding: 1.2rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+      border-top: 5px solid var(--primary-color);
+      transition: all 0.3s ease;
+    }
+
+    .summary-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    }
+
+    .summary-card h4 {
+      color: var(--primary-color);
+      margin-bottom: 0.6rem;
+      font-size: 1.1rem;
+    }
+
+    .formula-summary {
+      background: #FFF9C4;
+      padding: 0.8rem;
+      border-radius: 8px;
+      margin: 0.5rem 0;
+      color: #1B5E20;
+      border-left: 4px solid #FFD700;
+      font-family: 'Courier New', monospace;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .tip-box {
+      background: linear-gradient(135deg, #8B5CF6 0%, #EC4899 100%);
+      color: #fff;
+      padding: 1.2rem;
+      border-radius: 10px;
+      margin: 1rem 0;
+      border-left: 5px solid #1F2937;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    .tip-box h4 {
+      font-size: 1.15rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .fact-box {
+      background: linear-gradient(135deg, #1E88E5 0%, #00ACC1 100%);
+      color: #fff;
+      padding: 1.2rem;
+      border-radius: 10px;
+      margin: 1rem 0;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    .success-box {
+      background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+      color: #fff;
+      padding: 1.2rem;
+      border-radius: 10px;
+      margin: 1rem 0;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    .download-box {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: #fff;
+      padding: 2rem;
+      border-radius: 12px;
+      margin: 1.5rem 0;
+      text-align: center;
+      box-shadow: 0 6px 20px rgba(102,126,234,0.4);
+    }
+
+    .download-box h4 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .btn-download {
+      display: inline-block;
+      background: #fff;
+      color: #667eea;
+      padding: 0.9rem 1.8rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.1rem;
+      margin: 0.5rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    .btn-download:hover {
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+    }
+
+    .chapter-nav {
+      background: #f9fafb;
+      padding: 1.5rem;
+      border-radius: 12px;
+      margin: 1.5rem 0;
+      border: 2px solid #e5e7eb;
+    }
+
+    .chapter-nav h4 {
+      color: #1F2937;
+      margin-bottom: 1rem;
+      font-size: 1.2rem;
+    }
+
+    .chapter-links {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+    }
+
+    .chapter-link {
+      background: #fff;
+      padding: 1rem;
+      border-radius: 8px;
+      text-decoration: none;
+      color: #1F2937;
+      border: 2px solid #e5e7eb;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .chapter-link:hover {
+      border-color: #1B5E20;
+      transform: translateY(-3px);
+      box-shadow: 0 4px 12px rgba(27,94,32,0.2);
+    }
+
+    .chapter-icon {
+      font-size: 2rem;
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(135deg, #1B5E20, #FFD700);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .chapter-text {
+      flex: 1;
+    }
+
+    .chapter-text h5 {
+      font-size: 1rem;
+      margin-bottom: 0.2rem;
+      color: #1B5E20;
+    }
+
+    .chapter-text p {
+      font-size: 0.85rem;
+      color: #6B7280;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #111827;
+      color: #fff;
+      text-align: center;
+      padding: 1rem 0.8rem 0.8rem 0.8rem;
+      margin-top: 2rem;
+    }
+
+    .footer-content {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .footer-content h3 {
+      margin-bottom: 0.3rem;
+      color: #FFD700;
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
+    .footer-content p {
+      margin-bottom: 0.3rem;
+      opacity: 0.9;
+      font-size: 0.8rem;
+    }
+
+    .social-media {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin: 0.8rem 0 0.5rem 0;
+      flex-wrap: wrap;
+    }
+
+    .social-icon {
+      width: 34px;
+      height: 34px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      transition: all 0.25s ease;
+      text-decoration: none;
+    }
+
+    .social-icon svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .social-icon.whatsapp {
+      background: #25D366;
+      color: #fff;
+    }
+
+    .social-icon.whatsapp:hover {
+      background: #128C7E;
+      transform: scale(1.08) rotate(3deg);
+    }
+
+    .social-icon.youtube {
+      background: #FF0000;
+      color: #fff;
+    }
+
+    .social-icon.youtube:hover {
+      background: #CC0000;
+      transform: scale(1.08) rotate(-3deg);
+    }
+
+    .social-icon.instagram {
+      background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+      color: #fff;
+    }
+
+    .social-icon.instagram:hover {
+      transform: scale(1.08);
+      box-shadow: 0 6px 16px rgba(188,24,136,0.4);
+    }
+
+    .social-icon.facebook {
+      background: #1877F2;
+      color: #fff;
+    }
+
+    .social-icon.facebook:hover {
+      background: #145DBF;
+      transform: scale(1.08) rotate(-2deg);
+    }
+
+    .footer-small {
+      margin-top: 0.6rem;
+      font-size: 0.7rem;
+      opacity: 0.85;
+    }
+
+    @media (max-width: 768px) {
+      .navbar-title {
+        font-size: 1.5rem;
+      }
+
+      .nav-links {
+        gap: 0.4rem;
+      }
+
+      .nav-link {
+        font-size: 0.7rem;
+        padding: 0.3rem 0.5rem;
+      }
+
+      .hero h1 {
+        font-size: 1.5rem;
+      }
+
+      section h2 {
+        font-size: 1.3rem;
+      }
+
+      .summary-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .chapter-links {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="navbar-content">
+      <div>
+        <div class="navbar-title">📚 Rangkuman Lengkap</div>
+      </div>
+      <div class="nav-links">
+        <a href="k_office1.html" class="nav-link">Bagian 1</a>
+        <a href="k_office2.html" class="nav-link">Bagian 2</a>
+        <a href="k_office3.html" class="nav-link">Bagian 3</a>
+        <a href="#" class="nav-link active">Rangkuman</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-emoji">📊📈💻</div>
+      <h1>Rangkuman: Mengolah Data dengan Excel & Sheets</h1>
+      <p>Ringkasan lengkap dari 3 bagian pembelajaran: Dasar Data, Rumus & Fungsi, hingga Visualisasi Dashboard</p>
+      <span class="badge">✅ RANGKUMAN LENGKAP</span>
+    </div>
+  </section>
+
+  <div class="container">
+    <!-- NAVIGASI CHAPTER -->
+    <section>
+      <div class="chapter-nav">
+        <h4>📖 Akses Cepat ke Semua Bagian</h4>
+        <div class="chapter-links">
+          <a href="k_office1.html" class="chapter-link">
+            <div class="chapter-icon">📚</div>
+            <div class="chapter-text">
+              <h5>Bagian 1</h5>
+              <p>Pengenalan Data & Spreadsheet</p>
+            </div>
+          </a>
+
+          <a href="k_office2.html" class="chapter-link">
+            <div class="chapter-icon">🔢</div>
+            <div class="chapter-text">
+              <h5>Bagian 2</h5>
+              <p>Rumus & Fungsi Dasar</p>
+            </div>
+          </a>
+
+          <a href="k_office3.html" class="chapter-link">
+            <div class="chapter-icon">📊</div>
+            <div class="chapter-text">
+              <h5>Bagian 3</h5>
+              <p>Visualisasi Data & Grafik</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- BAGIAN 1 SUMMARY -->
+    <section>
+      <h2>📚 Bagian 1: Pengenalan Data & Spreadsheet</h2>
+
+      <div class="card">
+        <h3>🔢 Jenis-Jenis Data</h3>
+        <div class="summary-grid">
+          <div class="summary-card">
+            <h4>1. Data Kualitatif</h4>
+            <p style="font-size: 0.9rem;">Data deskriptif berupa teks/huruf yang menggambarkan kualitas.</p>
+            <p style="font-size: 0.85rem; margin-top: 0.5rem;"><strong>Contoh:</strong> Nama, Warna, Jenis Kelamin, Status</p>
+          </div>
+
+          <div class="summary-card">
+            <h4>2. Data Kuantitatif</h4>
+            <p style="font-size: 0.9rem;">Data numerik (angka) yang dapat diukur dan dihitung.</p>
+            <p style="font-size: 0.85rem; margin-top: 0.5rem;"><strong>Diskrit:</strong> Angka bulat (30 siswa)</p>
+            <p style="font-size: 0.85rem;"><strong>Kontinu:</strong> Angka desimal (165.5 cm)</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>💻 Excel vs Google Sheets</h3>
+        <div class="summary-grid">
+          <div class="summary-card">
+            <h4>📊 Microsoft Excel</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>✓ Fitur sangat lengkap & advanced</li>
+              <li>✓ Performa cepat untuk data besar</li>
+              <li>✓ Macro & VBA programming</li>
+              <li>✓ Dapat bekerja offline</li>
+              <li>✗ Berbayar (kecuali Excel Online)</li>
+            </ul>
+          </div>
+
+          <div class="summary-card">
+            <h4>📈 Google Sheets</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>✓ Gratis 100% (butuh akun Google)</li>
+              <li>✓ Kolaborasi real-time</li>
+              <li>✓ Auto-save ke cloud</li>
+              <li>✓ Akses dari perangkat apa saja</li>
+              <li>✗ Perlu internet untuk akses penuh</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="fact-box">
+          <strong>💡 Kesimpulan:</strong> 90% rumus Excel juga berfungsi di Google Sheets! Pilih Excel untuk analisis kompleks & data besar, pilih Sheets untuk kolaborasi & akses mobile.
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>🖥️ Komponen Penting Spreadsheet</h3>
+        <ul style="list-style-position: inside; margin-left: 0.6rem; line-height: 1.9;">
+          <li><strong>Cell (Sel):</strong> Kotak terkecil dengan alamat unik (A1, B2, C3)</li>
+          <li><strong>Row (Baris):</strong> Deretan horizontal, diberi nomor 1, 2, 3...</li>
+          <li><strong>Column (Kolom):</strong> Deretan vertikal, diberi huruf A, B, C...</li>
+          <li><strong>Range:</strong> Kumpulan cell (A1:C10)</li>
+          <li><strong>Formula Bar:</strong> Tempat mengetik/melihat isi cell</li>
+          <li><strong>Sheet/Tab:</strong> Lembar kerja dalam satu file</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- BAGIAN 2 SUMMARY -->
+    <section>
+      <h2>🔢 Bagian 2: Rumus & Fungsi Dasar</h2>
+
+      <div class="card">
+        <h3>➕ Fungsi Matematika</h3>
+        <div class="summary-grid">
+          <div class="summary-card">
+            <h4>SUM - Menjumlahkan</h4>
+            <div class="formula-summary">=SUM(A1:A10)</div>
+            <p style="font-size: 0.85rem; color: #6B7280;">Menjumlahkan semua angka dalam range</p>
+          </div>
+
+          <div class="summary-card">
+            <h4>AVERAGE - Rata-rata</h4>
+            <div class="formula-summary">=AVERAGE(B1:B10)</div>
+            <p style="font-size: 0.85rem; color: #6B7280;">Menghitung nilai rata-rata</p>
+          </div>
+
+          <div class="summary-card">
+            <h4>COUNT - Menghitung</h4>
+            <div class="formula-summary">=COUNT(C1:C10)</div>
+            <p style="font-size: 0.85rem; color: #6B7280;">Hitung cell berisi angka</p>
+          </div>
+
+          <div class="summary-card">
+            <h4>MAX & MIN</h4>
+            <div class="formula-summary">=MAX(D1:D10)<br/>=MIN(D1:D10)</div>
+            <p style="font-size: 0.85rem; color: #6B7280;">Nilai tertinggi & terendah</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>🔀 Fungsi Logika</h3>
+        <div class="summary-grid">
+          <div class="summary-card">
+            <h4>IF - Logika Percabangan</h4>
+            <div class="formula-summary">=IF(A1>=75; "LULUS"; "GAGAL")</div>
+            <p style="font-size: 0.85rem; color: #6B7280; margin-top: 0.5rem;">Jika A1 ≥ 75 maka "LULUS", jika tidak "GAGAL"</p>
+          </div>
+
+          <div class="summary-card">
+            <h4>IF Bertingkat (Nested)</h4>
+            <div class="formula-summary" style="font-size: 0.75rem;">=IF(A1>=90;"A";IF(A1>=80;"B";"C"))</div>
+            <p style="font-size: 0.85rem; color: #6B7280; margin-top: 0.5rem;">Grade A, B, atau C berdasarkan nilai</p>
+          </div>
+
+          <div class="summary-card">
+            <h4>AND - Semua Harus Benar</h4>
+            <div class="formula-summary" style="font-size: 0.8rem;">=IF(AND(A1>=75;B1>=75);"LULUS";"GAGAL")</div>
+            <p style="font-size: 0.85rem; color: #6B7280; margin-top: 0.5rem;">KEDUA nilai harus ≥75</p>
+          </div>
+
+          <div class="summary-card">
+            <h4>OR - Salah Satu Benar</h4>
+            <div class="formula-summary" style="font-size: 0.8rem;">=IF(OR(A1="A";A1="B");"Baik";"Kurang")</div>
+            <p style="font-size: 0.85rem; color: #6B7280; margin-top: 0.5rem;">Baik jika grade A ATAU B</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>🔍 Fungsi Lookup</h3>
+        <div class="summary-card">
+          <h4>VLOOKUP - Pencarian Vertikal</h4>
+          <div class="formula-summary">=VLOOKUP(nilai_cari; tabel_data; nomor_kolom; FALSE)</div>
+          <p style="font-size: 0.9rem; margin-top: 0.8rem;"><strong>Contoh:</strong> Mencari harga barang berdasarkan kode produk</p>
+          <div class="formula-summary" style="margin-top: 0.5rem;">=VLOOKUP("A02"; A1:B10; 2; FALSE)</div>
+          <p style="font-size: 0.85rem; color: #6B7280; margin-top: 0.3rem;">Cari "A02" di kolom pertama, ambil nilai dari kolom ke-2</p>
+        </div>
+
+        <div class="tip-box">
+          <h4>💡 Tips VLOOKUP</h4>
+          <ul style="list-style-position: inside; margin-left: 0.6rem;">
+            <li>• Data harus diurutkan dari atas ke bawah</li>
+            <li>• Nilai yang dicari harus ada di kolom paling kiri</li>
+            <li>• Gunakan FALSE untuk exact match</li>
+            <li>• Nomor kolom dimulai dari 1 (bukan 0)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>📝 Fungsi Teks</h3>
+        <div class="summary-grid">
+          <div class="summary-card">
+            <h4>UPPER/LOWER/PROPER</h4>
+            <div class="formula-summary" style="font-size: 0.8rem;">=UPPER("hello") → HELLO<br/>=LOWER("HELLO") → hello<br/>=PROPER("hello world") → Hello World</div>
+          </div>
+
+          <div class="summary-card">
+            <h4>CONCAT - Gabung Teks</h4>
+            <div class="formula-summary">=CONCAT(A1;" ";B1)</div>
+            <p style="font-size: 0.85rem; color: #6B7280; margin-top: 0.3rem;">Menggabungkan isi A1 dan B1 dengan spasi</p>
+          </div>
+
+          <div class="summary-card">
+            <h4>LEFT/RIGHT - Ambil Karakter</h4>
+            <div class="formula-summary" style="font-size: 0.85rem;">=LEFT("Excel";2) → Ex<br/>=RIGHT("Excel";3) → cel</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BAGIAN 3 SUMMARY -->
+    <section>
+      <h2>📊 Bagian 3: Visualisasi Data & Grafik</h2>
+
+      <div class="card">
+        <h3>📈 Jenis-Jenis Chart</h3>
+        <div class="summary-grid">
+          <div class="summary-card">
+            <h4>1. Column Chart 📊</h4>
+            <p style="font-size: 0.85rem;"><strong>Kapan:</strong> Membandingkan data antar kategori</p>
+            <p style="font-size: 0.85rem;"><strong>Contoh:</strong> Penjualan per bulan, nilai per kelas</p>
+          </div>
+
+          <div class="summary-card">
+            <h4>2. Line Chart 📈</h4>
+            <p style="font-size: 0.85rem;"><strong>Kapan:</strong> Tren data sepanjang waktu</p>
+            <p style="font-size: 0.85rem;"><strong>Contoh:</strong> Harga saham, suhu harian</p>
+          </div>
+
+          <div class="summary-card">
+            <h4>3. Pie Chart 🥧</h4>
+            <p style="font-size: 0.85rem;"><strong>Kapan:</strong> Proporsi/persentase</p>
+            <p style="font-size: 0.85rem;"><strong>Contoh:</strong> Market share, komposisi budget</p>
+            <p style="font-size: 0.8rem; color: #EF4444; margin-top: 0.3rem;">⚠️ Maksimal 5-7 kategori!</p>
+          </div>
+
+          <div class="summary-card">
+            <h4>4. Bar Chart (Horizontal)</h4>
+            <p style="font-size: 0.85rem;"><strong>Kapan:</strong> Ranking dengan label panjang</p>
+            <p style="font-size: 0.85rem;"><strong>Contoh:</strong> Perbandingan negara</p>
+          </div>
+
+          <div class="summary-card">
+            <h4>5. Scatter Plot ⚫</h4>
+            <p style="font-size: 0.85rem;"><strong>Kapan:</strong> Hubungan 2 variabel</p>
+            <p style="font-size: 0.85rem;"><strong>Contoh:</strong> Tinggi-berat, jam belajar-nilai</p>
+          </div>
+
+          <div class="summary-card">
+            <h4>6. Area Chart</h4>
+            <p style="font-size: 0.85rem;"><strong>Kapan:</strong> Volume/akumulasi over time</p>
+            <p style="font-size: 0.85rem;"><strong>Contoh:</strong> Total penjualan kumulatif</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>🛠️ Langkah Membuat Chart</h3>
+        <ol style="list-style-position: inside; margin-left: 0.6rem; line-height: 2; font-size: 0.95rem;">
+          <li><strong>1. Persiapkan Data:</strong> Susun rapi, header di baris pertama, tidak ada cell kosong</li>
+          <li><strong>2. Pilih Data:</strong> Blok seluruh data termasuk header</li>
+          <li><strong>3. Insert Chart:</strong> Excel → Insert → Charts | Sheets → Insert → Chart</li>
+          <li><strong>4. Customize:</strong> Tambahkan title, label axis, atur warna, hapus elemen tidak perlu</li>
+        </ol>
+
+        <div class="tip-box">
+          <h4>🎨 Tips Desain Chart Efektif</h4>
+          <ul style="list-style-position: inside; margin-left: 0.6rem;">
+            <li>✓ <strong>Simplicity:</strong> Less is more - fokus pada message</li>
+            <li>✓ <strong>Warna:</strong> Gunakan palet konsisten, highlight data penting</li>
+            <li>✓ <strong>Label:</strong> Title jelas, axis labels wajib ada</li>
+            <li>✓ <strong>Context:</strong> Sertakan sumber data & periode waktu</li>
+            <li>✗ <strong>Hindari:</strong> 3D chart, rainbow colors, data overload</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>🔄 Pivot Table</h3>
+        <p style="margin-bottom: 1rem;"><strong>Definisi:</strong> Alat untuk meringkas dan menganalisis data besar dengan cara fleksibel tanpa mengubah data asli.</p>
+
+        <div class="success-box">
+          <h4>✅ Manfaat Pivot Table</h4>
+          <ul style="list-style-position: inside; margin-left: 0.6rem;">
+            <li>• Summarize data besar dengan cepat</li>
+            <li>• Grouping & filtering dinamis</li>
+            <li>• Kalkulasi otomatis (sum, avg, count)</li>
+            <li>• Analisis multi-dimensional</li>
+            <li>• Drag-and-drop interface</li>
+          </ul>
+        </div>
+
+        <p style="margin-top: 1rem; font-size: 0.95rem;"><strong>Cara Membuat:</strong></p>
+        <ol style="list-style-position: inside; margin-left: 0.6rem; font-size: 0.9rem; line-height: 1.8;">
+          <li>1. Pilih data → Insert → PivotTable (Excel) / Pivot table (Sheets)</li>
+          <li>2. Drag field ke area: <strong>Rows</strong> (baris), <strong>Columns</strong> (kolom), <strong>Values</strong> (nilai), <strong>Filters</strong></li>
+          <li>3. Pilih fungsi aggregasi: SUM, AVERAGE, COUNT, MAX, MIN</li>
+          <li>4. Customize format dan layout sesuai kebutuhan</li>
+        </ol>
+      </div>
+
+      <div class="card">
+        <h3>📊 Dashboard</h3>
+        <p style="margin-bottom: 1rem;"><strong>Definisi:</strong> Tampilan visual yang menampilkan metrics dan KPI penting dalam satu layar untuk monitoring dan decision making cepat.</p>
+
+        <div class="summary-grid">
+          <div class="summary-card">
+            <h4>Elemen Dashboard</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• KPI Cards (angka besar metric utama)</li>
+              <li>• Trend Charts (line/area)</li>
+              <li>• Comparison Charts (bar/column)</li>
+              <li>• Composition (pie/donut)</li>
+              <li>• Filters/Slicers (dropdown)</li>
+              <li>• Tables (detail data)</li>
+            </ul>
+          </div>
+
+          <div class="summary-card">
+            <h4>Prinsip Desain Dashboard</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• Prioritas: Info penting di kiri atas</li>
+              <li>• Konsistensi: Warna & font seragam</li>
+              <li>• White space: Beri ruang bernafas</li>
+              <li>• Actionable: Bantu decision making</li>
+              <li>• Real-time: Update otomatis</li>
+              <li>• Mobile-friendly: Responsif</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- KEY TAKEAWAYS -->
+    <section>
+      <h2>🎯 Key Takeaways (Poin Penting)</h2>
+
+      <div class="card" style="background: linear-gradient(135deg, rgba(102,126,234,0.05), rgba(118,75,162,0.05)); border-left: 5px solid #667eea;">
+        <h3>💡 10 Hal yang Harus Dikuasai</h3>
+        <ol style="list-style-position: inside; margin-left: 0.6rem; line-height: 2.2; font-size: 0.95rem;">
+          <li><strong>Bedakan data kualitatif vs kuantitatif</strong> untuk pemilihan analisis yang tepat</li>
+          <li><strong>Pahami interface spreadsheet</strong> - cell, row, column, range, formula bar</li>
+          <li><strong>Kuasai rumus matematika dasar:</strong> SUM, AVERAGE, COUNT, MAX, MIN</li>
+          <li><strong>Gunakan IF untuk logika percabangan</strong> dan kombinasikan dengan AND/OR</li>
+          <li><strong>VLOOKUP adalah senjata ampuh</strong> untuk mencari data dari tabel master</li>
+          <li><strong>Pilih jenis chart yang tepat</strong> sesuai tujuan komunikasi data</li>
+          <li><strong>Desain chart yang efektif:</strong> simple, jelas, fokus pada message</li>
+          <li><strong>Pivot Table untuk analisis cepat</strong> data besar tanpa rumus kompleks</li>
+          <li><strong>Dashboard harus actionable</strong> dan membantu decision making</li>
+          <li><strong>Praktik terus-menerus</strong> adalah kunci menguasai Excel/Sheets!</li>
+        </ol>
+      </div>
+
+      <div class="fact-box">
+        <h4>📊 Fun Facts:</h4>
+        <ul style="list-style-position: inside; margin-left: 0.6rem;">
+          <li>• Excel pertama kali dirilis tahun <strong>1985</strong> untuk Macintosh!</li>
+          <li>• Ada lebih dari <strong>16 juta baris</strong> dan <strong>16 ribu kolom</strong> di Excel</li>
+          <li>• Google Sheets diluncurkan tahun <strong>2006</strong> sebagai "Google Spreadsheets"</li>
+          <li>• Excel punya lebih dari <strong>450+ fungsi</strong> built-in!</li>
+          <li>• NASA, Wall Street, dan Bank menggunakan Excel untuk analisis data kritis</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- DOWNLOAD SECTION -->
+    <section>
+      <h2>📥 Download Materi Lengkap</h2>
+      
+      <div class="download-box">
+        <h4>📚 Paket Lengkap: Data Excel & Sheets</h4>
+        <p style="margin-bottom: 1.5rem; font-size: 1.05rem;">Download semua materi, latihan soal, dan file Excel untuk praktik dari 3 bagian pembelajaran!</p>
+        
+        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+          <a href="#" class="btn-download" onclick="alert('File akan segera tersedia. Hubungi guru untuk mendapatkan file lengkap.'); return false;">
+            📥 Download Semua PDF
+          </a>
+          <a href="#" class="btn-download" onclick="alert('File akan segera tersedia. Hubungi guru untuk mendapatkan file lengkap.'); return false;">
+            📥 Download File Excel
+          </a>
+          <a href="#" class="btn-download" onclick="alert('File akan segera tersedia. Hubungi guru untuk mendapatkan file lengkap.'); return false;">
+            📥 Download Cheat Sheet
+          </a>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>📖 Isi Paket Download</h3>
+        <div class="summary-grid">
+          <div class="summary-card">
+            <h4>📄 PDF Materials</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• Rangkuman lengkap 3 bagian</li>
+              <li>• 50+ contoh rumus & fungsi</li>
+              <li>• Panduan step-by-step</li>
+              <li>• Tips & best practices</li>
+            </ul>
+          </div>
+
+          <div class="summary-card">
+            <h4>📊 File Excel/Sheets</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• 30+ latihan soal dengan data</li>
+              <li>• Template dashboard</li>
+              <li>• Sample Pivot Table</li>
+              <li>• Kunci jawaban & pembahasan</li>
+            </ul>
+          </div>
+
+          <div class="summary-card">
+            <h4>📋 Cheat Sheet</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• Daftar rumus penting (1 halaman)</li>
+              <li>• Shortcut keyboard</li>
+              <li>• Kapan pakai chart apa</li>
+              <li>• Troubleshooting umum</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NEXT STEPS -->
+    <section>
+      <h2>🚀 Langkah Selanjutnya</h2>
+
+      <div class="card">
+        <h3>📈 Level Up Skill Excel/Sheets Anda!</h3>
+        <div class="summary-grid">
+          <div class="summary-card">
+            <h4>🎯 Beginner → Intermediate</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• Kuasai semua fungsi di Bagian 2</li>
+              <li>• Praktik membuat 10+ chart berbeda</li>
+              <li>• Buat 3 dashboard sederhana</li>
+              <li>• Eksperimen dengan conditional formatting</li>
+            </ul>
+          </div>
+
+          <div class="summary-card">
+            <h4>⚡ Intermediate → Advanced</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• Pelajari INDEX-MATCH (alternatif VLOOKUP)</li>
+              <li>• Kuasai Pivot Table advanced features</li>
+              <li>• Belajar Macro & VBA (Excel)</li>
+              <li>• Eksplorasi Power Query & Power Pivot</li>
+            </ul>
+          </div>
+
+          <div class="summary-card">
+            <h4>🏆 Advanced → Expert</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• Array formulas & dynamic arrays</li>
+              <li>• Database integration (SQL)</li>
+              <li>• Advanced dashboards dengan slicers</li>
+              <li>• Automasi dengan Google Apps Script</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="tip-box">
+          <h4>💪 Challenge untuk Anda</h4>
+          <p style="margin-bottom: 0.8rem;">Buat mini project berikut untuk menguji kemampuan:</p>
+          <ol style="list-style-position: inside; margin-left: 0.6rem; line-height: 1.9;">
+            <li><strong>Project 1:</strong> Dashboard penjualan dengan 5 chart + pivot table</li>
+            <li><strong>Project 2:</strong> Sistem nilai siswa dengan grade otomatis (IF nested)</li>
+            <li><strong>Project 3:</strong> Database inventory dengan VLOOKUP untuk cari harga</li>
+            <li><strong>Project 4:</strong> Budget tracker personal dengan chart pengeluaran</li>
+            <li><strong>Project 5:</strong> Analisis data survey dengan visualisasi lengkap</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- PENUTUP -->
+    <section>
+      <div class="card" style="background: linear-gradient(135deg, rgba(27,94,32,0.06), rgba(255,215,0,0.08)); border-left: 5px solid #FFD700; text-align: center; padding: 2rem;">
+        <h3 style="margin-bottom: 1rem; font-size: 1.5rem;">🎉 Selamat! Anda Telah Menyelesaikan Pembelajaran</h3>
+        <p style="margin-bottom: 1.5rem; line-height: 1.9; font-size: 1.05rem;">
+          Anda sekarang memiliki fondasi kuat dalam mengolah data dengan Excel dan Google Sheets. Dari input data, rumus & fungsi, hingga visualisasi dashboard profesional. Teruslah berlatih dan jangan takut bereksperimen!
+        </p>
+
+        <div style="background: rgba(255,215,0,0.15); padding: 1.5rem; border-radius: 10px; margin: 1.5rem 0;">
+          <p style="font-weight: 700; color: #1B5E20; font-size: 1.3rem; margin-bottom: 0.8rem;">💡 Ingat Selalu:</p>
+          <p style="font-size: 1.1rem; line-height: 1.8;">
+            <em>"Data is the new oil, but you need to refine it first."</em><br/>
+            <span style="font-size: 0.9rem; opacity: 0.8;">- Clive Humby</span>
+          </p>
+        </div>
+
+        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem;">
+          <a href="k_office1.html" style="display: inline-block; background: #6B7280; color: #fff; padding: 0.8rem 1.8rem; border-radius: 8px; text-decoration: none; font-weight: 600;">
+            🔄 Ulangi dari Bagian 1
+          </a>
+          <a href="#" style="display: inline-block; background: #1B5E20; color: #fff; padding: 0.8rem 1.8rem; border-radius: 8px; text-decoration: none; font-weight: 700;" onclick="alert('Terima kasih telah belajar! Jangan lupa praktik secara konsisten.'); return false;">
+            ✅ Selesai & Download Sertifikat
+          </a>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-content">
+      <h3>Platform Pembelajaran Interaktif untuk Siswa & Siswi <strong>Ypi Nurul Hadina</strong></h3>
+
+      <div class="social-media">
+        <a class="social-icon whatsapp" href="https://wa.me/6289504440411" target="_blank">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884"/></svg>
+        </a>
+
+        <a class="social-icon youtube" href="https://www.youtube.com/channel/UCNmOH6L2xq6C15EkQlx_FpQ" target="_blank">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+        </a>
+
+        <a class="social-icon instagram" href="https://instagram.com/ypinurulhadina" target="_blank">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.319 1.347 20.651.935 19.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.015 3.585-.074 4.85c-.061 1.17-.256 1.805-.421 2.227-.224.562-.479.96-.899 1.382-.419.419-.824.679-1.38.896-.42.164-1.065.36-2.235.413-1.274.057-1.649.07-4.859.07-3.211 0-3.586-.015-4.859-.074-1.171-.061-1.816-.256-2.236-.421-.569-.224-.96-.479-1.379-.899-.421-.419-.69-.824-.9-1.38-.165-.42-.359-1.065-.42-2.235-.045-1.26-.061-1.649-.061-4.844 0-3.196.016-3.586.061-4.861.061-1.17.255-1.814.42-2.234.21-.57.479-.96.9-1.381.419-.419.81-.689 1.379-.898.42-.166 1.051-.361 2.221-.421 1.275-.045 1.65-.06 4.859-.06l.045.03zm0 3.678c-3.405 0-6.162 2.76-6.162 6.162 0 3.405 2.76 6.162 6.162 6.162 3.405 0 6.162-2.76 6.162-6.162 0-3.405-2.76-6.162-6.162-6.162zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm7.846-10.405c0 .795-.646 1.44-1.44 1.44-.795 0-1.44-.646-1.44-1.44 0-.794.646-1.439 1.44-1.439.793-.001 1.44.645 1.44 1.439z"/></svg>
+        </a>
+
+        <a class="social-icon facebook" href="https://www.facebook.com/fauzan.reza.7" target="_blank">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        </a>
+      </div>
+
+      <p class="footer-small">©2025 Portal Siswa Informatika. MA PLUS & SMP IT.<br>Oleh : <strong>Fauzan Reza, S.T</strong> (Guru Informatika)</p>
+    </div>
+  </footer>
+
+</body>
+</html>

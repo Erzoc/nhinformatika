@@ -1,0 +1,376 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Kelas 11 - Penerapan Berpikir Komputasional</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  
+  <style>
+    /* Konsisten dengan Dashboard Design */
+    .main-container {
+      padding: 1.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 10;
+      min-height: calc(100vh - 200px);
+    }
+    
+    .page-header {
+      background: var(--glass-bg);
+      backdrop-filter: blur(15px);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      text-align: center;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    }
+    
+    .page-header h1 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--accent-color);
+      margin-bottom: 0.5rem;
+      text-shadow: 0 0 20px rgba(0, 229, 255, 0.3);
+    }
+    
+    .page-header .note {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+    
+    .topic-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.25rem;
+      margin-bottom: 2rem;
+    }
+    
+    .topic-card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(15px);
+      border: 1px solid var(--glass-border);
+      border-radius: 16px;
+      padding: 1.75rem 1.25rem;
+      text-align: left;
+      text-decoration: none;
+      color: var(--text-color);
+      transition: all 0.4s ease;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .topic-card::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0, 229, 255, 0.15), transparent);
+      transform: translate(-50%, -50%);
+      transition: width 0.6s ease, height 0.6s ease;
+    }
+    
+    .topic-card:hover::after {
+      width: 300px;
+      height: 300px;
+    }
+    
+    .topic-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 40px rgba(0, 229, 255, 0.25);
+      border-color: var(--accent-color);
+    }
+    
+    .topic-card h3 {
+      font-size: 1.1rem;
+      margin-bottom: 0.65rem;
+      color: var(--accent-color);
+      font-weight: 700;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .topic-card p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .action-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
+    
+    .btn {
+      padding: 0.75rem 1.75rem;
+      background: var(--glass-bg);
+      backdrop-filter: blur(15px);
+      border: 1px solid var(--glass-border);
+      border-radius: 12px;
+      color: var(--accent-color);
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.9rem;
+    }
+    
+    .btn:hover {
+      background: rgba(0, 229, 255, 0.1);
+      border-color: var(--accent-color);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(0, 229, 255, 0.3);
+    }
+    
+    .btn-primary {
+      background: linear-gradient(135deg, rgba(0, 229, 255, 0.2), rgba(159, 47, 255, 0.2));
+      border-color: var(--accent-color);
+    }
+    
+    .btn-primary:hover {
+      background: linear-gradient(135deg, rgba(0, 229, 255, 0.3), rgba(159, 47, 255, 0.3));
+    }
+    
+    .site-footer {
+      background: var(--card-bg);
+      backdrop-filter: blur(10px);
+      border-top: 1px solid var(--glass-border);
+      padding: 1.5rem 2rem;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      position: relative;
+      z-index: 100;
+      margin-top: auto;
+    }
+    
+    .site-footer strong {
+      color: var(--accent-color);
+    }
+    
+    @media (max-width: 768px) {
+      .main-container {
+        padding: 1rem;
+      }
+      
+      .page-header {
+        padding: 1.5rem;
+      }
+      
+      .page-header h1 {
+        font-size: 1.4rem;
+      }
+      
+      .topic-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+      
+      .topic-card {
+        padding: 1.5rem 1rem;
+      }
+      
+      .action-buttons {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      
+      .btn {
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <canvas id="particle-network"></canvas>
+
+  <nav class="navbar">
+    <a href="dashboard.html" class="logo">PORTAL WEB <span>INFORMATIKA</span></a>
+  </nav>
+
+  <div class="main-container">
+
+    <div class="page-header">
+      <h1>Kelas 11 (Al-Haqq) - Penerapan Berpikir Komputasional</h1>
+      <p class="note">Ringkasan materi dan tautan bahan ajar.</p>
+    </div>
+
+    <div class="topic-grid">
+      
+      <a class="topic-card" href="blmtersedia.html">
+        <h3>Berpikir Komputasional</h3>
+        <p>Alur Proses Pengembangan Program, Strategi Algoritmik dalam Menyelesaikan Masalah, Hash Table.</p>
+      </a>
+
+      <a class="topic-card" href="kelas11bab2.html">
+        <h3>Literasi Digital</h3>
+        <p>Mesin Pencari, Cek & Ricek Kebenaran Informasi, Konten Digital dan Platform Digital.</p>
+      </a>
+      
+      <a class="topic-card" href="kelas11bab3.html">
+        <h3>Sistem Komputer</h3>
+        <p>Perangkat Keras Komputer, Perancangan Sistem Komputer.</p>
+      </a>
+
+      <a class="topic-card" href="kelas11bab4.html">
+        <h3>Data</h3>
+        <p>Pengertian, Teknis Analis, Interpretasi Data, Visualisasi Data dan Publikasi.</p>
+      </a>
+
+      <a class="topic-card" href="kelas11bab5.html">
+        <h3>Jaringan Komputer & Internet</h3>
+        <p>Keamanan Siber, Ancaman Siber, Konfigurasi Keamanan.</p>
+      </a>
+      
+      <a class="topic-card" href="kelas11bab6.html">
+        <h3>Algoritma & Pemrograman dalam Bahasa C++</h3>
+        <p>Struktur Bahasa C++, Aturan Penulisan, Struktur Dasar Algoritma, Struktur Data Sederhana (Array).</p>
+      </a>
+
+    </div>
+
+    <div class="action-buttons">
+      <a class="btn" href="kelas-sma.html">
+        <i class="fas fa-arrow-left"></i> Kembali ke Kelas MA
+      </a>
+      <a class="btn btn-primary" href="https://forms.gle/bEZHRuc8wDDGpYru7" target="_blank">
+        <i class="fas fa-poll"></i> Isi Survey Harian
+      </a>
+    </div>
+
+  </div>
+
+  <footer class="site-footer">
+    &copy; 2025 Portal Siswa Informatika. MA PLUS & SMP IT YPI Nurul Hadina.<br>
+    Oleh: <strong>Fauzan Reza, S.T</strong> (Guru Informatika <strong>YPI Nurul Hadina</strong>)
+  </footer>
+
+  <script>
+    (function() {
+      const canvas = document.getElementById('particle-network');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      
+      function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+      
+      resizeCanvas();
+      
+      let particles = [];
+      const particleCount = 100, connectDistance = 150, mouse = { x: null, y: null, radius: 100 };
+      
+      window.addEventListener('resize', () => {
+        resizeCanvas();
+        init();
+      });
+      
+      window.addEventListener('mousemove', (event) => {
+        mouse.x = event.x; 
+        mouse.y = event.y;
+      });
+      
+      window.addEventListener('mouseout', () => {
+        mouse.x = null; 
+        mouse.y = null;
+      });
+      
+      class Particle {
+        constructor() {
+          this.x = Math.random() * canvas.width; 
+          this.y = Math.random() * canvas.height;
+          this.vx = (Math.random() - 0.5) * 0.5; 
+          this.vy = (Math.random() - 0.5) * 0.5;
+          this.radius = 2.5; 
+          this.color = 'rgba(0, 229, 255, 0.7)';
+        }
+        
+        update() {
+          if (this.x < 0 || this.x > canvas.width) this.vx = -this.vx;
+          if (this.y < 0 || this.y > canvas.height) this.vy = -this.vy;
+          this.x += this.vx; 
+          this.y += this.vy;
+        }
+        
+        draw() {
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+          ctx.fillStyle = this.color; 
+          ctx.fill();
+        }
+      }
+      
+      function init() {
+        particles = [];
+        for (let i = 0; i < particleCount; i++) particles.push(new Particle());
+      }
+      
+      function connect() {
+        for (let a = 0; a < particles.length; a++) {
+          for (let b = a + 1; b < particles.length; b++) {
+            const dx = particles[a].x - particles[b].x;
+            const dy = particles[a].y - particles[b].y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+            
+            if (distance < connectDistance) {
+              const opacity = 1 - (distance / connectDistance);
+              ctx.strokeStyle = `rgba(0, 229, 255, ${opacity * 0.3})`;
+              ctx.lineWidth = 1.5; 
+              ctx.beginPath();
+              ctx.moveTo(particles[a].x, particles[a].y);
+              ctx.lineTo(particles[b].x, particles[b].y); 
+              ctx.stroke();
+            }
+          }
+          
+          if (mouse.x) {
+            const dx = particles[a].x - mouse.x;
+            const dy = particles[a].y - mouse.y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+            
+            if (distance < mouse.radius) {
+              const opacity = 1 - (distance / mouse.radius);
+              ctx.strokeStyle = `rgba(159, 47, 255, ${opacity * 0.5})`;
+              ctx.lineWidth = 2; 
+              ctx.beginPath();
+              ctx.moveTo(particles[a].x, particles[a].y);
+              ctx.lineTo(mouse.x, mouse.y); 
+              ctx.stroke();
+            }
+          }
+        }
+      }
+      
+      function animate() {
+        if (!ctx) return;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        particles.forEach(p => { p.update(); p.draw(); });
+        connect(); 
+        requestAnimationFrame(animate);
+      }
+      
+      init();
+      animate();
+    })();
+  </script>
+
+</body>
+</html>

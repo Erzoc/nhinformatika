@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cek & Ricek Informasi - Kelas X</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary-color: #FF6B6B;
+      --secondary-color: #4ECDC4;
+      --accent-color: #FFE66D;
+      --dark-color: #111827;
+      --light-color: #F8F9FA;
+      --success-color: #10B981;
+      --danger-color: #EF4444;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
+      line-height: 1.6;
+      color: #1F2937;
+      background: var(--light-color);
+    }
+
+    /* NAVBAR */
+    .navbar {
+      background: linear-gradient(135deg, #1B5E20 0%, #FFD700 100%);
+      color: #fff;
+      padding: 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+    }
+
+    .navbar-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .navbar-title {
+      font-size: 2rem;
+      font-weight: 800;
+      letter-spacing: 0.3px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.35);
+      animation: navPulse 2.4s ease-in-out infinite;
+      display: flex;
+      gap: 0.6rem;
+      align-items: center;
+    }
+
+    .navbar-sub {
+      font-size: 0.9rem;
+      opacity: 0.95;
+      font-weight: 600;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.35);
+    }
+
+    @keyframes navPulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.03); }
+    }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: #fff;
+      padding: 2rem 1rem;
+      text-align: center;
+      border-bottom: 5px solid #FFD700;
+    }
+
+    .hero-content {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .hero-emoji {
+      font-size: 2.3rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .hero h1 {
+      font-size: 1.9rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .hero p {
+      opacity: 0.98;
+    }
+
+    /* CONTAINER */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    section {
+      margin: 2rem 0;
+    }
+
+    section h2 {
+      color: var(--primary-color);
+      font-size: 1.6rem;
+      margin-bottom: 1rem;
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+      border-left: 5px solid var(--secondary-color);
+      padding-left: 0.8rem;
+    }
+
+    /* CARDS */
+    .card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 1.2rem;
+      margin-bottom: 1.2rem;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      border-left: 5px solid var(--secondary-color);
+      transition: transform 0.35s ease, box-shadow 0.35s ease, border-left-color 0.35s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-12px) scale(1.03);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.25);
+      border-left-color: #FFD700;
+    }
+
+    .card h3 {
+      color: var(--primary-color);
+      margin-bottom: 0.7rem;
+      font-size: 1.2rem;
+      display: flex;
+      gap: 0.4rem;
+      align-items: center;
+    }
+
+    .card p {
+      color: #4B5563;
+      margin-bottom: 0.6rem;
+    }
+
+    .content-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem;
+      margin: 0.8rem 0 1.2rem 0;
+    }
+
+    .content-box {
+      background: #fff;
+      padding: 1rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+      border-top: 4px solid var(--primary-color);
+    }
+
+    .content-box h4 {
+      color: var(--primary-color);
+      margin-bottom: 0.5rem;
+    }
+
+    /* BOXES dengan kontras teks putih */
+    .tip-box {
+      background: linear-gradient(135deg, #8B5CF6 0%, #EC4899 100%);
+      color: #fff;
+      padding: 1.1rem;
+      border-radius: 10px;
+      margin: 1rem 0;
+      border-left: 5px solid #1F2937;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    .tip-box h4 {
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .fact-box {
+      background: linear-gradient(135deg, #1E88E5 0%, #00ACC1 100%);
+      color: #fff;
+      padding: 1.1rem;
+      border-radius: 10px;
+      margin: 1rem 0;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    .fact-box strong {
+      font-size: 1.1rem;
+      display: block;
+      margin-bottom: 0.4rem;
+    }
+
+    .card-example {
+      background: #FFF9C4;
+      padding: 0.9rem;
+      border-radius: 8px;
+      margin: 0.8rem 0;
+      color: #1B5E20;
+      border-left: 4px solid #FFD700;
+      font-weight: 500;
+    }
+
+    .syntax-box {
+      background: #f5f7fa;
+      border: 2px solid var(--secondary-color);
+      padding: 0.9rem;
+      border-radius: 8px;
+      margin: 0.8rem 0;
+      font-family: 'Courier New', monospace;
+      color: #1F2937;
+      overflow-x: auto;
+    }
+
+    .syntax-box code {
+      color: var(--primary-color);
+      font-weight: 700;
+    }
+
+    /* VIDEO */
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1rem;
+    }
+
+    .video-card {
+      background: #fff;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .video-card:hover {
+      transform: translateY(-8px);
+    }
+
+    .video-thumbnail {
+      width: 100%;
+      height: 150px;
+      background: linear-gradient(135deg, #1B5E20, #FFD700);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.4rem;
+      color: #fff;
+    }
+
+    .video-info {
+      padding: 0.9rem;
+    }
+
+    .video-info h4 {
+      margin-bottom: 0.4rem;
+      font-size: 1rem;
+      color: #111827;
+    }
+
+    .video-info p {
+      font-size: 0.85rem;
+      color: #6B7280;
+      margin-bottom: 0.6rem;
+    }
+
+    .video-link {
+      display: inline-block;
+      background: #1B5E20;
+      color: #fff;
+      padding: 0.45rem 0.8rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: all 0.25s ease;
+    }
+
+    .video-link:hover {
+      background: #145A32;
+      transform: translateY(-2px);
+    }
+
+    /* QUIZ diperkecil */
+    .game-section {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: #fff;
+      padding: 1.25rem 1rem;
+      border-radius: 14px;
+      margin: 1.4rem 0;
+    }
+
+    .game-section h3 {
+      color: #fff;
+      margin-bottom: 0.9rem;
+      font-size: 1.2rem;
+    }
+
+    .game-container {
+      background: rgba(255,255,255,0.96);
+      color: #111827;
+      padding: 0.9rem;
+      border-radius: 10px;
+      margin-bottom: 0.8rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .game-question {
+      font-weight: 700;
+      margin-bottom: 0.6rem;
+      font-size: 1rem;
+      color: #111827;
+    }
+
+    .quiz-options {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0.6rem;
+    }
+
+    .quiz-option {
+      background: #f3f4f6;
+      border: 2px solid #e5e7eb;
+      padding: 0.7rem 0.8rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-weight: 600;
+      font-size: 0.92rem;
+      color: #1F2937;
+    }
+
+    .quiz-option:hover {
+      background: #FFF7CC;
+      border-color: #FFD700;
+      transform: translateX(4px);
+    }
+
+    .quiz-option.correct {
+      background: var(--success-color);
+      border-color: var(--success-color);
+      color: #fff;
+    }
+
+    .quiz-option.incorrect {
+      background: var(--danger-color);
+      border-color: var(--danger-color);
+      color: #fff;
+    }
+
+    .result-message {
+      margin-top: 0.6rem;
+      padding: 0.7rem;
+      border-radius: 8px;
+      text-align: center;
+      font-weight: 700;
+      font-size: 0.95rem;
+      display: none;
+    }
+
+    .result-message.show {
+      display: block;
+    }
+
+    .result-message.correct {
+      background: var(--success-color);
+      color: #fff;
+    }
+
+    .result-message.incorrect {
+      background: var(--danger-color);
+      color: #fff;
+    }
+
+    .progress-container {
+      background: #e5e7eb;
+      border-radius: 10px;
+      margin: 0.8rem 0 1rem 0;
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      height: 20px;
+      background: linear-gradient(90deg, #4ECDC4, #FF6B6B);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.8rem;
+      transition: width 0.25s ease;
+    }
+
+    .score-display {
+      text-align: center;
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--primary-color);
+      margin: 0.6rem 0;
+    }
+
+    /* GALLERY */
+    .image-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 0.8rem;
+      margin: 0.8rem 0 0.4rem 0;
+    }
+
+    .gallery-item {
+      background: #fff;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      transition: transform 0.25s ease;
+    }
+
+    .gallery-item:hover {
+      transform: scale(1.04);
+    }
+
+    .gallery-thumb {
+      width: 100%;
+      height: 140px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 2.2rem;
+    }
+
+    .gallery-caption {
+      padding: 0.7rem;
+      text-align: center;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #1F2937;
+    }
+
+    /* FOOTER konsisten (icon tengah atas) */
+    footer {
+      background: #111827;
+      color: #fff;
+      text-align: center;
+      padding: 1rem 0.8rem 0.8rem 0.8rem;
+      margin-top: 2rem;
+    }
+
+    .footer-content {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .footer-content h3 {
+      margin-bottom: 0.3rem;
+      color: #FFD700;
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
+    .footer-content p {
+      margin-bottom: 0.3rem;
+      opacity: 0.9;
+      font-size: 0.8rem;
+    }
+
+    .social-media {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin: 0.8rem 0 0.5rem 0;
+      flex-wrap: wrap;
+    }
+
+    .social-icon {
+      width: 34px;
+      height: 34px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      transition: all 0.25s ease;
+      text-decoration: none;
+    }
+
+    .social-icon svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .social-icon.whatsapp {
+      background: #25D366;
+      color: #fff;
+    }
+
+    .social-icon.whatsapp:hover {
+      background: #128C7E;
+      transform: scale(1.08) rotate(3deg);
+    }
+
+    .social-icon.youtube {
+      background: #FF0000;
+      color: #fff;
+    }
+
+    .social-icon.youtube:hover {
+      background: #CC0000;
+      transform: scale(1.08) rotate(-3deg);
+    }
+
+    .social-icon.instagram {
+      background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+      color: #fff;
+    }
+
+    .social-icon.instagram:hover {
+      transform: scale(1.08);
+      box-shadow: 0 6px 16px rgba(188,24,136,0.4);
+    }
+
+    .social-icon.facebook {
+      background: #1877F2;
+      color: #fff;
+    }
+
+    .social-icon.facebook:hover {
+      background: #145DBF;
+      transform: scale(1.08) rotate(-2deg);
+    }
+
+    .footer-small {
+      margin-top: 0.6rem;
+      font-size: 0.7rem;
+      opacity: 0.85;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .navbar-title {
+        font-size: 1.6rem;
+      }
+
+      .hero h1 {
+        font-size: 1.4rem;
+      }
+
+      .hero-emoji {
+        font-size: 1.9rem;
+      }
+
+      section h2 {
+        font-size: 1.3rem;
+      }
+
+      .video-thumbnail {
+        height: 135px;
+      }
+
+      .content-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="navbar-content">
+      <div class="navbar-title">🛡️ Cek & Ricek Informasi</div>
+      <div class="navbar-sub"><br> Materi Informatika - Kelas X</div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-emoji">📰🔎✅</div>
+      <h1>Cek & Ricek Kebenaran Informasi</h1>
+      <p>Pelajari cara verifikasi sumber asli, membedakan fakta dari hoaks, dan memakai platform cek fakta tepercaya untuk menjadi warga digital yang cerdas.</p>
+    </div>
+  </section>
+
+  <div class="container">
+    <!-- INTRO -->
+    <section>
+      <h2>📚 Tujuan Pembelajaran</h2>
+      <div class="card">
+        <p>Setelah mempelajari materi ini, siswa mampu melakukan pengecekan silang (cross-check), membaca lateral, dan memakai alat verifikasi visual untuk memastikan kebenaran informasi yang diterima dari berbagai sumber.</p>
+        <ul style="list-style-position: inside; margin-left: 0.6rem; line-height: 1.9;">
+          <li>✅ Menerapkan teknik lateral reading</li>
+          <li>✅ Menggunakan reverse image search untuk verifikasi visual</li>
+          <li>✅ Memanfaatkan platform cek fakta Indonesia dan global</li>
+          <li>✅ Mengidentifikasi tanda-tanda misinformasi dan hoaks</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- TOPIC 1 -->
+    <section>
+      <h2>🔎 Teknik Cek & Ricek Informasi</h2>
+      
+      <div class="card">
+        <h3>1️⃣ Lateral Reading & Cross-Check</h3>
+        <p>Lateral reading adalah teknik membuka beberapa sumber berbeda di tab terpisah untuk memeriksa reputasi situs, kredibilitas penulis, tanggal terbit, dan konsistensi klaim pada berbagai media terpercaya.</p>
+        
+        <div class="syntax-box">
+          <strong>Panduan cepat lateral reading:</strong><br/>
+          • Buka minimal 3-5 sumber berbeda<br/>
+          • Cek halaman "Tentang Kami" untuk mengetahui reputasi situs<br/>
+          • Telusuri nama penulis dan kredibilitasnya<br/>
+          • Bandingkan informasi dari media mainstream<br/>
+          • Perhatikan tanggal publikasi dan konteks waktu
+        </div>
+
+        <div class="tip-box">
+          <h4>💡 Tips Mengenali Konten Mencurigakan</h4>
+          <ul style="list-style-position: inside; margin-left: 0.6rem;">
+            <li>✓ Waspadai judul sensasional atau clickbait</li>
+            <li>✓ Baca seluruh isi artikel, jangan hanya judul</li>
+            <li>✓ Cari bantahan atau klarifikasi dari sumber kredibel</li>
+            <li>✓ Periksa URL - domain asli vs. imitasi</li>
+            <li>✓ Cek apakah ada watermark atau edit pada gambar</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- TOPIC 2 -->
+      <div class="card">
+        <h3>2️⃣ Verifikasi Sumber Asli (Gambar & Video)</h3>
+        <p>Gunakan reverse image search untuk melacak kemunculan pertama gambar, konteks tempat/waktu, dan versi asli visual agar tidak terkecoh oleh konten lama yang diunggah ulang dengan narasi berbeda.</p>
+
+        <div class="content-grid">
+          <div class="content-box">
+            <h4>📷 Langkah Verifikasi Visual</h4>
+            <ul style="list-style-position: inside;">
+              <li>1. Ambil tangkapan layar (screenshot) frame kunci</li>
+              <li>2. Upload ke Google Image Search atau TinEye</li>
+              <li>3. Cocokkan lokasi/waktu dengan landmark</li>
+              <li>4. Cari publikasi media mainstream tentang gambar tersebut</li>
+              <li>5. Periksa metadata gambar (jika tersedia)</li>
+            </ul>
+          </div>
+
+          <div class="content-box">
+            <h4>⚠️ Tanda Peringatan Visual</h4>
+            <ul style="list-style-position: inside;">
+              <li>• Timestamp tidak wajar atau sudah diedit</li>
+              <li>• Klaim tanpa sumber jelas</li>
+              <li>• Potongan video tanpa konteks lengkap</li>
+              <li>• Kualitas gambar blur atau pixelated (diperbesar)</li>
+              <li>• Cuaca/musim tidak sesuai dengan klaim lokasi</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="fact-box">
+          <strong>📊 Fakta Penting:</strong>
+          Reverse image search membantu menemukan sumber asli dan liputan awal sehingga klaim yang menyesatkan bisa disaring lebih cepat. Lebih dari 60% hoaks visual adalah gambar/video lama dengan konteks baru.
+        </div>
+      </div>
+
+      <!-- TOPIC 3 -->
+      <div class="card">
+        <h3>3️⃣ Platform Pengecekan Informasi</h3>
+        <p>Gunakan platform cek fakta tepercaya untuk mencari klarifikasi resmi atas klaim populer yang beredar dan mempelajari penjelasan mengapa klaim tersebut benar, keliru, atau menyesatkan.</p>
+
+        <div class="content-grid">
+          <div class="content-box">
+            <h4>🇮🇩 Platform Indonesia</h4>
+            <ul style="list-style-position: inside;">
+              <li>• <strong>Mafindo</strong> / TurnBackHoax</li>
+              <li>• <strong>CekFakta</strong> (kolaborasi media)</li>
+              <li>• <strong>Kominfo</strong> - Info Hoaks</li>
+              <li>• Media mainstream (Tempo, Kompas, dll)</li>
+            </ul>
+          </div>
+
+          <div class="content-box">
+            <h4>🌍 Platform Global</h4>
+            <ul style="list-style-position: inside;">
+              <li>• <strong>Google Fact Check</strong> Explorer</li>
+              <li>• <strong>AFP</strong> Fact Check</li>
+              <li>• <strong>Snopes</strong></li>
+              <li>• <strong>FactCheck.org</strong></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card-example">
+          <strong>Cara menggunakan:</strong> Ketik judul/klaim → cari di platform cek fakta → baca analisis lengkap → bandingkan dengan liputan media tepercaya → simpulkan berdasarkan bukti.
+        </div>
+      </div>
+    </section>
+
+    <!-- VIDEO -->
+    <section>
+      <h2>🎥 Video Tutorial Pembelajaran</h2>
+      <p style="margin-bottom: 1rem; color: #6B7280;">Tonton video berikut untuk memperdalam pemahaman tentang verifikasi informasi:</p>
+      
+      <div class="video-grid">
+        <div class="video-card">
+          <div class="video-thumbnail">🧭</div>
+          <div class="video-info">
+            <h4>Langkah Cek Fakta untuk Pemula</h4>
+            <p>Lateral reading, mencari sumber lain, mengecek tanggal, dan memahami konteks informasi.</p>
+            <a class="video-link" href="https://www.youtube.com/results?search_query=cara+cek+fakta+hoax" target="_blank" rel="noopener">Tonton Video</a>
+          </div>
+        </div>
+
+        <div class="video-card">
+          <div class="video-thumbnail">📷</div>
+          <div class="video-info">
+            <h4>Reverse Image Search untuk Cek Hoaks Visual</h4>
+            <p>Tutorial menemukan kemunculan pertama gambar dan konteks visual asli menggunakan Google.</p>
+            <a class="video-link" href="https://www.youtube.com/results?search_query=reverse+image+search+tutorial" target="_blank" rel="noopener">Tonton Video</a>
+          </div>
+        </div>
+
+        <div class="video-card">
+          <div class="video-thumbnail">🧰</div>
+          <div class="video-info">
+            <h4>Platform Cek Fakta Indonesia</h4>
+            <p>Cara menelusuri klaim populer dan membaca hasil pemverifikasian di Mafindo dan CekFakta.</p>
+            <a class="video-link" href="https://www.youtube.com/results?search_query=mafindo+cek+fakta" target="_blank" rel="noopener">Tonton Video</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- QUIZ -->
+    <section>
+      <h2>🎮 Kuis Verifikasi Informasi</h2>
+      <div class="game-section">
+        <h3>Uji Pemahaman Materi</h3>
+
+        <div class="progress-container">
+          <div id="progressBar" class="progress-bar" style="width: 0%;">0%</div>
+        </div>
+
+        <!-- Quiz 1 -->
+        <div class="game-container">
+          <div class="game-question">1. "Lateral reading" berarti…</div>
+          <div class="quiz-options" onclick="checkAnswer(event, 'membuka sumber lain', 1)">
+            <div class="quiz-option">A) Membaca cepat di satu situs saja</div>
+            <div class="quiz-option">B) Membuka sumber lain di tab berbeda untuk cross-check</div>
+            <div class="quiz-option">C) Membaca komentar pengguna</div>
+            <div class="quiz-option">D) Mengandalkan judul berita saja</div>
+          </div>
+          <div id="result1" class="result-message"></div>
+        </div>
+
+        <!-- Quiz 2 -->
+        <div class="game-container">
+          <div class="game-question">2. Tujuan utama reverse image search adalah…</div>
+          <div class="quiz-options" onclick="checkAnswer(event, 'sumber asli', 2)">
+            <div class="quiz-option">A) Mengedit gambar dengan mudah</div>
+            <div class="quiz-option">B) Menemukan sumber asli dan konteks gambar</div>
+            <div class="quiz-option">C) Memperbesar kualitas gambar</div>
+            <div class="quiz-option">D) Menghapus metadata gambar</div>
+          </div>
+          <div id="result2" class="result-message"></div>
+        </div>
+
+        <!-- Quiz 3 -->
+        <div class="game-container">
+          <div class="game-question">3. Saat menemukan judul berita sangat sensasional, langkah yang tepat adalah…</div>
+          <div class="quiz-options" onclick="checkAnswer(event, 'cross-check', 3)">
+            <div class="quiz-option">A) Langsung bagikan ke grup</div>
+            <div class="quiz-option">B) Percaya jika sudah viral</div>
+            <div class="quiz-option">C) Cross-check di 3–5 media terpercaya</div>
+            <div class="quiz-option">D) Abaikan tanpa membaca isinya</div>
+          </div>
+          <div id="result3" class="result-message"></div>
+        </div>
+
+        <!-- Quiz 4 -->
+        <div class="game-container">
+          <div class="game-question">4. Platform untuk mencari klarifikasi klaim populer di Indonesia adalah…</div>
+          <div class="quiz-options" onclick="checkAnswer(event, 'cek fakta', 4)">
+            <div class="quiz-option">A) Forum anonim online</div>
+            <div class="quiz-option">B) Mafindo dan CekFakta</div>
+            <div class="quiz-option">C) Kolom komentar media sosial</div>
+            <div class="quiz-option">D) Grup chat keluarga</div>
+          </div>
+          <div id="result4" class="result-message"></div>
+        </div>
+
+        <!-- Quiz 5 -->
+        <div class="game-container">
+          <div class="game-question">5. Selain sumber, hal penting yang perlu dicek adalah…</div>
+          <div class="quiz-options" onclick="checkAnswer(event, 'tanggal', 5)">
+            <div class="quiz-option">A) Jumlah like dan share</div>
+            <div class="quiz-option">B) Tanggal publikasi dan konteks waktu</div>
+            <div class="quiz-option">C) Emoji yang dipakai</div>
+            <div class="quiz-option">D) Panjang paragraf artikel</div>
+          </div>
+          <div id="result5" class="result-message"></div>
+        </div>
+
+        <div id="scoreDisplay" class="score-display">Skor: 0/5</div>
+      </div>
+    </section>
+
+    <!-- TIPS & FACTS -->
+    <section>
+      <h2>💡 Tips & Fakta Penting</h2>
+
+      <div class="tip-box">
+        <h4>🎯 5 Langkah Verifikasi Cepat</h4>
+        <ul style="list-style-position: inside; margin-left: 0.6rem;">
+          <li>1️⃣ <strong>Cek sumber</strong> - Siapa yang mempublikasikan?</li>
+          <li>2️⃣ <strong>Cek tanggal</strong> - Kapan diterbitkan? Apakah masih relevan?</li>
+          <li>3️⃣ <strong>Cek penulis</strong> - Apakah kredibel dan ahli di bidangnya?</li>
+          <li>4️⃣ <strong>Cek konten</strong> - Apakah ada bukti pendukung?</li>
+          <li>5️⃣ <strong>Cek platform</strong> - Bandingkan dengan situs fact-checking</li>
+        </ul>
+      </div>
+
+      <div class="fact-box">
+        <strong>📊 Statistik Misinformasi:</strong><br/>
+        • 67% orang Indonesia pernah terpapar hoaks<br/>
+        • 45% membagikan informasi tanpa verifikasi<br/>
+        • Hoaks menyebar 6x lebih cepat daripada berita benar<br/>
+        • 80% hoaks disebarkan melalui WhatsApp dan media sosial
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section>
+      <h2>❓ Pertanyaan yang Sering Diajukan</h2>
+
+      <div class="card">
+        <h3>Bagaimana jika platform cek fakta belum memuat klaim yang saya temukan?</h3>
+        <p>Lakukan cross-check mandiri di media kredibel seperti Kompas, Tempo, atau BBC Indonesia. Telusuri dengan berbagai kata kunci, dan periksa kembali beberapa hari kemudian karena publikasi verifikasi membutuhkan waktu. Jika ragu, jangan bagikan.</p>
+      </div>
+
+      <div class="card">
+        <h3>Apakah satu tangkapan layar (screenshot) cukup sebagai bukti?</h3>
+        <p>Tidak. Screenshot sangat mudah dimanipulasi. Selalu cari sumber primer, baca konteks lengkap, dan cari dukungan dari beberapa rujukan independen sebelum menyimpulkan. Jangan percaya begitu saja pada tangkapan layar tanpa link asli.</p>
+      </div>
+
+      <div class="card">
+        <h3>Bagaimana cara membedakan satire dengan berita palsu?</h3>
+        <p>Periksa "Tentang Kami" situs tersebut. Situs satire biasanya mencantumkan disclaimer bahwa konten mereka adalah parodi. Ciri lainnya: cerita terlalu absurd, nama tokoh aneh, atau ada label "satire/parodi" di halaman. Contoh: The Onion, Newsthump (global) atau situs satire lokal.</p>
+      </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section>
+      <h2>🖼️ Galeri Materi</h2>
+      <div class="image-gallery">
+        <div class="gallery-item">
+          <div class="gallery-thumb" style="background: linear-gradient(135deg, #1B5E20, #FFD700);">🧭</div>
+          <div class="gallery-caption">Lateral Reading</div>
+        </div>
+
+        <div class="gallery-item">
+          <div class="gallery-thumb" style="background: linear-gradient(135deg, #8B5CF6, #EC4899);">📷</div>
+          <div class="gallery-caption">Reverse Image Search</div>
+        </div>
+
+        <div class="gallery-item">
+          <div class="gallery-thumb" style="background: linear-gradient(135deg, #1E88E5, #00ACC1);">🧰</div>
+          <div class="gallery-caption">Platform Cek Fakta</div>
+        </div>
+
+        <div class="gallery-item">
+          <div class="gallery-thumb" style="background: linear-gradient(135deg, #43e97b, #38f9d7);">📰</div>
+          <div class="gallery-caption">Cross-Check Media</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CLOSING -->
+    <section>
+      <div class="card" style="background: linear-gradient(135deg, rgba(27,94,32,0.06), rgba(255,215,0,0.08)); border-left: 5px solid #FFD700;">
+        <h3 style="text-align: center; margin-bottom: 0.6rem;">Kesimpulan</h3>
+        <p style="text-align: center; line-height: 1.8;">
+          Verifikasi informasi yang baik mencegah penyebaran hoaks dan membantu siswa menjadi warga digital yang kritis, cerdas, dan bertanggung jawab. Selalu cek sebelum percaya, dan ricek sebelum bagikan!
+        </p>
+        <p style="text-align: center; margin-top: 0.8rem; font-weight: 600; color: var(--primary-color);">
+          "Satu klik untuk verifikasi, mencegah ribuan penyesalan." 🛡️
+        </p>
+      </div>
+    </section>
+  </div>
+
+  <!-- FOOTER konsisten -->
+  <footer>
+    <div class="footer-content">
+      <h3>Platform Pembelajaran Interaktif untuk Siswa & Siswi <strong>Ypi Nurul Hadina</strong></h3>
+
+      <div class="social-media">
+        <!-- WhatsApp -->
+        <a class="social-icon whatsapp" aria-label="WhatsApp Guru" href="https://wa.me/6289504440411" target="_blank" rel="noopener noreferrer">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884"/></svg>
+        </a>
+
+        <!-- YouTube -->
+        <a class="social-icon youtube" aria-label="YouTube Channel" href="https://www.youtube.com/channel/UCNmOH6L2xq6C15EkQlx_FpQ" target="_blank" rel="noopener noreferrer">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+        </a>
+
+        <!-- Instagram -->
+        <a class="social-icon instagram" aria-label="Instagram" href="https://instagram.com/ypinurulhadina" target="_blank" rel="noopener noreferrer">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.319 1.347 20.651.935 19.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.015 3.585-.074 4.85c-.061 1.17-.256 1.805-.421 2.227-.224.562-.479.96-.899 1.382-.419.419-.824.679-1.38.896-.42.164-1.065.36-2.235.413-1.274.057-1.649.07-4.859.07-3.211 0-3.586-.015-4.859-.074-1.171-.061-1.816-.256-2.236-.421-.569-.224-.96-.479-1.379-.899-.421-.419-.69-.824-.9-1.38-.165-.42-.359-1.065-.42-2.235-.045-1.26-.061-1.649-.061-4.844 0-3.196.016-3.586.061-4.861.061-1.17.255-1.814.42-2.234.21-.57.479-.96.9-1.381.419-.419.81-.689 1.379-.898.42-.166 1.051-.361 2.221-.421 1.275-.045 1.65-.06 4.859-.06l.045.03zm0 3.678c-3.405 0-6.162 2.76-6.162 6.162 0 3.405 2.76 6.162 6.162 6.162 3.405 0 6.162-2.76 6.162-6.162 0-3.405-2.76-6.162-6.162-6.162zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm7.846-10.405c0 .795-.646 1.44-1.44 1.44-.795 0-1.44-.646-1.44-1.44 0-.794.646-1.439 1.44-1.439.793-.001 1.44.645 1.44 1.439z"/></svg>
+        </a>
+
+        <!-- Facebook -->
+        <a class="social-icon facebook" aria-label="Facebook" href="https://www.facebook.com/fauzan.reza.7" target="_blank" rel="noopener noreferrer">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        </a>
+      </div>
+
+      <p class="footer-small">©2025 Portal Siswa Informatika. MA PLUS & SMP IT.<br>Oleh : <strong>Fauzan Reza, S.T</strong> (Guru Informatika)</p>
+    </div>
+  </footer>
+
+  <!-- JAVASCRIPT -->
+  <script>
+    let score = 0;
+    const correctAnswers = {
+      1: 'B) Membuka sumber lain di tab berbeda untuk cross-check',
+      2: 'B) Menemukan sumber asli dan konteks gambar',
+      3: 'C) Cross-check di 3–5 media terpercaya',
+      4: 'B) Mafindo dan CekFakta',
+      5: 'B) Tanggal publikasi dan konteks waktu'
+    };
+
+    function checkAnswer(event, key, questionNumber) {
+      if (!event.target.classList.contains('quiz-option')) return;
+
+      const options = event.target.parentElement.querySelectorAll('.quiz-option');
+      const resultMsg = document.getElementById('result' + questionNumber);
+
+      // Disable all options
+      options.forEach(opt => {
+        opt.classList.remove('correct', 'incorrect');
+        opt.style.pointerEvents = 'none';
+      });
+
+      const selectedText = event.target.textContent.toLowerCase();
+
+      if (selectedText.includes(key.toLowerCase())) {
+        event.target.classList.add('correct');
+        resultMsg.textContent = '✅ Benar! Bagus sekali! 🎉';
+        resultMsg.classList.add('show', 'correct');
+        score++;
+      } else {
+        event.target.classList.add('incorrect');
+        // Highlight correct answer
+        options.forEach(opt => {
+          if (opt.textContent.toLowerCase().includes(key.toLowerCase())) {
+            opt.classList.add('correct');
+          }
+        });
+        resultMsg.textContent = '❌ Kurang tepat. Lihat jawaban yang hijau!';
+        resultMsg.classList.add('show', 'incorrect');
+      }
+
+      updateScore();
+      updateProgress();
+    }
+
+    function updateScore() {
+      document.getElementById('scoreDisplay').textContent = `Skor: ${score}/5`;
+    }
+
+    function updateProgress() {
+      const progress = Math.round((score / 5) * 100);
+      const bar = document.getElementById('progressBar');
+      bar.style.width = progress + '%';
+      bar.textContent = progress + '%';
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Survey Harian Pelajaran</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <nav class="site-nav">
+      <a href="index.html">Beranda</a>
+      <a href="kelas-sma.html">Kelas SMA</a>
+      <a href="kelas-smp.html">Kelas SMP</a>
+    </nav>
+
+    <h1>Survey Harian Pelajaran</h1>
+    <p class="note">Isi singkat: rata-rata butuh 1-2 menit.</p>
+
+    <div class="form-wrap" style="max-width:700px; margin-top:12px">
+      <div class="form-row">
+        <label>Nama (opsional)</label>
+        <input class="input" id="nama" placeholder="Nama kamu">
+      </div>
+
+      <div class="form-row">
+        <label>Kelas</label>
+        <select id="kelas" class="input">
+          <option value="">Pilih kelas</option>
+          <option>7</option><option>8</option><option>9</option>
+          <option>10</option><option>11</option><option>12</option>
+        </select>
+      </div>
+
+      <div class="form-row">
+        <label>Seberapa paham materi hari ini?</label>
+        <select id="paham" class="input">
+          <option value="">Pilih</option>
+          <option>Sangat Paham</option>
+          <option>Cukup Paham</option>
+          <option>Kurang Paham</option>
+        </select>
+      </div>
+
+      <div class="form-row">
+        <label>Catatan singkat (opsional)</label>
+        <textarea id="catatan" placeholder="Masukan komentar singkat"></textarea>
+      </div>
+
+      <div class="form-row center">
+        <button class="btn btn-primary" id="simpan">Kirim Survey</button>
+      </div>
+
+      <p id="status" class="note center" style="display:none; margin-top:8px"></p>
+    </div>
+
+    <div style="margin-top:18px">
+      <a class="btn btn-outline" href="index.html">Kembali</a>
+    </div>
+
+    <<footer class="footer">
+     &copy; 2025 Survey Harian — MA PLUS & SMP IT.<br>
+  Oleh: <strong>Fauzan Reza, S.T</strong> (Guru Informatika  <strong>YPI Nurul Hadina</strong>)
+    </footer>
+  </div>
+
+  <script>
+    // Simpel: simpan survey ke localStorage sebagai array "surveys_pelajaran"
+    document.getElementById('simpan').addEventListener('click', function(){
+      const nama = document.getElementById('nama').value.trim();
+      const kelas = document.getElementById('kelas').value;
+      const paham = document.getElementById('paham').value;
+      const catatan = document.getElementById('catatan').value.trim();
+
+      if(!paham){
+        alert('Silakan pilih tingkat pemahaman.');
+        return;
+      }
+
+      const entry = {
+        tipe: 'harian',
+        nama: nama || null,
+        kelas: kelas || null,
+        paham: paham,
+        catatan: catatan || null,
+        created_at: new Date().toISOString()
+      };
+
+      const key = 'surveys_pelajaran';
+      const arr = JSON.parse(localStorage.getItem(key) || '[]');
+      arr.push(entry);
+      localStorage.setItem(key, JSON.stringify(arr));
+
+      const st = document.getElementById('status');
+      st.style.display = 'block';
+      st.textContent = 'Terima kasih! Survey tersimpan (disimpan lokal pada browser).';
+      // reset
+      document.getElementById('paham').value = '';
+      document.getElementById('catatan').value = '';
+      document.getElementById('nama').value = '';
+      document.getElementById('kelas').value = '';
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portal Siswa - Login</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+    .feature-card h3 {
+      /* Ukuran font dikecilkan lagi menjadi 0.95rem
+        !important ditambahkan untuk MEMAKSA perubahan, 
+        mengabaikan cache atau style.css lama.
+      */
+      font-size: 0.95rem !important; 
+    }
+  </style>
+  </head>
+<body>
+<!-- Canvas Background Jaringan -->
+    <canvas id="particle-network"></canvas>
+
+  <div class="main-content-wrapper">
+
+    <div class="login-wrapper">
+      <div class="form-container">
+        
+        <div class="logo-container">
+          <img src="logo-ypi.png" alt="Logo YPI Nurul Hadina" class="school-logo">
+          <img src="logo-informatika.png" alt="Logo Informatika" class="major-logo">
+        </div>
+        
+        <div class="form-header">
+          <h2 id="form-title">Selamat Datang</h2>
+          <p id="form-subtitle">Platform pembelajaran siswa YPI Nurul Hadina.</p>
+        </div>
+
+        <div id="alert-message" class="alert-message" style="margin: 0 2rem -1rem;"></div>
+
+        <form class="form-box" id="login-form" data-form="login">
+          <div class="input-group">
+            <i class="fas fa-id-card"></i>
+            <input type="text" id="login-nis" placeholder="Nomor Induk Siswa (NIS)" required>
+          </div>
+          <div class="input-group">
+            <i class="fas fa-lock"></i>
+            <input type="password" id="login-password" placeholder="Password" required>
+          </div>
+          <button type="submit" class="form-button">LOGIN</button>
+          <div class="form-footer">
+            <p>Belum punya akun? <a id="show-register">Daftar di sini</a></p>
+            <p><a id="show-forgot">Lupa Password?</a></p>
+          </div>
+        </form>
+
+        <form class="form-box" id="register-form" data-form="register">
+          <div class="input-group">
+            <i class="fas fa-id-card"></i>
+            <input type="text" id="register-nis" placeholder="Nomor Induk Siswa (NIS)" required>
+          </div>
+          <div class="input-group">
+            <i class="fas fa-user"></i>
+            <input type="text" id="register-nama" placeholder="Nama Lengkap" required>
+          </div>
+          
+          <div style="display: flex; gap: 1rem;">
+            <div class="input-group" style="flex: 1;">
+              <i class="fas fa-school"></i>
+              <select id="register-tingkatan" required class="select-input-custom">
+                <option value="" style="color: #555;">Tingkatan</option>
+                <option value="SMP" style="color: #000;">SMP</option>
+                <option value="SMA" style="color: #000;">SMA</option>
+              </select>
+            </div>
+            <div class="input-group" style="flex: 1;">
+              <i class="fas fa-chalkboard-teacher"></i>
+              <select id="register-kelas" required class="select-input-custom">
+                <option value="" style="color: #555;">Kelas</option>
+                <option value="1" style="color: #000;">1</option>
+                <option value="2" style="color: #000;">2</option>
+                <option value="3" style="color: #000;">3</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="input-group">
+            <i class="fas fa-lock"></i>
+            <input type="password" id="register-password" placeholder="Buat Password" required>
+          </div>
+          <button type="submit" class="form-button">DAFTAR</button>
+          <div class="form-footer">
+            <p>Sudah punya akun? <a id="show-login">Login di sini</a></p>
+          </div>
+        </form>
+
+        <form class="form-box" id="forgot-form" data-form="forgot">
+          <div class="input-group">
+            <i class="fas fa-id-card"></i>
+            <input type="text" id="forgot-nis" placeholder="Masukkan NIS Anda" required>
+          </div>
+          <button type="submit" class="form-button">RESET PASSWORD</button>
+          <div class="form-footer">
+            <p><a id="show-login-from-forgot">Kembali ke Login</a></p>
+          </div>
+        </form>
+
+      </div>
+    </div>
+
+    <section class="feature-box-wrapper">
+      <div class="feature-box-content">
+        <h2>Fitur Utama Portal</h2>
+        <div class="feature-grid">
+          
+          <a href="#" class="feature-card" onclick="alert('Silakan login terlebih dahulu untuk mengakses fitur ini.'); return false;">
+            <i class="fas fa-book-open"></i>
+            <h3>Materi Belajar</h3>
+          </a>
+
+          <a href="#" class="feature-card" onclick="alert('Silakan login terlebih dahulu untuk mengakses fitur ini.'); return false;">
+            <i class="fas fa-laptop-code"></i>
+            <h3>Praktikum Virtual</h3>
+          </a>
+
+          <a href="#" class="feature-card" onclick="alert('Silakan login terlebih dahulu untuk mengakses fitur ini.'); return false;">
+            <i class="fas fa-file-alt"></i>
+            <h3>Ujian Online</h3>
+          </a>
+
+          <a href="#" class="feature-card" onclick="alert('Silakan login terlebih dahulu untuk mengakses fitur ini.'); return false;">
+            <i class="fas fa-chart-bar"></i>
+            <h3>Laporan Nilai</h3>
+          </a>
+
+        </div>
+      </div>
+    </section>
+
+  </div> <section class="about-site">
+    <div class="about-site-content">
+      <h2>Tentang Platform Ini</h2>
+      <p>Selamat datang di Portal Siswa Informatika YPI Nurul Hadina.</p>
+      <p>Ini adalah platform sederhana yang kami bangun untuk memudahkan proses pembelajaran, berbagi materi, dan mengelola tugas. Manfaatkan teknologi ini untuk mendukung perjalanan belajar Anda.</p>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    &copy; 2024 Portal Siswa Informatika. MA PLUS & SMP IT<br> Oleh : <strong>Fauzan Reza, S.T</strong> (Guru Informatika <strong>YPI Nurul Hadina</strong>)
+  </footer>
+
+  
+  <script src="database.js"></script>
+  <script src="auth.js"></script>
+  
+  <script>
+    getUsers();
+    const activeUser = getSession();
+    if (activeUser) {
+      window.location.href = activeUser.role === 'admin' ? 'admin.html' : 'dashboard.html';
+    }
+    const loginForm = document.getElementById('login-form');
+    const registerForm = document.getElementById('register-form');
+    const forgotForm = document.getElementById('forgot-form');
+    const allForms = document.querySelectorAll('.form-box');
+    const title = document.getElementById('form-title');
+    const subtitle = document.getElementById('form-subtitle');
+    const alertMsg = document.getElementById('alert-message');
+    function showForm(formName) {
+      alertMsg.style.display = 'none';
+      allForms.forEach(form => {
+        form.style.display = form.dataset.form === formName ? 'block' : 'none';
+      });
+      if (formName === 'login') {
+        title.textContent = 'Selamat Datang';
+        subtitle.textContent = 'Platform pembelajaran siswa YPI Nurul Hadina.';
+      } else if (formName === 'register') {
+        title.textContent = 'Buat Akun Baru';
+        subtitle.textContent = 'Daftar sebagai siswa';
+      } else if (formName === 'forgot') {
+        title.textContent = 'Reset Password';
+        subtitle.textContent = 'Kami akan membantu Anda';
+      }
+    }
+    document.getElementById('show-register').onclick = () => showForm('register');
+    document.getElementById('show-forgot').onclick = () => showForm('forgot');
+    document.getElementById('show-login').onclick = () => showForm('login');
+    document.getElementById('show-login-from-forgot').onclick = () => showForm('login');
+    function showMessage(type, message) {
+      alertMsg.className = `alert-message ${type}`;
+      alertMsg.textContent = message;
+      alertMsg.style.display = 'block';
+    }
+    loginForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const nis = document.getElementById('login-nis').value.trim();
+      const password = document.getElementById('login-password').value.trim();
+      if (!nis || !password) {
+        return showMessage('error', 'NIS dan Password tidak boleh kosong.');
+      }
+      const user = findUserByNIS(nis);
+      if (user && user.password === password) {
+        showMessage('success', 'Login berhasil. Mengalihkan...');
+        createSession(user);
+        setTimeout(() => {
+          let destination = '';
+          if (user.role === 'admin') {
+            destination = 'admin.html';
+          } else {
+            destination = 'dashboard.html'; 
+          }
+          window.location.href = destination;
+        }, 1000);
+      } else {
+        showMessage('error', 'NIS atau Password salah.');
+      }
+    });
+    registerForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const nis = document.getElementById('register-nis').value.trim();
+      const nama = document.getElementById('register-nama').value.trim();
+      const password = document.getElementById('register-password').value.trim();
+      const tingkatan = document.getElementById('register-tingkatan').value;
+      const kelas = document.getElementById('register-kelas').value;
+      if (!nis || !nama || !password || !tingkatan || !kelas) {
+        return showMessage('error', 'Semua kolom wajib diisi.');
+      }
+      if (password.length < 4) {
+        return showMessage('error', 'Password minimal 4 karakter.');
+      }
+      const success = addUser({
+        nis: nis, nama: nama, password: password, role: 'siswa',
+        tingkatan: tingkatan, kelas: kelas
+      });
+      if (success) {
+        showMessage('success', 'Registrasi berhasil. Silakan login.');
+        registerForm.reset();
+        setTimeout(() => showForm('login'), 2000);
+      } else {
+        showMessage('error', 'NIS sudah terdaftar. Silakan gunakan NIS lain.');
+      }
+    });
+    forgotForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      showMessage('success', 'Instruksi reset password telah dikirim (jika NIS terdaftar). Silakan hubungi Administrator.');
+      forgotForm.reset();
+      setTimeout(() => showForm('login'), 3000);
+    });
+    function addEnterKeypress(formElement) {
+      const inputs = formElement.querySelectorAll('input, select');
+      const button = formElement.querySelector('button[type="submit"]');
+      inputs.forEach(input => {
+        input.addEventListener('keypress', (e) => {
+          if (e.key === 'Enter') {
+            e.preventDefault();
+            button.click();
+          }
+        });
+      });
+    }
+    addEnterKeypress(loginForm);
+    addEnterKeypress(registerForm);
+    addEnterKeypress(forgotForm);
+  </script>
+    <script>
+    (function() {
+      const canvas = document.getElementById('particle-network');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      let width = window.innerWidth, height = window.innerHeight;
+      canvas.width = width; canvas.height = height;
+      let particles = [];
+      const particleCount = 100, connectDistance = 150, mouse = { x: null, y: null, radius: 100 };
+      
+      window.addEventListener('resize', () => {
+        width = window.innerWidth; height = window.innerHeight;
+        canvas.width = width; canvas.height = height;
+      });
+      
+      window.addEventListener('mousemove', (event) => {
+        mouse.x = event.x; mouse.y = event.y;
+      });
+      
+      window.addEventListener('mouseout', () => {
+        mouse.x = null; mouse.y = null;
+      });
+      
+      class Particle {
+        constructor() {
+          this.x = Math.random() * width; 
+          this.y = Math.random() * height;
+          this.vx = (Math.random() - 0.5) * 0.5; 
+          this.vy = (Math.random() - 0.5) * 0.5;
+          this.radius = 2.5; 
+          this.color = 'rgba(0, 229, 255, 0.7)';
+        }
+        
+        update() {
+          if (this.x < 0 || this.x > width) this.vx = -this.vx;
+          if (this.y < 0 || this.y > height) this.vy = -this.vy;
+          this.x += this.vx; 
+          this.y += this.vy;
+        }
+        
+        draw() {
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+          ctx.fillStyle = this.color; 
+          ctx.fill();
+        }
+      }
+      
+      function init() {
+        particles = [];
+        for (let i = 0; i < particleCount; i++) particles.push(new Particle());
+      }
+      
+      function connect() {
+        for (let a = 0; a < particles.length; a++) {
+          for (let b = a + 1; b < particles.length; b++) {
+            const dx = particles[a].x - particles[b].x, dy = particles[a].y - particles[b].y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+            if (distance < connectDistance) {
+              const opacity = 1 - (distance / connectDistance);
+              ctx.strokeStyle = `rgba(0, 229, 255, ${opacity * 0.3})`;
+              ctx.lineWidth = 1.5; 
+              ctx.beginPath();
+              ctx.moveTo(particles[a].x, particles[a].y);
+              ctx.lineTo(particles[b].x, particles[b].y); 
+              ctx.stroke();
+            }
+          }
+          
+          // Koneksi dengan mouse (efek interaktif)
+          if (mouse.x) {
+            const dx = particles[a].x - mouse.x, dy = particles[a].y - mouse.y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+            if (distance < mouse.radius) {
+              const opacity = 1 - (distance / mouse.radius);
+              ctx.strokeStyle = `rgba(159, 47, 255, ${opacity * 0.5})`; // Ungu untuk mouse
+              ctx.lineWidth = 2; 
+              ctx.beginPath();
+              ctx.moveTo(particles[a].x, particles[a].y);
+              ctx.lineTo(mouse.x, mouse.y); 
+              ctx.stroke();
+            }
+          }
+        }
+      }
+      
+      function animate() {
+        if (!ctx) return;
+        ctx.clearRect(0, 0, width, height);
+        particles.forEach(p => { p.update(); p.draw(); });
+        connect(); 
+        requestAnimationFrame(animate);
+      }
+      
+      init();
+      animate();
+    })();
+</script>
+
+
+</body>
+</html>

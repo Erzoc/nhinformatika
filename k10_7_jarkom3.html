@@ -1,0 +1,1244 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kelas X • Komunikasi Data pada Ponsel</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary-color: #6366F1;
+      --secondary-color: #4F46E5;
+      --accent-color: #818CF8;
+      --success-color: #10B981;
+      --warning-color: #F59E0B;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
+      line-height: 1.6;
+      color: #1F2937;
+      background: #F8F9FA;
+    }
+
+    /* NAVBAR */
+    .navbar {
+      background: linear-gradient(135deg, #6366F1 0%, #4F46E5 100%);
+      color: #fff;
+      padding: 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+    }
+
+    .navbar-content {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .navbar-title {
+      font-size: 2rem;
+      font-weight: 800;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.35);
+    }
+
+    .navbar-sub {
+      font-size: 0.9rem;
+      opacity: 0.95;
+      font-weight: 600;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.35);
+    }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(135deg, #6366F1 0%, #4F46E5 100%);
+      color: #fff;
+      padding: 2rem 1rem;
+      text-align: center;
+      border-bottom: 5px solid #FFE66D;
+    }
+
+    .hero-emoji {
+      font-size: 2.3rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .hero h1 {
+      font-size: 1.9rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .hero p {
+      opacity: 0.98;
+      font-size: 1.05rem;
+    }
+
+    /* CONTAINER */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    section {
+      margin: 2rem 0;
+    }
+
+    section h2 {
+      color: var(--primary-color);
+      font-size: 1.6rem;
+      margin-bottom: 1rem;
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+      border-left: 5px solid var(--secondary-color);
+      padding-left: 0.8rem;
+    }
+
+    /* CARDS */
+    .card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 1.2rem;
+      margin-bottom: 1.2rem;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      border-left: 5px solid var(--secondary-color);
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.25);
+    }
+
+    .card h3 {
+      color: var(--primary-color);
+      margin-bottom: 0.7rem;
+      font-size: 1.2rem;
+    }
+
+    .card p {
+      color: #4B5563;
+      margin-bottom: 0.6rem;
+    }
+
+    .content-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem;
+      margin: 0.8rem 0 1.2rem 0;
+    }
+
+    .content-box {
+      background: #fff;
+      padding: 1.2rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+      border-top: 4px solid var(--primary-color);
+      transition: all 0.3s ease;
+    }
+
+    .content-box:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    }
+
+    .content-box h4 {
+      color: var(--primary-color);
+      margin-bottom: 0.6rem;
+      font-size: 1.1rem;
+    }
+
+    .tip-box {
+      background: linear-gradient(135deg, #8B5CF6 0%, #EC4899 100%);
+      color: #fff;
+      padding: 1.1rem;
+      border-radius: 10px;
+      margin: 1rem 0;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    .tip-box h4 {
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .fact-box {
+      background: linear-gradient(135deg, #1E88E5 0%, #00ACC1 100%);
+      color: #fff;
+      padding: 1.1rem;
+      border-radius: 10px;
+      margin: 1rem 0;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    .warning-box {
+      background: linear-gradient(135deg, #F59E0B 0%, #EF4444 100%);
+      color: #fff;
+      padding: 1.1rem;
+      border-radius: 10px;
+      margin: 1rem 0;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    .success-box {
+      background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+      color: #fff;
+      padding: 1.1rem;
+      border-radius: 10px;
+      margin: 1rem 0;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    .diagram-box {
+      background: #F9FAFB;
+      border: 2px solid #E5E7EB;
+      border-radius: 10px;
+      padding: 1.5rem;
+      margin: 1rem 0;
+      text-align: center;
+    }
+
+    .diagram-box h4 {
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+    }
+
+    .flow-diagram {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin: 1rem 0;
+    }
+
+    .flow-item {
+      background: linear-gradient(135deg, #6366F1, #4F46E5);
+      color: #fff;
+      padding: 0.8rem 1.2rem;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    }
+
+    .flow-arrow {
+      font-size: 1.5rem;
+      color: var(--primary-color);
+    }
+
+    .tech-badge {
+      display: inline-block;
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin: 0.3rem 0.2rem;
+    }
+
+    .badge-call {
+      background: #DBEAFE;
+      color: #1D4ED8;
+    }
+
+    .badge-sms {
+      background: #FEF3C7;
+      color: #D97706;
+    }
+
+    .badge-data {
+      background: #D1FAE5;
+      color: #059669;
+    }
+
+    .badge-voip {
+      background: #E9D5FF;
+      color: #7C3AED;
+    }
+
+    .download-box {
+      background: linear-gradient(135deg, #6366F1 0%, #4F46E5 100%);
+      color: #fff;
+      padding: 1.5rem;
+      border-radius: 12px;
+      margin: 1.5rem 0;
+      text-align: center;
+      box-shadow: 0 6px 20px rgba(99,102,241,0.3);
+    }
+
+    .download-box h4 {
+      font-size: 1.3rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .btn-download {
+      display: inline-block;
+      background: #fff;
+      color: #6366F1;
+      padding: 0.8rem 1.5rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.1rem;
+      margin: 0.5rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    .btn-download:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+    }
+
+    /* VIDEO */
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1rem;
+    }
+
+    .video-card {
+      background: #fff;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .video-card:hover {
+      transform: translateY(-8px);
+    }
+
+    .video-thumbnail {
+      width: 100%;
+      height: 150px;
+      background: linear-gradient(135deg, #6366F1, #4F46E5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.4rem;
+      color: #fff;
+    }
+
+    .video-info {
+      padding: 0.9rem;
+    }
+
+    .video-info h4 {
+      margin-bottom: 0.4rem;
+      font-size: 1rem;
+      color: #111827;
+    }
+
+    .video-info p {
+      font-size: 0.85rem;
+      color: #6B7280;
+      margin-bottom: 0.6rem;
+    }
+
+    .video-link {
+      display: inline-block;
+      background: #6366F1;
+      color: #fff;
+      padding: 0.45rem 0.8rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: all 0.25s ease;
+    }
+
+    .video-link:hover {
+      background: #4F46E5;
+      transform: translateY(-2px);
+    }
+
+    /* QUIZ */
+    .game-section {
+      background: linear-gradient(135deg, #6366F1 0%, #4F46E5 100%);
+      color: #fff;
+      padding: 1.25rem 1rem;
+      border-radius: 14px;
+      margin: 1.4rem 0;
+    }
+
+    .game-section h3 {
+      color: #fff;
+      margin-bottom: 0.9rem;
+      font-size: 1.2rem;
+    }
+
+    .game-container {
+      background: rgba(255,255,255,0.96);
+      color: #111827;
+      padding: 0.9rem;
+      border-radius: 10px;
+      margin-bottom: 0.8rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .game-question {
+      font-weight: 700;
+      margin-bottom: 0.6rem;
+      font-size: 1rem;
+      color: #111827;
+    }
+
+    .quiz-options {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0.6rem;
+    }
+
+    .quiz-option {
+      background: #f3f4f6;
+      border: 2px solid #e5e7eb;
+      padding: 0.7rem 0.8rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-weight: 600;
+      font-size: 0.92rem;
+      color: #1F2937;
+    }
+
+    .quiz-option:hover {
+      background: #E0E7FF;
+      border-color: #6366F1;
+      transform: translateX(4px);
+    }
+
+    .quiz-option.correct {
+      background: var(--success-color);
+      border-color: var(--success-color);
+      color: #fff;
+    }
+
+    .quiz-option.incorrect {
+      background: #EF4444;
+      border-color: #EF4444;
+      color: #fff;
+    }
+
+    .result-message {
+      margin-top: 0.6rem;
+      padding: 0.7rem;
+      border-radius: 8px;
+      text-align: center;
+      font-weight: 700;
+      font-size: 0.95rem;
+      display: none;
+    }
+
+    .result-message.show {
+      display: block;
+    }
+
+    .result-message.correct {
+      background: var(--success-color);
+      color: #fff;
+    }
+
+    .result-message.incorrect {
+      background: #EF4444;
+      color: #fff;
+    }
+
+    .progress-container {
+      background: #e5e7eb;
+      border-radius: 10px;
+      margin: 0.8rem 0 1rem 0;
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      height: 20px;
+      background: linear-gradient(90deg, #6366F1, #4F46E5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.8rem;
+      transition: width 0.25s ease;
+    }
+
+    .score-display {
+      text-align: center;
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--primary-color);
+      margin: 0.6rem 0;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #111827;
+      color: #fff;
+      text-align: center;
+      padding: 1rem 0.8rem;
+      margin-top: 2rem;
+    }
+
+    .footer-content h3 {
+      color: #FFD700;
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+    }
+
+    .footer-content p {
+      opacity: 0.9;
+      font-size: 0.8rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .social-media {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin: 0.8rem 0 0.5rem 0;
+      flex-wrap: wrap;
+    }
+
+    .social-icon {
+      width: 34px;
+      height: 34px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      transition: all 0.25s ease;
+      text-decoration: none;
+    }
+
+    .social-icon.whatsapp {
+      background: #25D366;
+      color: #fff;
+    }
+
+    .social-icon.whatsapp:hover {
+      background: #128C7E;
+      transform: scale(1.08) rotate(3deg);
+    }
+
+    .social-icon.youtube {
+      background: #FF0000;
+      color: #fff;
+    }
+
+    .social-icon.youtube:hover {
+      background: #CC0000;
+      transform: scale(1.08) rotate(-3deg);
+    }
+
+    .social-icon.instagram {
+      background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+      color: #fff;
+    }
+
+    .social-icon.instagram:hover {
+      transform: scale(1.08);
+    }
+
+    .social-icon.facebook {
+      background: #1877F2;
+      color: #fff;
+    }
+
+    .social-icon.facebook:hover {
+      background: #145DBF;
+      transform: scale(1.08) rotate(-2deg);
+    }
+
+    @media (max-width: 768px) {
+      .navbar-title {
+        font-size: 1.6rem;
+      }
+
+      .hero h1 {
+        font-size: 1.4rem;
+      }
+
+      section h2 {
+        font-size: 1.3rem;
+      }
+
+      .content-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .flow-diagram {
+        flex-direction: column;
+      }
+
+      .flow-arrow {
+        transform: rotate(90deg);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="navbar-content">
+      <div class="navbar-title">📱 Komunikasi Data pada Ponsel</div>
+      <div class="navbar-sub">Kelas X • Teknologi & Layanan Mobile Communication</div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-emoji">📱💬📞</div>
+      <h1>Komunikasi Data pada Ponsel</h1>
+      <p>Memahami bagaimana ponsel berkomunikasi: dari panggilan suara, SMS, hingga internet data dengan teknologi seluler modern</p>
+    </div>
+  </section>
+
+  <div class="container">
+    <!-- INTRO -->
+    <section>
+      <h2>📚 Pengenalan Komunikasi Data Ponsel</h2>
+
+      <div class="card">
+        <h3>Apa itu Komunikasi Data pada Ponsel?</h3>
+        <p><strong>Komunikasi data pada ponsel</strong> adalah proses pertukaran informasi (suara, teks, data) antara perangkat mobile melalui jaringan seluler menggunakan gelombang radio dan infrastruktur telekomunikasi.</p>
+
+        <div class="fact-box">
+          <h4>📊 Jenis Komunikasi Data Ponsel</h4>
+          <ul style="list-style-position: inside; margin-left: 0.6rem;">
+            <li>• <strong>Voice Call (Circuit-Switched):</strong> Panggilan suara tradisional via GSM/CDMA</li>
+            <li>• <strong>SMS (Short Message Service):</strong> Pesan teks 160 karakter</li>
+            <li>• <strong>MMS (Multimedia Messaging Service):</strong> Pesan multimedia (gambar, video, audio)</li>
+            <li>• <strong>Data Packet (Packet-Switched):</strong> Internet mobile via GPRS/3G/4G/5G</li>
+            <li>• <strong>VoIP (Voice over IP):</strong> WhatsApp call, Zoom, Google Meet</li>
+            <li>• <strong>Instant Messaging:</strong> WhatsApp, Telegram, Line via internet</li>
+          </ul>
+        </div>
+
+        <div class="success-box">
+          <h4>✅ Komponen Sistem Komunikasi Ponsel</h4>
+          <ul style="list-style-position: inside; margin-left: 0.6rem;">
+            <li>• <strong>Handset/Smartphone:</strong> Perangkat mobile pengguna</li>
+            <li>• <strong>SIM Card:</strong> Subscriber Identity Module (identitas pelanggan)</li>
+            <li>• <strong>BTS (Base Transceiver Station):</strong> Tower pemancar sinyal</li>
+            <li>• <strong>MSC (Mobile Switching Center):</strong> Pusat kontrol jaringan</li>
+            <li>• <strong>Core Network:</strong> Infrastruktur pusat operator</li>
+            <li>• <strong>Frekuensi Radio:</strong> 850 MHz, 900 MHz, 1800 MHz, 2100 MHz, dll</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- VOICE CALL -->
+    <section>
+      <h2>📞 Panggilan Suara (Voice Call)</h2>
+
+      <div class="card">
+        <h3>Circuit-Switched Voice Call</h3>
+        <p>Panggilan suara tradisional menggunakan teknologi <strong>circuit-switched</strong> yang membuat jalur komunikasi dedicated antara dua ponsel selama panggilan berlangsung.</p>
+
+        <div class="diagram-box">
+          <h4>🔄 Alur Panggilan Suara</h4>
+          <div class="flow-diagram">
+            <div class="flow-item">📱 Ponsel A</div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-item">📡 BTS</div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-item">🏢 MSC</div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-item">📡 BTS</div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-item">📱 Ponsel B</div>
+          </div>
+          <p style="margin-top: 1rem; font-size: 0.9rem; color: #6B7280;">Jalur komunikasi terbentuk dan tetap reserved selama panggilan aktif</p>
+        </div>
+
+        <div class="content-grid">
+          <div class="content-box">
+            <h4>Teknologi Voice Call</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>GSM (2G):</strong> Global System for Mobile Communications</li>
+              <li>• <strong>CDMA:</strong> Code Division Multiple Access</li>
+              <li>• <strong>3G Voice:</strong> WCDMA/UMTS</li>
+              <li>• <strong>VoLTE (4G):</strong> Voice over LTE (via data packet)</li>
+              <li>• <strong>VoNR (5G):</strong> Voice over New Radio</li>
+            </ul>
+          </div>
+
+          <div class="content-box">
+            <h4>Proses Panggilan</h4>
+            <ol style="list-style-position: inside; font-size: 0.85rem;">
+              <li>1. User tekan nomor & tombol call</li>
+              <li>2. Ponsel kirim request ke BTS terdekat</li>
+              <li>3. BTS forward ke MSC</li>
+              <li>4. MSC cari lokasi penerima via HLR/VLR</li>
+              <li>5. MSC establish jalur circuit</li>
+              <li>6. Ponsel penerima berdering</li>
+              <li>7. Angkat telepon → koneksi aktif</li>
+              <li>8. Tutup telepon → circuit terputus</li>
+            </ol>
+          </div>
+
+          <div class="content-box">
+            <h4>Kualitas Suara</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>GSM:</strong> 13 Kbps, kualitas standar</li>
+              <li>• <strong>3G:</strong> 12.2 Kbps (AMR codec)</li>
+              <li>• <strong>VoLTE:</strong> 12.65-23.85 Kbps (AMR-WB), HD Voice</li>
+              <li>• <strong>Codec:</strong> Kompresi audio untuk efisiensi bandwidth</li>
+              <li>• <strong>Echo cancellation:</strong> Hilangkan echo</li>
+            </ul>
+          </div>
+
+          <div class="content-box">
+            <h4>VoLTE (Voice over LTE)</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• Panggilan via <strong>paket data</strong> 4G (bukan circuit)</li>
+              <li>• <strong>HD Voice:</strong> Kualitas suara lebih jernih</li>
+              <li>• <strong>Faster connection:</strong> Koneksi panggilan lebih cepat</li>
+              <li>• <strong>Simultaneous:</strong> Bisa internet sambil telepon</li>
+              <li>• Perlu dukungan HP & operator</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="tip-box">
+          <h4>💡 Fun Fact: Kenapa Sinyal Ponsel Berbentuk Bar?</h4>
+          <p style="margin-bottom: 0;">Bar sinyal menunjukkan <strong>kekuatan sinyal</strong> dari BTS terdekat yang diterima ponsel, diukur dalam dBm (decibel-milliwatts). Semakin banyak bar, semakin kuat sinyal, semakin bagus kualitas panggilan. Full bar (4-5) = -70 dBm, 1 bar = -100 dBm. Di bawah -110 dBm = No signal. 📶</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SMS & MMS -->
+    <section>
+      <h2>💬 SMS & MMS - Layanan Pesan</h2>
+
+      <div class="card">
+        <h3>SMS (Short Message Service)</h3>
+        <p><strong>SMS</strong> adalah layanan pesan teks singkat yang dapat mengirim maksimal 160 karakter per pesan melalui jalur sinyal kontrol GSM.</p>
+
+        <div class="content-grid">
+          <div class="content-box">
+            <h4>Cara Kerja SMS</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• Pesan dikirim ke <strong>SMSC (SMS Center)</strong> operator</li>
+              <li>• SMSC store & forward pesan ke penerima</li>
+              <li>• Jika penerima offline, SMSC simpan sementara</li>
+              <li>• Pesan terkirim saat penerima online</li>
+              <li>• Menggunakan <strong>SS7 signaling</strong>, bukan jalur suara</li>
+            </ul>
+          </div>
+
+          <div class="content-box">
+            <h4>Karakteristik SMS</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>Limit:</strong> 160 karakter (Latin), 70 karakter (Unicode/emoji)</li>
+              <li>• <strong>Long SMS:</strong> >160 char dipecah jadi beberapa SMS</li>
+              <li>• <strong>Delivery report:</strong> Konfirmasi terkirim</li>
+              <li>• <strong>Store-and-forward:</strong> Reliable, pasti sampai</li>
+              <li>• <strong>Tarif:</strong> Per SMS (tidak perlu internet)</li>
+            </ul>
+          </div>
+
+          <div class="content-box">
+            <h4>Jenis SMS</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>SMS P2P:</strong> Person to Person (antar pengguna)</li>
+              <li>• <strong>SMS Broadcast:</strong> Satu ke banyak (iklan, info)</li>
+              <li>• <strong>SMS Banking:</strong> Cek saldo, transfer</li>
+              <li>• <strong>SMS OTP:</strong> One-Time Password (verifikasi)</li>
+              <li>• <strong>Premium SMS:</strong> Layanan berbayar (voting, konten)</li>
+            </ul>
+          </div>
+
+          <div class="content-box">
+            <h4>SMS vs WhatsApp</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>SMS:</strong> Tidak perlu internet, reliable, limit 160</li>
+              <li>• <strong>WhatsApp:</strong> Perlu internet, unlimited, bisa multimedia</li>
+              <li>• SMS lebih reliable untuk OTP & emergency</li>
+              <li>• WhatsApp lebih murah & fitur lengkap</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="fact-box">
+          <h4>📱 Sejarah SMS</h4>
+          <p style="margin-bottom: 0;">SMS pertama dikirim tanggal <strong>3 Desember 1992</strong> oleh Neil Papworth: "Merry Christmas". SMS boom di era 2000-2010an sebelum digantikan messaging app (WhatsApp, Line, Telegram). Meski begitu, SMS masih penting untuk OTP, banking, dan area tanpa internet!</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>MMS (Multimedia Messaging Service)</h3>
+        <p><strong>MMS</strong> adalah layanan pesan multimedia yang dapat mengirim gambar, video, audio, dan teks dalam satu pesan.</p>
+
+        <div class="content-grid">
+          <div class="content-box">
+            <h4>Fitur MMS</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>Multimedia:</strong> Gambar, video, audio, text</li>
+              <li>• <strong>Group messaging:</strong> Kirim ke banyak penerima</li>
+              <li>• <strong>Ukuran:</strong> 300 KB - 1 MB per pesan</li>
+              <li>• <strong>Format:</strong> JPEG, GIF, MP3, MP4, AMR, dll</li>
+              <li>• Perlu <strong>paket data</strong> aktif</li>
+            </ul>
+          </div>
+
+          <div class="content-box">
+            <h4>Cara Kerja MMS</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• Pesan dikirim ke <strong>MMSC (MMS Center)</strong></li>
+              <li>• MMSC simpan multimedia di server</li>
+              <li>• Penerima dapat SMS notifikasi dengan link download</li>
+              <li>• Ponsel download otomatis via data/GPRS</li>
+              <li>• MMS tampil di inbox</li>
+            </ul>
+          </div>
+
+          <div class="content-box">
+            <h4>Kelebihan MMS</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• Bisa kirim multimedia tanpa internet</li>
+              <li>• Compatible dengan semua HP (tidak perlu app)</li>
+              <li>• Group messaging native</li>
+            </ul>
+          </div>
+
+          <div class="content-box">
+            <h4>Kekurangan MMS</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• Tarif lebih mahal dari SMS</li>
+              <li>• Ukuran terbatas (300 KB - 1 MB)</li>
+              <li>• Kualitas gambar/video ter-compress</li>
+              <li>• Sekarang jarang dipakai (diganti WhatsApp, dll)</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="warning-box">
+          <h4>⚠️ Era Post-SMS/MMS</h4>
+          <p style="margin-bottom: 0;">Sejak era smartphone & internet murah, <strong>SMS/MMS mulai ditinggalkan</strong> untuk komunikasi sehari-hari, digantikan messaging app (WhatsApp, Telegram, Line) yang lebih murah, unlimited, dan fitur lengkap. Tapi SMS masih penting untuk OTP, notifikasi banking, dan emergency communication!</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- DATA PACKET -->
+    <section>
+      <h2>📶 Komunikasi Data Packet (Internet Mobile)</h2>
+
+      <div class="card">
+        <h3>Packet-Switched Data Communication</h3>
+        <p>Komunikasi data packet adalah teknologi transfer data via internet mobile menggunakan jaringan <strong>packet-switched</strong> yang lebih efisien daripada circuit-switched.</p>
+
+        <div class="diagram-box">
+          <h4>🔄 Perbedaan Circuit vs Packet Switching</h4>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1rem; text-align: left;">
+            <div style="background: #FEE2E2; padding: 1rem; border-radius: 8px;">
+              <h5 style="color: #DC2626; margin-bottom: 0.5rem;">Circuit-Switched (Voice Call)</h5>
+              <ul style="font-size: 0.85rem; list-style-position: inside;">
+                <li>• Jalur dedicated selama koneksi</li>
+                <li>• Bandwidth reserved (boros)</li>
+                <li>• Latency rendah & konsisten</li>
+                <li>• Untuk voice call real-time</li>
+              </ul>
+            </div>
+            <div style="background: #D1FAE5; padding: 1rem; border-radius: 8px;">
+              <h5 style="color: #059669; margin-bottom: 0.5rem;">Packet-Switched (Internet)</h5>
+              <ul style="font-size: 0.85rem; list-style-position: inside;">
+                <li>• Data dipecah jadi packet-packet</li>
+                <li>• Bandwidth shared (efisien)</li>
+                <li>• Latency bervariasi</li>
+                <li>• Untuk browsing, download, streaming</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="content-grid">
+          <div class="content-box">
+            <h4>Teknologi Data Mobile</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>GPRS (2.5G):</strong> 56-114 Kbps, always-on</li>
+              <li>• <strong>EDGE (2.75G):</strong> 236 Kbps, Enhanced GPRS</li>
+              <li>• <strong>3G/HSPA:</strong> 384 Kbps - 42 Mbps</li>
+              <li>• <strong>4G LTE:</strong> 10-300 Mbps, All-IP</li>
+              <li>• <strong>5G:</strong> 1-10 Gbps, ultra-low latency</li>
+            </ul>
+          </div>
+
+          <div class="content-box">
+            <h4>Cara Kerja Data Packet</h4>
+            <ol style="list-style-position: inside; font-size: 0.85rem;">
+              <li>1. Data dipecah jadi <strong>packet-packet kecil</strong></li>
+              <li>2. Tiap packet punya header (alamat tujuan)</li>
+              <li>3. Packet dikirim via jalur berbeda (routing)</li>
+              <li>4. Packet tiba di tujuan (bisa berbeda waktu)</li>
+              <li>5. Packet di-reassemble jadi data utuh</li>
+              <li>6. Jika packet hilang, request re-transmit</li>
+            </ol>
+          </div>
+
+          <div class="content-box">
+            <h4>Protokol Internet Mobile</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>TCP/IP:</strong> Protokol standar internet</li>
+              <li>• <strong>HTTP/HTTPS:</strong> Web browsing</li>
+              <li>• <strong>DNS:</strong> Resolve domain name</li>
+              <li>• <strong>APN (Access Point Name):</strong> Gateway operator ke internet</li>
+              <li>• <strong>NAT:</strong> Network Address Translation</li>
+            </ul>
+          </div>
+
+          <div class="content-box">
+            <h4>Layanan Data Mobile</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>Web browsing:</strong> Google, YouTube, social media</li>
+              <li>• <strong>Streaming:</strong> Netflix, Spotify, YouTube</li>
+              <li>• <strong>Download/Upload:</strong> File transfer</li>
+              <li>• <strong>Email:</strong> Gmail, Outlook</li>
+              <li>• <strong>Messaging:</strong> WhatsApp, Telegram, Line</li>
+              <li>• <strong>Gaming:</strong> Mobile Legends, PUBG Mobile</li>
+              <li>• <strong>Video call:</strong> Zoom, Google Meet, FaceTime</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="success-box">
+          <h4>✅ Paket Data Internet Mobile</h4>
+          <ul style="list-style-position: inside; margin-left: 0.6rem;">
+            <li>• <strong>Kuota:</strong> Jumlah data yang bisa dipakai (GB)</li>
+            <li>• <strong>Kecepatan:</strong> Tergantung teknologi (3G/4G/5G) & coverage</li>
+            <li>• <strong>Unlimited:</strong> Kuota unlimited tapi ada FUP (Fair Usage Policy)</li>
+            <li>• <strong>Tarif:</strong> Rp 1.000-5.000 per GB (tergantung operator & paket)</li>
+            <li>• <strong>Throttling:</strong> Kecepatan dikurangi setelah FUP tercapai</li>
+          </ul>
+        </div>
+
+        <div class="tip-box">
+          <h4>💡 Tips Hemat Kuota</h4>
+          <ul style="list-style-position: inside; margin-left: 0.6rem;">
+            <li>• Gunakan WiFi di rumah/cafe/kampus untuk download besar</li>
+            <li>• Matikan auto-play video di social media</li>
+            <li>• Download musik/video saat WiFi untuk offline listening</li>
+            <li>• Gunakan mode hemat data (data saver) di browser & apps</li>
+            <li>• Monitor penggunaan kuota di Settings → Data Usage</li>
+            <li>• Compress gambar sebelum kirim WhatsApp</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- VOIP -->
+    <section>
+      <h2>🎤 VoIP - Voice over IP</h2>
+
+      <div class="card">
+        <h3>Internet-Based Voice Communication</h3>
+        <p><strong>VoIP (Voice over IP)</strong> adalah teknologi panggilan suara melalui jaringan internet (data packet) bukan jalur telepon tradisional. Contoh: WhatsApp Call, Zoom, Google Meet, Skype, Discord.</p>
+
+        <div class="content-grid">
+          <div class="content-box">
+            <h4>Cara Kerja VoIP</h4>
+            <ol style="list-style-position: inside; font-size: 0.85rem;">
+              <li>1. Suara direkam oleh microphone</li>
+              <li>2. Audio di-digitalisasi (analog → digital)</li>
+              <li>3. Audio di-compress dengan <strong>codec</strong></li>
+              <li>4. Audio dipecah jadi <strong>paket data</strong></li>
+              <li>5. Paket dikirim via internet (TCP/IP)</li>
+              <li>6. Paket diterima & di-reassemble</li>
+              <li>7. Audio di-decompress & diputar di speaker</li>
+            </ol>
+          </div>
+
+          <div class="content-box">
+            <h4>Protokol VoIP</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>SIP (Session Initiation Protocol):</strong> Establish panggilan</li>
+              <li>• <strong>RTP (Real-Time Protocol):</strong> Streaming audio/video</li>
+              <li>• <strong>Codec:</strong> G.711, G.729, Opus (kompresi audio)</li>
+              <li>• <strong>UDP:</strong> Protocol transport (lebih cepat dari TCP)</li>
+            </ul>
+          </div>
+
+          <div class="content-box">
+            <h4>Kelebihan VoIP</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>Gratis/Murah:</strong> WhatsApp call gratis via WiFi</li>
+              <li>• <strong>Fitur lengkap:</strong> Video call, screen share, group call</li>
+              <li>• <strong>Cross-platform:</strong> HP, laptop, tablet</li>
+              <li>• <strong>International call:</strong> Gratis ke luar negeri</li>
+              <li>• <strong>Quality:</strong> HD audio jika koneksi bagus</li>
+            </ul>
+          </div>
+
+          <div class="content-box">
+            <h4>Kekurangan VoIP</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>Perlu internet:</strong> Tidak bisa tanpa koneksi</li>
+              <li>• <strong>Kualitas tergantung koneksi:</strong> Lag jika internet lambat</li>
+              <li>• <strong>Latency:</strong> Delay 100-300 ms (vs 30-50 ms voice call)</li>
+              <li>• <strong>Jitter:</strong> Audio putus-putus jika koneksi tidak stabil</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="fact-box">
+          <h4>📊 Penggunaan Bandwidth VoIP</h4>
+          <ul style="list-style-position: inside; margin-left: 0.6rem;">
+            <li>• <strong>WhatsApp Voice Call:</strong> ~50 KB/menit (~3 MB/jam)</li>
+            <li>• <strong>WhatsApp Video Call:</strong> ~300 KB/menit (~18 MB/jam)</li>
+            <li>• <strong>Zoom Audio:</strong> ~60-100 KB/menit</li>
+            <li>• <strong>Zoom Video (720p):</strong> ~1.5 MB/menit (~90 MB/jam)</li>
+            <li>• <strong>Google Meet Video (1080p):</strong> ~3 MB/menit (~180 MB/jam)</li>
+          </ul>
+        </div>
+
+        <div class="success-box">
+          <h4>✅ Aplikasi VoIP Populer</h4>
+          <ul style="list-style-position: inside; margin-left: 0.6rem;">
+            <li>• <strong>WhatsApp:</strong> Voice & video call, 2 miliar pengguna global</li>
+            <li>• <strong>Zoom:</strong> Video conference profesional, screen share</li>
+            <li>• <strong>Google Meet:</strong> Integrasi dengan Google Workspace</li>
+            <li>• <strong>Skype:</strong> Panggilan ke telepon (SkypeOut)</li>
+            <li>• <strong>Discord:</strong> Voice chat untuk gaming & komunitas</li>
+            <li>• <strong>Telegram:</strong> Voice & video call dengan enkripsi</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIDEO -->
+    <section>
+      <h2>🎥 Video Pembelajaran</h2>
+      <div class="video-grid">
+        <div class="video-card">
+          <div class="video-thumbnail">📱</div>
+          <div class="video-info">
+            <h4>Cara Kerja Ponsel</h4>
+            <p>Bagaimana ponsel berkomunikasi dengan tower BTS.</p>
+            <a class="video-link" href="https://www.youtube.com/results?search_query=cara+kerja+ponsel+BTS" target="_blank">Tonton</a>
+          </div>
+        </div>
+
+        <div class="video-card">
+          <div class="video-thumbnail">💬</div>
+          <div class="video-info">
+            <h4>Teknologi SMS</h4>
+            <p>Penjelasan cara kerja SMS dan SMSC.</p>
+            <a class="video-link" href="https://www.youtube.com/results?search_query=cara+kerja+sms+teknologi" target="_blank">Tonton</a>
+          </div>
+        </div>
+
+        <div class="video-card">
+          <div class="video-thumbnail">📶</div>
+          <div class="video-info">
+            <h4>4G LTE Explained</h4>
+            <p>Cara kerja jaringan 4G LTE dan paket data.</p>
+            <a class="video-link" href="https://www.youtube.com/results?search_query=4g+lte+cara+kerja" target="_blank">Tonton</a>
+          </div>
+        </div>
+
+        <div class="video-card">
+          <div class="video-thumbnail">🎤</div>
+          <div class="video-info">
+            <h4>VoIP Technology</h4>
+            <p>Penjelasan Voice over IP dan WhatsApp Call.</p>
+            <a class="video-link" href="https://www.youtube.com/results?search_query=voip+technology+explained" target="_blank">Tonton</a>
+          </div>
+        </div>
+
+        <div class="video-card">
+          <div class="video-thumbnail">📡</div>
+          <div class="video-info">
+            <h4>5G Network</h4>
+            <p>Teknologi 5G dan masa depan komunikasi mobile.</p>
+            <a class="video-link" href="https://www.youtube.com/results?search_query=5g+network+technology" target="_blank">Tonton</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- QUIZ -->
+    <section>
+      <h2>🎮 Kuis Komunikasi Data Ponsel</h2>
+      <div class="game-section">
+        <h3>Uji Pemahaman Materi</h3>
+
+        <div class="progress-container">
+          <div id="progressBar" class="progress-bar" style="width: 0%;">0%</div>
+        </div>
+
+        <div class="game-container">
+          <div class="game-question">1. Limit karakter SMS untuk alphabet Latin adalah...</div>
+          <div class="quiz-options" onclick="checkAnswer(event, '160', 1)">
+            <div class="quiz-option">A) 100 karakter</div>
+            <div class="quiz-option">B) 160 karakter</div>
+            <div class="quiz-option">C) 200 karakter</div>
+            <div class="quiz-option">D) 256 karakter</div>
+          </div>
+          <div id="result1" class="result-message"></div>
+        </div>
+
+        <div class="game-container">
+          <div class="game-question">2. Teknologi panggilan suara via paket data 4G disebut...</div>
+          <div class="quiz-options" onclick="checkAnswer(event, 'volte', 2)">
+            <div class="quiz-option">A) VoIP</div>
+            <div class="quiz-option">B) VoLTE (Voice over LTE)</div>
+            <div class="quiz-option">C) GSM</div>
+            <div class="quiz-option">D) CDMA</div>
+          </div>
+          <div id="result2" class="result-message"></div>
+        </div>
+
+        <div class="game-container">
+          <div class="game-question">3. WhatsApp Call menggunakan teknologi...</div>
+          <div class="quiz-options" onclick="checkAnswer(event, 'voip', 3)">
+            <div class="quiz-option">A) Circuit-switched</div>
+            <div class="quiz-option">B) VoIP (Voice over IP)</div>
+            <div class="quiz-option">C) SMS</div>
+            <div class="quiz-option">D) MMS</div>
+          </div>
+          <div id="result3" class="result-message"></div>
+        </div>
+
+        <div class="game-container">
+          <div class="game-question">4. Pusat kontrol jaringan seluler disebut...</div>
+          <div class="quiz-options" onclick="checkAnswer(event, 'msc', 4)">
+            <div class="quiz-option">A) BTS (Base Transceiver Station)</div>
+            <div class="quiz-option">B) MSC (Mobile Switching Center)</div>
+            <div class="quiz-option">C) SIM Card</div>
+            <div class="quiz-option">D) SMSC (SMS Center)</div>
+          </div>
+          <div id="result4" class="result-message"></div>
+        </div>
+
+        <div class="game-container">
+          <div class="game-question">5. Perbedaan utama circuit-switched vs packet-switched adalah...</div>
+          <div class="quiz-options" onclick="checkAnswer(event, 'dedicated', 5)">
+            <div class="quiz-option">A) Kecepatan transfer</div>
+            <div class="quiz-option">B) Circuit-switched punya jalur dedicated, packet-switched shared</div>
+            <div class="quiz-option">C) Teknologi sinyal</div>
+            <div class="quiz-option">D) Harga tarif</div>
+          </div>
+          <div id="result5" class="result-message"></div>
+        </div>
+
+        <div id="scoreDisplay" class="score-display">Skor: 0/5</div>
+      </div>
+    </section>
+
+    <!-- DOWNLOAD -->
+    <section>
+      <h2>📥 Download Materi</h2>
+      
+      <div class="download-box">
+        <h4>📄 Panduan Lengkap Komunikasi Data Ponsel</h4>
+        <p style="margin-bottom: 1rem;">Download diagram alur, perbandingan teknologi, dan infografis komunikasi mobile.</p>
+        <a href="#" class="btn-download" onclick="alert('File akan segera tersedia. Hubungi guru untuk mendapatkan file.'); return false;">
+          📥 Download Materi PDF
+        </a>
+        <a href="#" class="btn-download" onclick="alert('File akan segera tersedia. Hubungi guru untuk mendapatkan file.'); return false;">
+          📥 Download Diagram
+        </a>
+      </div>
+    </section>
+
+    <!-- CLOSING -->
+    <section>
+      <div class="card" style="background: linear-gradient(135deg, rgba(99,102,241,0.06), rgba(79,70,229,0.08)); border-left: 5px solid #6366F1; text-align: center;">
+        <h3 style="margin-bottom: 0.6rem;">Kesimpulan</h3>
+        <p style="text-align: center; line-height: 1.8;">
+          Komunikasi data pada ponsel telah berevolusi dari panggilan suara circuit-switched tradisional, SMS text-only 160 karakter, hingga komunikasi data packet super cepat dengan 5G yang memungkinkan video call HD, streaming 4K, dan gaming online tanpa lag. Dari teknologi GSM 2G untuk voice call, GPRS untuk mobile internet pertama, 3G untuk smartphone era, 4G LTE untuk streaming HD, hingga 5G untuk IoT & smart everything - semuanya bekerja melalui infrastruktur BTS, MSC, dan core network operator yang kompleks. VoIP seperti WhatsApp Call kini menggantikan panggilan tradisional, dan messaging app menggantikan SMS/MMS. Masa depan komunikasi mobile akan semakin canggih dengan 6G, holographic calls, dan brain-computer interface!
+        </p>
+        <p style="text-align: center; margin-top: 0.8rem; font-weight: 600; color: var(--primary-color);">
+          "From voice to data, from 2G to 5G - Mobile revolution!" 📱🚀
+        </p>
+      </div>
+    </section>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-content">
+      <h3>Platform Pembelajaran Interaktif untuk Siswa & Siswi <strong>Ypi Nurul Hadina</strong></h3>
+
+      <div class="social-media">
+        <a class="social-icon whatsapp" href="https://wa.me/6289504440411" target="_blank">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" width="18" height="18"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884"/></svg>
+        </a>
+
+        <a class="social-icon youtube" href="https://www.youtube.com/channel/UCNmOH6L2xq6C15EkQlx_FpQ" target="_blank">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" width="18" height="18"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+        </a>
+
+        <a class="social-icon instagram" href="https://instagram.com/ypinurulhadina" target="_blank">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" width="18" height="18"><path d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.319 1.347 20.651.935 19.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.015 3.585-.074 4.85c-.061 1.17-.256 1.805-.421 2.227-.224.562-.479.96-.899 1.382-.419.419-.824.679-1.38.896-.42.164-1.065.36-2.235.413-1.274.057-1.649.07-4.859.07-3.211 0-3.586-.015-4.859-.074-1.171-.061-1.816-.256-2.236-.421-.569-.224-.96-.479-1.379-.899-.421-.419-.69-.824-.9-1.38-.165-.42-.359-1.065-.42-2.235-.045-1.26-.061-1.649-.061-4.844 0-3.196.016-3.586.061-4.861.061-1.17.255-1.814.42-2.234.21-.57.479-.96.9-1.381.419-.419.81-.689 1.379-.898.42-.166 1.051-.361 2.221-.421 1.275-.045 1.65-.06 4.859-.06l.045.03zm0 3.678c-3.405 0-6.162 2.76-6.162 6.162 0 3.405 2.76 6.162 6.162 6.162 3.405 0 6.162-2.76 6.162-6.162 0-3.405-2.76-6.162-6.162-6.162zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm7.846-10.405c0 .795-.646 1.44-1.44 1.44-.795 0-1.44-.646-1.44-1.44 0-.794.646-1.439 1.44-1.439.793-.001 1.44.645 1.44 1.439z"/></svg>
+        </a>
+
+        <a class="social-icon facebook" href="https://www.facebook.com/fauzan.reza.7" target="_blank">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" width="18" height="18"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        </a>
+      </div>
+
+      <p style="margin-top: 0.6rem; font-size: 0.7rem; opacity: 0.85;">©2025 Portal Siswa Informatika. MA PLUS & SMP IT.<br>Oleh : <strong>Fauzan Reza, S.T</strong> (Guru Informatika)</p>
+    </div>
+  </footer>
+
+  <script>
+    let score = 0;
+
+    function checkAnswer(event, key, questionNumber) {
+      if (!event.target.classList.contains('quiz-option')) return;
+
+      const options = event.target.parentElement.querySelectorAll('.quiz-option');
+      const resultMsg = document.getElementById('result' + questionNumber);
+
+      options.forEach(opt => {
+        opt.classList.remove('correct', 'incorrect');
+        opt.style.pointerEvents = 'none';
+      });
+
+      const selectedText = event.target.textContent.toLowerCase();
+
+      if (selectedText.includes(key.toLowerCase())) {
+        event.target.classList.add('correct');
+        resultMsg.textContent = '✅ Benar! Bagus sekali! 🎉';
+        resultMsg.classList.add('show', 'correct');
+        score++;
+      } else {
+        event.target.classList.add('incorrect');
+        options.forEach(opt => {
+          if (opt.textContent.toLowerCase().includes(key.toLowerCase())) {
+            opt.classList.add('correct');
+          }
+        });
+        resultMsg.textContent = '❌ Kurang tepat. Lihat jawaban yang hijau!';
+        resultMsg.classList.add('show', 'incorrect');
+      }
+
+      updateScore();
+      updateProgress();
+    }
+
+    function updateScore() {
+      document.getElementById('scoreDisplay').textContent = `Skor: ${score}/5`;
+    }
+
+    function updateProgress() {
+      const progress = Math.round((score / 5) * 100);
+      const bar = document.getElementById('progressBar');
+      bar.style.width = progress + '%';
+      bar.textContent = progress + '%';
+    }
+  </script>
+</body>
+</html>

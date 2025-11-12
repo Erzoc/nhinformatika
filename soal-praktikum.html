@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Praktikum Online - Portal Siswa</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  
+  <style>
+    /* Main Container */
+    .main-container {
+      padding: 1.5rem;
+      max-width: 1200px;
+      margin: 80px auto 0;
+      position: relative;
+      z-index: 10;
+      min-height: calc(100vh - 200px);
+    }
+    
+    /* Page Header */
+    .page-header {
+      background: var(--glass-bg);
+      backdrop-filter: blur(15px);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      text-align: center;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    }
+    
+    .page-header i {
+      font-size: 3rem;
+      color: var(--accent-color);
+      margin-bottom: 1rem;
+      filter: drop-shadow(0 0 20px rgba(0, 229, 255, 0.5));
+    }
+    
+    .page-header h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--accent-color);
+      margin-bottom: 0.75rem;
+      text-shadow: 0 0 20px rgba(0, 229, 255, 0.3);
+    }
+    
+    .page-header p {
+      font-size: 1rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 0.5rem;
+    }
+    
+    /* Instructions Box */
+    .instructions-box {
+      background: var(--glass-bg);
+      backdrop-filter: blur(15px);
+      border: 1px solid var(--glass-border);
+      border-radius: 16px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    }
+    
+    .instructions-box h3 {
+      font-size: 1.2rem;
+      color: var(--accent-color);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .instructions-box ol {
+      margin-left: 1.5rem;
+      color: var(--text-muted);
+      line-height: 1.8;
+    }
+    
+    .instructions-box li {
+      margin-bottom: 0.75rem;
+      font-size: 0.95rem;
+    }
+    
+    /* Selector Group */
+    .selector-group {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    
+    .selector-card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(15px);
+      border: 1px solid var(--glass-border);
+      border-radius: 16px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    }
+    
+    .selector-card label {
+      display: block;
+      font-size: 0.9rem;
+      color: var(--accent-color);
+      margin-bottom: 0.75rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .selector-card select {
+      width: 100%;
+      padding: 0.75rem;
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid var(--glass-border);
+      border-radius: 8px;
+      color: var(--text-color);
+      font-size: 0.95rem;
+      font-family: 'Poppins', sans-serif;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .selector-card select:focus {
+      outline: none;
+      border-color: var(--accent-color);
+      box-shadow: 0 0 15px rgba(0, 229, 255, 0.3);
+    }
+    
+    .selector-card select option {
+      background: #0a0a23;
+      color: var(--text-color);
+      padding: 0.5rem;
+    }
+    
+    /* Refresh Button */
+    .refresh-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.75rem;
+      background: linear-gradient(135deg, rgba(0, 229, 255, 0.2), rgba(159, 47, 255, 0.2));
+      border: 2px solid var(--accent-color);
+      border-radius: 12px;
+      color: var(--accent-color);
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-align: center;
+      margin: 0 auto 2rem;
+      display: flex;
+      justify-content: center;
+    }
+    
+    .refresh-btn:hover {
+      background: linear-gradient(135deg, rgba(0, 229, 255, 0.3), rgba(159, 47, 255, 0.3));
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 229, 255, 0.4);
+    }
+    
+    /* Soal Cards */
+    .soal-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+      margin-bottom: 2rem;
+    }
+    
+    .soal-card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(15px);
+      border: 1px solid var(--glass-border);
+      border-radius: 16px;
+      padding: 1.75rem;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .soal-card::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0, 229, 255, 0.1), transparent);
+      transform: translate(-50%, -50%);
+      transition: width 0.6s ease, height 0.6s ease;
+    }
+    
+    .soal-card:hover::after {
+      width: 300px;
+      height: 300px;
+    }
+    
+    .soal-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 40px rgba(0, 229, 255, 0.25);
+      border-color: var(--accent-color);
+    }
+    
+    .soal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .soal-title {
+      font-size: 1.1rem;
+      color: var(--accent-color);
+      font-weight: 700;
+    }
+    
+    .soal-badge {
+      padding: 0.4rem 0.8rem;
+      background: rgba(0, 229, 255, 0.2);
+      border: 1px solid var(--accent-color);
+      border-radius: 20px;
+      font-size: 0.75rem;
+      color: var(--accent-color);
+      font-weight: 600;
+    }
+    
+    .soal-desc {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      line-height: 1.6;
+      margin-bottom: 1rem;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .soal-actions {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .btn-soal {
+      padding: 0.6rem 1.25rem;
+      background: var(--glass-bg);
+      backdrop-filter: blur(15px);
+      border: 1px solid var(--glass-border);
+      border-radius: 10px;
+      color: var(--accent-color);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.85rem;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      cursor: pointer;
+    }
+    
+    .btn-soal:hover {
+      background: rgba(0, 229, 255, 0.15);
+      border-color: var(--accent-color);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 229, 255, 0.3);
+    }
+    
+    .btn-primary {
+      background: linear-gradient(135deg, rgba(0, 229, 255, 0.2), rgba(159, 47, 255, 0.2));
+      border-color: var(--accent-color);
+    }
+    
+    /* Back Button */
+    .back-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 2rem;
+      background: var(--glass-bg);
+      backdrop-filter: blur(15px);
+      border: 1px solid var(--glass-border);
+      border-radius: 12px;
+      color: var(--accent-color);
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      margin-bottom: 2rem;
+    }
+    
+    .back-button:hover {
+      background: rgba(0, 229, 255, 0.1);
+      border-color: var(--accent-color);
+      transform: translateX(-5px);
+      box-shadow: 0 6px 20px rgba(0, 229, 255, 0.3);
+    }
+    
+    /* Empty State */
+    .empty-state {
+      text-align: center;
+      padding: 3rem 2rem;
+      background: var(--glass-bg);
+      backdrop-filter: blur(15px);
+      border: 1px solid var(--glass-border);
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    }
+    
+    .empty-state i {
+      font-size: 4rem;
+      color: var(--accent-color);
+      margin-bottom: 1rem;
+      opacity: 0.5;
+    }
+    
+    .empty-state p {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .empty-state p.hint {
+      font-size: 0.85rem;
+      margin-top: 0.5rem;
+    }
+    
+    /* Mobile Responsive */
+    @media (max-width: 768px) {
+      .main-container {
+        padding: 1rem;
+        margin-top: 70px;
+      }
+      
+      .page-header {
+        padding: 1.5rem;
+      }
+      
+      .page-header i {
+        font-size: 2.5rem;
+      }
+      
+      .page-header h1 {
+        font-size: 1.5rem;
+      }
+      
+      .selector-group {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+      
+      .soal-card {
+        padding: 1.25rem;
+      }
+      
+      .soal-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+      }
+      
+      .soal-actions {
+        width: 100%;
+        flex-direction: column;
+      }
+      
+      .btn-soal {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Canvas Background -->
+  <canvas id="particle-network"></canvas>
+
+  <nav class="navbar">
+    <a href="dashboard.html" class="logo">PORTAL WEB <span>INFORMATIKA</span></a>
+    
+    <div class="profile-dropdown">
+      <button class="profile-trigger" id="profile-trigger-btn">
+        <span id="welcome-name">Memuat...</span> 
+        <i class="fas fa-chevron-down" style="font-size: 0.8em;"></i>
+      </button>
+      <div class="dropdown-content" id="dropdown-content">
+        <div class="profile-info">
+          <div><strong>Nama:</strong> <span id="profile-name">...</span></div>
+          <div><strong>NIS:</strong> <span id="profile-nis">...</span></div>
+          <div><strong>Kelas:</strong> <span id="profile-kelas">...</span></div>
+        </div>
+        <div class="dropdown-links">
+          <a id="change-password-btn">Ganti Password</a>
+          <a id="logout-btn">Logout</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="main-container">
+
+    <div class="page-header">
+      <i class="fas fa-laptop-code"></i>
+      <h1>Praktikum Online</h1>
+      <p>Akses soal praktikum dan kumpulkan jawaban Anda melalui formulir yang tersedia.</p>
+      <p><strong>Pastikan untuk membuat copy soal sebelum mengerjakan!</strong></p>
+    </div>
+
+    <div class="instructions-box">
+      <h3><i class="fas fa-info-circle"></i> Petunjuk Pengerjaan</h3>
+      <ol>
+        <li><strong>Pilih tingkatan dan kelas Anda</strong> menggunakan dropdown di bawah.</li>
+        <li><strong>Klik "Buka Soal"</strong> untuk melihat soal praktikum (akan terbuka di tab baru).</li>
+        <li><strong>Klik "Make A Copy"</strong> di Google Sheet/Doc untuk membuat salinan sendiri.</li>
+        <li><strong>Kerjakan soal</strong> di file copy Anda.</li>
+        <li><strong>Kumpulkan jawaban</strong> dengan klik tombol "Kumpulkan" dan isi formulir.</li>
+      </ol>
+    </div>
+
+    <div class="selector-group">
+      <div class="selector-card">
+        <label for="tingkatan"><i class="fas fa-graduation-cap"></i> Tingkatan</label>
+        <select id="tingkatan">
+          <option value="">-- Pilih Tingkatan --</option>
+          <option value="SMP">SMP</option>
+          <option value="SMA">SMA</option>
+        </select>
+      </div>
+      
+      <div class="selector-card">
+        <label for="kelas"><i class="fas fa-users"></i> Kelas</label>
+        <select id="kelas" disabled>
+          <option value="">-- Pilih Kelas --</option>
+        </select>
+      </div>
+    </div>
+
+    <button onclick="refreshSoalData()" class="refresh-btn">
+      <i class="fas fa-sync-alt"></i> Refresh Data Soal
+    </button>
+
+    <div class="soal-grid" id="soal-container">
+      <!-- Soal cards will be inserted here -->
+    </div>
+
+    <a class="back-button" href="dashboard.html">
+      <i class="fas fa-arrow-left"></i> Kembali ke Dashboard
+    </a>
+
+  </div>
+
+  <footer class="site-footer" style="background: var(--card-bg); backdrop-filter: blur(10px); border-top: 1px solid var(--glass-border); padding: 1.5rem 2rem; text-align: center; color: var(--text-muted); font-size: 0.9rem; position: relative; z-index: 100;">
+    &copy; 2025 Portal Siswa Informatika. MA PLUS & SMP IT YPI Nurul Hadina.<br>
+    Oleh: <strong style="color: var(--accent-color);">Fauzan Reza, S.T</strong> (Guru Informatika <strong style="color: var(--accent-color);">YPI Nurul Hadina</strong>)
+  </footer>
+
+  <script src="database.js"></script>
+  <script src="auth.js"></script>
+  
+  <!-- Canvas Background Script -->
+  <script>
+    (function() {
+      const canvas = document.getElementById('particle-network');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      
+      function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+      
+      resizeCanvas();
+      
+      let particles = [];
+      const particleCount = 100, connectDistance = 150, mouse = { x: null, y: null, radius: 100 };
+      
+      window.addEventListener('resize', () => {
+        resizeCanvas();
+        init();
+      });
+      
+      window.addEventListener('mousemove', (event) => {
+        mouse.x = event.x; 
+        mouse.y = event.y;
+      });
+      
+      window.addEventListener('mouseout', () => {
+        mouse.x = null; 
+        mouse.y = null;
+      });
+      
+      class Particle {
+        constructor() {
+          this.x = Math.random() * canvas.width; 
+          this.y = Math.random() * canvas.height;
+          this.vx = (Math.random() - 0.5) * 0.5; 
+          this.vy = (Math.random() - 0.5) * 0.5;
+          this.radius = 2.5; 
+          this.color = 'rgba(0, 229, 255, 0.7)';
+        }
+        
+        update() {
+          if (this.x < 0 || this.x > canvas.width) this.vx = -this.vx;
+          if (this.y < 0 || this.y > canvas.height) this.vy = -this.vy;
+          this.x += this.vx; 
+          this.y += this.vy;
+        }
+        
+        draw() {
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+          ctx.fillStyle = this.color; 
+          ctx.fill();
+        }
+      }
+      
+      function init() {
+        particles = [];
+        for (let i = 0; i < particleCount; i++) particles.push(new Particle());
+      }
+      
+      function connect() {
+        for (let a = 0; a < particles.length; a++) {
+          for (let b = a + 1; b < particles.length; b++) {
+            const dx = particles[a].x - particles[b].x;
+            const dy = particles[a].y - particles[b].y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+            
+            if (distance < connectDistance) {
+              const opacity = 1 - (distance / connectDistance);
+              ctx.strokeStyle = `rgba(0, 229, 255, ${opacity * 0.3})`;
+              ctx.lineWidth = 1.5; 
+              ctx.beginPath();
+              ctx.moveTo(particles[a].x, particles[a].y);
+              ctx.lineTo(particles[b].x, particles[b].y); 
+              ctx.stroke();
+            }
+          }
+          
+          if (mouse.x) {
+            const dx = particles[a].x - mouse.x;
+            const dy = particles[a].y - mouse.y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+            
+            if (distance < mouse.radius) {
+              const opacity = 1 - (distance / mouse.radius);
+              ctx.strokeStyle = `rgba(159, 47, 255, ${opacity * 0.5})`;
+              ctx.lineWidth = 2; 
+              ctx.beginPath();
+              ctx.moveTo(particles[a].x, particles[a].y);
+              ctx.lineTo(mouse.x, mouse.y); 
+              ctx.stroke();
+            }
+          }
+        }
+      }
+      
+      function animate() {
+        if (!ctx) return;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        particles.forEach(p => { p.update(); p.draw(); });
+        connect(); 
+        requestAnimationFrame(animate);
+      }
+      
+      init();
+      animate();
+    })();
+  </script>
+  
+  <!-- Functionality Script -->
+  <script>
+    // Protect page
+    const currentUser = getSession();
+    if (!currentUser) {
+      window.location.href = 'index.html';
+    }
+    
+    document.getElementById('welcome-name').textContent = `Halo, ${currentUser.nama.split(' ')[0]}`;
+    document.getElementById('profile-name').textContent = currentUser.nama;
+    document.getElementById('profile-nis').textContent = currentUser.nis;
+    document.getElementById('profile-kelas').textContent = `${currentUser.tingkatan} / Kelas ${currentUser.kelas}`;
+    
+    // Profile dropdown
+    const triggerBtn = document.getElementById('profile-trigger-btn');
+    const dropdownContent = document.getElementById('dropdown-content');
+    
+    triggerBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      dropdownContent.classList.toggle('show');
+    });
+    
+    document.addEventListener('click', (e) => {
+      if (!triggerBtn.contains(e.target) && !dropdownContent.contains(e.target)) {
+        dropdownContent.classList.remove('show');
+      }
+    });
+    
+    // Logout
+    document.getElementById('logout-btn').addEventListener('click', (e) => {
+      e.preventDefault();
+      handleLogout();
+    });
+    
+    // ==================
+    // LOAD SOAL FROM ADMIN UPLOAD
+    // ==================
+    
+    let soalData = {};
+    
+    // Function to get soal praktikum from localStorage
+    function getSoalPraktikum() {
+      const allSoal = JSON.parse(localStorage.getItem('soalData')) || [];
+      
+      // Filter only praktikum type
+      const soalPraktikum = allSoal.filter(soal => soal.jenis === 'praktikum');
+      
+      // Organize by tingkatan and kelas
+      const organizedSoal = {};
+      
+      soalPraktikum.forEach(soal => {
+        if (!organizedSoal[soal.tingkatan]) {
+          organizedSoal[soal.tingkatan] = {};
+        }
+        if (!organizedSoal[soal.tingkatan][soal.kelas]) {
+          organizedSoal[soal.tingkatan][soal.kelas] = [];
+        }
+        
+        // Transform to match expected format
+        organizedSoal[soal.tingkatan][soal.kelas].push({
+          title: soal.judul,
+          desc: soal.deskripsi || 'Klik "Buka Soal" untuk melihat detail',
+          link: soal.metode === 'link' ? soal.link : '#',
+          form: soal.linkKumpul || '#',
+          fileName: soal.fileName || null,
+          metode: soal.metode,
+          id: soal.id,
+          tanggal: soal.tanggal
+        });
+      });
+      
+      return organizedSoal;
+    }
+    
+    // Load initial data
+    soalData = getSoalPraktikum();
+    
+    // DOM elements
+    const tingkatanSelect = document.getElementById('tingkatan');
+    const kelasSelect = document.getElementById('kelas');
+    const soalContainer = document.getElementById('soal-container');
+    
+    // Tingkatan change handler
+    tingkatanSelect.addEventListener('change', function() {
+      const tingkatan = this.value;
+      
+      kelasSelect.innerHTML = '<option value="">-- Pilih Kelas --</option>';
+      kelasSelect.disabled = true;
+      
+      if (tingkatan === 'SMP') {
+        kelasSelect.innerHTML = `
+          <option value="">-- Pilih Kelas --</option>
+          <option value="7">Kelas 7</option>
+          <option value="8">Kelas 8</option>
+          <option value="9">Kelas 9</option>
+        `;
+        kelasSelect.disabled = false;
+      } else if (tingkatan === 'SMA') {
+        kelasSelect.innerHTML = `
+          <option value="">-- Pilih Kelas --</option>
+          <option value="10">Kelas 10</option>
+          <option value="11">Kelas 11</option>
+          <option value="12">Kelas 12</option>
+        `;
+        kelasSelect.disabled = false;
+      }
+      
+      showEmptyState();
+    });
+    
+    // Kelas change handler
+    kelasSelect.addEventListener('change', function() {
+      const tingkatan = tingkatanSelect.value;
+      const kelas = this.value;
+      
+      if (tingkatan && kelas) {
+        displaySoal(tingkatan, kelas);
+      } else {
+        showEmptyState();
+      }
+    });
+    
+    // Show empty state
+    function showEmptyState() {
+      soalContainer.innerHTML = `
+        <div class="empty-state">
+          <i class="fas fa-folder-open"></i>
+          <p>Pilih tingkatan dan kelas untuk melihat soal praktikum</p>
+        </div>
+      `;
+    }
+    
+    // Display soal based on selection
+    function displaySoal(tingkatan, kelas) {
+      const soals = soalData[tingkatan]?.[kelas] || [];
+      
+      if (soals.length === 0) {
+        soalContainer.innerHTML = `
+          <div class="empty-state">
+            <i class="fas fa-folder-open"></i>
+            <p>Belum ada soal praktikum untuk ${tingkatan} Kelas ${kelas}</p>
+            <p class="hint">Admin dapat menambahkan soal melalui panel admin</p>
+          </div>
+        `;
+        return;
+      }
+      
+      soalContainer.innerHTML = soals.map((soal, index) => {
+        const bukaButton = soal.metode === 'link' 
+          ? `<a href="${soal.link}" class="btn-soal btn-primary" target="_blank">
+               <i class="fas fa-external-link-alt"></i> Buka Soal
+             </a>`
+          : `<button class="btn-soal btn-primary" onclick="alert('File: ${soal.fileName}\\n\\nFitur download file sedang dikembangkan.\\nSilakan hubungi admin untuk mendapatkan file.')">
+               <i class="fas fa-file-pdf"></i> Download Soal
+             </button>`;
+        
+        const kumpulButton = soal.form && soal.form !== '#'
+          ? `<a href="${soal.form}" class="btn-soal" target="_blank">
+               <i class="fas fa-paper-plane"></i> Kumpulkan
+             </a>`
+          : '';
+        
+        return `
+          <div class="soal-card">
+            <div class="soal-header">
+              <h3 class="soal-title">${soal.title}</h3>
+              <span class="soal-badge">${tingkatan} - Kelas ${kelas}</span>
+            </div>
+            <p class="soal-desc">${soal.desc}</p>
+            ${soal.tanggal ? `<p class="soal-desc" style="font-size: 0.8rem; opacity: 0.7;"><i class="fas fa-calendar"></i> Diupload: ${soal.tanggal}</p>` : ''}
+            <div class="soal-actions">
+              ${bukaButton}
+              ${kumpulButton}
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+    
+    // Refresh soal data
+    function refreshSoalData() {
+      soalData = getSoalPraktikum();
+      
+      const tingkatan = tingkatanSelect.value;
+      const kelas = kelasSelect.value;
+      
+      if (tingkatan && kelas) {
+        displaySoal(tingkatan, kelas);
+        alert('✓ Data soal berhasil diperbarui!');
+      } else {
+        alert('ℹ️ Silakan pilih tingkatan dan kelas terlebih dahulu');
+      }
+    }
+    
+    // Listen for storage changes (when admin uploads new soal in another tab)
+    window.addEventListener('storage', function(e) {
+      if (e.key === 'soalData') {
+        soalData = getSoalPraktikum();
+        
+        const tingkatan = tingkatanSelect.value;
+        const kelas = kelasSelect.value;
+        
+        if (tingkatan && kelas) {
+          displaySoal(tingkatan, kelas);
+        }
+      }
+    });
+    
+    // Initialize
+    showEmptyState();
+  </script>
+
+</body>
+</html>

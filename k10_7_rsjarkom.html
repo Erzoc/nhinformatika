@@ -1,0 +1,945 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kelas X • Rangkuman Jaringan Komputer</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary-color: #10B981;
+      --secondary-color: #059669;
+      --accent-color: #34D399;
+      --dark-color: #111827;
+      --light-color: #F8F9FA;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
+      line-height: 1.6;
+      color: #1F2937;
+      background: var(--light-color);
+    }
+
+    /* NAVBAR */
+    .navbar {
+      background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+      color: #fff;
+      padding: 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+    }
+
+    .navbar-content {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .navbar-title {
+      font-size: 2rem;
+      font-weight: 800;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.35);
+    }
+
+    .navbar-sub {
+      font-size: 0.9rem;
+      opacity: 0.95;
+      font-weight: 600;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.35);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+      margin-top: 0.8rem;
+    }
+
+    .nav-link {
+      background: rgba(255,255,255,0.2);
+      padding: 0.35rem 0.7rem;
+      border-radius: 6px;
+      text-decoration: none;
+      color: #fff;
+      font-size: 0.8rem;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .nav-link:hover {
+      background: rgba(255,255,255,0.3);
+      transform: translateY(-2px);
+    }
+
+    .nav-link.active {
+      background: #FFE66D;
+      color: #10B981;
+    }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+      color: #fff;
+      padding: 2.5rem 1rem;
+      text-align: center;
+      border-bottom: 5px solid #FFE66D;
+    }
+
+    .hero-emoji {
+      font-size: 2.5rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .hero h1 {
+      font-size: 2.2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero p {
+      opacity: 0.98;
+      font-size: 1.1rem;
+    }
+
+    .badge {
+      display: inline-block;
+      background: #FFE66D;
+      color: #10B981;
+      padding: 0.4rem 1rem;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      margin-top: 0.8rem;
+    }
+
+    /* CONTAINER */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    section {
+      margin: 2rem 0;
+    }
+
+    section h2 {
+      color: var(--primary-color);
+      font-size: 1.7rem;
+      margin-bottom: 1rem;
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+      border-left: 5px solid var(--secondary-color);
+      padding-left: 0.8rem;
+    }
+
+    /* CARDS */
+    .card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 1.3rem;
+      margin-bottom: 1.2rem;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      border-left: 5px solid var(--secondary-color);
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.2);
+    }
+
+    .card h3 {
+      color: var(--primary-color);
+      margin-bottom: 0.7rem;
+      font-size: 1.3rem;
+    }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.2rem;
+      margin: 1rem 0;
+    }
+
+    .summary-card {
+      background: #fff;
+      padding: 1.2rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+      border-top: 5px solid var(--primary-color);
+      transition: all 0.3s ease;
+    }
+
+    .summary-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    }
+
+    .summary-card h4 {
+      color: var(--primary-color);
+      margin-bottom: 0.6rem;
+      font-size: 1.1rem;
+    }
+
+    .chapter-nav {
+      background: #f9fafb;
+      padding: 1.5rem;
+      border-radius: 12px;
+      margin: 1.5rem 0;
+      border: 2px solid #e5e7eb;
+    }
+
+    .chapter-nav h4 {
+      color: #1F2937;
+      margin-bottom: 1rem;
+      font-size: 1.2rem;
+    }
+
+    .chapter-links {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem;
+    }
+
+    .chapter-link {
+      background: #fff;
+      padding: 1rem;
+      border-radius: 8px;
+      text-decoration: none;
+      color: #1F2937;
+      border: 2px solid #e5e7eb;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .chapter-link:hover {
+      border-color: #10B981;
+      transform: translateY(-3px);
+      box-shadow: 0 4px 12px rgba(16,185,129,0.2);
+    }
+
+    .chapter-icon {
+      font-size: 2rem;
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(135deg, #10B981, #059669);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .chapter-text h5 {
+      font-size: 1rem;
+      margin-bottom: 0.2rem;
+      color: #10B981;
+    }
+
+    .chapter-text p {
+      font-size: 0.85rem;
+      color: #6B7280;
+    }
+
+    .tip-box {
+      background: linear-gradient(135deg, #8B5CF6 0%, #EC4899 100%);
+      color: #fff;
+      padding: 1.2rem;
+      border-radius: 10px;
+      margin: 1rem 0;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    .tip-box h4 {
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .fact-box {
+      background: linear-gradient(135deg, #1E88E5 0%, #00ACC1 100%);
+      color: #fff;
+      padding: 1.2rem;
+      border-radius: 10px;
+      margin: 1rem 0;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    .success-box {
+      background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+      color: #fff;
+      padding: 1.2rem;
+      border-radius: 10px;
+      margin: 1rem 0;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    .download-box {
+      background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+      color: #fff;
+      padding: 2rem;
+      border-radius: 12px;
+      margin: 1.5rem 0;
+      text-align: center;
+      box-shadow: 0 6px 20px rgba(16,185,129,0.4);
+    }
+
+    .download-box h4 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .btn-download {
+      display: inline-block;
+      background: #fff;
+      color: #10B981;
+      padding: 0.9rem 1.8rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.1rem;
+      margin: 0.5rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    .btn-download:hover {
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+    }
+
+    .key-points {
+      background: #f9fafb;
+      padding: 1.5rem;
+      border-radius: 10px;
+      border-left: 5px solid #10B981;
+      margin: 1rem 0;
+    }
+
+    .key-points h4 {
+      color: #10B981;
+      margin-bottom: 0.8rem;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #111827;
+      color: #fff;
+      text-align: center;
+      padding: 1rem 0.8rem;
+      margin-top: 2rem;
+    }
+
+    .footer-content h3 {
+      color: #FFD700;
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+    }
+
+    .footer-content p {
+      opacity: 0.9;
+      font-size: 0.8rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .social-media {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin: 0.8rem 0 0.5rem 0;
+      flex-wrap: wrap;
+    }
+
+    .social-icon {
+      width: 34px;
+      height: 34px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      transition: all 0.25s ease;
+      text-decoration: none;
+    }
+
+    .social-icon.whatsapp {
+      background: #25D366;
+      color: #fff;
+    }
+
+    .social-icon.whatsapp:hover {
+      background: #128C7E;
+      transform: scale(1.08) rotate(3deg);
+    }
+
+    .social-icon.youtube {
+      background: #FF0000;
+      color: #fff;
+    }
+
+    .social-icon.youtube:hover {
+      background: #CC0000;
+      transform: scale(1.08) rotate(-3deg);
+    }
+
+    .social-icon.instagram {
+      background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+      color: #fff;
+    }
+
+    .social-icon.instagram:hover {
+      transform: scale(1.08);
+    }
+
+    .social-icon.facebook {
+      background: #1877F2;
+      color: #fff;
+    }
+
+    .social-icon.facebook:hover {
+      background: #145DBF;
+      transform: scale(1.08) rotate(-2deg);
+    }
+
+    @media (max-width: 768px) {
+      .navbar-title {
+        font-size: 1.5rem;
+      }
+
+      .nav-links {
+        gap: 0.4rem;
+      }
+
+      .nav-link {
+        font-size: 0.7rem;
+        padding: 0.3rem 0.5rem;
+      }
+
+      .hero h1 {
+        font-size: 1.5rem;
+      }
+
+      section h2 {
+        font-size: 1.3rem;
+      }
+
+      .summary-grid, .chapter-links {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="navbar-content">
+      <div class="navbar-title">📚 Rangkuman Jaringan Komputer</div>
+      <div class="navbar-sub">Kelas X • Complete Summary</div>
+      <div class="nav-links">
+        <a href="k10_7_jarkom1.html" class="nav-link">Jaringan Komputer</a>
+        <a href="k10_7_jarkom2.html" class="nav-link">Konektivitas Internet</a>
+        <a href="k10_7_jarkom3.html" class="nav-link">Komunikasi Data Ponsel</a>
+        <a href="k10_7_jarkom4.html" class="nav-link">Proteksi Data Pribadi</a>
+        <a href="#" class="nav-link active">Rangkuman</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-emoji">🌐💻🔒</div>
+      <h1>Rangkuman: Jaringan Komputer & Komunikasi Data</h1>
+      <p>Ringkasan lengkap materi Jaringan Komputer, Konektivitas Internet, Komunikasi Data Ponsel, dan Proteksi Data Pribadi</p>
+      <span class="badge">✅ RANGKUMAN LENGKAP</span>
+    </div>
+  </section>
+
+  <div class="container">
+    <!-- NAVIGASI CHAPTER -->
+    <section>
+      <div class="chapter-nav">
+        <h4>📖 Akses Cepat ke Materi Lengkap</h4>
+        <div class="chapter-links">
+          <a href="k10_7_jarkom1.html" class="chapter-link">
+            <div class="chapter-icon">🌐</div>
+            <div class="chapter-text">
+              <h5>Bab 1</h5>
+              <p>Jaringan Komputer</p>
+            </div>
+          </a>
+
+          <a href="k10_7_jarkom2.html" class="chapter-link">
+            <div class="chapter-icon">📡</div>
+            <div class="chapter-text">
+              <h5>Bab 2</h5>
+              <p>Konektivitas Internet</p>
+            </div>
+          </a>
+
+          <a href="k10_7_jarkom3.html" class="chapter-link">
+            <div class="chapter-icon">📱</div>
+            <div class="chapter-text">
+              <h5>Bab 3</h5>
+              <p>Komunikasi Data Ponsel</p>
+            </div>
+          </a>
+
+          <a href="k10_7_jarkom4.html" class="chapter-link">
+            <div class="chapter-icon">🔒</div>
+            <div class="chapter-text">
+              <h5>Bab 4</h5>
+              <p>Proteksi Data Pribadi</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- BAB 1: JARINGAN KOMPUTER -->
+    <section>
+      <h2>🌐 Ringkasan: Jaringan Komputer</h2>
+
+      <div class="card">
+        <h3>Konsep & Pengelompokan Jaringan</h3>
+        <p><strong>Jaringan komputer</strong> adalah dua atau lebih komputer yang saling terhubung untuk berbagi sumber daya, berkomunikasi, dan bertukar data.</p>
+
+        <div class="summary-grid">
+          <div class="summary-card">
+            <h4>PAN (Personal Area Network)</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>Jangkauan:</strong> 0-10 meter (sangat kecil)</li>
+              <li>• <strong>Contoh:</strong> Bluetooth, USB, Infrared</li>
+              <li>• <strong>Penggunaan:</strong> HP ↔ Laptop, wireless mouse, headset</li>
+              <li>• <strong>Kelebihan:</strong> Praktis, portable, mudah setup</li>
+            </ul>
+          </div>
+
+          <div class="summary-card">
+            <h4>LAN (Local Area Network)</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>Jangkauan:</strong> 10-1000 meter (satu gedung)</li>
+              <li>• <strong>Area:</strong> Kantor, sekolah, rumah</li>
+              <li>• <strong>Media:</strong> Kabel UTP, Wi-Fi</li>
+              <li>• <strong>Kecepatan:</strong> 100 Mbps - 10 Gbps (tinggi)</li>
+              <li>• <strong>Perangkat:</strong> Switch, Router, Access Point</li>
+              <li>• <strong>Topologi:</strong> Star (paling populer)</li>
+            </ul>
+          </div>
+
+          <div class="summary-card">
+            <h4>MAN (Metropolitan Area Network)</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>Jangkauan:</strong> 1-50 km (satu kota)</li>
+              <li>• <strong>Contoh:</strong> Jaringan antar kampus dalam kota</li>
+              <li>• <strong>Media:</strong> Fiber optik, wireless</li>
+              <li>• <strong>Biaya:</strong> Lebih mahal dari LAN</li>
+            </ul>
+          </div>
+
+          <div class="summary-card">
+            <h4>WAN (Wide Area Network)</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>Jangkauan:</strong> >50 km (antar kota/negara)</li>
+              <li>• <strong>Contoh:</strong> Internet (WAN terbesar)</li>
+              <li>• <strong>Media:</strong> Fiber optik, satelit, leased line</li>
+              <li>• <strong>Biaya:</strong> Sangat mahal</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="key-points">
+          <h4>🎯 Poin Penting Jaringan Komputer</h4>
+          <ol style="list-style-position: inside; margin-left: 0.6rem; line-height: 1.9;">
+            <li>Jaringan komputer memungkinkan <strong>resource sharing</strong> (printer, file, internet)</li>
+            <li><strong>PAN → LAN → MAN → WAN:</strong> Urutan dari jangkauan kecil ke luas</li>
+            <li><strong>Internet</strong> adalah WAN terbesar yang menghubungkan jutaan jaringan global</li>
+            <li><strong>LAN</strong> adalah tipe jaringan paling umum (kantor, sekolah, rumah)</li>
+            <li>Komponen jaringan: <strong>Switch</strong> (hubungkan komputer), <strong>Router</strong> (hubungkan jaringan berbeda), <strong>Access Point</strong> (WiFi)</li>
+            <li><strong>Topologi Star:</strong> Semua komputer terhubung ke switch/hub pusat</li>
+            <li><strong>Client-Server:</strong> Ada server pusat yang melayani client</li>
+            <li><strong>Peer-to-Peer:</strong> Semua komputer setara, tidak ada server khusus</li>
+            <li><strong>TCP/IP:</strong> Protokol standar komunikasi internet</li>
+            <li><strong>IP Address:</strong> Alamat unik setiap device di jaringan (misal: 192.168.1.1)</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- BAB 2: KONEKTIVITAS INTERNET -->
+    <section>
+      <h2>📡 Ringkasan: Konektivitas Internet</h2>
+
+      <div class="card">
+        <h3>Evolusi Teknologi Koneksi Internet</h3>
+        <p>Teknologi koneksi internet telah berevolusi dari <strong>Dial-Up</strong> (56 Kbps) hingga <strong>5G</strong> (10 Gbps) - peningkatan 200,000x lipat!</p>
+
+        <div class="summary-grid">
+          <div class="summary-card">
+            <h4>Koneksi Kabel (Wired)</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>Dial-Up:</strong> 56 Kbps, via telepon, obsolete</li>
+              <li>• <strong>ADSL:</strong> 256 Kbps - 24 Mbps, always-on, asymmetric</li>
+              <li>• <strong>TV Kabel:</strong> 10-1000 Mbps, via coaxial, shared bandwidth</li>
+              <li>• <strong>Fiber Optik:</strong> 100 Mbps - 10 Gbps, super cepat, latency rendah</li>
+            </ul>
+          </div>
+
+          <div class="summary-card">
+            <h4>Mobile Internet (Wireless)</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>GPRS (2.5G):</strong> 56-114 Kbps, internet mobile pertama</li>
+              <li>• <strong>3G:</strong> 384 Kbps - 42 Mbps, era smartphone</li>
+              <li>• <strong>4G LTE:</strong> 10-300 Mbps, HD streaming, gaming smooth</li>
+              <li>• <strong>5G:</strong> 1-10 Gbps, ultra-low latency (1-10 ms), IoT</li>
+            </ul>
+          </div>
+
+          <div class="summary-card">
+            <h4>WiFi (Wireless Fidelity)</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>Frekuensi:</strong> 2.4 GHz (jangkauan luas) & 5 GHz (kecepatan tinggi)</li>
+              <li>• <strong>WiFi 4 (802.11n):</strong> 150-600 Mbps</li>
+              <li>• <strong>WiFi 5 (802.11ac):</strong> 433-6933 Mbps</li>
+              <li>• <strong>WiFi 6 (802.11ax):</strong> Up to 9.6 Gbps</li>
+              <li>• <strong>Jangkauan:</strong> 30-100 meter (indoor/outdoor)</li>
+              <li>• <strong>Keamanan:</strong> WPA2/WPA3 encryption</li>
+            </ul>
+          </div>
+
+          <div class="summary-card">
+            <h4>Perbandingan Teknologi</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>Dial-Up:</strong> 56 Kbps → Sangat lambat</li>
+              <li>• <strong>ADSL:</strong> 24 Mbps → Sedang</li>
+              <li>• <strong>4G LTE:</strong> 300 Mbps → Cepat</li>
+              <li>• <strong>5G:</strong> 10 Gbps → Super cepat</li>
+              <li>• <strong>Fiber:</strong> 10 Gbps → Super cepat & stabil</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="key-points">
+          <h4>🎯 Poin Penting Konektivitas Internet</h4>
+          <ol style="list-style-position: inside; margin-left: 0.6rem; line-height: 1.9;">
+            <li>Dial-Up menggunakan jalur telepon, kecepatan 56 Kbps, telepon tidak bisa dipakai saat online</li>
+            <li>ADSL lebih cepat (24 Mbps), internet & telepon bisa bersamaan, always-on</li>
+            <li>TV Kabel menggunakan infrastruktur coaxial, kecepatan tinggi tapi bandwidth shared</li>
+            <li>GPRS adalah internet mobile pertama (56-114 Kbps), era Nokia Symbian</li>
+            <li><strong>3G</strong> membawa era smartphone (iPhone, Android), video call & streaming musik</li>
+            <li><strong>4G LTE</strong> memungkinkan HD streaming, gaming online, video call HD</li>
+            <li><strong>5G</strong> untuk IoT, smart city, autonomous vehicles, VR/AR, ultra-low latency</li>
+            <li><strong>WiFi</strong> menggunakan frekuensi 2.4 GHz (jangkauan) & 5 GHz (kecepatan)</li>
+            <li>WiFi 6 support banyak device simultan dengan efisien (OFDMA, MU-MIMO)</li>
+            <li>Untuk rumah/kantor: Fiber Optik atau TV Kabel; Untuk mobile: 4G/5G</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- BAB 3: KOMUNIKASI DATA PONSEL -->
+    <section>
+      <h2>📱 Ringkasan: Komunikasi Data pada Ponsel</h2>
+
+      <div class="card">
+        <h3>Teknologi & Layanan Mobile Communication</h3>
+        <p>Komunikasi data pada ponsel mencakup <strong>voice call, SMS, MMS, data packet,</strong> dan <strong>VoIP</strong> melalui jaringan seluler dan internet.</p>
+
+        <div class="summary-grid">
+          <div class="summary-card">
+            <h4>Voice Call (Panggilan Suara)</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>Circuit-Switched:</strong> Jalur dedicated selama panggilan</li>
+              <li>• <strong>Alur:</strong> Ponsel → BTS → MSC → BTS → Ponsel penerima</li>
+              <li>• <strong>Teknologi:</strong> GSM (2G), CDMA, 3G, VoLTE (4G), VoNR (5G)</li>
+              <li>• <strong>VoLTE:</strong> Voice via paket data 4G, HD Voice, faster connection</li>
+              <li>• <strong>Kualitas:</strong> GSM (13 Kbps), VoLTE (23.85 Kbps HD)</li>
+            </ul>
+          </div>
+
+          <div class="summary-card">
+            <h4>SMS & MMS</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>SMS:</strong> 160 karakter (Latin), 70 karakter (Unicode)</li>
+              <li>• <strong>SMSC:</strong> SMS Center menyimpan & forward pesan</li>
+              <li>• <strong>Store-and-forward:</strong> Pesan tersimpan jika penerima offline</li>
+              <li>• <strong>MMS:</strong> Multimedia (gambar, video, audio), 300 KB - 1 MB</li>
+              <li>• <strong>Era Post-SMS:</strong> Digantikan WhatsApp, Telegram, Line</li>
+              <li>• <strong>Masih penting:</strong> OTP, SMS banking, emergency</li>
+            </ul>
+          </div>
+
+          <div class="summary-card">
+            <h4>Data Packet (Internet Mobile)</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>Packet-Switched:</strong> Data dipecah jadi packet-packet kecil</li>
+              <li>• <strong>Teknologi:</strong> GPRS, EDGE, 3G, 4G LTE, 5G</li>
+              <li>• <strong>Protokol:</strong> TCP/IP, HTTP/HTTPS, DNS</li>
+              <li>• <strong>APN:</strong> Access Point Name, gateway operator ke internet</li>
+              <li>• <strong>Layanan:</strong> Browsing, streaming, email, gaming, video call</li>
+              <li>• <strong>Kuota:</strong> GB data yang bisa dipakai, ada FUP (Fair Usage Policy)</li>
+            </ul>
+          </div>
+
+          <div class="summary-card">
+            <h4>VoIP (Voice over IP)</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>Definisi:</strong> Panggilan suara via internet (data packet)</li>
+              <li>• <strong>Contoh:</strong> WhatsApp Call, Zoom, Google Meet, Skype, Discord</li>
+              <li>• <strong>Codec:</strong> G.711, G.729, Opus (kompresi audio)</li>
+              <li>• <strong>Protokol:</strong> SIP (Session Initiation), RTP (Real-Time Protocol)</li>
+              <li>• <strong>Bandwidth:</strong> WhatsApp voice ~3 MB/jam, video ~18 MB/jam</li>
+              <li>• <strong>Kelebihan:</strong> Gratis/murah, HD audio, fitur lengkap, cross-platform</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="key-points">
+          <h4>🎯 Poin Penting Komunikasi Data Ponsel</h4>
+          <ol style="list-style-position: inside; margin-left: 0.6rem; line-height: 1.9;">
+            <li><strong>Circuit-Switched</strong> (voice call): Jalur dedicated, bandwidth reserved, untuk real-time</li>
+            <li><strong>Packet-Switched</strong> (internet): Data dipecah jadi packet, bandwidth shared, efisien</li>
+            <li>Voice call tradisional via <strong>BTS → MSC → Core Network</strong></li>
+            <li>SMS limit 160 karakter (Latin), menggunakan <strong>SMSC</strong> untuk store & forward</li>
+            <li>SMS pertama dikirim 3 Desember 1992: "Merry Christmas"</li>
+            <li>MMS bisa kirim multimedia tapi ukuran terbatas (300 KB - 1 MB)</li>
+            <li>Data mobile menggunakan <strong>TCP/IP</strong> protocol sama seperti internet</li>
+            <li>VoLTE (Voice over LTE) adalah voice call via paket data 4G, kualitas HD</li>
+            <li>VoIP seperti WhatsApp Call menggunakan codec untuk kompresi audio</li>
+            <li>WhatsApp voice call hanya butuh ~50 KB/menit (~3 MB/jam), sangat hemat kuota</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- BAB 4: PROTEKSI DATA PRIBADI -->
+    <section>
+      <h2>🔒 Ringkasan: Proteksi Data Pribadi</h2>
+
+      <div class="card">
+        <h3>Keamanan & Privasi di Internet</h3>
+        <p>Proteksi data pribadi adalah tanggung jawab setiap individu untuk melindungi informasi sensitif dari ancaman cyber seperti <strong>phishing, hacking, malware,</strong> dan <strong>social engineering</strong>.</p>
+
+        <div class="summary-grid">
+          <div class="summary-card">
+            <h4>Jenis Data Pribadi</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>Identitas:</strong> Nama, NIK, KTP, paspor, SIM</li>
+              <li>• <strong>Kontak:</strong> Alamat, nomor HP, email</li>
+              <li>• <strong>Finansial:</strong> Rekening, kartu kredit, PIN, password banking</li>
+              <li>• <strong>Biometrik:</strong> Sidik jari, face ID, retina</li>
+              <li>• <strong>Lokasi:</strong> GPS tracking, check-in social media</li>
+              <li>• <strong>Aktivitas:</strong> Browsing history, search history</li>
+            </ul>
+          </div>
+
+          <div class="summary-card">
+            <h4>Ancaman Keamanan</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>Phishing:</strong> Email/SMS palsu minta data sensitif</li>
+              <li>• <strong>Malware:</strong> Virus, trojan, ransomware, spyware, keylogger</li>
+              <li>• <strong>Hacking:</strong> Brute force, SQL injection, man-in-the-middle</li>
+              <li>• <strong>Social Engineering:</strong> Manipulasi psikologis untuk tipu korban</li>
+              <li>• <strong>WiFi Publik:</strong> Packet sniffing, fake hotspot, session hijacking</li>
+              <li>• <strong>Data Breach:</strong> Kebocoran database perusahaan</li>
+            </ul>
+          </div>
+
+          <div class="summary-card">
+            <h4>Cara Proteksi (Top 10)</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>1. <strong>Password Kuat:</strong> 12+ karakter, kombinasi huruf/angka/simbol</li>
+              <li>2. <strong>Two-Factor Authentication (2FA):</strong> Aktifkan di semua akun</li>
+              <li>3. <strong>Update Software:</strong> OS, browser, apps ke versi terbaru</li>
+              <li>4. <strong>Antivirus & Firewall:</strong> Install & update rutin</li>
+              <li>5. <strong>HTTPS:</strong> Cek gembok 🔒 sebelum input data sensitif</li>
+              <li>6. <strong>VPN:</strong> Gunakan saat WiFi publik</li>
+              <li>7. <strong>Privacy Settings:</strong> Social media ke "Friends Only"</li>
+              <li>8. <strong>Backup Data:</strong> 3-2-1 rule (3 copies, 2 media, 1 offsite)</li>
+              <li>9. <strong>Email Security:</strong> Jangan klik link mencurigakan</li>
+              <li>10. <strong>Think Before Share:</strong> Jangan overshare info pribadi</li>
+            </ul>
+          </div>
+
+          <div class="summary-card">
+            <h4>Regulasi & Hukum</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>UU PDP Indonesia (2022):</strong> Consent wajib, denda hingga Rp 50 miliar</li>
+              <li>• <strong>GDPR (EU):</strong> Right to be forgotten, data portability</li>
+              <li>• <strong>UU ITE:</strong> Hacking (pidana max 10 tahun), data theft (9 tahun)</li>
+              <li>• <strong>Hak Anda:</strong> Akses, koreksi, hapus, portabilitas data</li>
+              <li>• <strong>Lapor:</strong> Patroli Siber Polri (patrolisiber.id), Kominfo, OJK</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="key-points">
+          <h4>🎯 Poin Penting Proteksi Data Pribadi</h4>
+          <ol style="list-style-position: inside; margin-left: 0.6rem; line-height: 1.9;">
+            <li>Data pribadi sangat berharga: KTP dijual $1-15, kartu kredit $5-110 di dark web</li>
+            <li><strong>Phishing</strong> adalah penipuan dengan menyamar sebagai institusi terpercaya</li>
+            <li><strong>Ransomware</strong> mengenkripsi file & minta tebusan untuk unlock</li>
+            <li><strong>Keylogger</strong> merekam semua ketikan keyboard untuk curi password</li>
+            <li>Password kuat minimal <strong>12 karakter</strong> dengan kombinasi huruf/angka/simbol</li>
+            <li><strong>2FA</strong> menambahkan layer keamanan dengan verifikasi tambahan (OTP/app)</li>
+            <li>Gunakan <strong>Password Manager</strong> (LastPass, 1Password) untuk kelola password</li>
+            <li>Cek <strong>HTTPS</strong> (gembok 🔒) sebelum input data sensitif di website</li>
+            <li><strong>VPN</strong> mengenkripsi traffic internet, wajib untuk WiFi publik</li>
+            <li>WiFi publik tanpa VPN sangat berisiko: password, email, banking bisa dicuri</li>
+            <li>Jangan klik link dari email/SMS mencurigakan (ciri phishing)</li>
+            <li>Atur privacy social media ke <strong>"Friends Only"</strong>, jangan public</li>
+            <li>Jangan overshare: Jangan post foto KTP, kartu kredit, boarding pass, lokasi rumah</li>
+            <li>Update OS & software rutin untuk patch security vulnerability</li>
+            <li>Defense in Depth: Gunakan <strong>multiple layers</strong> security (password + 2FA + antivirus + VPN)</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- KEY TAKEAWAYS -->
+    <section>
+      <h2>🎯 Key Takeaways: 25 Poin Penting</h2>
+
+      <div class="card" style="background: linear-gradient(135deg, rgba(16,185,129,0.05), rgba(5,150,105,0.05)); border-left: 5px solid #10B981;">
+        <h3>💡 25 Hal yang Harus Dikuasai</h3>
+        <ol style="list-style-position: inside; margin-left: 0.6rem; line-height: 2.2; font-size: 0.95rem;">
+          <li>Jaringan komputer: PAN (0-10m) → LAN (10-1000m) → MAN (1-50km) → WAN (>50km, Internet)</li>
+          <li>LAN adalah jaringan paling umum (kantor, sekolah, rumah), topologi Star paling populer</li>
+          <li>Internet adalah WAN terbesar yang menghubungkan jutaan jaringan global dengan TCP/IP</li>
+          <li>Dial-Up (56 Kbps) → ADSL (24 Mbps) → 4G (300 Mbps) → 5G (10 Gbps) = evolusi koneksi</li>
+          <li>ADSL always-on, internet & telepon bisa bersamaan (asymmetric: download > upload)</li>
+          <li>GPRS (56 Kbps) adalah internet mobile pertama, era Nokia & BlackBerry</li>
+          <li>3G membawa era smartphone (video call, streaming musik), 4G membawa HD streaming & gaming</li>
+          <li>5G untuk IoT, smart city, autonomous vehicles, ultra-low latency (1-10 ms)</li>
+          <li>WiFi menggunakan 2.4 GHz (jangkauan luas) & 5 GHz (kecepatan tinggi)</li>
+          <li>WiFi 6 (802.11ax) support banyak device dengan OFDMA & MU-MIMO</li>
+          <li>Voice call tradisional: Circuit-Switched (jalur dedicated), via BTS → MSC</li>
+          <li>VoLTE (Voice over LTE) adalah voice call via paket data 4G, HD Voice, faster</li>
+          <li>SMS limit 160 karakter (Latin), SMSC store & forward pesan</li>
+          <li>VoIP (WhatsApp Call, Zoom) menggunakan paket data, ~3 MB/jam untuk voice call</li>
+          <li>Data mobile packet-switched: Data dipecah jadi packet, bandwidth shared, efisien</li>
+          <li>Data pribadi sangat berharga: KTP $1-15, kartu kredit $5-110 di dark web</li>
+          <li>Phishing adalah penipuan dengan menyamar sebagai institusi terpercaya (email/SMS palsu)</li>
+          <li>Ransomware mengenkripsi file & minta tebusan, malware merusak sistem/curi data</li>
+          <li>Password kuat minimal 12 karakter dengan kombinasi huruf/angka/simbol/unik per akun</li>
+          <li>2FA menambahkan layer keamanan dengan OTP/authenticator app selain password</li>
+          <li>Cek HTTPS (gembok 🔒) sebelum input data sensitif, jangan login di website HTTP</li>
+          <li>VPN wajib untuk WiFi publik, mengenkripsi traffic untuk proteksi dari packet sniffing</li>
+          <li>Privacy social media: Atur ke "Friends Only", jangan overshare lokasi/foto KTP</li>
+          <li>Update OS & software rutin untuk patch security vulnerability (zero-day exploit)</li>
+          <li>Defense in Depth: Password + 2FA + Antivirus + VPN + HTTPS = proteksi maksimal</li>
+        </ol>
+      </div>
+
+      <div class="fact-box">
+        <h4>📊 Quick Statistics</h4>
+        <ul style="list-style-position: inside; margin-left: 0.6rem;">
+          <li>• <strong>Peningkatan kecepatan internet:</strong> Dial-Up (56 Kbps) → 5G (10 Gbps) = 200,000x lipat!</li>
+          <li>• <strong>Pengguna internet global:</strong> 5.4+ miliar orang (2024), 67% populasi dunia</li>
+          <li>• <strong>Data breach 2023:</strong> 422 juta records bocor, kerugian $4.45 juta per incident</li>
+          <li>• <strong>Phishing attack:</strong> 90% cyber attack dimulai dari phishing email</li>
+          <li>• <strong>Password lemah:</strong> 81% data breach karena password lemah/reused</li>
+          <li>• <strong>2FA effectiveness:</strong> Mengurangi risk hacking hingga 99.9%</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- DOWNLOAD SECTION -->
+    <section>
+      <h2>📥 Download Materi Lengkap</h2>
+      
+      <div class="download-box">
+        <h4>📚 Paket Lengkap: Jaringan Komputer & Komunikasi Data</h4>
+        <p style="margin-bottom: 1.5rem; font-size: 1.05rem;">Download rangkuman lengkap, infografis, cheat sheet, dan checklist keamanan!</p>
+        
+        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+          <a href="#" class="btn-download" onclick="alert('File akan segera tersedia. Hubungi guru untuk mendapatkan file lengkap.'); return false;">
+            📥 Rangkuman Lengkap PDF
+          </a>
+          <a href="#" class="btn-download" onclick="alert('File akan segera tersedia. Hubungi guru untuk mendapatkan file lengkap.'); return false;">
+            📥 Infografis & Diagram
+          </a>
+          <a href="#" class="btn-download" onclick="alert('File akan segera tersedia. Hubungi guru untuk mendapatkan file lengkap.'); return false;">
+            📥 Security Checklist
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- PENUTUP -->
+    <section>
+      <div class="card" style="background: linear-gradient(135deg, rgba(16,185,129,0.06), rgba(5,150,105,0.08)); border-left: 5px solid #FFE66D; text-align: center; padding: 2rem;">
+        <h3 style="margin-bottom: 1rem; font-size: 1.5rem;">🎉 Selamat! Anda Telah Menguasai Jaringan & Komunikasi Data</h3>
+        <p style="margin-bottom: 1.5rem; line-height: 1.9; font-size: 1.05rem;">
+          Anda sekarang memahami bagaimana komputer terhubung dalam jaringan (PAN, LAN, MAN, WAN), evolusi koneksi internet dari Dial-Up hingga 5G, cara ponsel berkomunikasi via voice call/SMS/data/VoIP, dan bagaimana melindungi data pribadi dari ancaman cyber. Skill-skill ini sangat penting di era digital untuk berkarier di bidang IT, networking, cybersecurity, atau sekadar menjadi pengguna internet yang cerdas dan aman!
+        </p>
+
+        <div style="background: rgba(255,230,109,0.15); padding: 1.5rem; border-radius: 10px; margin: 1.5rem 0;">
+          <p style="font-weight: 700; color: #10B981; font-size: 1.3rem; margin-bottom: 0.8rem;">💡 Ingat Selalu:</p>
+          <p style="font-size: 1.1rem; line-height: 1.8;">
+            <em>"The best way to predict the future is to create it."</em><br/>
+            <span style="font-size: 0.9rem; opacity: 0.8;">- Peter Drucker</span>
+          </p>
+          <p style="font-size: 0.95rem; margin-top: 0.8rem;">
+            🌐 Connect • 📡 Communicate • 🔒 Protect • 🚀 Innovate
+          </p>
+        </div>
+
+        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem;">
+          <a href="k10_7_jarkom1.html" style="display: inline-block; background: #6B7280; color: #fff; padding: 0.8rem 1.5rem; border-radius: 8px; text-decoration: none; font-weight: 600;">
+            🔄 Review: Jaringan Komputer
+          </a>
+          <a href="k10_7_jarkom2.html" style="display: inline-block; background: #6B7280; color: #fff; padding: 0.8rem 1.5rem; border-radius: 8px; text-decoration: none; font-weight: 600;">
+            🔄 Review: Konektivitas Internet
+          </a>
+          <a href="k10_7_jarkom3.html" style="display: inline-block; background: #6B7280; color: #fff; padding: 0.8rem 1.5rem; border-radius: 8px; text-decoration: none; font-weight: 600;">
+            🔄 Review: Komunikasi Data
+          </a>
+          <a href="k10_7_jarkom4.html" style="display: inline-block; background: #6B7280; color: #fff; padding: 0.8rem 1.5rem; border-radius: 8px; text-decoration: none; font-weight: 600;">
+            🔄 Review: Proteksi Data
+          </a>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-content">
+      <h3>Platform Pembelajaran Interaktif untuk Siswa & Siswi <strong>Ypi Nurul Hadina</strong></h3>
+
+      <div class="social-media">
+        <a class="social-icon whatsapp" href="https://wa.me/6289504440411" target="_blank">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" width="18" height="18"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884"/></svg>
+        </a>
+
+        <a class="social-icon youtube" href="https://www.youtube.com/channel/UCNmOH6L2xq6C15EkQlx_FpQ" target="_blank">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" width="18" height="18"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+        </a>
+
+        <a class="social-icon instagram" href="https://instagram.com/ypinurulhadina" target="_blank">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" width="18" height="18"><path d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.319 1.347 20.651.935 19.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.015 3.585-.074 4.85c-.061 1.17-.256 1.805-.421 2.227-.224.562-.479.96-.899 1.382-.419.419-.824.679-1.38.896-.42.164-1.065.36-2.235.413-1.274.057-1.649.07-4.859.07-3.211 0-3.586-.015-4.859-.074-1.171-.061-1.816-.256-2.236-.421-.569-.224-.96-.479-1.379-.899-.421-.419-.69-.824-.9-1.38-.165-.42-.359-1.065-.42-2.235-.045-1.26-.061-1.649-.061-4.844 0-3.196.016-3.586.061-4.861.061-1.17.255-1.814.42-2.234.21-.57.479-.96.9-1.381.419-.419.81-.689 1.379-.898.42-.166 1.051-.361 2.221-.421 1.275-.045 1.65-.06 4.859-.06l.045.03zm0 3.678c-3.405 0-6.162 2.76-6.162 6.162 0 3.405 2.76 6.162 6.162 6.162 3.405 0 6.162-2.76 6.162-6.162 0-3.405-2.76-6.162-6.162-6.162zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm7.846-10.405c0 .795-.646 1.44-1.44 1.44-.795 0-1.44-.646-1.44-1.44 0-.794.646-1.439 1.44-1.439.793-.001 1.44.645 1.44 1.439z"/></svg>
+        </a>
+
+        <a class="social-icon facebook" href="https://www.facebook.com/fauzan.reza.7" target="_blank">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" width="18" height="18"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        </a>
+      </div>
+
+      <p style="margin-top: 0.6rem; font-size: 0.7rem; opacity: 0.85;">©2025 Portal Siswa Informatika. MA PLUS & SMP IT.<br>Oleh : <strong>Fauzan Reza, S.T</strong> (Guru Informatika)</p>
+    </div>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel - Portal Siswa</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <style>
+    /* Main Container */
+    .admin-container {
+      max-width: 1400px;
+      margin: 100px auto 2rem;
+      padding: 2rem;
+    }
+
+    /* Header */
+    .admin-header {
+      background: var(--glass-bg);
+      backdrop-filter: blur(15px);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      text-align: center;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    }
+
+    .admin-header h1 {
+      font-size: 2rem;
+      color: var(--accent-color);
+      margin-bottom: 0.5rem;
+    }
+
+    .admin-header p {
+      color: var(--text-muted);
+    }
+
+    /* Statistics Grid */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .stat-card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(15px);
+      border: 1px solid var(--glass-border);
+      border-radius: 16px;
+      padding: 1.5rem;
+      text-align: center;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 30px rgba(0, 229, 255, 0.3);
+    }
+
+    .stat-card i {
+      font-size: 2.5rem;
+      color: var(--accent-color);
+      margin-bottom: 1rem;
+    }
+
+    .stat-card h3 {
+      font-size: 2rem;
+      color: var(--accent-color);
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-card p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    /* Section Container */
+    .admin-section {
+      background: var(--glass-bg);
+      backdrop-filter: blur(15px);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    }
+
+    .admin-section h2 {
+      font-size: 1.5rem;
+      color: var(--accent-color);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    /* 2 Column Grid Layout for Accounts */
+    .accounts-grid {
+      display: grid;
+      grid-template-columns: 35% 65%;
+      gap: 2rem;
+    }
+
+    /* Form Container */
+    .form-container {
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid var(--glass-border);
+      border-radius: 12px;
+      padding: 1.5rem;
+    }
+
+    .form-container h3 {
+      font-size: 1.1rem;
+      color: var(--accent-color);
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+
+    .form-group {
+      margin-bottom: 1rem;
+    }
+
+    .form-group label {
+      display: block;
+      color: var(--accent-color);
+      margin-bottom: 0.5rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    .form-group input,
+    .form-group select {
+      width: 100%;
+      padding: 0.75rem;
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid var(--glass-border);
+      border-radius: 8px;
+      color: var(--text-color);
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.9rem;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: var(--accent-color);
+      box-shadow: 0 0 10px rgba(0, 229, 255, 0.3);
+    }
+
+    .btn {
+      width: 100%;
+      padding: 0.75rem;
+      background: linear-gradient(135deg, rgba(0, 229, 255, 0.3), rgba(159, 47, 255, 0.3));
+      border: 2px solid var(--accent-color);
+      border-radius: 10px;
+      color: var(--accent-color);
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 0.95rem;
+    }
+
+    .btn:hover {
+      background: linear-gradient(135deg, rgba(0, 229, 255, 0.4), rgba(159, 47, 255, 0.4));
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0, 229, 255, 0.3);
+    }
+
+    /* Table Container */
+    .table-container {
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid var(--glass-border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      overflow-x: auto;
+    }
+
+    .table-container h3 {
+      font-size: 1.1rem;
+      color: var(--accent-color);
+      margin-bottom: 1.5rem;
+    }
+
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .data-table th {
+      background: rgba(0, 229, 255, 0.1);
+      color: var(--accent-color);
+      padding: 0.75rem;
+      text-align: left;
+      font-weight: 600;
+      font-size: 0.9rem;
+      border-bottom: 2px solid var(--accent-color);
+    }
+
+    .data-table td {
+      padding: 0.75rem;
+      color: var(--text-color);
+      border-bottom: 1px solid var(--glass-border);
+      font-size: 0.85rem;
+    }
+
+    .data-table tr:hover {
+      background: rgba(0, 229, 255, 0.05);
+    }
+
+    .data-table button {
+      padding: 0.4rem 0.8rem;
+      background: rgba(244, 67, 54, 0.3);
+      border: 1px solid #f44336;
+      border-radius: 6px;
+      color: #f44336;
+      cursor: pointer;
+      font-size: 0.8rem;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .data-table button:hover {
+      background: rgba(244, 67, 54, 0.5);
+      transform: scale(1.05);
+    }
+
+    /* Upload Section Grid */
+    .upload-grid {
+      display: grid;
+      grid-template-columns: 40% 60%;
+      gap: 2rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 1200px) {
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .accounts-grid,
+      .upload-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .admin-container {
+        padding: 1rem;
+        margin-top: 70px;
+      }
+
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .admin-header {
+        padding: 1.5rem;
+      }
+
+      .admin-section {
+        padding: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <canvas id="particle-network"></canvas>
+
+  <nav class="navbar">
+    <a href="dashboard.html" class="logo">PORTAL WEB <span>INFORMATIKA</span></a>
+
+    <div class="profile-dropdown">
+      <button class="profile-trigger" id="profile-trigger-btn">
+        <span id="welcome-name">Admin</span>
+        <i class="fas fa-chevron-down" style="font-size: 0.8em;"></i>
+      </button>
+      <div class="dropdown-content" id="dropdown-content">
+        <div class="profile-info">
+          <div><strong>Role:</strong> Administrator</div>
+        </div>
+        <div class="dropdown-links">
+          <a href="#" id="logout-btn">Logout</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="admin-container">
+
+    <!-- Header -->
+    <div class="admin-header">
+      <h1><i class="fas fa-user-shield"></i> Admin Panel</h1>
+      <p>Kelola data akun, soal, dan konten pembelajaran</p>
+    </div>
+
+    <!-- Statistics -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <i class="fas fa-users"></i>
+        <h3 id="total-siswa">0</h3>
+        <p>Total Siswa</p>
+      </div>
+
+      <div class="stat-card">
+        <i class="fas fa-graduation-cap"></i>
+        <h3 id="total-sma">0</h3>
+        <p>SMA</p>
+      </div>
+
+      <div class="stat-card">
+        <i class="fas fa-school"></i>
+        <h3 id="total-smp">0</h3>
+        <p>SMP</p>
+      </div>
+
+      <div class="stat-card">
+        <i class="fas fa-user-shield"></i>
+        <h3 id="total-admin">0</h3>
+        <p>Admin</p>
+      </div>
+    </div>
+
+    <!-- Manajemen Akun Section -->
+    <div class="admin-section">
+      <h2><i class="fas fa-users-cog"></i> Manajemen Akun</h2>
+
+      <div class="accounts-grid">
+        <!-- Tambah Akun Baru (35%) -->
+        <div class="form-container">
+          <h3><i class="fas fa-user-plus"></i> Tambah Akun Baru</h3>
+
+          <form id="add-account-form">
+            <div class="form-group">
+              <label>NIS</label>
+              <input type="text" id="nis" placeholder="Nomor Induk Siswa" required>
+            </div>
+
+            <div class="form-group">
+              <label>Nama Lengkap</label>
+              <input type="text" id="nama" placeholder="Nama Lengkap" required>
+            </div>
+
+            <div class="form-group">
+              <label>Password</label>
+              <input type="password" id="password" placeholder="Password (min 4 karakter)" required>
+            </div>
+
+            <div class="form-group">
+              <label>Role</label>
+              <select id="role" required>
+                <option value="">Pilih Role</option>
+                <option value="siswa">Siswa</option>
+                <option value="admin">Admin</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label>Tingkatan</label>
+              <select id="tingkatan" required>
+                <option value="">Pilih Tingkatan</option>
+                <option value="SMA">SMA</option>
+                <option value="SMP">SMP</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label>Kelas</label>
+              <select id="kelas" required>
+                <option value="">Pilih Kelas</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+              </select>
+            </div>
+
+            <button type="submit" class="btn">
+              <i class="fas fa-save"></i> Tambah Akun
+            </button>
+          </form>
+        </div>
+
+        <!-- Daftar Akun Aktif (65%) -->
+        <div class="table-container">
+          <h3><i class="fas fa-list"></i> Daftar Akun Aktif</h3>
+
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>NIS</th>
+                <th>Nama Lengkap</th>
+                <th>Role</th>
+                <th>Tingkatan</th>
+                <th>Kelas</th>
+                <th>Aksi</th>
+              </tr>
+            </thead>
+            <tbody id="accounts-list">
+              <tr>
+                <td colspan="6" style="text-align: center; color: var(--text-muted);">Memuat data...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Upload Soal Section -->
+    <div class="admin-section">
+      <h2><i class="fas fa-file-upload"></i> Upload Soal</h2>
+
+      <div class="upload-grid">
+        <!-- Form Upload (40%) -->
+        <div class="form-container">
+          <h3><i class="fas fa-cloud-upload-alt"></i> Upload Soal Baru</h3>
+
+          <form id="upload-soal-form">
+            <div class="form-group">
+              <label>Judul Soal</label>
+              <input type="text" id="judul-soal" placeholder="Contoh: Soal UTS Informatika" required>
+            </div>
+
+            <div class="form-group">
+              <label>Jenis Soal</label>
+              <select id="jenis-soal" required>
+                <option value="">Pilih Jenis</option>
+                <option value="Pilihan Ganda">Pilihan Ganda</option>
+                <option value="Essay">Essay</option>
+                <option value="Praktikum">Praktikum</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label>Tingkatan</label>
+              <select id="soal-tingkatan" required>
+                <option value="">Pilih Tingkatan</option>
+                <option value="SMA">SMA</option>
+                <option value="SMP">SMP</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label>Kelas</label>
+              <select id="soal-kelas" required>
+                <option value="">Pilih Kelas</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label>Metode</label>
+              <select id="soal-metode" required>
+                <option value="">Pilih Metode</option>
+                <option value="Online">Online (Web)</option>
+                <option value="PDF">PDF Download</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label>Link/URL</label>
+              <input type="text" id="soal-link" placeholder="URL soal atau file" required>
+            </div>
+
+            <button type="submit" class="btn">
+              <i class="fas fa-upload"></i> Upload Soal
+            </button>
+          </form>
+        </div>
+
+        <!-- Daftar Soal (60%) -->
+        <div class="table-container">
+          <h3><i class="fas fa-tasks"></i> Soal Terupload</h3>
+
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Judul Soal</th>
+                <th>Jenis</th>
+                <th>Tingkatan/Kelas</th>
+                <th>Metode</th>
+                <th>Tanggal</th>
+                <th>Aksi</th>
+              </tr>
+            </thead>
+            <tbody id="soal-list">
+              <tr>
+                <td colspan="6" style="text-align: center; color: var(--text-muted);">Belum ada soal</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Upload Materi Section -->
+    <div class="admin-section">
+      <h2><i class="fas fa-book-open"></i> Upload Materi</h2>
+      <p style="color: var(--text-muted); text-align: center; padding: 2rem;">
+        <i class="fas fa-tools"></i> Fitur Upload Materi sedang dalam pengembangan
+      </p>
+    </div>
+
+    <!-- Kelola Nilai Section -->
+    <div class="admin-section">
+      <h2><i class="fas fa-chart-line"></i> Kelola Nilai</h2>
+      <p style="color: var(--text-muted); text-align: center; padding: 2rem;">
+        <i class="fas fa-tools"></i> Fitur Kelola Nilai sedang dalam pengembangan
+      </p>
+    </div>
+
+    <!-- Survey Section -->
+    <div class="admin-section">
+      <h2><i class="fas fa-poll"></i> Lihat Survey</h2>
+      <p style="color: var(--text-muted); text-align: center; padding: 2rem;">
+        <i class="fas fa-tools"></i> Fitur Lihat Survey sedang dalam pengembangan
+      </p>
+    </div>
+
+    <!-- Statistik Section -->
+    <div class="admin-section">
+      <h2><i class="fas fa-chart-bar"></i> Statistik</h2>
+      <p style="color: var(--text-muted); text-align: center; padding: 2rem;">
+        <i class="fas fa-tools"></i> Fitur Statistik sedang dalam pengembangan
+      </p>
+    </div>
+
+  </div>
+
+  <footer class="site-footer" style="background: var(--card-bg); backdrop-filter: blur(10px); border-top: 1px solid var(--glass-border); padding: 1.5rem 2rem; text-align: center; color: var(--text-muted); font-size: 0.9rem; position: relative; z-index: 100;">
+    &copy; 2025 Portal Siswa Informatika. MA PLUS & SMP IT YPI Nurul Hadina.<br>
+    Oleh: <strong style="color: var(--accent-color);">Fauzan Reza, S.T</strong> (Guru Informatika <strong style="color: var(--accent-color);">YPI Nurul Hadina</strong>)
+  </footer>
+
+  <script src="database.js"></script>
+  <script src="auth.js"></script>
+
+  <!-- Canvas Background Script -->
+  <script>
+    (function() {
+      const canvas = document.getElementById('particle-network');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+
+      function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+
+      resizeCanvas();
+
+      let particles = [];
+      const particleCount = 100, connectDistance = 150, mouse = { x: null, y: null, radius: 100 };
+
+      window.addEventListener('resize', () => {
+        resizeCanvas();
+        init();
+      });
+
+      window.addEventListener('mousemove', (event) => {
+        mouse.x = event.x; 
+        mouse.y = event.y;
+      });
+
+      window.addEventListener('mouseout', () => {
+        mouse.x = null; 
+        mouse.y = null;
+      });
+
+      class Particle {
+        constructor() {
+          this.x = Math.random() * canvas.width; 
+          this.y = Math.random() * canvas.height;
+          this.vx = (Math.random() - 0.5) * 0.5; 
+          this.vy = (Math.random() - 0.5) * 0.5;
+          this.radius = 2.5; 
+          this.color = 'rgba(0, 229, 255, 0.7)';
+        }
+
+        update() {
+          if (this.x < 0 || this.x > canvas.width) this.vx = -this.vx;
+          if (this.y < 0 || this.y > canvas.height) this.vy = -this.vy;
+          this.x += this.vx; 
+          this.y += this.vy;
+        }
+
+        draw() {
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+          ctx.fillStyle = this.color; 
+          ctx.fill();
+        }
+      }
+
+      function init() {
+        particles = [];
+        for (let i = 0; i < particleCount; i++) particles.push(new Particle());
+      }
+
+      function connect() {
+        for (let a = 0; a < particles.length; a++) {
+          for (let b = a + 1; b < particles.length; b++) {
+            const dx = particles[a].x - particles[b].x;
+            const dy = particles[a].y - particles[b].y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+
+            if (distance < connectDistance) {
+              const opacity = 1 - (distance / connectDistance);
+              ctx.strokeStyle = `rgba(0, 229, 255, ${opacity * 0.3})`;
+              ctx.lineWidth = 1.5; 
+              ctx.beginPath();
+              ctx.moveTo(particles[a].x, particles[a].y);
+              ctx.lineTo(particles[b].x, particles[b].y); 
+              ctx.stroke();
+            }
+          }
+
+          if (mouse.x) {
+            const dx = particles[a].x - mouse.x;
+            const dy = particles[a].y - mouse.y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+
+            if (distance < mouse.radius) {
+              const opacity = 1 - (distance / mouse.radius);
+              ctx.strokeStyle = `rgba(159, 47, 255, ${opacity * 0.5})`;
+              ctx.lineWidth = 2; 
+              ctx.beginPath();
+              ctx.moveTo(particles[a].x, particles[a].y);
+              ctx.lineTo(mouse.x, mouse.y); 
+              ctx.stroke();
+            }
+          }
+        }
+      }
+
+      function animate() {
+        if (!ctx) return;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        particles.forEach(p => { p.update(); p.draw(); });
+        connect(); 
+        requestAnimationFrame(animate);
+      }
+
+      init();
+      animate();
+    })();
+  </script>
+
+  <!-- Profile & Auth Script -->
+  <script>
+    // Check admin auth - FIXED: gunakan lowercase 'admin'
+    const currentUser = getSession();
+    if (!currentUser || (currentUser.role && currentUser.role.toLowerCase() !== 'admin')) {
+      alert('Akses ditolak! Anda bukan administrator.');
+      window.location.href = 'index.html';
+    }
+
+    document.getElementById('welcome-name').textContent = `Admin: ${currentUser.nama.split(' ')[0]}`;
+
+    const triggerBtn = document.getElementById('profile-trigger-btn');
+    const dropdownContent = document.getElementById('dropdown-content');
+
+    triggerBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      dropdownContent.classList.toggle('show');
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!triggerBtn.contains(e.target) && !dropdownContent.contains(e.target)) {
+        dropdownContent.classList.remove('show');
+      }
+    });
+
+    document.getElementById('logout-btn').addEventListener('click', (e) => {
+      e.preventDefault();
+      handleLogout();
+    });
+  </script>
+
+  <!-- Load Accounts Function - FIXED -->
+  <script>
+    function loadAccounts() {
+      // Gunakan getUsers dari database.js
+      const users = (typeof getUsers === 'function') ? getUsers() : (typeof getAllUsers === 'function' ? getAllUsers() : []);
+      const accountsList = document.getElementById('accounts-list');
+
+      if (!users || users.length === 0) {
+        accountsList.innerHTML = '<tr><td colspan="6" style="text-align: center; color: var(--text-muted);">Belum ada akun terdaftar</td></tr>';
+
+        // Reset stats
+        document.getElementById('total-siswa').textContent = '0';
+        document.getElementById('total-sma').textContent = '0';
+        document.getElementById('total-smp').textContent = '0';
+        document.getElementById('total-admin').textContent = '0';
+        return;
+      }
+
+      accountsList.innerHTML = users.map(user => `
+        <tr>
+          <td>${user.nis}</td>
+          <td>${user.nama}</td>
+          <td>${user.role}</td>
+          <td>${user.tingkatan || '-'}</td>
+          <td>${user.kelas || '-'}</td>
+          <td>
+            <button onclick="deleteAccount('${user.nis}')">
+              <i class="fas fa-trash"></i> Hapus
+            </button>
+          </td>
+        </tr>
+      `).join('');
+
+      // Update statistics - normalisasi ke lowercase
+      const totalSiswa = users.filter(u => u.role && u.role.toLowerCase() === 'siswa').length;
+      const totalAdmin = users.filter(u => u.role && u.role.toLowerCase() === 'admin').length;
+      const totalSMA = users.filter(u => u.role && u.role.toLowerCase() === 'siswa' && u.tingkatan === 'SMA').length;
+      const totalSMP = users.filter(u => u.role && u.role.toLowerCase() === 'siswa' && u.tingkatan === 'SMP').length;
+
+      document.getElementById('total-siswa').textContent = totalSiswa;
+      document.getElementById('total-sma').textContent = totalSMA;
+      document.getElementById('total-smp').textContent = totalSMP;
+      document.getElementById('total-admin').textContent = totalAdmin;
+    }
+
+    function deleteAccount(nis) {
+      if (!confirm('Yakin ingin menghapus akun ini?')) return;
+
+      const users = (typeof getUsers === 'function') ? getUsers() : [];
+      const filteredUsers = users.filter(u => u.nis !== nis);
+
+      if (typeof saveUsers === 'function') {
+        saveUsers(filteredUsers);
+      } else {
+        localStorage.setItem('portal_users', JSON.stringify(filteredUsers));
+      }
+
+      alert('Akun berhasil dihapus!');
+      loadAccounts();
+    }
+
+    // Load on page load
+    loadAccounts();
+  </script>
+
+  <!-- Add Account Form - FIXED -->
+  <script>
+    document.getElementById('add-account-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const nis = document.getElementById('nis').value.trim();
+      const nama = document.getElementById('nama').value.trim();
+      const password = document.getElementById('password').value;
+      const role = document.getElementById('role').value; // sudah lowercase dari option
+      const tingkatan = document.getElementById('tingkatan').value;
+      const kelas = document.getElementById('kelas').value;
+
+      if (password.length < 4) {
+        alert('Password minimal 4 karakter!');
+        return;
+      }
+
+      const users = (typeof getUsers === 'function') ? getUsers() : [];
+
+      // Check if NIS already exists
+      if (users.some(u => u.nis === nis)) {
+        alert('NIS sudah terdaftar!');
+        return;
+      }
+
+      const newUser = { nis, nama, password, role, tingkatan, kelas };
+      users.push(newUser);
+
+      if (typeof saveUsers === 'function') {
+        saveUsers(users);
+      } else {
+        localStorage.setItem('portal_users', JSON.stringify(users));
+      }
+
+      alert('Akun berhasil ditambahkan!');
+      this.reset();
+      loadAccounts();
+    });
+  </script>
+
+  <!-- Load Soal Function -->
+  <script>
+    function loadSoal() {
+      const soal = JSON.parse(localStorage.getItem('soal') || '[]');
+      const soalList = document.getElementById('soal-list');
+
+      if (soal.length === 0) {
+        soalList.innerHTML = '<tr><td colspan="6" style="text-align: center; color: var(--text-muted);">Belum ada soal</td></tr>';
+        return;
+      }
+
+      soalList.innerHTML = soal.map((s, idx) => `
+        <tr>
+          <td>${s.judul}</td>
+          <td>${s.jenis}</td>
+          <td>${s.tingkatan} / Kelas ${s.kelas}</td>
+          <td>${s.metode}</td>
+          <td>${s.tanggal}</td>
+          <td>
+            <button onclick="deleteSoal(${idx})">
+              <i class="fas fa-trash"></i> Hapus
+            </button>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    function deleteSoal(index) {
+      if (!confirm('Yakin ingin menghapus soal ini?')) return;
+
+      const soal = JSON.parse(localStorage.getItem('soal') || '[]');
+      soal.splice(index, 1);
+      localStorage.setItem('soal', JSON.stringify(soal));
+
+      alert('Soal berhasil dihapus!');
+      loadSoal();
+    }
+
+    // Load on page load
+    loadSoal();
+  </script>
+
+  <!-- Upload Soal Form -->
+  <script>
+    document.getElementById('upload-soal-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const judul = document.getElementById('judul-soal').value.trim();
+      const jenis = document.getElementById('jenis-soal').value;
+      const tingkatan = document.getElementById('soal-tingkatan').value;
+      const kelas = document.getElementById('soal-kelas').value;
+      const metode = document.getElementById('soal-metode').value;
+      const link = document.getElementById('soal-link').value.trim();
+
+      const soal = JSON.parse(localStorage.getItem('soal') || '[]');
+
+      const today = new Date();
+      const tanggal = `${today.getDate()}/${today.getMonth() + 1}/${today.getFullYear()}`;
+
+      const newSoal = { judul, jenis, tingkatan, kelas, metode, link, tanggal };
+      soal.push(newSoal);
+      localStorage.setItem('soal', JSON.stringify(soal));
+
+      alert('Soal berhasil diupload!');
+      this.reset();
+      loadSoal();
+    });
+  </script>
+
+</body>
+</html>

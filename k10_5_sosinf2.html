@@ -1,0 +1,1500 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kelas X • Peran Informatika</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary-color: #FF6B6B;
+      --secondary-color: #4ECDC4;
+      --accent-color: #FFE66D;
+      --dark-color: #111827;
+      --light-color: #F8F9FA;
+      --success-color: #10B981;
+      --danger-color: #EF4444;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
+      line-height: 1.6;
+      color: #1F2937;
+      background: var(--light-color);
+    }
+
+    /* NAVBAR */
+    .navbar {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: #fff;
+      padding: 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+    }
+
+    .navbar-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .navbar-title {
+      font-size: 2rem;
+      font-weight: 800;
+      letter-spacing: 0.3px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.35);
+      animation: navPulse 2.4s ease-in-out infinite;
+    }
+
+    .navbar-sub {
+      font-size: 0.9rem;
+      opacity: 0.95;
+      font-weight: 600;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.35);
+    }
+
+    @keyframes navPulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.03); }
+    }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: #fff;
+      padding: 2rem 1rem;
+      text-align: center;
+      border-bottom: 5px solid #FFE66D;
+    }
+
+    .hero-content {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .hero-emoji {
+      font-size: 2.3rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .hero h1 {
+      font-size: 1.9rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .hero p {
+      opacity: 0.98;
+      font-size: 1.05rem;
+    }
+
+    /* CONTAINER */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    section {
+      margin: 2rem 0;
+    }
+
+    section h2 {
+      color: var(--primary-color);
+      font-size: 1.6rem;
+      margin-bottom: 1rem;
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+      border-left: 5px solid var(--secondary-color);
+      padding-left: 0.8rem;
+    }
+
+    /* CARDS */
+    .card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 1.2rem;
+      margin-bottom: 1.2rem;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      border-left: 5px solid var(--secondary-color);
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.25);
+    }
+
+    .card h3 {
+      color: var(--primary-color);
+      margin-bottom: 0.7rem;
+      font-size: 1.2rem;
+      display: flex;
+      gap: 0.4rem;
+      align-items: center;
+    }
+
+    .card p {
+      color: #4B5563;
+      margin-bottom: 0.6rem;
+    }
+
+    .content-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem;
+      margin: 0.8rem 0 1.2rem 0;
+    }
+
+    .content-box {
+      background: #fff;
+      padding: 1.2rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+      border-top: 4px solid var(--primary-color);
+      transition: all 0.3s ease;
+    }
+
+    .content-box:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    }
+
+    .content-box h4 {
+      color: var(--primary-color);
+      margin-bottom: 0.6rem;
+      font-size: 1.1rem;
+    }
+
+    .icon-box {
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      box-shadow: 0 4px 12px rgba(102,126,234,0.3);
+    }
+
+    .tip-box {
+      background: linear-gradient(135deg, #8B5CF6 0%, #EC4899 100%);
+      color: #fff;
+      padding: 1.1rem;
+      border-radius: 10px;
+      margin: 1rem 0;
+      border-left: 5px solid #1F2937;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    .tip-box h4 {
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .fact-box {
+      background: linear-gradient(135deg, #1E88E5 0%, #00ACC1 100%);
+      color: #fff;
+      padding: 1.1rem;
+      border-radius: 10px;
+      margin: 1rem 0;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    .success-box {
+      background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+      color: #fff;
+      padding: 1.1rem;
+      border-radius: 10px;
+      margin: 1rem 0;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    .download-box {
+      background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+      color: #fff;
+      padding: 1.5rem;
+      border-radius: 12px;
+      margin: 1.5rem 0;
+      text-align: center;
+      box-shadow: 0 6px 20px rgba(16,185,129,0.3);
+    }
+
+    .download-box h4 {
+      font-size: 1.3rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .btn-download {
+      display: inline-block;
+      background: #fff;
+      color: #10B981;
+      padding: 0.8rem 1.5rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.1rem;
+      margin: 0.5rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    .btn-download:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+    }
+
+    /* VIDEO */
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1rem;
+    }
+
+    .video-card {
+      background: #fff;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .video-card:hover {
+      transform: translateY(-8px);
+    }
+
+    .video-thumbnail {
+      width: 100%;
+      height: 150px;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.4rem;
+      color: #fff;
+    }
+
+    .video-info {
+      padding: 0.9rem;
+    }
+
+    .video-info h4 {
+      margin-bottom: 0.4rem;
+      font-size: 1rem;
+      color: #111827;
+    }
+
+    .video-info p {
+      font-size: 0.85rem;
+      color: #6B7280;
+      margin-bottom: 0.6rem;
+    }
+
+    .video-link {
+      display: inline-block;
+      background: #667eea;
+      color: #fff;
+      padding: 0.45rem 0.8rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: all 0.25s ease;
+    }
+
+    .video-link:hover {
+      background: #764ba2;
+      transform: translateY(-2px);
+    }
+
+    /* QUIZ */
+    .game-section {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: #fff;
+      padding: 1.25rem 1rem;
+      border-radius: 14px;
+      margin: 1.4rem 0;
+    }
+
+    .game-section h3 {
+      color: #fff;
+      margin-bottom: 0.9rem;
+      font-size: 1.2rem;
+    }
+
+    .game-container {
+      background: rgba(255,255,255,0.96);
+      color: #111827;
+      padding: 0.9rem;
+      border-radius: 10px;
+      margin-bottom: 0.8rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .game-question {
+      font-weight: 700;
+      margin-bottom: 0.6rem;
+      font-size: 1rem;
+      color: #111827;
+    }
+
+    .quiz-options {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0.6rem;
+    }
+
+    .quiz-option {
+      background: #f3f4f6;
+      border: 2px solid #e5e7eb;
+      padding: 0.7rem 0.8rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-weight: 600;
+      font-size: 0.92rem;
+      color: #1F2937;
+    }
+
+    .quiz-option:hover {
+      background: #E0E7FF;
+      border-color: #667eea;
+      transform: translateX(4px);
+    }
+
+    .quiz-option.correct {
+      background: var(--success-color);
+      border-color: var(--success-color);
+      color: #fff;
+    }
+
+    .quiz-option.incorrect {
+      background: var(--danger-color);
+      border-color: var(--danger-color);
+      color: #fff;
+    }
+
+    .result-message {
+      margin-top: 0.6rem;
+      padding: 0.7rem;
+      border-radius: 8px;
+      text-align: center;
+      font-weight: 700;
+      font-size: 0.95rem;
+      display: none;
+    }
+
+    .result-message.show {
+      display: block;
+    }
+
+    .result-message.correct {
+      background: var(--success-color);
+      color: #fff;
+    }
+
+    .result-message.incorrect {
+      background: var(--danger-color);
+      color: #fff;
+    }
+
+    .progress-container {
+      background: #e5e7eb;
+      border-radius: 10px;
+      margin: 0.8rem 0 1rem 0;
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      height: 20px;
+      background: linear-gradient(90deg, #4ECDC4, #FF6B6B);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.8rem;
+      transition: width 0.25s ease;
+    }
+
+    .score-display {
+      text-align: center;
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--primary-color);
+      margin: 0.6rem 0;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #111827;
+      color: #fff;
+      text-align: center;
+      padding: 1rem 0.8rem 0.8rem 0.8rem;
+      margin-top: 2rem;
+    }
+
+    .footer-content {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .footer-content h3 {
+      margin-bottom: 0.3rem;
+      color: #FFD700;
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
+    .footer-content p {
+      margin-bottom: 0.3rem;
+      opacity: 0.9;
+      font-size: 0.8rem;
+    }
+
+    .social-media {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin: 0.8rem 0 0.5rem 0;
+      flex-wrap: wrap;
+    }
+
+    .social-icon {
+      width: 34px;
+      height: 34px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      transition: all 0.25s ease;
+      text-decoration: none;
+    }
+
+    .social-icon svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .social-icon.whatsapp {
+      background: #25D366;
+      color: #fff;
+    }
+
+    .social-icon.whatsapp:hover {
+      background: #128C7E;
+      transform: scale(1.08) rotate(3deg);
+    }
+
+    .social-icon.youtube {
+      background: #FF0000;
+      color: #fff;
+    }
+
+    .social-icon.youtube:hover {
+      background: #CC0000;
+      transform: scale(1.08) rotate(-3deg);
+    }
+
+    .social-icon.instagram {
+      background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+      color: #fff;
+    }
+
+    .social-icon.instagram:hover {
+      transform: scale(1.08);
+      box-shadow: 0 6px 16px rgba(188,24,136,0.4);
+    }
+
+    .social-icon.facebook {
+      background: #1877F2;
+      color: #fff;
+    }
+
+    .social-icon.facebook:hover {
+      background: #145DBF;
+      transform: scale(1.08) rotate(-2deg);
+    }
+
+    .footer-small {
+      margin-top: 0.6rem;
+      font-size: 0.7rem;
+      opacity: 0.85;
+    }
+
+    @media (max-width: 768px) {
+      .navbar-title {
+        font-size: 1.6rem;
+      }
+
+      .hero h1 {
+        font-size: 1.4rem;
+      }
+
+      section h2 {
+        font-size: 1.3rem;
+      }
+
+      .content-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="navbar-content">
+      <div>
+        <div class="navbar-title">🌟 Peran Informatika</div>
+        <div class="navbar-sub">Kelas X • Informatika dalam Berbagai Bidang</div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-emoji">💼🏥🏦🌾</div>
+      <h1>Peran Informatika dalam Berbagai Bidang</h1>
+      <p>Menjelajahi bagaimana informatika mengubah dan meningkatkan berbagai sektor kehidupan: pendidikan, kesehatan, perdagangan, perbankan, pemerintahan, penanggulangan bencana, industri, pertanian, dan transportasi</p>
+    </div>
+  </section>
+
+  <div class="container">
+    <!-- INTRO -->
+    <section>
+      <h2>📚 Pengenalan</h2>
+
+      <div class="card">
+        <h3>Informatika: Penggerak Transformasi Digital</h3>
+        <p>Informatika telah menjadi <strong>tulang punggung</strong> transformasi digital di berbagai sektor kehidupan. Dari pendidikan hingga pertanian, teknologi informasi menghadirkan solusi inovatif yang meningkatkan efisiensi, produktivitas, dan kualitas hidup masyarakat.</p>
+
+        <div class="fact-box">
+          <h4>🌐 Mengapa Informatika Penting?</h4>
+          <ul style="list-style-position: inside; margin-left: 0.6rem;">
+            <li>• <strong>Efisiensi:</strong> Otomasi proses menghemat waktu & biaya</li>
+            <li>• <strong>Akses informasi:</strong> Data tersedia real-time, di mana saja</li>
+            <li>• <strong>Inovasi:</strong> Teknologi baru menciptakan solusi kreatif</li>
+            <li>• <strong>Konektivitas:</strong> Menghubungkan orang & sistem secara global</li>
+            <li>• <strong>Data-driven decision:</strong> Keputusan berdasarkan analisis data</li>
+            <li>• <strong>Skalabilitas:</strong> Layanan dapat diperluas dengan mudah</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- PENDIDIKAN -->
+    <section>
+      <h2>🎓 Informatika dalam Pendidikan</h2>
+
+      <div class="card">
+        <div class="icon-box">📚</div>
+        <h3>Transformasi Digital di Dunia Pendidikan</h3>
+        <p>Informatika telah merevolusi cara kita belajar dan mengajar, membuat pendidikan lebih aksesible, interaktif, dan personal.</p>
+
+        <div class="content-grid">
+          <div class="content-box">
+            <h4>E-Learning & LMS</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>Platform:</strong> Google Classroom, Moodle, Canvas, Edmodo</li>
+              <li>• <strong>Fitur:</strong> Video pembelajaran, quiz online, assignment submission</li>
+              <li>• <strong>Benefit:</strong> Belajar kapan saja, di mana saja (fleksibel)</li>
+              <li>• <strong>Tracking:</strong> Progress siswa terpantau real-time</li>
+            </ul>
+          </div>
+
+          <div class="content-box">
+            <h4>Konten Digital Interaktif</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>Video tutorial:</strong> YouTube Education, Khan Academy</li>
+              <li>• <strong>E-book & audiobook:</strong> Materi digital portabel</li>
+              <li>• <strong>Simulasi & gamifikasi:</strong> Belajar sambil bermain</li>
+              <li>• <strong>VR/AR:</strong> Virtual lab, immersive learning</li>
+            </ul>
+          </div>
+
+          <div class="content-box">
+            <h4>Sistem Manajemen Sekolah</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>Absensi digital:</strong> Fingerprint, face recognition</li>
+              <li>• <strong>Nilai online:</strong> Rapor digital, notifikasi ke orang tua</li>
+              <li>• <strong>Administrasi:</strong> Database siswa, guru, keuangan</li>
+              <li>• <strong>Komunikasi:</strong> Portal siswa-guru-orang tua</li>
+            </ul>
+          </div>
+
+          <div class="content-box">
+            <h4>Adaptive Learning & AI</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>Personalisasi:</strong> Materi disesuaikan kemampuan siswa</li>
+              <li>• <strong>Chatbot tutor:</strong> Bantuan belajar 24/7</li>
+              <li>• <strong>Auto-grading:</strong> Koreksi otomatis soal objektif</li>
+              <li>• <strong>Analytics:</strong> Prediksi kesulitan belajar siswa</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="success-box">
+          <h4>✅ Dampak Positif</h4>
+          <ul style="list-style-position: inside; margin-left: 0.6rem;">
+            <li>• <strong>Akses pendidikan merata:</strong> Daerah terpencil bisa akses materi berkualitas</li>
+            <li>• <strong>Biaya lebih murah:</strong> Tidak perlu buku fisik, transportasi</li>
+            <li>• <strong>Pembelajaran lebih menarik:</strong> Multimedia, interaktif</li>
+            <li>• <strong>Kolaborasi global:</strong> Siswa bisa belajar dengan teman dari negara lain</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- KESEHATAN -->
+    <section>
+      <h2>🏥 Informatika dalam Kesehatan</h2>
+
+      <div class="card">
+        <div class="icon-box">⚕️</div>
+        <h3>Health Informatics: Teknologi untuk Kesehatan</h3>
+        <p>Informatika kesehatan (Health IT) meningkatkan kualitas layanan medis, efisiensi rumah sakit, dan akses healthcare untuk semua.</p>
+
+        <div class="content-grid">
+          <div class="content-box">
+            <h4>Rekam Medis Elektronik (EMR/EHR)</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>Digital patient record:</strong> Riwayat medis tersimpan digital</li>
+              <li>• <strong>Akses cepat:</strong> Dokter bisa lihat history pasien instantly</li>
+              <li>• <strong>Interoperability:</strong> Data terintegrasi antar rumah sakit</li>
+              <li>• <strong>Keamanan:</strong> Enkripsi data, akses terkontrol</li>
+            </ul>
+          </div>
+
+          <div class="content-box">
+            <h4>Telemedicine & Telehealth</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>Konsultasi online:</strong> Video call dengan dokter (Halodoc, Alodokter)</li>
+              <li>• <strong>E-prescription:</strong> Resep digital langsung ke apotek</li>
+              <li>• <strong>Remote monitoring:</strong> Pantau pasien jarak jauh (IoT devices)</li>
+              <li>• <strong>Mobile health apps:</strong> Tracking kesehatan pribadi</li>
+            </ul>
+          </div>
+
+          <div class="content-box">
+            <h4>Sistem Informasi Rumah Sakit (SIMRS)</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>Registrasi online:</strong> Booking appointment via app</li>
+              <li>• <strong>Antrian digital:</strong> Queue management system</li>
+              <li>• <strong>Inventory:</strong> Manajemen obat & alat kesehatan</li>
+              <li>• <strong>Billing:</strong> Pembayaran cashless, klaim BPJS otomatis</li>
+            </ul>
+          </div>
+
+          <div class="content-box">
+            <h4>AI & Big Data dalam Kesehatan</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>Diagnostic AI:</strong> Deteksi penyakit dari X-ray, CT scan</li>
+              <li>• <strong>Drug discovery:</strong> AI mempercepat riset obat baru</li>
+              <li>• <strong>Predictive analytics:</strong> Prediksi wabah, risiko penyakit</li>
+              <li>• <strong>Personalized medicine:</strong> Treatment sesuai genetik pasien</li>
+            </ul>
+          </div>
+
+          <div class="content-box">
+            <h4>Wearable Health Devices</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>Smartwatch:</strong> Monitor heart rate, sleep, activity</li>
+              <li>• <strong>Fitness tracker:</strong> Hitung kalori, langkah, olahraga</li>
+              <li>• <strong>Glucose monitor:</strong> Cek gula darah real-time (diabetes)</li>
+              <li>• <strong>ECG device:</strong> Monitor jantung portable</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="success-box">
+          <h4>✅ Manfaat</h4>
+          <ul style="list-style-position: inside; margin-left: 0.6rem;">
+            <li>• <strong>Akses healthcare lebih mudah:</strong> Telemedicine untuk daerah terpencil</li>
+            <li>• <strong>Diagnosis lebih akurat:</strong> AI membantu deteksi dini</li>
+            <li>• <strong>Efisiensi rumah sakit:</strong> Proses administrasi otomatis</li>
+            <li>• <strong>Pencegahan penyakit:</strong> Monitoring kesehatan berkelanjutan</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- PERDAGANGAN -->
+    <section>
+      <h2>🛒 Informatika dalam Perdagangan</h2>
+
+      <div class="card">
+        <div class="icon-box">💳</div>
+        <h3>E-Commerce & Digital Trade</h3>
+        <p>Informatika telah mengubah wajah perdagangan dari offline ke online, menciptakan ekosistem digital yang efisien dan global.</p>
+
+        <div class="content-grid">
+          <div class="content-box">
+            <h4>Platform E-Commerce</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>Marketplace:</strong> Tokopedia, Shopee, Lazada, Bukalapak</li>
+              <li>• <strong>Brand store:</strong> Website toko sendiri (Shopify, WooCommerce)</li>
+              <li>• <strong>Social commerce:</strong> Jualan via Instagram, Facebook, TikTok Shop</li>
+              <li>• <strong>C2C platform:</strong> OLX, Carousell (jual beli antar individu)</li>
+            </ul>
+          </div>
+
+          <div class="content-box">
+            <h4>Payment Gateway & Fintech</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>E-wallet:</strong> GoPay, OVO, DANA, ShopeePay</li>
+              <li>• <strong>Virtual account:</strong> Transfer bank otomatis</li>
+              <li>• <strong>Credit card & debit:</strong> Pembayaran online</li>
+              <li>• <strong>COD:</strong> Cash on delivery (bayar saat barang tiba)</li>
+              <li>• <strong>BNPL:</strong> Buy Now Pay Later (cicilan tanpa kartu kredit)</li>
+            </ul>
+          </div>
+
+          <div class="content-box">
+            <h4>Supply Chain Management</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>Inventory system:</strong> Stok barang real-time</li>
+              <li>• <strong>Warehouse management:</strong> Otomasi gudang (WMS)</li>
+              <li>• <strong>Shipping integration:</strong> Tracking pengiriman otomatis</li>
+              <li>• <strong>Dropshipping:</strong> Jualan tanpa stok</li>
+            </ul>
+          </div>
+
+          <div class="content-box">
+            <h4>Digital Marketing & Analytics</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>SEO/SEM:</strong> Optimasi search engine</li>
+              <li>• <strong>Social media ads:</strong> Iklan Facebook, Instagram, TikTok</li>
+              <li>• <strong>Email marketing:</strong> Newsletter, promo via email</li>
+              <li>• <strong>Analytics:</strong> Google Analytics, data-driven marketing</li>
+            </ul>
+          </div>
+
+          <div class="content-box">
+            <h4>Customer Relationship Management (CRM)</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>Chatbot:</strong> Customer service 24/7 otomatis</li>
+              <li>• <strong>Loyalty program:</strong> Poin reward, membership</li>
+              <li>• <strong>Personalization:</strong> Rekomendasi produk sesuai preferensi</li>
+              <li>• <strong>Review & rating:</strong> Feedback pelanggan transparan</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="success-box">
+          <h4>✅ Keuntungan E-Commerce</h4>
+          <ul style="list-style-position: inside; margin-left: 0.6rem;">
+            <li>• <strong>Jangkauan pasar luas:</strong> Jualan ke seluruh Indonesia/dunia</li>
+            <li>• <strong>Modal lebih kecil:</strong> Tidak perlu sewa toko fisik</li>
+            <li>• <strong>Operasional 24/7:</strong> Toko buka setiap saat</li>
+            <li>• <strong>Data customer:</strong> Analytics untuk strategi bisnis</li>
+            <li>• <strong>UMKM naik kelas:</strong> Penjual kecil bisa bersaing</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- PERBANKAN -->
+    <section>
+      <h2>🏦 Informatika dalam Perbankan</h2>
+
+      <div class="card">
+        <div class="icon-box">💰</div>
+        <h3>Digital Banking & Fintech Revolution</h3>
+        <p>Industri perbankan telah bertransformasi drastis dengan teknologi, dari banking tradisional ke digital banking yang lebih cepat, aman, dan convenient.</p>
+
+        <div class="content-grid">
+          <div class="content-box">
+            <h4>Mobile Banking & Internet Banking</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>Transfer uang:</strong> Real-time, 24/7, tanpa ke bank</li>
+              <li>• <strong>Cek saldo:</strong> Lihat rekening kapan saja</li>
+              <li>• <strong>Bayar tagihan:</strong> Listrik, air, pulsa, internet</li>
+              <li>• <strong>Investasi:</strong> Beli reksadana, saham via app</li>
+              <li>• <strong>Pinjaman online:</strong> Ajukan kredit dari rumah</li>
+            </ul>
+          </div>
+
+          <div class="content-box">
+            <h4>ATM & Cashless Society</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>ATM:</strong> Tarik tunai, setor tunai, transfer</li>
+              <li>• <strong>Debit card:</strong> Belanja cashless di mana-mana</li>
+              <li>• <strong>Credit card:</strong> Bayar nanti, reward points</li>
+              <li>• <strong>Contactless:</strong> Tap card untuk bayar (NFC)</li>
+              <li>• <strong>QR payment:</strong> QRIS untuk semua e-wallet</li>
+            </ul>
+          </div>
+
+          <div class="content-box">
+            <h4>Core Banking System</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>Database nasabah:</strong> Semua data terpusat aman</li>
+              <li>• <strong>Real-time processing:</strong> Transaksi instant</li>
+              <li>• <strong>Multi-channel:</strong> ATM, mobile, internet, branch terintegrasi</li>
+              <li>• <strong>Security:</strong> Enkripsi, 2FA, biometric</li>
+            </ul>
+          </div>
+
+          <div class="content-box">
+            <h4>AI & Big Data Banking</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>Fraud detection:</strong> AI deteksi transaksi mencurigakan</li>
+              <li>• <strong>Credit scoring:</strong> Analisis kelayakan kredit otomatis</li>
+              <li>• <strong>Chatbot:</strong> Virtual assistant untuk customer service</li>
+              <li>• <strong>Personalized offers:</strong> Produk sesuai profil nasabah</li>
+            </ul>
+          </div>
+
+          <div class="content-box">
+            <h4>Fintech & Digital Payment</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>E-wallet:</strong> GoPay, OVO, DANA, ShopeePay</li>
+              <li>• <strong>P2P lending:</strong> Pinjam-meminjam online (KoinWorks, Modalku)</li>
+              <li>• <strong>Robo-advisor:</strong> Investasi otomatis pakai AI</li>
+              <li>• <strong>Cryptocurrency:</strong> Bitcoin, Ethereum (blockchain)</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="success-box">
+          <h4>✅ Benefit Digital Banking</h4>
+          <ul style="list-style-position: inside; margin-left: 0.6rem;">
+            <li>• <strong>Convenience:</strong> Banking dari rumah, tidak perlu antri</li>
+            <li>• <strong>Efficiency:</strong> Transaksi cepat, paperless</li>
+            <li>• <strong>Financial inclusion:</strong> Akses banking untuk semua (unbanked population)</li>
+            <li>• <strong>Cost reduction:</strong> Biaya operasional bank lebih murah</li>
+            <li>• <strong>Security:</strong> Keamanan lebih baik dengan enkripsi & biometric</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- PEMERINTAHAN -->
+    <section>
+      <h2>🏛️ Informatika dalam Pemerintahan</h2>
+
+      <div class="card">
+        <div class="icon-box">🏢</div>
+        <h3>E-Government: Digital Transformation Sektor Publik</h3>
+        <p>E-Government (Pemerintahan Elektronik) meningkatkan transparansi, efisiensi, dan kualitas layanan publik melalui teknologi informasi.</p>
+
+        <div class="content-grid">
+          <div class="content-box">
+            <h4>Layanan Publik Digital</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>Dukcapil online:</strong> e-KTP, Kartu Keluarga, Akta digital</li>
+              <li>• <strong>e-Samsat:</strong> Bayar pajak kendaraan online</li>
+              <li>• <strong>SIM online:</strong> Perpanjang SIM tanpa ke Polda</li>
+              <li>• <strong>Pajak online:</strong> e-Filing pajak (DJP Online)</li>
+              <li>• <strong>Perizinan:</strong> OSS (Online Single Submission) untuk bisnis</li>
+            </ul>
+          </div>
+
+          <div class="content-box">
+            <h4>Portal & Website Pemerintah</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>Indonesia.go.id:</strong> Portal resmi pemerintah</li>
+              <li>• <strong>Website daerah:</strong> Info daerah, pengumuman, layanan</li>
+              <li>• <strong>Transparansi:</strong> Publikasi APBN, proyek, tender</li>
+              <li>• <strong>E-procurement:</strong> Pengadaan barang/jasa online (LPSE)</li>
+            </ul>
+          </div>
+
+          <div class="content-box">
+            <h4>Smart City & IoT</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>Traffic management:</strong> CCTV, sensor lalu lintas real-time</li>
+              <li>• <strong>Smart parking:</strong> Cari parkir kosong via app</li>
+              <li>• <strong>Smart lighting:</strong> Lampu jalan otomatis (hemat energi)</li>
+              <li>• <strong>Waste management:</strong> Manajemen sampah cerdas</li>
+              <li>• <strong>Surveillance:</strong> CCTV keamanan terintegrasi</li>
+            </ul>
+          </div>
+
+          <div class="content-box">
+            <h4>E-Voting & E-Democracy</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>E-voting:</strong> Pemilu elektronik (aman & cepat)</li>
+              <li>• <strong>Partisipasi publik:</strong> Forum online, polling</li>
+              <li>• <strong>Pengaduan online:</strong> LAPOR!, laporan masyarakat</li>
+              <li>• <strong>Transparansi:</strong> Live streaming sidang, budget tracking</li>
+            </ul>
+          </div>
+
+          <div class="content-box">
+            <h4>Data & Analytics Pemerintah</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>Big data:</strong> Analisis data penduduk, ekonomi</li>
+              <li>• <strong>Dashboard:</strong> Visualisasi data real-time</li>
+              <li>• <strong>Policy making:</strong> Kebijakan berbasis data</li>
+              <li>• <strong>Open data:</strong> Data pemerintah terbuka untuk publik</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="success-box">
+          <h4>✅ Manfaat E-Government</h4>
+          <ul style="list-style-position: inside; margin-left: 0.6rem;">
+            <li>• <strong>Transparansi & akuntabilitas:</strong> Rakyat bisa pantau pemerintah</li>
+            <li>• <strong>Efisiensi layanan:</strong> Proses cepat, tidak perlu antri</li>
+            <li>• <strong>Hemat biaya:</strong> Paperless, otomasi proses</li>
+            <li>• <strong>Anti-korupsi:</strong> Sistem digital mengurangi suap & kolusi</li>
+            <li>• <strong>Partisipasi publik:</strong> Masyarakat lebih terlibat dalam pemerintahan</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- PENANGGULANGAN BENCANA -->
+    <section>
+      <h2>🚨 Informatika dalam Penanggulangan Bencana Alam</h2>
+
+      <div class="card">
+        <div class="icon-box">🌪️</div>
+        <h3>Disaster Management & Early Warning System</h3>
+        <p>Teknologi informasi berperan krusial dalam mitigasi, respons, dan pemulihan bencana alam, menyelamatkan banyak nyawa.</p>
+
+        <div class="content-grid">
+          <div class="content-box">
+            <h4>Early Warning System (EWS)</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>BMKG:</strong> Peringatan dini gempa, tsunami, cuaca ekstrem</li>
+              <li>• <strong>Sensor seismik:</strong> Deteksi gempa real-time</li>
+              <li>• <strong>Weather radar:</strong> Prediksi curah hujan, banjir</li>
+              <li>• <strong>SMS broadcast:</strong> Kirim peringatan massal ke penduduk</li>
+              <li>• <strong>Sirine otomatis:</strong> Alarm tsunami, banjir</li>
+            </ul>
+          </div>
+
+          <div class="content-box">
+            <h4>GIS & Pemetaan Bencana</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>GIS:</strong> Geographic Information System untuk peta digital</li>
+              <li>• <strong>Hazard map:</strong> Peta zona rawan bencana</li>
+              <li>• <strong>Satellite imagery:</strong> Monitoring dari luar angkasa</li>
+              <li>• <strong>Drones:</strong> Survey area terdampak dengan UAV</li>
+              <li>• <strong>Real-time mapping:</strong> Update peta bencana secara live</li>
+            </ul>
+          </div>
+
+          <div class="content-box">
+            <h4>Koordinasi & Komunikasi Darurat</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>Command center:</strong> Pusat koordinasi BNPB</li>
+              <li>• <strong>Walkie-talkie digital:</strong> Komunikasi tim SAR</li>
+              <li>• <strong>Satellite phone:</strong> Komunikasi saat jaringan mati</li>
+              <li>• <strong>Social media:</strong> Info cepat via Twitter, Instagram</li>
+              <li>• <strong>Mobile app:</strong> PetaBencana.id, Info BMKG</li>
+            </ul>
+          </div>
+
+          <div class="content-box">
+            <h4>Data & Analytics Bencana</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>Database korban:</strong> Data missing person, pengungsi</li>
+              <li>• <strong>Damage assessment:</strong> Estimasi kerugian otomatis</li>
+              <li>• <strong>Predictive model:</strong> AI prediksi bencana</li>
+              <li>• <strong>Resource allocation:</strong> Distribusi bantuan optimal</li>
+            </ul>
+          </div>
+
+          <div class="content-box">
+            <h4>Crowd-sourcing & Volunteer</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>PetaBencana.id:</strong> Laporan bencana dari warga</li>
+              <li>• <strong>Social media monitoring:</strong> Tracking info bencana real-time</li>
+              <li>• <strong>Donation platform:</strong> Donasi online untuk korban</li>
+              <li>• <strong>Volunteer coordination:</strong> Sistem manajemen relawan</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="success-box">
+          <h4>✅ Manfaat IT dalam Bencana</h4>
+          <ul style="list-style-position: inside; margin-left: 0.6rem;">
+            <li>• <strong>Peringatan dini:</strong> Evakuasi lebih cepat, korban berkurang</li>
+            <li>• <strong>Koordinasi lebih baik:</strong> Tim respons terorganisir</li>
+            <li>• <strong>Transparansi bantuan:</strong> Tracking donasi & distribusi</li>
+            <li>• <strong>Mitigasi risiko:</strong> Perencanaan berbasis data historis</li>
+            <li>• <strong>Pemulihan lebih cepat:</strong> Rehabilitasi terencana dengan baik</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- INDUSTRI -->
+    <section>
+      <h2>🏭 Informatika dalam Bidang Industri</h2>
+
+      <div class="card">
+        <div class="icon-box">⚙️</div>
+        <h3>Industry 4.0: Smart Manufacturing</h3>
+        <p>Revolusi Industri 4.0 menggabungkan otomasi, IoT, AI, dan big data untuk menciptakan pabrik pintar yang efisien dan produktif.</p>
+
+        <div class="content-grid">
+          <div class="content-box">
+            <h4>Otomasi & Robotika</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>Industrial robots:</strong> Lengan robot untuk assembly line</li>
+              <li>• <strong>Automated machinery:</strong> Mesin produksi otomatis</li>
+              <li>• <strong>CNC machines:</strong> Computer Numerical Control</li>
+              <li>• <strong>AGV:</strong> Automated Guided Vehicle untuk transportasi</li>
+              <li>• <strong>Quality control:</strong> Inspeksi otomatis dengan AI vision</li>
+            </ul>
+          </div>
+
+          <div class="content-box">
+            <h4>IoT & Smart Sensors</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>Sensor monitoring:</strong> Suhu, tekanan, getaran mesin</li>
+              <li>• <strong>Predictive maintenance:</strong> Prediksi kerusakan mesin</li>
+              <li>• <strong>Real-time data:</strong> Dashboard produksi live</li>
+              <li>• <strong>Energy monitoring:</strong> Optimasi konsumsi listrik</li>
+            </ul>
+          </div>
+
+          <div class="content-box">
+            <h4>MES & ERP System</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>MES:</strong> Manufacturing Execution System</li>
+              <li>• <strong>ERP:</strong> Enterprise Resource Planning (SAP, Oracle)</li>
+              <li>• <strong>Supply chain:</strong> Manajemen raw material & distribusi</li>
+              <li>• <strong>Inventory:</strong> Tracking stok real-time</li>
+            </ul>
+          </div>
+
+          <div class="content-box">
+            <h4>AI & Big Data Analytics</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>Production optimization:</strong> AI optimalkan proses produksi</li>
+              <li>• <strong>Demand forecasting:</strong> Prediksi permintaan pasar</li>
+              <li>• <strong>Quality analysis:</strong> Deteksi defect otomatis</li>
+              <li>• <strong>Digital twin:</strong> Simulasi virtual pabrik</li>
+            </ul>
+          </div>
+
+          <div class="content-box">
+            <h4>Additive Manufacturing (3D Printing)</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>Prototyping:</strong> Cetak prototipe cepat</li>
+              <li>• <strong>Custom parts:</strong> Produksi suku cadang custom</li>
+              <li>• <strong>Reduced waste:</strong> Hemat material</li>
+              <li>• <strong>Complex geometry:</strong> Bentuk kompleks yang sulit dibuat manual</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="success-box">
+          <h4>✅ Keuntungan Smart Factory</h4>
+          <ul style="list-style-position: inside; margin-left: 0.6rem;">
+            <li>• <strong>Produktivitas meningkat:</strong> Otomasi 24/7, lebih cepat</li>
+            <li>• <strong>Kualitas konsisten:</strong> Mengurangi human error</li>
+            <li>• <strong>Biaya turun:</strong> Efisiensi energi, predictive maintenance</li>
+            <li>• <strong>Flexibility:</strong> Mudah adjust produksi sesuai demand</li>
+            <li>• <strong>Data-driven:</strong> Keputusan berdasarkan analisis real-time</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- PERTANIAN -->
+    <section>
+      <h2>🌾 Informatika dalam Pertanian</h2>
+
+      <div class="card">
+        <div class="icon-box">🚜</div>
+        <h3>Smart Agriculture & Precision Farming</h3>
+        <p>Teknologi informasi membawa revolusi di sektor pertanian, meningkatkan hasil panen, efisiensi sumber daya, dan keberlanjutan.</p>
+
+        <div class="content-grid">
+          <div class="content-box">
+            <h4>Precision Farming</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>GPS tracking:</strong> Pemetaan lahan presisi</li>
+              <li>• <strong>Soil sensors:</strong> Monitoring kelembaban, pH, nutrisi tanah</li>
+              <li>• <strong>Variable rate technology:</strong> Pupuk & pestisida sesuai kebutuhan</li>
+              <li>• <strong>Yield mapping:</strong> Peta hasil panen per area</li>
+            </ul>
+          </div>
+
+          <div class="content-box">
+            <h4>Drone & Satelit Pertanian</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>Aerial imaging:</strong> Monitoring kesehatan tanaman dari udara</li>
+              <li>• <strong>NDVI analysis:</strong> Deteksi stress tanaman (kekeringan, hama)</li>
+              <li>• <strong>Drone spraying:</strong> Semprot pestisida otomatis</li>
+              <li>• <strong>Satellite data:</strong> Cuaca, prediksi panen</li>
+            </ul>
+          </div>
+
+          <div class="content-box">
+            <h4>IoT & Smart Irrigation</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>Smart watering:</strong> Irigasi otomatis sesuai kondisi tanah</li>
+              <li>• <strong>Weather station:</strong> Monitoring cuaca real-time</li>
+              <li>• <strong>Greenhouse automation:</strong> Kontrol suhu, kelembaban otomatis</li>
+              <li>• <strong>Remote monitoring:</strong> Pantau lahan dari smartphone</li>
+            </ul>
+          </div>
+
+          <div class="content-box">
+            <h4>AI & Predictive Analytics</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>Crop prediction:</strong> Estimasi hasil panen</li>
+              <li>• <strong>Disease detection:</strong> AI deteksi penyakit tanaman dari foto</li>
+              <li>• <strong>Market forecast:</strong> Prediksi harga komoditas</li>
+              <li>• <strong>Planting recommendation:</strong> Saran tanaman sesuai kondisi</li>
+            </ul>
+          </div>
+
+          <div class="content-box">
+            <h4>E-Commerce Pertanian</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>Online marketplace:</strong> Jual hasil panen langsung ke konsumen</li>
+              <li>• <strong>Input supply:</strong> Beli pupuk, benih online</li>
+              <li>• <strong>Price info:</strong> Info harga pasar real-time</li>
+              <li>• <strong>Agritech apps:</strong> TaniHub, Tanifund, iGrow</li>
+            </ul>
+          </div>
+
+          <div class="content-box">
+            <h4>Livestock Management</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>RFID tagging:</strong> Tracking ternak individual</li>
+              <li>• <strong>Health monitoring:</strong> Sensor kesehatan hewan</li>
+              <li>• <strong>Automated feeding:</strong> Pemberian pakan otomatis</li>
+              <li>• <strong>Breeding management:</strong> Database genetik & reproduksi</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="success-box">
+          <h4>✅ Manfaat Smart Agriculture</h4>
+          <ul style="list-style-position: inside; margin-left: 0.6rem;">
+            <li>• <strong>Hasil panen meningkat:</strong> Optimasi growing conditions</li>
+            <li>• <strong>Hemat sumber daya:</strong> Efisiensi air, pupuk, pestisida</li>
+            <li>• <strong>Ramah lingkungan:</strong> Mengurangi penggunaan kimia berlebihan</li>
+            <li>• <strong>Pendapatan petani naik:</strong> Akses pasar lebih luas</li>
+            <li>• <strong>Food security:</strong> Ketahanan pangan nasional terjaga</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- TRANSPORTASI -->
+    <section>
+      <h2>🚗 Informatika dalam Transportasi</h2>
+
+      <div class="card">
+        <div class="icon-box">🚕</div>
+        <h3>Smart Mobility & Intelligent Transportation System</h3>
+        <p>Teknologi informasi mengubah cara kita berpindah, dari transportasi konvensional ke smart mobility yang efisien, aman, dan ramah lingkungan.</p>
+
+        <div class="content-grid">
+          <div class="content-box">
+            <h4>Ride-Hailing & Mobility Apps</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>Gojek, Grab, Uber:</strong> Ojek & taxi online</li>
+              <li>• <strong>Real-time tracking:</strong> Lacak driver & estimasi waktu</li>
+              <li>• <strong>Cashless payment:</strong> Bayar via e-wallet/kartu</li>
+              <li>• <strong>Rating system:</strong> Review driver & passenger</li>
+              <li>• <strong>Carpooling:</strong> GrabShare, car sharing</li>
+            </ul>
+          </div>
+
+          <div class="content-box">
+            <h4>GPS & Navigation System</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>Google Maps:</strong> Navigasi real-time, traffic update</li>
+              <li>• <strong>Waze:</strong> Rute tercepat, laporan pengguna</li>
+              <li>• <strong>Fleet management:</strong> Tracking armada kendaraan</li>
+              <li>• <strong>Geofencing:</strong> Notifikasi saat kendaraan keluar zona</li>
+            </ul>
+          </div>
+
+          <div class="content-box">
+            <h4>Smart Traffic Management</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>Traffic light AI:</strong> Lampu lalu lintas adaptif</li>
+              <li>• <strong>CCTV monitoring:</strong> Surveillance jalan raya</li>
+              <li>• <strong>ATCS:</strong> Area Traffic Control System</li>
+              <li>• <strong>E-TLE:</strong> Electronic Traffic Law Enforcement (tilang elektronik)</li>
+              <li>• <strong>Congestion prediction:</strong> Prediksi kemacetan</li>
+            </ul>
+          </div>
+
+          <div class="content-box">
+            <h4>Ticketing & Booking Online</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>E-ticket:</strong> Tiket pesawat, kereta, bus online</li>
+              <li>• <strong>Booking apps:</strong> Traveloka, Tiket.com, Pegipegi</li>
+              <li>• <strong>QR code boarding:</strong> Scan QR tanpa print tiket</li>
+              <li>• <strong>Seat selection:</strong> Pilih kursi favorit</li>
+            </ul>
+          </div>
+
+          <div class="content-box">
+            <h4>Autonomous Vehicle & EV</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>Self-driving car:</strong> Mobil otonom (Tesla, Waymo)</li>
+              <li>• <strong>ADAS:</strong> Advanced Driver Assistance System</li>
+              <li>• <strong>Electric vehicle:</strong> Mobil & motor listrik</li>
+              <li>• <strong>Charging station:</strong> Peta stasiun charging EV</li>
+            </ul>
+          </div>
+
+          <div class="content-box">
+            <h4>Public Transport Integration</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>MRT/LRT:</strong> Sistem kereta modern</li>
+              <li>• <strong>Transjakarta app:</strong> Rute & jadwal bus real-time</li>
+              <li>• <strong>E-money card:</strong> Kartu elektronik untuk semua transportasi</li>
+              <li>• <strong>Multimodal journey:</strong> Integrasi berbagai moda transportasi</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="success-box">
+          <h4>✅ Keuntungan Smart Transportation</h4>
+          <ul style="list-style-position: inside; margin-left: 0.6rem;">
+            <li>• <strong>Efisiensi waktu:</strong> Menghindari macet, rute optimal</li>
+            <li>• <strong>Keamanan meningkat:</strong> Monitoring, ADAS, emergency response</li>
+            <li>• <strong>Ramah lingkungan:</strong> Promosi EV, public transport</li>
+            <li>• <strong>Biaya lebih murah:</strong> Ride-sharing, public transport efisien</li>
+            <li>• <strong>Accessibility:</strong> Transportasi untuk semua (difabel, lansia)</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIDEO -->
+    <section>
+      <h2>🎥 Video Pembelajaran</h2>
+      <div class="video-grid">
+        <div class="video-card">
+          <div class="video-thumbnail">🎓</div>
+          <div class="video-info">
+            <h4>Teknologi dalam Pendidikan</h4>
+            <p>Transformasi digital di dunia pendidikan.</p>
+            <a class="video-link" href="https://www.youtube.com/results?search_query=teknologi+pendidikan+digital" target="_blank">Tonton</a>
+          </div>
+        </div>
+
+        <div class="video-card">
+          <div class="video-thumbnail">🏥</div>
+          <div class="video-info">
+            <h4>Health Informatics</h4>
+            <p>Peran IT dalam kesehatan modern.</p>
+            <a class="video-link" href="https://www.youtube.com/results?search_query=health+informatics+telemedicine" target="_blank">Tonton</a>
+          </div>
+        </div>
+
+        <div class="video-card">
+          <div class="video-thumbnail">🏭</div>
+          <div class="video-info">
+            <h4>Industry 4.0</h4>
+            <p>Revolusi industri keempat & smart factory.</p>
+            <a class="video-link" href="https://www.youtube.com/results?search_query=industry+4.0+smart+manufacturing" target="_blank">Tonton</a>
+          </div>
+        </div>
+
+        <div class="video-card">
+          <div class="video-thumbnail">🌾</div>
+          <div class="video-info">
+            <h4>Smart Agriculture</h4>
+            <p>Teknologi pertanian presisi.</p>
+            <a class="video-link" href="https://www.youtube.com/results?search_query=smart+agriculture+precision+farming" target="_blank">Tonton</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- QUIZ -->
+    <section>
+      <h2>🎮 Kuis Peran Informatika</h2>
+      <div class="game-section">
+        <h3>Uji Pemahaman Materi</h3>
+
+        <div class="progress-container">
+          <div id="progressBar" class="progress-bar" style="width: 0%;">0%</div>
+        </div>
+
+        <div class="game-container">
+          <div class="game-question">1. Platform e-learning untuk manajemen pembelajaran online adalah...</div>
+          <div class="quiz-options" onclick="checkAnswer(event, 'lms', 1)">
+            <div class="quiz-option">A) CRM (Customer Relationship Management)</div>
+            <div class="quiz-option">B) LMS (Learning Management System)</div>
+            <div class="quiz-option">C) ERP (Enterprise Resource Planning)</div>
+            <div class="quiz-option">D) SCM (Supply Chain Management)</div>
+          </div>
+          <div id="result1" class="result-message"></div>
+        </div>
+
+        <div class="game-container">
+          <div class="game-question">2. Rekam medis elektronik dalam kesehatan disebut...</div>
+          <div class="quiz-options" onclick="checkAnswer(event, 'emr', 2)">
+            <div class="quiz-option">A) EMR/EHR (Electronic Medical/Health Record)</div>
+            <div class="quiz-option">B) CRM (Customer Relationship Management)</div>
+            <div class="quiz-option">C) ERP (Enterprise Resource Planning)</div>
+            <div class="quiz-option">D) MES (Manufacturing Execution System)</div>
+          </div>
+          <div id="result2" class="result-message"></div>
+        </div>
+
+        <div class="game-container">
+          <div class="game-question">3. Sistem peringatan dini tsunami menggunakan teknologi...</div>
+          <div class="quiz-options" onclick="checkAnswer(event, 'sensor', 3)">
+            <div class="quiz-option">A) Sensor seismik & SMS broadcast</div>
+            <div class="quiz-option">B) E-commerce platform</div>
+            <div class="quiz-option">C) Social media saja</div>
+            <div class="quiz-option">D) Email marketing</div>
+          </div>
+          <div id="result3" class="result-message"></div>
+        </div>
+
+        <div class="game-container">
+          <div class="game-question">4. Pertanian presisi yang menggunakan GPS dan sensor disebut...</div>
+          <div class="quiz-options" onclick="checkAnswer(event, 'precision', 4)">
+            <div class="quiz-option">A) Traditional farming</div>
+            <div class="quiz-option">B) Precision farming</div>
+            <div class="quiz-option">C) Organic farming</div>
+            <div class="quiz-option">D) Urban farming</div>
+          </div>
+          <div id="result4" class="result-message"></div>
+        </div>
+
+        <div class="game-container">
+          <div class="game-question">5. Aplikasi ride-hailing seperti Gojek & Grab termasuk dalam bidang...</div>
+          <div class="quiz-options" onclick="checkAnswer(event, 'transportasi', 5)">
+            <div class="quiz-option">A) Kesehatan</div>
+            <div class="quiz-option">B) Pendidikan</div>
+            <div class="quiz-option">C) Transportasi</div>
+            <div class="quiz-option">D) Pertanian</div>
+          </div>
+          <div id="result5" class="result-message"></div>
+        </div>
+
+        <div id="scoreDisplay" class="score-display">Skor: 0/5</div>
+      </div>
+    </section>
+
+    <!-- DOWNLOAD -->
+    <section>
+      <h2>📥 Download Materi</h2>
+      
+      <div class="download-box">
+        <h4>📄 Panduan Lengkap Peran Informatika</h4>
+        <p style="margin-bottom: 1rem;">Download materi, infografis, dan studi kasus informatika di berbagai bidang.</p>
+        <a href="#" class="btn-download" onclick="alert('File akan segera tersedia. Hubungi guru untuk mendapatkan file.'); return false;">
+          📥 Download Materi PDF
+        </a>
+        <a href="#" class="btn-download" onclick="alert('File akan segera tersedia. Hubungi guru untuk mendapatkan file.'); return false;">
+          📥 Download Infografis
+        </a>
+      </div>
+    </section>
+
+    <!-- CLOSING -->
+    <section>
+      <div class="card" style="background: linear-gradient(135deg, rgba(102,126,234,0.06), rgba(118,75,162,0.08)); border-left: 5px solid #667eea; text-align: center;">
+        <h3 style="margin-bottom: 0.6rem;">Kesimpulan</h3>
+        <p style="text-align: center; line-height: 1.8;">
+          Informatika telah menjadi penggerak utama transformasi di hampir semua sektor kehidupan. Dari pendidikan, kesehatan, perdagangan, perbankan, pemerintahan, penanggulangan bencana, industri, pertanian, hingga transportasi - teknologi informasi meningkatkan efisiensi, produktivitas, dan kualitas hidup masyarakat. Memahami peran informatika di berbagai bidang membantu kita memanfaatkan teknologi secara optimal untuk menciptakan masa depan yang lebih baik.
+        </p>
+        <p style="text-align: center; margin-top: 0.8rem; font-weight: 600; color: var(--primary-color);">
+          "Technology is best when it brings people together!" 🌐✨
+        </p>
+      </div>
+    </section>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-content">
+      <h3>Platform Pembelajaran Interaktif untuk Siswa & Siswi <strong>Ypi Nurul Hadina</strong></h3>
+
+      <div class="social-media">
+        <a class="social-icon whatsapp" href="https://wa.me/6289504440411" target="_blank">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884"/></svg>
+        </a>
+
+        <a class="social-icon youtube" href="https://www.youtube.com/channel/UCNmOH6L2xq6C15EkQlx_FpQ" target="_blank">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+        </a>
+
+        <a class="social-icon instagram" href="https://instagram.com/ypinurulhadina" target="_blank">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.319 1.347 20.651.935 19.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.015 3.585-.074 4.85c-.061 1.17-.256 1.805-.421 2.227-.224.562-.479.96-.899 1.382-.419.419-.824.679-1.38.896-.42.164-1.065.36-2.235.413-1.274.057-1.649.07-4.859.07-3.211 0-3.586-.015-4.859-.074-1.171-.061-1.816-.256-2.236-.421-.569-.224-.96-.479-1.379-.899-.421-.419-.69-.824-.9-1.38-.165-.42-.359-1.065-.42-2.235-.045-1.26-.061-1.649-.061-4.844 0-3.196.016-3.586.061-4.861.061-1.17.255-1.814.42-2.234.21-.57.479-.96.9-1.381.419-.419.81-.689 1.379-.898.42-.166 1.051-.361 2.221-.421 1.275-.045 1.65-.06 4.859-.06l.045.03zm0 3.678c-3.405 0-6.162 2.76-6.162 6.162 0 3.405 2.76 6.162 6.162 6.162 3.405 0 6.162-2.76 6.162-6.162 0-3.405-2.76-6.162-6.162-6.162zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm7.846-10.405c0 .795-.646 1.44-1.44 1.44-.795 0-1.44-.646-1.44-1.44 0-.794.646-1.439 1.44-1.439.793-.001 1.44.645 1.44 1.439z"/></svg>
+        </a>
+
+        <a class="social-icon facebook" href="https://www.facebook.com/fauzan.reza.7" target="_blank">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        </a>
+      </div>
+
+      <p class="footer-small">©2025 Portal Siswa Informatika. MA PLUS & SMP IT.<br>Oleh : <strong>Fauzan Reza, S.T</strong> (Guru Informatika)</p>
+    </div>
+  </footer>
+
+  <script>
+    let score = 0;
+
+    function checkAnswer(event, key, questionNumber) {
+      if (!event.target.classList.contains('quiz-option')) return;
+
+      const options = event.target.parentElement.querySelectorAll('.quiz-option');
+      const resultMsg = document.getElementById('result' + questionNumber);
+
+      options.forEach(opt => {
+        opt.classList.remove('correct', 'incorrect');
+        opt.style.pointerEvents = 'none';
+      });
+
+      const selectedText = event.target.textContent.toLowerCase();
+
+      if (selectedText.includes(key.toLowerCase())) {
+        event.target.classList.add('correct');
+        resultMsg.textContent = '✅ Benar! Bagus sekali! 🎉';
+        resultMsg.classList.add('show', 'correct');
+        score++;
+      } else {
+        event.target.classList.add('incorrect');
+        options.forEach(opt => {
+          if (opt.textContent.toLowerCase().includes(key.toLowerCase())) {
+            opt.classList.add('correct');
+          }
+        });
+        resultMsg.textContent = '❌ Kurang tepat. Lihat jawaban yang hijau!';
+        resultMsg.classList.add('show', 'incorrect');
+      }
+
+      updateScore();
+      updateProgress();
+    }
+
+    function updateScore() {
+      document.getElementById('scoreDisplay').textContent = `Skor: ${score}/5`;
+    }
+
+    function updateProgress() {
+      const progress = Math.round((score / 5) * 100);
+      const bar = document.getElementById('progressBar');
+      bar.style.width = progress + '%';
+      bar.textContent = progress + '%';
+    }
+  </script>
+</body>
+</html>

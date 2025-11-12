@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - Portal Siswa Informatika</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <!-- Futuristic Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Exo+2:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* Override font global dengan futuristic font */
+    * {
+      font-family: 'Exo 2', 'Orbitron', sans-serif !important;
+    }
+
+    /* Navbar dengan gradient hijau-emas */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 1rem 2rem;
+      background: linear-gradient(135deg, 
+        rgba(16, 185, 129, 0.95) 0%,      /* Emerald green */
+        rgba(5, 150, 105, 0.95) 35%,      /* Dark green */
+        rgba(202, 138, 4, 0.95) 70%,      /* Gold */
+        rgba(245, 158, 11, 0.95) 100%);   /* Amber */
+      backdrop-filter: blur(15px);
+      border-bottom: 2px solid rgba(252, 211, 77, 0.5);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4),
+                  0 0 20px rgba(202, 138, 4, 0.3);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+    }
+
+    /* Logo dengan font Orbitron */
+    .logo {
+      font-family: 'Orbitron', sans-serif !important;
+      font-size: 1.3rem;
+      font-weight: 900;
+      color: #fef3c7;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      text-shadow: 0 0 10px rgba(252, 211, 77, 0.5),
+                   0 0 20px rgba(202, 138, 4, 0.3);
+      transition: all 0.3s ease;
+    }
+
+    .logo:hover {
+      color: #ffffff;
+      text-shadow: 0 0 15px rgba(252, 211, 77, 0.8),
+                   0 0 30px rgba(202, 138, 4, 0.5);
+      transform: scale(1.05);
+    }
+
+    .logo span {
+      color: #fcd34d;
+      font-weight: 700;
+    }
+
+    /* Navbar Menu dengan kotak futuristik */
+    .navbar-menu {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      flex: 1;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .navbar-menu a {
+      font-family: 'Orbitron', sans-serif !important;
+      color: #fef3c7;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.85rem;
+      padding: 0.6rem 1.2rem;
+      background: rgba(0, 0, 0, 0.3);
+      border: 2px solid rgba(252, 211, 77, 0.3);
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Hover effect dengan animasi gradient */
+    .navbar-menu a::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, 
+        transparent,
+        rgba(252, 211, 77, 0.4),
+        transparent);
+      transition: left 0.5s ease;
+    }
+
+    .navbar-menu a:hover::before {
+      left: 100%;
+    }
+
+    .navbar-menu a:hover {
+      background: linear-gradient(135deg, 
+        rgba(202, 138, 4, 0.6), 
+        rgba(245, 158, 11, 0.6));
+      border-color: #fcd34d;
+      color: #ffffff;
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 5px 20px rgba(252, 211, 77, 0.5),
+                  0 0 30px rgba(202, 138, 4, 0.3);
+    }
+
+    .navbar-menu a.active {
+      background: linear-gradient(135deg, 
+        rgba(202, 138, 4, 0.8), 
+        rgba(245, 158, 11, 0.8));
+      border-color: #fcd34d;
+      color: #ffffff;
+      box-shadow: 0 4px 15px rgba(252, 211, 77, 0.4);
+    }
+
+    .navbar-menu a i {
+      font-size: 1rem;
+    }
+
+    /* Profile dropdown dengan style matching */
+    .profile-dropdown {
+      position: relative;
+    }
+
+    .profile-trigger {
+      font-family: 'Orbitron', sans-serif !important;
+      background: rgba(0, 0, 0, 0.4);
+      border: 2px solid rgba(252, 211, 77, 0.4);
+      padding: 0.6rem 1.2rem;
+      border-radius: 8px;
+      color: #fef3c7;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+    }
+
+    .profile-trigger:hover {
+      background: linear-gradient(135deg, 
+        rgba(202, 138, 4, 0.6), 
+        rgba(245, 158, 11, 0.6));
+      border-color: #fcd34d;
+      color: #ffffff;
+      box-shadow: 0 5px 20px rgba(252, 211, 77, 0.4);
+    }
+
+    /* Content container */
+    .content-container {
+      max-width: 1200px;
+      margin: 100px auto 2rem;
+      padding: 2rem;
+    }
+
+    /* Welcome section dengan font futuristik */
+    .welcome-section {
+      text-align: center;
+      margin-bottom: 3rem;
+      padding: 2rem;
+      background: var(--glass-bg);
+      border-radius: 20px;
+      border: 2px solid rgba(252, 211, 77, 0.2);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    }
+
+    .welcome-section h1 {
+      font-family: 'Orbitron', sans-serif !important;
+      font-size: 2.5rem;
+      font-weight: 900;
+      color: transparent;
+      background: linear-gradient(135deg, #10b981, #fcd34d);
+      -webkit-background-clip: text;
+      background-clip: text;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      margin-bottom: 1rem;
+      text-shadow: 0 0 30px rgba(16, 185, 129, 0.3);
+    }
+
+    .welcome-section p {
+      font-family: 'Exo 2', sans-serif !important;
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    /* Feature cards dengan style baru */
+    .feature-card {
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border: 2px solid rgba(252, 211, 77, 0.2);
+    }
+
+    .feature-card:hover {
+      transform: translateY(-10px) scale(1.02);
+      border-color: #fcd34d;
+      box-shadow: 0 15px 40px rgba(16, 185, 129, 0.3),
+                  0 0 30px rgba(252, 211, 77, 0.2);
+    }
+
+    .feature-card h3 {
+      font-family: 'Orbitron', sans-serif !important;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .feature-card i {
+      color: #10b981;
+      text-shadow: 0 0 20px rgba(16, 185, 129, 0.5);
+    }
+
+    /* Footer dengan font matching */
+    .site-footer {
+      font-family: 'Exo 2', sans-serif !important;
+      background: linear-gradient(135deg, 
+        rgba(16, 185, 129, 0.2), 
+        rgba(202, 138, 4, 0.2));
+      backdrop-filter: blur(10px);
+      border-top: 2px solid rgba(252, 211, 77, 0.3);
+      padding: 1.5rem 2rem;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      position: relative;
+      z-index: 100;
+    }
+
+    .site-footer strong {
+      color: #fcd34d;
+      font-weight: 700;
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .navbar {
+        flex-wrap: wrap;
+        padding: 1rem;
+      }
+
+      .navbar-menu {
+        width: 100%;
+        justify-content: center;
+        gap: 0.5rem;
+      }
+
+      .navbar-menu a {
+        font-size: 0.75rem;
+        padding: 0.5rem 0.8rem;
+      }
+
+      .logo {
+        font-size: 1.1rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .content-container {
+        margin-top: 180px;
+        padding: 1rem;
+      }
+
+      .welcome-section h1 {
+        font-size: 1.8rem;
+      }
+
+      .navbar-menu {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .navbar-menu a {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <canvas id="particle-network"></canvas>
+
+  <nav class="navbar">
+    <a href="dashboard.html" class="logo">PORTAL <span>INFORMATIKA</span></a>
+
+    <!-- Navbar Menu -->
+    <div class="navbar-menu">
+      <a href="dashboard.html" class="active">
+        <i class="fas fa-home"></i> Dashboard
+      </a>
+      <a href="ksma.html" class="menu-sma">
+        <i class="fas fa-graduation-cap"></i> Kelas SMA
+      </a>
+      <a href="ksmp.html" class="menu-smp">
+        <i class="fas fa-school"></i> Kelas SMP
+      </a>
+      <a href="soal-praktikum.html">
+        <i class="fas fa-laptop-code"></i> Praktikum
+      </a>
+      <a href="blmtersedia.html">
+        <i class="fas fa-file-alt"></i> Ujian Virtual
+      </a>
+      <a href="blmtersedia.html">
+        <i class="fas fa-chart-line"></i> Nilai Siswa
+      </a>
+    </div>
+
+    <div class="profile-dropdown">
+      <button class="profile-trigger" id="profile-trigger-btn">
+        <span id="welcome-name">USER</span>
+        <i class="fas fa-chevron-down" style="font-size: 0.8em;"></i>
+      </button>
+      <div class="dropdown-content" id="dropdown-content">
+        <div class="profile-info">
+          <div><strong>Nama :</strong> <span id="profile-name">...</span></div>
+          <div><strong>NIS :</strong> <span id="profile-nis">...</span></div>
+          <div><strong>Kelas :</strong> <span id="profile-kelas">...</span></div>
+        </div>
+        <div class="dropdown-links">
+          <a href="#" id="change-password-btn">Ganti Password</a>
+          <a href="#" id="logout-btn">Logout</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Password Modal -->
+  <div id="password-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 10000; justify-content: center; align-items: center;">
+    <div style="background: var(--card-bg); border-radius: 20px; padding: 2rem; max-width: 400px; width: 90%; border: 2px solid rgba(252, 211, 77, 0.3);">
+      <button onclick="closePasswordModal()" style="float: right; background: none; border: none; color: var(--text-color); font-size: 1.5rem; cursor: pointer;">&times;</button>
+      <h3 style="color: #fcd34d; margin-bottom: 1.5rem; font-family: 'Orbitron', sans-serif;">GANTI PASSWORD</h3>
+      <form id="change-password-form">
+        <input type="password" id="new-password" placeholder="Password Baru (min 4 karakter)" required style="width: 100%; padding: 0.75rem; margin-bottom: 1rem; background: rgba(0,0,0,0.4); border: 2px solid rgba(252, 211, 77, 0.3); border-radius: 8px; color: var(--text-color); font-family: 'Exo 2', sans-serif;">
+        <input type="password" id="confirm-password" placeholder="Konfirmasi Password" required style="width: 100%; padding: 0.75rem; margin-bottom: 1rem; background: rgba(0,0,0,0.4); border: 2px solid rgba(252, 211, 77, 0.3); border-radius: 8px; color: var(--text-color); font-family: 'Exo 2', sans-serif;">
+        <button type="submit" style="width: 100%; padding: 0.75rem; background: linear-gradient(135deg, rgba(16, 185, 129, 0.6), rgba(202, 138, 4, 0.6)); border: 2px solid #fcd34d; border-radius: 10px; color: #fef3c7; font-weight: 700; cursor: pointer; transition: all 0.3s ease; font-family: 'Orbitron', sans-serif; text-transform: uppercase; letter-spacing: 1px;">Simpan Password</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="content-container">
+
+    <!-- Welcome Section -->
+    <div class="welcome-section">
+      <h1>Selamat Datang, <span id="user-name-display">Siswa</span>!</h1>
+      <p id="welcome-subtitle">Tingkatan : <span id="user-tingkatan">...</span> | Kelas : <span id="user-kelas">...</span></p>
+    </div>
+
+    <!-- Dashboard Cards -->
+    <div class="feature-grid">
+      <div class="feature-card" onclick="redirectToMateri()">
+        <i class="fas fa-book"></i>
+        <h3>Materi Pembelajaran</h3>
+        <p>Akses semua materi, catatan, dan modul pelajaran.</p>
+      </div>
+
+      <div class="feature-card" onclick="location.href='soal-praktikum.html'">
+        <i class="fas fa-laptop-code"></i>
+        <h3>Praktikum Online</h3>
+        <p>Lihat semua tugas dan panduan praktikum.</p>
+      </div>
+
+      <div class="feature-card" onclick="location.href='blmtersedia.html'">
+        <i class="fas fa-file-alt"></i>
+        <h3>Ujian Virtual</h3>
+        <p>Akses bank soal dan persiapan ujian Anda.</p>
+      </div>
+
+      <div class="feature-card" onclick="location.href='blmtersedia.html'">
+        <i class="fas fa-chart-line"></i>
+        <h3>Laporan Nilai</h3>
+        <p>Lihat rekap dan riwayat nilai Anda di sini.</p>
+      </div>
+
+      <div class="feature-card" onclick="location.href='survey-harian.html'">
+        <i class="fas fa-clipboard-check"></i>
+        <h3>Survey Harian</h3>
+        <p>Isi absensi dan kuesioner harian Anda di sini.</p>
+      </div>
+
+      <div class="feature-card" onclick="location.href='survey-siswa.html'">
+        <i class="fas fa-poll"></i>
+        <h3>Survey Siswa</h3>
+        <p>Berikan masukan dan kepuasan Anda.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <footer class="site-footer">
+    &copy; 2025 Portal Siswa Informatika. MA PLUS & SMP IT YPI Nurul Hadina.<br>
+    Oleh: <strong>Fauzan Reza, S.T</strong> (Guru Informatika <strong>YPI Nurul Hadina</strong>)
+  </footer>
+
+  <script src="database.js"></script>
+  <script src="auth.js"></script>
+
+  <!-- Canvas Background Script -->
+  <script>
+    (function() {
+      const canvas = document.getElementById('particle-network');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+
+      function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+
+      resizeCanvas();
+
+      let particles = [];
+      const particleCount = 100, connectDistance = 150, mouse = { x: null, y: null, radius: 100 };
+
+      window.addEventListener('resize', () => {
+        resizeCanvas();
+        init();
+      });
+
+      window.addEventListener('mousemove', (event) => {
+        mouse.x = event.x; 
+        mouse.y = event.y;
+      });
+
+      window.addEventListener('mouseout', () => {
+        mouse.x = null; 
+        mouse.y = null;
+      });
+
+      class Particle {
+        constructor() {
+          this.x = Math.random() * canvas.width; 
+          this.y = Math.random() * canvas.height;
+          this.vx = (Math.random() - 0.5) * 0.5; 
+          this.vy = (Math.random() - 0.5) * 0.5;
+          this.radius = 2.5; 
+          this.color = 'rgba(16, 185, 129, 0.7)'; // Green particle
+        }
+
+        update() {
+          if (this.x < 0 || this.x > canvas.width) this.vx = -this.vx;
+          if (this.y < 0 || this.y > canvas.height) this.vy = -this.vy;
+          this.x += this.vx; 
+          this.y += this.vy;
+        }
+
+        draw() {
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+          ctx.fillStyle = this.color; 
+          ctx.fill();
+        }
+      }
+
+      function init() {
+        particles = [];
+        for (let i = 0; i < particleCount; i++) particles.push(new Particle());
+      }
+
+      function connect() {
+        for (let a = 0; a < particles.length; a++) {
+          for (let b = a + 1; b < particles.length; b++) {
+            const dx = particles[a].x - particles[b].x;
+            const dy = particles[a].y - particles[b].y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+
+            if (distance < connectDistance) {
+              const opacity = 1 - (distance / connectDistance);
+              ctx.strokeStyle = `rgba(16, 185, 129, ${opacity * 0.3})`; // Green connections
+              ctx.lineWidth = 1.5; 
+              ctx.beginPath();
+              ctx.moveTo(particles[a].x, particles[a].y);
+              ctx.lineTo(particles[b].x, particles[b].y); 
+              ctx.stroke();
+            }
+          }
+
+          if (mouse.x) {
+            const dx = particles[a].x - mouse.x;
+            const dy = particles[a].y - mouse.y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+
+            if (distance < mouse.radius) {
+              const opacity = 1 - (distance / mouse.radius);
+              ctx.strokeStyle = `rgba(252, 211, 77, ${opacity * 0.5})`; // Gold mouse connections
+              ctx.lineWidth = 2; 
+              ctx.beginPath();
+              ctx.moveTo(particles[a].x, particles[a].y);
+              ctx.lineTo(mouse.x, mouse.y); 
+              ctx.stroke();
+            }
+          }
+        }
+      }
+
+      function animate() {
+        if (!ctx) return;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        particles.forEach(p => { p.update(); p.draw(); });
+        connect(); 
+        requestAnimationFrame(animate);
+      }
+
+      init();
+      animate();
+    })();
+  </script>
+
+  <!-- Main Script -->
+  <script>
+    // Check if user is logged in
+    const currentUser = getSession();
+    if (!currentUser) {
+      window.location.href = 'index.html';
+    }
+
+    // Set user info
+    document.getElementById('welcome-name').textContent = currentUser.nama.split(' ')[0];
+    document.getElementById('profile-name').textContent = currentUser.nama;
+    document.getElementById('profile-nis').textContent = currentUser.nis;
+    document.getElementById('profile-kelas').textContent = `${currentUser.tingkatan} / Kelas ${currentUser.kelas}`;
+    document.getElementById('user-name-display').textContent = currentUser.nama.split(' ')[0];
+    document.getElementById('user-tingkatan').textContent = currentUser.tingkatan;
+    document.getElementById('user-kelas').textContent = currentUser.kelas;
+
+    // Show/hide menu based on tingkatan
+    const tingkatan = currentUser.tingkatan;
+    if (tingkatan === 'SMA') {
+      document.querySelectorAll('.menu-sma').forEach(el => el.style.display = 'flex');
+      document.querySelectorAll('.menu-smp').forEach(el => el.style.display = 'none');
+    } else if (tingkatan === 'SMP') {
+      document.querySelectorAll('.menu-smp').forEach(el => el.style.display = 'flex');
+      document.querySelectorAll('.menu-sma').forEach(el => el.style.display = 'none');
+    }
+
+    // Redirect to materi based on tingkatan
+    function redirectToMateri() {
+      if (tingkatan === 'SMA') {
+        window.location.href = 'ksma.html';
+      } else if (tingkatan === 'SMP') {
+        window.location.href = 'ksmp.html';
+      } else {
+        alert('Tingkatan tidak dikenali!');
+      }
+    }
+
+    // Profile dropdown
+    const triggerBtn = document.getElementById('profile-trigger-btn');
+    const dropdownContent = document.getElementById('dropdown-content');
+
+    triggerBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      dropdownContent.classList.toggle('show');
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!triggerBtn.contains(e.target) && !dropdownContent.contains(e.target)) {
+        dropdownContent.classList.remove('show');
+      }
+    });
+
+    // Password modal
+    const passwordModal = document.getElementById('password-modal');
+    const changePasswordBtn = document.getElementById('change-password-btn');
+
+    changePasswordBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      passwordModal.style.display = 'flex';
+      dropdownContent.classList.remove('show');
+    });
+
+    function closePasswordModal() {
+      passwordModal.style.display = 'none';
+      document.getElementById('change-password-form').reset();
+    }
+
+    // Change password form
+    document.getElementById('change-password-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const newPassword = document.getElementById('new-password').value;
+      const confirmPassword = document.getElementById('confirm-password').value;
+
+      if (newPassword.length < 4) {
+        alert('Password minimal 4 karakter!');
+        return;
+      }
+
+      if (newPassword !== confirmPassword) {
+        alert('Password tidak cocok!');
+        return;
+      }
+
+      const users = (typeof getUsers === 'function') ? getUsers() : JSON.parse(localStorage.getItem('portal_users') || '[]');
+      const userIndex = users.findIndex(u => u.nis === currentUser.nis);
+
+      if (userIndex !== -1) {
+        users[userIndex].password = newPassword;
+        if (typeof saveUsers === 'function') {
+          saveUsers(users);
+        } else {
+          localStorage.setItem('portal_users', JSON.stringify(users));
+        }
+        alert('✓ Password berhasil diubah!');
+        closePasswordModal();
+      }
+    });
+
+    // Logout
+    document.getElementById('logout-btn').addEventListener('click', (e) => {
+      e.preventDefault();
+      handleLogout();
+    });
+  </script>
+
+</body>
+</html>

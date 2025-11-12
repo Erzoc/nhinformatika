@@ -1,0 +1,1332 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kelas X • Konektivitas Internet</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary-color: #3B82F6;
+      --secondary-color: #1D4ED8;
+      --accent-color: #60A5FA;
+      --success-color: #10B981;
+      --warning-color: #F59E0B;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
+      line-height: 1.6;
+      color: #1F2937;
+      background: #F8F9FA;
+    }
+
+    /* NAVBAR */
+    .navbar {
+      background: linear-gradient(135deg, #3B82F6 0%, #1D4ED8 100%);
+      color: #fff;
+      padding: 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+    }
+
+    .navbar-content {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .navbar-title {
+      font-size: 2rem;
+      font-weight: 800;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.35);
+    }
+
+    .navbar-sub {
+      font-size: 0.9rem;
+      opacity: 0.95;
+      font-weight: 600;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.35);
+    }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(135deg, #3B82F6 0%, #1D4ED8 100%);
+      color: #fff;
+      padding: 2rem 1rem;
+      text-align: center;
+      border-bottom: 5px solid #FFE66D;
+    }
+
+    .hero-emoji {
+      font-size: 2.3rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .hero h1 {
+      font-size: 1.9rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .hero p {
+      opacity: 0.98;
+      font-size: 1.05rem;
+    }
+
+    /* CONTAINER */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    section {
+      margin: 2rem 0;
+    }
+
+    section h2 {
+      color: var(--primary-color);
+      font-size: 1.6rem;
+      margin-bottom: 1rem;
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+      border-left: 5px solid var(--secondary-color);
+      padding-left: 0.8rem;
+    }
+
+    /* CARDS */
+    .card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 1.2rem;
+      margin-bottom: 1.2rem;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      border-left: 5px solid var(--secondary-color);
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.25);
+    }
+
+    .card h3 {
+      color: var(--primary-color);
+      margin-bottom: 0.7rem;
+      font-size: 1.2rem;
+    }
+
+    .card p {
+      color: #4B5563;
+      margin-bottom: 0.6rem;
+    }
+
+    .content-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem;
+      margin: 0.8rem 0 1.2rem 0;
+    }
+
+    .content-box {
+      background: #fff;
+      padding: 1.2rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+      border-top: 4px solid var(--primary-color);
+      transition: all 0.3s ease;
+    }
+
+    .content-box:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    }
+
+    .content-box h4 {
+      color: var(--primary-color);
+      margin-bottom: 0.6rem;
+      font-size: 1.1rem;
+    }
+
+    .timeline {
+      position: relative;
+      padding-left: 2rem;
+      margin: 1.5rem 0;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: linear-gradient(to bottom, #3B82F6, #1D4ED8);
+    }
+
+    .timeline-item {
+      position: relative;
+      padding: 1rem;
+      margin-bottom: 1.5rem;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -2.4rem;
+      top: 1.2rem;
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      background: #3B82F6;
+      border: 3px solid #fff;
+      box-shadow: 0 0 0 2px #3B82F6;
+    }
+
+    .timeline-item h4 {
+      color: var(--primary-color);
+      margin-bottom: 0.5rem;
+    }
+
+    .speed-badge {
+      display: inline-block;
+      padding: 0.3rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin: 0.3rem 0.2rem;
+    }
+
+    .speed-very-slow {
+      background: #FEE2E2;
+      color: #DC2626;
+    }
+
+    .speed-slow {
+      background: #FED7AA;
+      color: #EA580C;
+    }
+
+    .speed-medium {
+      background: #FEF3C7;
+      color: #D97706;
+    }
+
+    .speed-fast {
+      background: #D1FAE5;
+      color: #059669;
+    }
+
+    .speed-very-fast {
+      background: #DBEAFE;
+      color: #1D4ED8;
+    }
+
+    .tip-box {
+      background: linear-gradient(135deg, #8B5CF6 0%, #EC4899 100%);
+      color: #fff;
+      padding: 1.1rem;
+      border-radius: 10px;
+      margin: 1rem 0;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    .tip-box h4 {
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .fact-box {
+      background: linear-gradient(135deg, #1E88E5 0%, #00ACC1 100%);
+      color: #fff;
+      padding: 1.1rem;
+      border-radius: 10px;
+      margin: 1rem 0;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    .warning-box {
+      background: linear-gradient(135deg, #F59E0B 0%, #EF4444 100%);
+      color: #fff;
+      padding: 1.1rem;
+      border-radius: 10px;
+      margin: 1rem 0;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    .success-box {
+      background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+      color: #fff;
+      padding: 1.1rem;
+      border-radius: 10px;
+      margin: 1rem 0;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+      background: #fff;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    }
+
+    .comparison-table th {
+      background: linear-gradient(135deg, #3B82F6, #1D4ED8);
+      color: #fff;
+      padding: 0.8rem;
+      text-align: left;
+      font-weight: 700;
+    }
+
+    .comparison-table td {
+      padding: 0.8rem;
+      border-bottom: 1px solid #E5E7EB;
+    }
+
+    .comparison-table tr:hover {
+      background: #F3F4F6;
+    }
+
+    .download-box {
+      background: linear-gradient(135deg, #3B82F6 0%, #1D4ED8 100%);
+      color: #fff;
+      padding: 1.5rem;
+      border-radius: 12px;
+      margin: 1.5rem 0;
+      text-align: center;
+      box-shadow: 0 6px 20px rgba(59,130,246,0.3);
+    }
+
+    .download-box h4 {
+      font-size: 1.3rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .btn-download {
+      display: inline-block;
+      background: #fff;
+      color: #3B82F6;
+      padding: 0.8rem 1.5rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.1rem;
+      margin: 0.5rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    .btn-download:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+    }
+
+    /* VIDEO */
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1rem;
+    }
+
+    .video-card {
+      background: #fff;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .video-card:hover {
+      transform: translateY(-8px);
+    }
+
+    .video-thumbnail {
+      width: 100%;
+      height: 150px;
+      background: linear-gradient(135deg, #3B82F6, #1D4ED8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.4rem;
+      color: #fff;
+    }
+
+    .video-info {
+      padding: 0.9rem;
+    }
+
+    .video-info h4 {
+      margin-bottom: 0.4rem;
+      font-size: 1rem;
+      color: #111827;
+    }
+
+    .video-info p {
+      font-size: 0.85rem;
+      color: #6B7280;
+      margin-bottom: 0.6rem;
+    }
+
+    .video-link {
+      display: inline-block;
+      background: #3B82F6;
+      color: #fff;
+      padding: 0.45rem 0.8rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: all 0.25s ease;
+    }
+
+    .video-link:hover {
+      background: #1D4ED8;
+      transform: translateY(-2px);
+    }
+
+    /* QUIZ */
+    .game-section {
+      background: linear-gradient(135deg, #3B82F6 0%, #1D4ED8 100%);
+      color: #fff;
+      padding: 1.25rem 1rem;
+      border-radius: 14px;
+      margin: 1.4rem 0;
+    }
+
+    .game-section h3 {
+      color: #fff;
+      margin-bottom: 0.9rem;
+      font-size: 1.2rem;
+    }
+
+    .game-container {
+      background: rgba(255,255,255,0.96);
+      color: #111827;
+      padding: 0.9rem;
+      border-radius: 10px;
+      margin-bottom: 0.8rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .game-question {
+      font-weight: 700;
+      margin-bottom: 0.6rem;
+      font-size: 1rem;
+      color: #111827;
+    }
+
+    .quiz-options {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0.6rem;
+    }
+
+    .quiz-option {
+      background: #f3f4f6;
+      border: 2px solid #e5e7eb;
+      padding: 0.7rem 0.8rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-weight: 600;
+      font-size: 0.92rem;
+      color: #1F2937;
+    }
+
+    .quiz-option:hover {
+      background: #DBEAFE;
+      border-color: #3B82F6;
+      transform: translateX(4px);
+    }
+
+    .quiz-option.correct {
+      background: var(--success-color);
+      border-color: var(--success-color);
+      color: #fff;
+    }
+
+    .quiz-option.incorrect {
+      background: #EF4444;
+      border-color: #EF4444;
+      color: #fff;
+    }
+
+    .result-message {
+      margin-top: 0.6rem;
+      padding: 0.7rem;
+      border-radius: 8px;
+      text-align: center;
+      font-weight: 700;
+      font-size: 0.95rem;
+      display: none;
+    }
+
+    .result-message.show {
+      display: block;
+    }
+
+    .result-message.correct {
+      background: var(--success-color);
+      color: #fff;
+    }
+
+    .result-message.incorrect {
+      background: #EF4444;
+      color: #fff;
+    }
+
+    .progress-container {
+      background: #e5e7eb;
+      border-radius: 10px;
+      margin: 0.8rem 0 1rem 0;
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      height: 20px;
+      background: linear-gradient(90deg, #3B82F6, #1D4ED8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.8rem;
+      transition: width 0.25s ease;
+    }
+
+    .score-display {
+      text-align: center;
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--primary-color);
+      margin: 0.6rem 0;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #111827;
+      color: #fff;
+      text-align: center;
+      padding: 1rem 0.8rem;
+      margin-top: 2rem;
+    }
+
+    .footer-content h3 {
+      color: #FFD700;
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+    }
+
+    .footer-content p {
+      opacity: 0.9;
+      font-size: 0.8rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .social-media {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin: 0.8rem 0 0.5rem 0;
+      flex-wrap: wrap;
+    }
+
+    .social-icon {
+      width: 34px;
+      height: 34px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      transition: all 0.25s ease;
+      text-decoration: none;
+    }
+
+    .social-icon.whatsapp {
+      background: #25D366;
+      color: #fff;
+    }
+
+    .social-icon.whatsapp:hover {
+      background: #128C7E;
+      transform: scale(1.08) rotate(3deg);
+    }
+
+    .social-icon.youtube {
+      background: #FF0000;
+      color: #fff;
+    }
+
+    .social-icon.youtube:hover {
+      background: #CC0000;
+      transform: scale(1.08) rotate(-3deg);
+    }
+
+    .social-icon.instagram {
+      background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+      color: #fff;
+    }
+
+    .social-icon.instagram:hover {
+      transform: scale(1.08);
+    }
+
+    .social-icon.facebook {
+      background: #1877F2;
+      color: #fff;
+    }
+
+    .social-icon.facebook:hover {
+      background: #145DBF;
+      transform: scale(1.08) rotate(-2deg);
+    }
+
+    @media (max-width: 768px) {
+      .navbar-title {
+        font-size: 1.6rem;
+      }
+
+      .hero h1 {
+        font-size: 1.4rem;
+      }
+
+      section h2 {
+        font-size: 1.3rem;
+      }
+
+      .content-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .comparison-table {
+        font-size: 0.85rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="navbar-content">
+      <div class="navbar-title">📡 Konektivitas Internet</div>
+      <div class="navbar-sub">Kelas X - Evolusi Teknologi Koneksi Internet</div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-emoji">📡🌐💻</div>
+      <h1>Konektivitas Internet</h1>
+      <p>Menjelajahi berbagai teknologi koneksi internet dari Dial-Up hingga 5G, WiFi, dan TV Kabel untuk era digital modern</p>
+    </div>
+  </section>
+
+  <div class="container">
+    <!-- INTRO -->
+    <section>
+      <h2>📚 Pengenalan Konektivitas Internet</h2>
+
+      <div class="card">
+        <h3>Apa itu Konektivitas Internet?</h3>
+        <p><strong>Konektivitas Internet</strong> adalah kemampuan perangkat untuk terhubung ke jaringan internet menggunakan berbagai teknologi dan media transmisi. Seiring perkembangan teknologi, konektivitas internet terus berevolusi dari yang sangat lambat (dial-up) hingga super cepat (5G & fiber optik).</p>
+
+        <div class="fact-box">
+          <h4>🌐 Evolusi Konektivitas Internet</h4>
+          <ul style="list-style-position: inside; margin-left: 0.6rem;">
+            <li>• <strong>1990s:</strong> Dial-up PSTN (era awal internet rumahan)</li>
+            <li>• <strong>2000s:</strong> ADSL, Cable, GPRS, 3G (broadband mulai populer)</li>
+            <li>• <strong>2010s:</strong> 4G LTE, Fiber Optik, WiFi ubiquitous</li>
+            <li>• <strong>2020s:</strong> 5G, Starlink, WiFi 6/7 (era gigabit)</li>
+            <li>• <strong>Future:</strong> 6G, Li-Fi, Quantum Internet</li>
+          </ul>
+        </div>
+
+        <div class="success-box">
+          <h4>✅ Klasifikasi Konektivitas Internet</h4>
+          <ul style="list-style-position: inside; margin-left: 0.6rem;">
+            <li>• <strong>Berdasarkan Media:</strong> Kabel (Wired) vs Nirkabel (Wireless)</li>
+            <li>• <strong>Berdasarkan Kecepatan:</strong> Narrowband vs Broadband</li>
+            <li>• <strong>Berdasarkan Mobilitas:</strong> Fixed (tetap) vs Mobile (bergerak)</li>
+            <li>• <strong>Berdasarkan Area:</strong> Home, Office, Public, Mobile Network</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- KONEKSI KABEL -->
+    <section>
+      <h2>🔌 Konektivitas Internet Melalui Kabel (Wired)</h2>
+
+      <div class="card">
+        <h3>1. Dial-Up PSTN (Public Switched Telephone Network)</h3>
+        <p><strong>Dial-Up</strong> adalah teknologi koneksi internet paling awal yang menggunakan saluran telepon rumah untuk mengakses internet.</p>
+
+        <div class="content-grid">
+          <div class="content-box">
+            <h4>Cara Kerja</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• Menggunakan <strong>modem dial-up</strong> untuk mengubah sinyal digital ↔ analog</li>
+              <li>• Komputer "menelepon" ISP melalui nomor telepon khusus</li>
+              <li>• Mengeluarkan suara khas "bip bop bip" saat koneksi</li>
+              <li>• Jalur telepon <strong>tidak bisa digunakan</strong> saat internet aktif</li>
+            </ul>
+          </div>
+
+          <div class="content-box">
+            <h4>Spesifikasi</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>Kecepatan maksimal:</strong> 56 Kbps (0.056 Mbps)</li>
+              <li>• <strong>Kecepatan rata-rata:</strong> 12-20 Kbps</li>
+              <li>• <strong>Media:</strong> Kabel telepon tembaga</li>
+              <li>• <strong>Biaya:</strong> Per menit (pulsa telepon)</li>
+            </ul>
+            <span class="speed-badge speed-very-slow">Sangat Lambat</span>
+          </div>
+
+          <div class="content-box">
+            <h4>Kelebihan</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• Murah & mudah setup (hanya perlu modem)</li>
+              <li>• Tersedia di mana ada telepon rumah</li>
+              <li>• Tidak perlu infrastruktur khusus</li>
+            </ul>
+          </div>
+
+          <div class="content-box">
+            <h4>Kekurangan</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• Sangat lambat (tidak bisa video/musik)</li>
+              <li>• Telepon tidak bisa dipakai saat online</li>
+              <li>• Koneksi sering putus</li>
+              <li>• Sudah obsolete (tidak dipakai lagi)</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="warning-box">
+          <h4>⏳ Era Dial-Up</h4>
+          <p style="margin-bottom: 0;">Download lagu MP3 (3 MB) bisa memakan waktu <strong>15-30 menit</strong>! Streaming video? Tidak mungkin. Email dengan attachment besar? Butuh kesabaran ekstra. Era ini adalah masa "browsing sambil ngopi" karena loading website bisa 5-10 menit. 😅</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>2. ADSL (Asymmetric Digital Subscriber Line)</h3>
+        <p><strong>ADSL</strong> adalah teknologi broadband yang menggunakan saluran telepon tembaga, tapi jauh lebih cepat dari dial-up dan memungkinkan internet + telepon dipakai bersamaan.</p>
+
+        <div class="content-grid">
+          <div class="content-box">
+            <h4>Cara Kerja</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• Menggunakan <strong>modem ADSL</strong> khusus</li>
+              <li>• Bekerja pada frekuensi 34-1104 KHz</li>
+              <li>• <strong>Asymmetric:</strong> Download lebih cepat dari upload</li>
+              <li>• Menggunakan <strong>splitter</strong> untuk pisahkan sinyal telepon & internet</li>
+              <li>• Always-on (tidak perlu dial setiap kali)</li>
+            </ul>
+          </div>
+
+          <div class="content-box">
+            <h4>Spesifikasi</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>Kecepatan download:</strong> 256 Kbps - 24 Mbps</li>
+              <li>• <strong>Kecepatan upload:</strong> 64 Kbps - 3.5 Mbps</li>
+              <li>• <strong>Jangkauan:</strong> Maksimal 5 km dari central office</li>
+              <li>• <strong>Media:</strong> Kabel telepon tembaga</li>
+            </ul>
+            <span class="speed-badge speed-medium">Sedang</span>
+          </div>
+
+          <div class="content-box">
+            <h4>Kelebihan</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• Lebih cepat dari dial-up (10-100x)</li>
+              <li>• Internet & telepon bisa bersamaan</li>
+              <li>• Always-on, tidak perlu dial</li>
+              <li>• Biaya flat bulanan</li>
+            </ul>
+          </div>
+
+          <div class="content-box">
+            <h4>Kekurangan</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• Kecepatan tergantung jarak dari central</li>
+              <li>• Upload lambat (asymmetric)</li>
+              <li>• Perlu infrastruktur telepon</li>
+              <li>• Mulai digantikan fiber optik</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="tip-box">
+          <h4>💡 ADSL di Indonesia</h4>
+          <p style="margin-bottom: 0;">ADSL populer di Indonesia pada 2000-2015 dengan nama <strong>Speedy (Telkom)</strong>. Paket populer: Speedy 1 Mbps, 2 Mbps, hingga 10 Mbps. Meski sudah digantikan IndiHome Fiber, beberapa area masih menggunakan ADSL.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>3. TV Kabel (Cable Internet)</h3>
+        <p><strong>Cable Internet</strong> adalah koneksi internet melalui infrastruktur TV kabel menggunakan kabel coaxial yang sama untuk TV dan internet.</p>
+
+        <div class="content-grid">
+          <div class="content-box">
+            <h4>Cara Kerja</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• Menggunakan <strong>cable modem</strong></li>
+              <li>• Kabel coaxial dari penyedia TV kabel</li>
+              <li>• Bandwidth dibagi antar pengguna di area sama</li>
+              <li>• Teknologi: DOCSIS (Data Over Cable Service Interface)</li>
+            </ul>
+          </div>
+
+          <div class="content-box">
+            <h4>Spesifikasi</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>Kecepatan:</strong> 10-1000 Mbps (1 Gbps)</li>
+              <li>• <strong>Upload:</strong> 5-50 Mbps</li>
+              <li>• <strong>Media:</strong> Kabel coaxial</li>
+              <li>• <strong>Shared bandwidth:</strong> Kecepatan bervariasi tergantung beban</li>
+            </ul>
+            <span class="speed-badge speed-fast">Cepat</span>
+          </div>
+
+          <div class="content-box">
+            <h4>Kelebihan</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• Kecepatan tinggi & stabil</li>
+              <li>• Infrastruktur sudah ada (TV kabel)</li>
+              <li>• Paket bundling TV + Internet</li>
+              <li>• Tidak terpengaruh jarak (seperti ADSL)</li>
+            </ul>
+          </div>
+
+          <div class="content-box">
+            <h4>Kekurangan</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• Bandwidth shared (lambat saat banyak user)</li>
+              <li>• Tergantung infrastruktur TV kabel</li>
+              <li>• Upload lebih lambat dari download</li>
+              <li>• Biaya lebih mahal</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="fact-box">
+          <h4>📺 TV Kabel di Indonesia</h4>
+          <ul style="list-style-position: inside; margin-left: 0.6rem;">
+            <li>• <strong>Provider:</strong> First Media, Biznet Home, MyRepublic, IndiHome</li>
+            <li>• <strong>Paket:</strong> 30 Mbps, 50 Mbps, 100 Mbps, hingga 1 Gbps</li>
+            <li>• <strong>Bundling:</strong> Internet + TV Cable + Phone (Triple Play)</li>
+            <li>• Popular di kota besar & apartemen</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- KONEKSI WIRELESS -->
+    <section>
+      <h2>📡 Konektivitas Internet Nirkabel (Wireless)</h2>
+
+      <div class="card">
+        <h3>Evolusi Jaringan Seluler: GPRS → 5G</h3>
+        <p>Perkembangan teknologi mobile internet dari generasi ke generasi, dari yang lambat hingga super cepat.</p>
+
+        <div class="timeline">
+          <div class="timeline-item">
+            <h4>GPRS - 2.5G (1997)</h4>
+            <p><strong>General Packet Radio Service</strong></p>
+            <ul style="list-style-position: inside; font-size: 0.85rem; margin-top: 0.5rem;">
+              <li>• <strong>Kecepatan:</strong> 56-114 Kbps</li>
+              <li>• <strong>Teknologi:</strong> Packet-switched (bukan circuit)</li>
+              <li>• <strong>Fitur:</strong> Email, WAP browsing, MMS</li>
+              <li>• <strong>Era:</strong> HP Nokia Symbian, BlackBerry awal</li>
+            </ul>
+            <span class="speed-badge speed-very-slow">Sangat Lambat</span>
+            <div class="tip-box" style="margin-top: 0.8rem;">
+              <p style="margin: 0; font-size: 0.85rem;">💭 <em>Era browsing dengan Opera Mini, gambar website di-compress habis-habisan!</em></p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <h4>3G - Third Generation (2001)</h4>
+            <p><strong>UMTS / HSPA / HSPA+</strong></p>
+            <ul style="list-style-position: inside; font-size: 0.85rem; margin-top: 0.5rem;">
+              <li>• <strong>Kecepatan:</strong> 384 Kbps - 42 Mbps (HSPA+)</li>
+              <li>• <strong>Teknologi:</strong> WCDMA, CDMA2000</li>
+              <li>• <strong>Fitur:</strong> Video call, mobile TV, streaming musik</li>
+              <li>• <strong>Era:</strong> iPhone, Android mulai populer</li>
+              <li>• <strong>Operator:</strong> Telkomsel 3G, XL, Indosat, 3 (Tri)</li>
+            </ul>
+            <span class="speed-badge speed-medium">Sedang</span>
+            <div class="success-box" style="margin-top: 0.8rem;">
+              <p style="margin: 0; font-size: 0.85rem;">✅ <strong>Game changer:</strong> 3G memungkinkan smartphone dan mobile internet menjadi mainstream!</p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <h4>4G LTE - Fourth Generation (2009)</h4>
+            <p><strong>Long Term Evolution</strong></p>
+            <ul style="list-style-position: inside; font-size: 0.85rem; margin-top: 0.5rem;">
+              <li>• <strong>Kecepatan:</strong> 10-300 Mbps (LTE-Advanced hingga 1 Gbps)</li>
+              <li>• <strong>Teknologi:</strong> OFDMA, MIMO, All-IP network</li>
+              <li>• <strong>Fitur:</strong> HD video streaming, gaming online smooth, video call HD</li>
+              <li>• <strong>Era:</strong> Netflix, YouTube HD, mobile gaming boom</li>
+              <li>• <strong>Latency:</strong> 30-50 ms</li>
+            </ul>
+            <span class="speed-badge speed-fast">Cepat</span>
+            <div class="fact-box" style="margin-top: 0.8rem;">
+              <p style="margin: 0; font-size: 0.85rem;">📊 <strong>4G di Indonesia:</strong> 95%+ coverage, operator: Telkomsel, XL, Indosat, Smartfren, 3 (Tri)</p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <h4>5G - Fifth Generation (2019)</h4>
+            <p><strong>Next-Gen Ultra-Fast Mobile Internet</strong></p>
+            <ul style="list-style-position: inside; font-size: 0.85rem; margin-top: 0.5rem;">
+              <li>• <strong>Kecepatan:</strong> 1-10 Gbps (peak hingga 20 Gbps!)</li>
+              <li>• <strong>Teknologi:</strong> mmWave, Massive MIMO, Network Slicing</li>
+              <li>• <strong>Fitur:</strong> 4K/8K streaming, VR/AR, IoT massal, smart city, autonomous vehicles</li>
+              <li>• <strong>Latency:</strong> 1-10 ms (ultra-low latency)</li>
+              <li>• <strong>Kapasitas:</strong> 1 juta device per km²</li>
+            </ul>
+            <span class="speed-badge speed-very-fast">Super Cepat</span>
+            <div class="success-box" style="margin-top: 0.8rem;">
+              <p style="margin: 0; font-size: 0.85rem;">🚀 <strong>5G Indonesia:</strong> Diluncurkan 2021, coverage masih terbatas kota besar (Jakarta, Surabaya, Bandung, dll). Operator: Telkomsel, Indosat, XL.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="warning-box">
+          <h4>⚠️ Perbedaan 4G vs 5G</h4>
+          <p style="margin-bottom: 0.5rem;"><strong>4G sudah cukup untuk mayoritas kebutuhan saat ini</strong> (streaming HD, gaming, video call). 5G lebih untuk:</p>
+          <ul style="list-style-position: inside; margin-left: 0.6rem;">
+            <li>• IoT & Smart City (sensor, CCTV, traffic light pintar)</li>
+            <li>• VR/AR experiences (metaverse, virtual concert)</li>
+            <li>• Autonomous vehicles (mobil self-driving)</li>
+            <li>• Remote surgery (operasi jarak jauh dengan robot)</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- WIFI -->
+    <section>
+      <h2>📶 WiFi (Wireless Fidelity)</h2>
+
+      <div class="card">
+        <h3>WiFi - Standar Wireless LAN</h3>
+        <p><strong>WiFi</strong> adalah teknologi jaringan nirkabel yang memungkinkan perangkat terhubung ke internet atau LAN tanpa kabel menggunakan gelombang radio pada frekuensi 2.4 GHz dan 5 GHz.</p>
+
+        <div class="content-grid">
+          <div class="content-box">
+            <h4>Cara Kerja WiFi</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>Router/Access Point:</strong> Memancarkan sinyal WiFi</li>
+              <li>• <strong>Frekuensi:</strong> 2.4 GHz (jangkauan luas) & 5 GHz (kecepatan tinggi)</li>
+              <li>• <strong>SSID:</strong> Nama jaringan WiFi</li>
+              <li>• <strong>Enkripsi:</strong> WPA2/WPA3 untuk keamanan</li>
+              <li>• <strong>Jangkauan:</strong> 30-100 meter (indoor/outdoor)</li>
+            </ul>
+          </div>
+
+          <div class="content-box">
+            <h4>Standar WiFi (IEEE 802.11)</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>WiFi 4 (802.11n):</strong> 150-600 Mbps, 2.4/5 GHz</li>
+              <li>• <strong>WiFi 5 (802.11ac):</strong> 433-6933 Mbps, 5 GHz</li>
+              <li>• <strong>WiFi 6 (802.11ax):</strong> Up to 9.6 Gbps, 2.4/5 GHz</li>
+              <li>• <strong>WiFi 6E:</strong> WiFi 6 + 6 GHz band</li>
+              <li>• <strong>WiFi 7 (802.11be):</strong> Up to 46 Gbps (2024+)</li>
+            </ul>
+          </div>
+
+          <div class="content-box">
+            <h4>Kelebihan WiFi</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>Tanpa kabel:</strong> Fleksibel, mobile</li>
+              <li>• <strong>Multiple device:</strong> Banyak perangkat 1 router</li>
+              <li>• <strong>Easy setup:</strong> Plug & play</li>
+              <li>• <strong>Ubiquitous:</strong> Tersedia di mana-mana</li>
+              <li>• <strong>Cost-effective:</strong> Tidak perlu kabel ke tiap device</li>
+            </ul>
+          </div>
+
+          <div class="content-box">
+            <h4>Kekurangan WiFi</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>Jangkauan terbatas:</strong> Tembok, penghalang mengurangi sinyal</li>
+              <li>• <strong>Interferensi:</strong> Device lain di frekuensi sama</li>
+              <li>• <strong>Kecepatan berkurang:</strong> Semakin jauh dari router</li>
+              <li>• <strong>Security risk:</strong> Bisa dibobol jika password lemah</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="tip-box">
+          <h4>💡 Tips Optimalisasi WiFi</h4>
+          <ul style="list-style-position: inside; margin-left: 0.6rem;">
+            <li>• <strong>Posisi router:</strong> Letakkan di tengah rumah, tinggi, tidak terhalang</li>
+            <li>• <strong>Gunakan 5 GHz:</strong> Untuk kecepatan tinggi jarak dekat</li>
+            <li>• <strong>Gunakan 2.4 GHz:</strong> Untuk jangkauan luas & penetrasi tembok</li>
+            <li>• <strong>Password kuat:</strong> WPA3 + password kompleks minimal 12 karakter</li>
+            <li>• <strong>Update firmware:</strong> Router firmware terbaru untuk performa & security</li>
+            <li>• <strong>WiFi extender/mesh:</strong> Untuk rumah besar</li>
+          </ul>
+        </div>
+
+        <div class="fact-box">
+          <h4>📊 WiFi di Indonesia</h4>
+          <ul style="list-style-position: inside; margin-left: 0.6rem;">
+            <li>• <strong>WiFi publik:</strong> Mall, cafe, bandara, stasiun, kampus</li>
+            <li>• <strong>WiFi.id:</strong> Telkom WiFi hotspot dengan 1 juta+ titik akses</li>
+            <li>• <strong>Home WiFi:</strong> 80%+ rumah di kota menggunakan WiFi</li>
+            <li>• <strong>Kecepatan rata-rata:</strong> 20-100 Mbps (home), 10-50 Mbps (public)</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMPARISON TABLE -->
+    <section>
+      <h2>📊 Perbandingan Teknologi Koneksi Internet</h2>
+
+      <div class="card">
+        <h3>Tabel Perbandingan Lengkap</h3>
+
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th>Teknologi</th>
+              <th>Kecepatan</th>
+              <th>Media</th>
+              <th>Jangkauan</th>
+              <th>Kelebihan Utama</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Dial-Up</strong></td>
+              <td>56 Kbps</td>
+              <td>Kabel Telepon</td>
+              <td>Fixed</td>
+              <td>Murah, tersedia luas (era 90s)</td>
+            </tr>
+            <tr>
+              <td><strong>ADSL</strong></td>
+              <td>256 Kbps - 24 Mbps</td>
+              <td>Kabel Telepon</td>
+              <td>Fixed</td>
+              <td>Always-on, telepon tetap bisa dipakai</td>
+            </tr>
+            <tr>
+              <td><strong>TV Kabel</strong></td>
+              <td>10-1000 Mbps</td>
+              <td>Coaxial</td>
+              <td>Fixed</td>
+              <td>Kecepatan tinggi, bundling TV+Internet</td>
+            </tr>
+            <tr>
+              <td><strong>Fiber Optik</strong></td>
+              <td>100 Mbps - 10 Gbps</td>
+              <td>Serat Optik</td>
+              <td>Fixed</td>
+              <td>Super cepat, latency rendah, stabil</td>
+            </tr>
+            <tr>
+              <td><strong>GPRS (2.5G)</strong></td>
+              <td>56-114 Kbps</td>
+              <td>Wireless</td>
+              <td>Mobile</td>
+              <td>Internet mobile pertama</td>
+            </tr>
+            <tr>
+              <td><strong>3G</strong></td>
+              <td>384 Kbps - 42 Mbps</td>
+              <td>Wireless</td>
+              <td>Mobile</td>
+              <td>Video call, streaming musik</td>
+            </tr>
+            <tr>
+              <td><strong>4G LTE</strong></td>
+              <td>10-300 Mbps</td>
+              <td>Wireless</td>
+              <td>Mobile</td>
+              <td>HD streaming, gaming online smooth</td>
+            </tr>
+            <tr>
+              <td><strong>5G</strong></td>
+              <td>1-10 Gbps</td>
+              <td>Wireless</td>
+              <td>Mobile</td>
+              <td>Ultra cepat, ultra low latency, IoT</td>
+            </tr>
+            <tr>
+              <td><strong>WiFi 5</strong></td>
+              <td>433-6933 Mbps</td>
+              <td>Wireless</td>
+              <td>Local (30-100m)</td>
+              <td>Tanpa kabel, multiple device</td>
+            </tr>
+            <tr>
+              <td><strong>WiFi 6</strong></td>
+              <td>Up to 9.6 Gbps</td>
+              <td>Wireless</td>
+              <td>Local (30-100m)</td>
+              <td>Kapasitas tinggi, efisien untuk banyak device</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="tip-box" style="margin-top: 1rem;">
+          <h4>💡 Cara Memilih Koneksi Internet</h4>
+          <ul style="list-style-position: inside; margin-left: 0.6rem;">
+            <li>• <strong>Rumah/Kantor:</strong> Fiber Optik (IndiHome, Biznet) atau TV Kabel (First Media, MyRepublic)</li>
+            <li>• <strong>Mobile/Traveling:</strong> 4G/5G dari operator seluler</li>
+            <li>• <strong>Area terpencil:</strong> Satelit (Starlink) atau 4G modem</li>
+            <li>• <strong>Budget terbatas:</strong> 4G unlimited + WiFi hotspot</li>
+            <li>• <strong>Gaming/Streaming:</strong> Fiber Optik (low latency, high speed)</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIDEO -->
+    <section>
+      <h2>🎥 Video Pembelajaran</h2>
+      <div class="video-grid">
+        <div class="video-card">
+          <div class="video-thumbnail">📡</div>
+          <div class="video-info">
+            <h4>Sejarah Internet</h4>
+            <p>Evolusi koneksi internet dari dial-up hingga 5G.</p>
+            <a class="video-link" href="https://www.youtube.com/results?search_query=sejarah+internet+dial+up+hingga+5g" target="_blank">Tonton</a>
+          </div>
+        </div>
+
+        <div class="video-card">
+          <div class="video-thumbnail">📶</div>
+          <div class="video-info">
+            <h4>Cara Kerja WiFi</h4>
+            <p>Penjelasan teknologi WiFi dan cara kerjanya.</p>
+            <a class="video-link" href="https://www.youtube.com/results?search_query=cara+kerja+wifi+teknologi" target="_blank">Tonton</a>
+          </div>
+        </div>
+
+        <div class="video-card">
+          <div class="video-thumbnail">📱</div>
+          <div class="video-info">
+            <h4>Perbedaan 4G vs 5G</h4>
+            <p>Apa yang membedakan 4G dan 5G?</p>
+            <a class="video-link" href="https://www.youtube.com/results?search_query=perbedaan+4g+vs+5g" target="_blank">Tonton</a>
+          </div>
+        </div>
+
+        <div class="video-card">
+          <div class="video-thumbnail">🔌</div>
+          <div class="video-info">
+            <h4>Fiber Optik vs Cable</h4>
+            <p>Perbandingan teknologi koneksi kabel.</p>
+            <a class="video-link" href="https://www.youtube.com/results?search_query=fiber+optik+vs+cable+internet" target="_blank">Tonton</a>
+          </div>
+        </div>
+
+        <div class="video-card">
+          <div class="video-thumbnail">🌐</div>
+          <div class="video-info">
+            <h4>Cara Setup WiFi Router</h4>
+            <p>Tutorial setup dan optimasi WiFi rumah.</p>
+            <a class="video-link" href="https://www.youtube.com/results?search_query=cara+setup+wifi+router" target="_blank">Tonton</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- QUIZ -->
+    <section>
+      <h2>🎮 Kuis Konektivitas Internet</h2>
+      <div class="game-section">
+        <h3>Uji Pemahaman Materi</h3>
+
+        <div class="progress-container">
+          <div id="progressBar" class="progress-bar" style="width: 0%;">0%</div>
+        </div>
+
+        <div class="game-container">
+          <div class="game-question">1. Teknologi internet yang menggunakan kabel telepon dan kecepatan maksimal 56 Kbps adalah...</div>
+          <div class="quiz-options" onclick="checkAnswer(event, 'dial-up', 1)">
+            <div class="quiz-option">A) ADSL</div>
+            <div class="quiz-option">B) Dial-Up</div>
+            <div class="quiz-option">C) Cable</div>
+            <div class="quiz-option">D) Fiber Optik</div>
+          </div>
+          <div id="result1" class="result-message"></div>
+        </div>
+
+        <div class="game-container">
+          <div class="game-question">2. Kepanjangan dari GPRS adalah...</div>
+          <div class="quiz-options" onclick="checkAnswer(event, 'general packet', 2)">
+            <div class="quiz-option">A) General Purpose Radio System</div>
+            <div class="quiz-option">B) General Packet Radio Service</div>
+            <div class="quiz-option">C) Global Packet Radio System</div>
+            <div class="quiz-option">D) General Protocol Radio Service</div>
+          </div>
+          <div id="result2" class="result-message"></div>
+        </div>
+
+        <div class="game-container">
+          <div class="game-question">3. Generasi jaringan seluler yang memiliki kecepatan 1-10 Gbps adalah...</div>
+          <div class="quiz-options" onclick="checkAnswer(event, '5g', 3)">
+            <div class="quiz-option">A) 3G</div>
+            <div class="quiz-option">B) 4G LTE</div>
+            <div class="quiz-option">C) 5G</div>
+            <div class="quiz-option">D) 6G</div>
+          </div>
+          <div id="result3" class="result-message"></div>
+        </div>
+
+        <div class="game-container">
+          <div class="game-question">4. WiFi menggunakan frekuensi...</div>
+          <div class="quiz-options" onclick="checkAnswer(event, '2.4 ghz', 4)">
+            <div class="quiz-option">A) 1 GHz dan 3 GHz</div>
+            <div class="quiz-option">B) 2.4 GHz dan 5 GHz</div>
+            <div class="quiz-option">C) 3 GHz dan 6 GHz</div>
+            <div class="quiz-option">D) 4 GHz dan 8 GHz</div>
+          </div>
+          <div id="result4" class="result-message"></div>
+        </div>
+
+        <div class="game-container">
+          <div class="game-question">5. Keuntungan ADSL dibanding Dial-Up adalah...</div>
+          <div class="quiz-options" onclick="checkAnswer(event, 'bersamaan', 5)">
+            <div class="quiz-option">A) Lebih murah</div>
+            <div class="quiz-option">B) Internet dan telepon bisa dipakai bersamaan</div>
+            <div class="quiz-option">C) Tidak perlu modem</div>
+            <div class="quiz-option">D) Wireless</div>
+          </div>
+          <div id="result5" class="result-message"></div>
+        </div>
+
+        <div id="scoreDisplay" class="score-display">Skor: 0/5</div>
+      </div>
+    </section>
+
+    <!-- DOWNLOAD -->
+    <section>
+      <h2>📥 Download Materi</h2>
+      
+      <div class="download-box">
+        <h4>📄 Panduan Lengkap Konektivitas Internet</h4>
+        <p style="margin-bottom: 1rem;">Download infografis, timeline evolusi internet, dan perbandingan teknologi.</p>
+        <a href="#" class="btn-download" onclick="alert('File akan segera tersedia. Hubungi guru untuk mendapatkan file.'); return false;">
+          📥 Download Materi PDF
+        </a>
+        <a href="#" class="btn-download" onclick="alert('File akan segera tersedia. Hubungi guru untuk mendapatkan file.'); return false;">
+          📥 Download Infografis
+        </a>
+      </div>
+    </section>
+
+    <!-- CLOSING -->
+    <section>
+      <div class="card" style="background: linear-gradient(135deg, rgba(59,130,246,0.06), rgba(29,78,216,0.08)); border-left: 5px solid #3B82F6; text-align: center;">
+        <h3 style="margin-bottom: 0.6rem;">Kesimpulan</h3>
+        <p style="text-align: center; line-height: 1.8;">
+          Teknologi konektivitas internet telah berevolusi luar biasa dari Dial-Up yang super lambat (56 Kbps) hingga 5G yang super cepat (10 Gbps) - peningkatan kecepatan hingga 200,000 kali lipat! Dari era browsing sambil ngopi menunggu loading, kini kita bisa streaming 4K, video call HD, gaming online, bahkan VR/AR dengan lancar. Setiap generasi teknologi membawa inovasi baru: ADSL memungkinkan broadband, 3G membawa smartphone, 4G membawa streaming era, WiFi membawa wireless revolution, dan 5G membawa era IoT & smart everything. Ke depan, 6G dan teknologi baru akan terus mengubah cara kita terhubung!
+        </p>
+        <p style="text-align: center; margin-top: 0.8rem; font-weight: 600; color: var(--primary-color);">
+          "From dial-up to 5G - The evolution never stops!" 📡🚀
+        </p>
+      </div>
+    </section>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-content">
+      <h3>Platform Pembelajaran Interaktif untuk Siswa & Siswi <strong>Ypi Nurul Hadina</strong></h3>
+
+      <div class="social-media">
+        <a class="social-icon whatsapp" href="https://wa.me/6289504440411" target="_blank">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" width="18" height="18"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884"/></svg>
+        </a>
+
+        <a class="social-icon youtube" href="https://www.youtube.com/channel/UCNmOH6L2xq6C15EkQlx_FpQ" target="_blank">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" width="18" height="18"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+        </a>
+
+        <a class="social-icon instagram" href="https://instagram.com/ypinurulhadina" target="_blank">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" width="18" height="18"><path d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.319 1.347 20.651.935 19.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.015 3.585-.074 4.85c-.061 1.17-.256 1.805-.421 2.227-.224.562-.479.96-.899 1.382-.419.419-.824.679-1.38.896-.42.164-1.065.36-2.235.413-1.274.057-1.649.07-4.859.07-3.211 0-3.586-.015-4.859-.074-1.171-.061-1.816-.256-2.236-.421-.569-.224-.96-.479-1.379-.899-.421-.419-.69-.824-.9-1.38-.165-.42-.359-1.065-.42-2.235-.045-1.26-.061-1.649-.061-4.844 0-3.196.016-3.586.061-4.861.061-1.17.255-1.814.42-2.234.21-.57.479-.96.9-1.381.419-.419.81-.689 1.379-.898.42-.166 1.051-.361 2.221-.421 1.275-.045 1.65-.06 4.859-.06l.045.03zm0 3.678c-3.405 0-6.162 2.76-6.162 6.162 0 3.405 2.76 6.162 6.162 6.162 3.405 0 6.162-2.76 6.162-6.162 0-3.405-2.76-6.162-6.162-6.162zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm7.846-10.405c0 .795-.646 1.44-1.44 1.44-.795 0-1.44-.646-1.44-1.44 0-.794.646-1.439 1.44-1.439.793-.001 1.44.645 1.44 1.439z"/></svg>
+        </a>
+
+        <a class="social-icon facebook" href="https://www.facebook.com/fauzan.reza.7" target="_blank">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" width="18" height="18"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        </a>
+      </div>
+
+      <p style="margin-top: 0.6rem; font-size: 0.7rem; opacity: 0.85;">©2025 Portal Siswa Informatika. MA PLUS & SMP IT.<br>Oleh : <strong>Fauzan Reza, S.T</strong> (Guru Informatika)</p>
+    </div>
+  </footer>
+
+  <script>
+    let score = 0;
+
+    function checkAnswer(event, key, questionNumber) {
+      if (!event.target.classList.contains('quiz-option')) return;
+
+      const options = event.target.parentElement.querySelectorAll('.quiz-option');
+      const resultMsg = document.getElementById('result' + questionNumber);
+
+      options.forEach(opt => {
+        opt.classList.remove('correct', 'incorrect');
+        opt.style.pointerEvents = 'none';
+      });
+
+      const selectedText = event.target.textContent.toLowerCase();
+
+      if (selectedText.includes(key.toLowerCase())) {
+        event.target.classList.add('correct');
+        resultMsg.textContent = '✅ Benar! Bagus sekali! 🎉';
+        resultMsg.classList.add('show', 'correct');
+        score++;
+      } else {
+        event.target.classList.add('incorrect');
+        options.forEach(opt => {
+          if (opt.textContent.toLowerCase().includes(key.toLowerCase())) {
+            opt.classList.add('correct');
+          }
+        });
+        resultMsg.textContent = '❌ Kurang tepat. Lihat jawaban yang hijau!';
+        resultMsg.classList.add('show', 'incorrect');
+      }
+
+      updateScore();
+      updateProgress();
+    }
+
+    function updateScore() {
+      document.getElementById('scoreDisplay').textContent = `Skor: ${score}/5`;
+    }
+
+    function updateProgress() {
+      const progress = Math.round((score / 5) * 100);
+      const bar = document.getElementById('progressBar');
+      bar.style.width = progress + '%';
+      bar.textContent = progress + '%';
+    }
+  </script>
+</body>
+</html>

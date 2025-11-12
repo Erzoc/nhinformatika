@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kelas X • Rangkuman Informatika</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary-color: #FF6B6B;
+      --secondary-color: #4ECDC4;
+      --accent-color: #FFE66D;
+      --success-color: #10B981;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
+      line-height: 1.6;
+      color: #1F2937;
+      background: #F8F9FA;
+    }
+
+    /* NAVBAR */
+    .navbar {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: #fff;
+      padding: 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+    }
+
+    .navbar-content {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .navbar-title {
+      font-size: 2rem;
+      font-weight: 800;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.35);
+    }
+
+    .navbar-sub {
+      font-size: 0.9rem;
+      opacity: 0.95;
+      font-weight: 600;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.35);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+      margin-top: 0.8rem;
+    }
+
+    .nav-link {
+      background: rgba(255,255,255,0.2);
+      padding: 0.35rem 0.7rem;
+      border-radius: 6px;
+      text-decoration: none;
+      color: #fff;
+      font-size: 0.8rem;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .nav-link:hover {
+      background: rgba(255,255,255,0.3);
+      transform: translateY(-2px);
+    }
+
+    .nav-link.active {
+      background: #FFE66D;
+      color: #667eea;
+    }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: #fff;
+      padding: 2.5rem 1rem;
+      text-align: center;
+      border-bottom: 5px solid #FFE66D;
+    }
+
+    .hero-emoji {
+      font-size: 2.5rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .hero h1 {
+      font-size: 2.2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero p {
+      opacity: 0.98;
+      font-size: 1.1rem;
+    }
+
+    .badge {
+      display: inline-block;
+      background: #FFE66D;
+      color: #667eea;
+      padding: 0.4rem 1rem;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      margin-top: 0.8rem;
+    }
+
+    /* CONTAINER */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    section {
+      margin: 2rem 0;
+    }
+
+    section h2 {
+      color: var(--primary-color);
+      font-size: 1.7rem;
+      margin-bottom: 1rem;
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+      border-left: 5px solid var(--secondary-color);
+      padding-left: 0.8rem;
+    }
+
+    /* CARDS */
+    .card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 1.3rem;
+      margin-bottom: 1.2rem;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      border-left: 5px solid var(--secondary-color);
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.2);
+    }
+
+    .card h3 {
+      color: var(--primary-color);
+      margin-bottom: 0.7rem;
+      font-size: 1.3rem;
+    }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.2rem;
+      margin: 1rem 0;
+    }
+
+    .summary-card {
+      background: #fff;
+      padding: 1.2rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+      border-top: 5px solid var(--primary-color);
+      transition: all 0.3s ease;
+    }
+
+    .summary-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    }
+
+    .summary-card h4 {
+      color: var(--primary-color);
+      margin-bottom: 0.6rem;
+      font-size: 1.1rem;
+    }
+
+    .chapter-nav {
+      background: #f9fafb;
+      padding: 1.5rem;
+      border-radius: 12px;
+      margin: 1.5rem 0;
+      border: 2px solid #e5e7eb;
+    }
+
+    .chapter-nav h4 {
+      color: #1F2937;
+      margin-bottom: 1rem;
+      font-size: 1.2rem;
+    }
+
+    .chapter-links {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem;
+    }
+
+    .chapter-link {
+      background: #fff;
+      padding: 1rem;
+      border-radius: 8px;
+      text-decoration: none;
+      color: #1F2937;
+      border: 2px solid #e5e7eb;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .chapter-link:hover {
+      border-color: #667eea;
+      transform: translateY(-3px);
+      box-shadow: 0 4px 12px rgba(102,126,234,0.2);
+    }
+
+    .chapter-icon {
+      font-size: 2rem;
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .chapter-text h5 {
+      font-size: 1rem;
+      margin-bottom: 0.2rem;
+      color: #667eea;
+    }
+
+    .chapter-text p {
+      font-size: 0.85rem;
+      color: #6B7280;
+    }
+
+    .tip-box {
+      background: linear-gradient(135deg, #8B5CF6 0%, #EC4899 100%);
+      color: #fff;
+      padding: 1.2rem;
+      border-radius: 10px;
+      margin: 1rem 0;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    .fact-box {
+      background: linear-gradient(135deg, #1E88E5 0%, #00ACC1 100%);
+      color: #fff;
+      padding: 1.2rem;
+      border-radius: 10px;
+      margin: 1rem 0;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    .success-box {
+      background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+      color: #fff;
+      padding: 1.2rem;
+      border-radius: 10px;
+      margin: 1rem 0;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    .download-box {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: #fff;
+      padding: 2rem;
+      border-radius: 12px;
+      margin: 1.5rem 0;
+      text-align: center;
+      box-shadow: 0 6px 20px rgba(102,126,234,0.4);
+    }
+
+    .download-box h4 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .btn-download {
+      display: inline-block;
+      background: #fff;
+      color: #667eea;
+      padding: 0.9rem 1.8rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.1rem;
+      margin: 0.5rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    .btn-download:hover {
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+    }
+
+    .key-points {
+      background: #f9fafb;
+      padding: 1.5rem;
+      border-radius: 10px;
+      border-left: 5px solid #667eea;
+      margin: 1rem 0;
+    }
+
+    .key-points h4 {
+      color: #667eea;
+      margin-bottom: 0.8rem;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #111827;
+      color: #fff;
+      text-align: center;
+      padding: 1rem 0.8rem;
+      margin-top: 2rem;
+    }
+
+    .footer-content h3 {
+      color: #FFD700;
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+    }
+
+    .footer-content p {
+      opacity: 0.9;
+      font-size: 0.8rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .social-media {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin: 0.8rem 0 0.5rem 0;
+      flex-wrap: wrap;
+    }
+
+    .social-icon {
+      width: 34px;
+      height: 34px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      transition: all 0.25s ease;
+      text-decoration: none;
+    }
+
+    .social-icon.whatsapp {
+      background: #25D366;
+      color: #fff;
+    }
+
+    .social-icon.whatsapp:hover {
+      background: #128C7E;
+      transform: scale(1.08) rotate(3deg);
+    }
+
+    .social-icon.youtube {
+      background: #FF0000;
+      color: #fff;
+    }
+
+    .social-icon.youtube:hover {
+      background: #CC0000;
+      transform: scale(1.08) rotate(-3deg);
+    }
+
+    .social-icon.instagram {
+      background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+      color: #fff;
+    }
+
+    .social-icon.instagram:hover {
+      transform: scale(1.08);
+    }
+
+    .social-icon.facebook {
+      background: #1877F2;
+      color: #fff;
+    }
+
+    .social-icon.facebook:hover {
+      background: #145DBF;
+      transform: scale(1.08) rotate(-2deg);
+    }
+
+    @media (max-width: 768px) {
+      .navbar-title {
+        font-size: 1.5rem;
+      }
+
+      .nav-links {
+        gap: 0.4rem;
+      }
+
+      .nav-link {
+        font-size: 0.7rem;
+        padding: 0.3rem 0.5rem;
+      }
+
+      .hero h1 {
+        font-size: 1.5rem;
+      }
+
+      section h2 {
+        font-size: 1.3rem;
+      }
+
+      .summary-grid, .chapter-links {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="navbar-content">
+      <div class="navbar-title">📚 Rangkuman Informatika</div>
+      <div class="nav-links">
+        <a href="k10_5_sosinf1.html" class="nav-link">Dampak Sosial</a>
+        <a href="k10_5_sosinf2.html" class="nav-link">Peran Informatika</a>
+        <a href="k10_5_sosinf3.html" class="nav-link">Karier & Studi</a>
+        <a href="#" class="nav-link active">Rangkuman</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-emoji">💻📖✨</div>
+      <h1>Rangkuman: Informatika dalam Kehidupan</h1>
+      <p>Ringkasan lengkap materi Dampak Sosial, Peran di Berbagai Bidang, serta Karier & Studi Lanjut Informatika</p>
+      <span class="badge">✅ RANGKUMAN LENGKAP</span>
+    </div>
+  </section>
+
+  <div class="container">
+    <!-- NAVIGASI CHAPTER -->
+    <section>
+      <div class="chapter-nav">
+        <h4>📖 Akses Cepat ke Materi Lengkap</h4>
+        <div class="chapter-links">
+          <a href="k10_5_sosinf1.html" class="chapter-link">
+            <div class="chapter-icon">🌐</div>
+            <div class="chapter-text">
+              <h5>Bab 1</h5>
+              <p>Dampak Sosial Informatika</p>
+            </div>
+          </a>
+
+          <a href="k10_5_sosinf2.html" class="chapter-link">
+            <div class="chapter-icon">🌟</div>
+            <div class="chapter-text">
+              <h5>Bab 2</h5>
+              <p>Peran Informatika di Berbagai Bidang</p>
+            </div>
+          </a>
+
+          <a href="k10_5_sosinf3.html" class="chapter-link">
+            <div class="chapter-icon">💡</div>
+            <div class="chapter-text">
+              <h5>Bab 3</h5>
+              <p>Karier & Studi Lanjut Informatika</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- BAB 1: DAMPAK SOSIAL -->
+    <section>
+      <h2>🌐 Ringkasan: Dampak Sosial Informatika</h2>
+
+      <div class="card">
+        <h3>Aspek Ekonomi, Hukum, dan Sosial Produk Informasi</h3>
+        <p>Informatika tidak hanya tentang teknologi, tetapi juga memberikan dampak signifikan terhadap ekonomi, hukum, dan kehidupan sosial masyarakat.</p>
+
+        <div class="summary-grid">
+          <div class="summary-card">
+            <h4>💼 Aspek Ekonomi</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>Nilai ekonomi produk informasi:</strong> Non-rivalrous, non-excludable, network effects</li>
+              <li>• <strong>Model bisnis digital:</strong> Freemium, subscription, advertising, marketplace, gig economy</li>
+              <li>• <strong>Peluang ekonomi:</strong> E-commerce, content creator, programmer, digital marketing</li>
+              <li>• <strong>Dampak positif:</strong> Efisiensi biaya, jangkauan pasar luas, lowongan kerja baru</li>
+              <li>• <strong>Dampak negatif:</strong> Disrupsi pekerjaan, kesenjangan digital, monopoli platform</li>
+            </ul>
+          </div>
+
+          <div class="summary-card">
+            <h4>⚖️ Aspek Hukum</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>HKI:</strong> Hak Cipta (copyright), Paten (patent), Merek Dagang (trademark)</li>
+              <li>• <strong>UU PDP:</strong> UU No. 27/2022 tentang Perlindungan Data Pribadi</li>
+              <li>• <strong>UU ITE:</strong> UU No. 19/2016 tentang Informasi & Transaksi Elektronik</li>
+              <li>• <strong>Perlindungan konsumen:</strong> E-commerce, marketplace responsibility, return policy</li>
+              <li>• <strong>Cybercrime:</strong> Hacking, carding, phishing, ransomware dengan sanksi pidana</li>
+            </ul>
+          </div>
+
+          <div class="summary-card">
+            <h4>🌍 Aspek Sosial</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>Perubahan perilaku:</strong> Komunikasi lebih mudah, akses informasi luas, kolaborasi jarak jauh</li>
+              <li>• <strong>Dampak negatif:</strong> Kecanduan gadget, isolasi sosial, FOMO, cyberbullying, hoax</li>
+              <li>• <strong>Digital divide:</strong> Kesenjangan akses, usage, quality, economic divide</li>
+              <li>• <strong>Etika digital:</strong> Think before post, respect privacy, no hate speech, fact-check</li>
+              <li>• <strong>Digital citizenship:</strong> Respect, educate, protect, responsible, report</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="key-points">
+          <h4>🎯 Poin Penting Dampak Sosial</h4>
+          <ol style="list-style-position: inside; margin-left: 0.6rem; line-height: 1.9;">
+            <li>Produk informasi memiliki nilai ekonomi tinggi dengan karakteristik unik (non-rivalrous, network effects)</li>
+            <li>Model bisnis digital: freemium, subscription, advertising, marketplace sangat populer</li>
+            <li>HKI melindungi karya digital: Hak Cipta (otomatis), Paten (harus daftar), Merek (harus daftar)</li>
+            <li>UU PDP melindungi data pribadi dengan sanksi denda hingga Rp 50 miliar</li>
+            <li>UU ITE mengatur transaksi elektronik dan larangan konten ilegal online</li>
+            <li>Kesenjangan digital (digital divide) perlu diatasi dengan infrastruktur, edukasi, subsidi</li>
+            <li>Etika digital dan netiquette penting untuk kehidupan online yang sehat</li>
+            <li>Indonesia memiliki 212 juta pengguna internet (76.5%) dengan 8+ jam online per hari</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- BAB 2: PERAN INFORMATIKA -->
+    <section>
+      <h2>🌟 Ringkasan: Peran Informatika di Berbagai Bidang</h2>
+
+      <div class="card">
+        <h3>9 Bidang Transformasi Digital</h3>
+        <p>Informatika telah menjadi penggerak utama transformasi digital di hampir semua sektor kehidupan, meningkatkan efisiensi, produktivitas, dan kualitas layanan.</p>
+
+        <div class="summary-grid">
+          <div class="summary-card">
+            <h4>🎓 Pendidikan</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>E-Learning:</strong> Google Classroom, Moodle, Canvas</li>
+              <li>• <strong>Konten digital:</strong> Video tutorial, e-book, simulasi, VR/AR</li>
+              <li>• <strong>Sistem sekolah:</strong> Absensi digital, nilai online, database</li>
+              <li>• <strong>Adaptive learning:</strong> AI personalisasi, chatbot tutor</li>
+            </ul>
+          </div>
+
+          <div class="summary-card">
+            <h4>🏥 Kesehatan</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>EMR/EHR:</strong> Rekam medis elektronik</li>
+              <li>• <strong>Telemedicine:</strong> Konsultasi online (Halodoc, Alodokter)</li>
+              <li>• <strong>SIMRS:</strong> Sistem informasi rumah sakit</li>
+              <li>• <strong>AI diagnostic:</strong> Deteksi penyakit dari X-ray, CT scan</li>
+            </ul>
+          </div>
+
+          <div class="summary-card">
+            <h4>🛒 Perdagangan</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>E-commerce:</strong> Tokopedia, Shopee, Lazada</li>
+              <li>• <strong>Payment:</strong> E-wallet, virtual account, BNPL</li>
+              <li>• <strong>Supply chain:</strong> Inventory, warehouse management</li>
+              <li>• <strong>Digital marketing:</strong> SEO/SEM, social media ads</li>
+            </ul>
+          </div>
+
+          <div class="summary-card">
+            <h4>🏦 Perbankan</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>Mobile banking:</strong> Transfer, cek saldo, bayar tagihan 24/7</li>
+              <li>• <strong>Cashless:</strong> ATM, debit/credit card, QR payment</li>
+              <li>• <strong>Core banking:</strong> Database nasabah, real-time processing</li>
+              <li>• <strong>Fintech:</strong> E-wallet, P2P lending, robo-advisor</li>
+            </ul>
+          </div>
+
+          <div class="summary-card">
+            <h4>🏛️ Pemerintahan</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>Layanan publik:</strong> e-KTP, e-Samsat, SIM online, e-Filing</li>
+              <li>• <strong>E-government:</strong> Portal pemerintah, OSS perizinan</li>
+              <li>• <strong>Smart city:</strong> Traffic management, smart parking, CCTV</li>
+              <li>• <strong>Transparansi:</strong> Open data, e-procurement</li>
+            </ul>
+          </div>
+
+          <div class="summary-card">
+            <h4>🚨 Penanggulangan Bencana</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>EWS:</strong> Early warning system (BMKG, sensor seismik)</li>
+              <li>• <strong>GIS:</strong> Peta digital, hazard map, satellite imagery</li>
+              <li>• <strong>Koordinasi:</strong> Command center, walkie-talkie digital</li>
+              <li>• <strong>Crowd-sourcing:</strong> PetaBencana.id, social media monitoring</li>
+            </ul>
+          </div>
+
+          <div class="summary-card">
+            <h4>🏭 Industri</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>Industry 4.0:</strong> Otomasi, robotika, smart factory</li>
+              <li>• <strong>IoT:</strong> Sensor monitoring, predictive maintenance</li>
+              <li>• <strong>MES/ERP:</strong> Manufacturing & enterprise system (SAP, Oracle)</li>
+              <li>• <strong>AI analytics:</strong> Production optimization, quality control</li>
+            </ul>
+          </div>
+
+          <div class="summary-card">
+            <h4>🌾 Pertanian</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>Precision farming:</strong> GPS tracking, soil sensors</li>
+              <li>• <strong>Drone & satelit:</strong> Aerial imaging, NDVI analysis</li>
+              <li>• <strong>Smart irrigation:</strong> IoT-based watering system</li>
+              <li>• <strong>AI prediction:</strong> Crop yield, disease detection</li>
+            </ul>
+          </div>
+
+          <div class="summary-card">
+            <h4>🚗 Transportasi</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>Ride-hailing:</strong> Gojek, Grab, Uber</li>
+              <li>• <strong>GPS navigation:</strong> Google Maps, Waze</li>
+              <li>• <strong>Smart traffic:</strong> Traffic light AI, ATCS, e-TLE</li>
+              <li>• <strong>E-ticketing:</strong> Tiket online, QR boarding</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="key-points">
+          <h4>🎯 Poin Penting Peran Informatika</h4>
+          <ol style="list-style-position: inside; margin-left: 0.6rem; line-height: 1.9;">
+            <li>Informatika meningkatkan efisiensi, produktivitas, dan kualitas layanan di semua sektor</li>
+            <li>Pendidikan: E-learning membuat belajar lebih fleksibel dan aksesible</li>
+            <li>Kesehatan: Telemedicine dan EMR meningkatkan akses dan kualitas healthcare</li>
+            <li>Perdagangan: E-commerce mengubah cara berbisnis dari offline ke online</li>
+            <li>Perbankan: Digital banking membuat transaksi lebih mudah dan aman</li>
+            <li>Pemerintahan: E-government meningkatkan transparansi dan efisiensi layanan publik</li>
+            <li>Bencana: Early warning system dan GIS menyelamatkan banyak nyawa</li>
+            <li>Industri: Industry 4.0 dengan otomasi dan IoT meningkatkan produktivitas</li>
+            <li>Pertanian: Smart agriculture meningkatkan hasil panen dan efisiensi sumber daya</li>
+            <li>Transportasi: Smart mobility mengurangi kemacetan dan meningkatkan keamanan</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- BAB 3: KARIER & STUDI -->
+    <section>
+      <h2>💡 Ringkasan: Karier & Studi Lanjut Informatika</h2>
+
+      <div class="card">
+        <h3>Peluang Karier dan Pendidikan di Era Digital</h3>
+        <p>Bidang informatika menawarkan prospek karier yang sangat luas dengan gaji tinggi dan demand yang terus meningkat di era transformasi digital.</p>
+
+        <div class="summary-grid">
+          <div class="summary-card">
+            <h4>🚀 Karier Populer IT</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>Software Developer:</strong> Programmer web, mobile, desktop (7-15 juta/bulan entry level)</li>
+              <li>• <strong>Data Scientist:</strong> Analisis big data, machine learning, AI</li>
+              <li>• <strong>Cyber Security:</strong> Network security, ethical hacker, security analyst</li>
+              <li>• <strong>UI/UX Designer:</strong> Desain antarmuka, user experience</li>
+              <li>• <strong>IT Support:</strong> System administrator, help desk, troubleshooting</li>
+              <li>• <strong>AI Engineer:</strong> Machine learning specialist, AI development</li>
+              <li>• <strong>Technopreneur:</strong> Startup founder, digital business owner</li>
+              <li>• <strong>Game Developer:</strong> Game programming, game design</li>
+            </ul>
+          </div>
+
+          <div class="summary-card">
+            <h4>🎓 Studi Lanjut Informatika</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>S1 Informatika/Ilmu Komputer:</strong> Pemrograman, jaringan, AI, database</li>
+              <li>• <strong>S1 Sistem Informasi:</strong> Integrasi bisnis dan IT</li>
+              <li>• <strong>S1 Teknik Komputer:</strong> Embedded system, hardware, IoT</li>
+              <li>• <strong>S1 Teknologi Informasi:</strong> Infrastruktur TI, cloud, security</li>
+              <li>• <strong>S1 Pendidikan Informatika:</strong> Menjadi guru komputer</li>
+              <li>• <strong>S2/S3:</strong> Riset AI, Data Science, Security</li>
+              <li>• <strong>Sertifikasi:</strong> Cisco, Microsoft, Google, AWS, Oracle</li>
+              <li>• <strong>Kursus online:</strong> Coursera, Udemy, Dicoding, Bootcamp</li>
+            </ul>
+          </div>
+
+          <div class="summary-card">
+            <h4>💼 Keunggulan Karier IT</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>Gaji tinggi:</strong> Salary kompetitif, terus meningkat</li>
+              <li>• <strong>Remote work:</strong> Work from home, fleksibel</li>
+              <li>• <strong>Global opportunity:</strong> Bisa kerja untuk perusahaan luar negeri</li>
+              <li>• <strong>Always learning:</strong> Teknologi terus berkembang</li>
+              <li>• <strong>High demand:</strong> Banyak lowongan, kurang supply</li>
+              <li>• <strong>Freelance:</strong> Bisa kerja project-based</li>
+              <li>• <strong>Innovation:</strong> Menciptakan produk baru</li>
+            </ul>
+          </div>
+
+          <div class="summary-card">
+            <h4>📌 Tips Sukses IT Career</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>Mulai belajar coding:</strong> Python, JavaScript, C++</li>
+              <li>• <strong>Buat portfolio:</strong> GitHub, project pribadi</li>
+              <li>• <strong>Ikut komunitas:</strong> Hackathon, coding club</li>
+              <li>• <strong>Magang & internship:</strong> Pengalaman praktis</li>
+              <li>• <strong>Sertifikasi:</strong> Tambah kredibilitas</li>
+              <li>• <strong>Networking:</strong> LinkedIn, tech meetup</li>
+              <li>• <strong>Keep learning:</strong> Teknologi terus update</li>
+              <li>• <strong>Soft skills:</strong> Communication, teamwork, problem-solving</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="key-points">
+          <h4>🎯 Poin Penting Karier & Studi</h4>
+          <ol style="list-style-position: inside; margin-left: 0.6rem; line-height: 1.9;">
+            <li>Karier IT sangat dibutuhkan dengan gaji tinggi dan prospek cerah</li>
+            <li>Software Developer entry level di Indonesia: 7-15 juta rupiah/bulan</li>
+            <li>Data Science, AI, dan Cyber Security adalah bidang dengan demand tinggi</li>
+            <li>Studi lanjut: S1 Informatika/Ilmu Komputer/Sistem Informasi paling populer</li>
+            <li>Kampus terbaik: ITB, ITS, UGM, UI, Binus, Telkom University</li>
+            <li>Sertifikasi internasional: Cisco, Microsoft, Google, AWS sangat berharga</li>
+            <li>Remote work dan freelance membuat karier IT sangat fleksibel</li>
+            <li>Technopreneur: Peluang membangun startup digital sendiri</li>
+            <li>Tips sukses: Mulai coding sejak SMA, buat portfolio, ikut komunitas</li>
+            <li>Soft skills (komunikasi, teamwork) sama pentingnya dengan technical skills</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- KEY TAKEAWAYS -->
+    <section>
+      <h2>🎯 Key Takeaways: 30 Poin Penting</h2>
+
+      <div class="card" style="background: linear-gradient(135deg, rgba(102,126,234,0.05), rgba(118,75,162,0.05)); border-left: 5px solid #667eea;">
+        <h3>💡 30 Hal yang Harus Dikuasai Kelas X</h3>
+        <ol style="list-style-position: inside; margin-left: 0.6rem; line-height: 2.2; font-size: 0.95rem;">
+          <li>Informatika berdampak besar pada ekonomi, hukum, dan kehidupan sosial masyarakat</li>
+          <li>Produk informasi memiliki karakteristik: non-rivalrous, non-excludable, network effects</li>
+          <li>Model bisnis digital populer: freemium, subscription, advertising, marketplace</li>
+          <li>HKI melindungi karya digital: Hak Cipta (copyright), Paten (patent), Merek (trademark)</li>
+          <li>UU PDP No. 27/2022 melindungi data pribadi dengan sanksi hingga Rp 50 miliar</li>
+          <li>UU ITE No. 19/2016 mengatur transaksi elektronik dan konten online</li>
+          <li>Digital divide (kesenjangan digital) perlu diatasi dengan infrastruktur dan edukasi</li>
+          <li>Etika digital penting: think before post, respect privacy, no hate speech</li>
+          <li>Indonesia: 212 juta pengguna internet (76.5%) dengan 8+ jam online per hari</li>
+          <li>E-learning (Google Classroom, Moodle) membuat pendidikan lebih aksesible</li>
+          <li>Telemedicine (Halodoc, Alodokter) meningkatkan akses healthcare</li>
+          <li>E-commerce (Tokopedia, Shopee) mengubah cara berbisnis ke online</li>
+          <li>Mobile banking membuat transaksi keuangan 24/7 tanpa ke bank</li>
+          <li>E-government meningkatkan transparansi dan efisiensi layanan publik</li>
+          <li>Early Warning System (BMKG) menyelamatkan nyawa dari bencana</li>
+          <li>Industry 4.0: Otomasi, robotika, IoT di pabrik pintar</li>
+          <li>Smart agriculture: Precision farming dengan GPS dan sensor</li>
+          <li>Ride-hailing (Gojek, Grab) adalah bagian dari smart transportation</li>
+          <li>Informatika meningkatkan efisiensi, produktivitas di semua sektor</li>
+          <li>Software Developer adalah karier IT paling populer (gaji 7-15 juta/bulan)</li>
+          <li>Data Science, AI, Cyber Security adalah bidang high-demand</li>
+          <li>S1 Informatika/Ilmu Komputer/Sistem Informasi pilihan studi populer</li>
+          <li>Kampus IT terbaik: ITB, ITS, UGM, UI, Binus, Telkom University</li>
+          <li>Sertifikasi internasional (Cisco, Microsoft, Google, AWS) sangat berharga</li>
+          <li>Karier IT: Remote work, freelance, global opportunity</li>
+          <li>Technopreneur: Peluang membangun startup digital sendiri</li>
+          <li>Tips sukses IT: Mulai coding, buat portfolio, ikut komunitas</li>
+          <li>Soft skills (komunikasi, teamwork) sama penting dengan technical skills</li>
+          <li>Teknologi terus berkembang: Always keep learning!</li>
+          <li>Informatika adalah kunci masa depan digital Indonesia</li>
+        </ol>
+      </div>
+
+      <div class="fact-box">
+        <h4>📊 Quick Facts</h4>
+        <ul style="list-style-position: inside; margin-left: 0.6rem;">
+          <li>• <strong>E-commerce Indonesia:</strong> GMV $59 miliar (2024), terbesar di ASEAN</li>
+          <li>• <strong>Startup unicorn:</strong> Gojek, Tokopedia, Traveloka, Bukalapak, OVO</li>
+          <li>• <strong>IT jobs growth:</strong> +15-20% per tahun di Indonesia</li>
+          <li>• <strong>Data scientist salary:</strong> 15-30 juta/bulan (experienced)</li>
+          <li>• <strong>Kampus IT:</strong> 500+ universitas menawarkan jurusan informatika</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- DOWNLOAD SECTION -->
+    <section>
+      <h2>📥 Download Materi Lengkap</h2>
+      
+      <div class="download-box">
+        <h4>📚 Paket Lengkap: Informatika Kelas X</h4>
+        <p style="margin-bottom: 1.5rem; font-size: 1.05rem;">Download rangkuman lengkap, infografis, dan panduan karier informatika!</p>
+        
+        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+          <a href="#" class="btn-download" onclick="alert('File akan segera tersedia. Hubungi guru untuk mendapatkan file lengkap.'); return false;">
+            📥 Rangkuman Lengkap PDF
+          </a>
+          <a href="#" class="btn-download" onclick="alert('File akan segera tersedia. Hubungi guru untuk mendapatkan file lengkap.'); return false;">
+            📥 Infografis
+          </a>
+          <a href="#" class="btn-download" onclick="alert('File akan segera tersedia. Hubungi guru untuk mendapatkan file lengkap.'); return false;">
+            📥 Panduan Karier IT
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- PENUTUP -->
+    <section>
+      <div class="card" style="background: linear-gradient(135deg, rgba(102,126,234,0.06), rgba(118,75,162,0.08)); border-left: 5px solid #FFE66D; text-align: center; padding: 2rem;">
+        <h3 style="margin-bottom: 1rem; font-size: 1.5rem;">🎉 Selamat! Anda Telah Menguasai Dasar Informatika</h3>
+        <p style="margin-bottom: 1.5rem; line-height: 1.9; font-size: 1.05rem;">
+          Anda sekarang memahami bagaimana informatika berdampak pada ekonomi, hukum, dan sosial; bagaimana informatika berperan di 9 bidang kehidupan; serta peluang karier dan studi lanjut di bidang IT. Informatika adalah masa depan - mulai belajar coding, ikuti perkembangan teknologi, dan raih peluang karier digital yang menanti!
+        </p>
+
+        <div style="background: rgba(255,230,109,0.15); padding: 1.5rem; border-radius: 10px; margin: 1.5rem 0;">
+          <p style="font-weight: 700; color: #667eea; font-size: 1.3rem; margin-bottom: 0.8rem;">💡 Ingat Selalu:</p>
+          <p style="font-size: 1.1rem; line-height: 1.8;">
+            <em>"The best way to predict the future is to create it!"</em><br/>
+            <span style="font-size: 0.9rem; opacity: 0.8;">- Peter Drucker</span>
+          </p>
+          <p style="font-size: 0.95rem; margin-top: 0.8rem;">
+            💻 Learn to Code • 🚀 Build Projects • 🌐 Join Community • 🎯 Never Stop Learning
+          </p>
+        </div>
+
+        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem;">
+          <a href="k10_5_sosinf1.html" style="display: inline-block; background: #6B7280; color: #fff; padding: 0.8rem 1.8rem; border-radius: 8px; text-decoration: none; font-weight: 600;">
+            🔄 Review: Dampak Sosial
+          </a>
+          <a href="k10_5_sosinf2.html" style="display: inline-block; background: #6B7280; color: #fff; padding: 0.8rem 1.8rem; border-radius: 8px; text-decoration: none; font-weight: 600;">
+            🔄 Review: Peran Informatika
+          </a>
+          <a href="k10_5_sosinf3.html" style="display: inline-block; background: #6B7280; color: #fff; padding: 0.8rem 1.8rem; border-radius: 8px; text-decoration: none; font-weight: 600;">
+            🔄 Review: Karier & Studi
+          </a>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-content">
+      <h3>Platform Pembelajaran Interaktif untuk Siswa & Siswi <strong>Ypi Nurul Hadina</strong></h3>
+
+      <div class="social-media">
+        <a class="social-icon whatsapp" href="https://wa.me/6289504440411" target="_blank">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" width="18" height="18"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884"/></svg>
+        </a>
+
+        <a class="social-icon youtube" href="https://www.youtube.com/channel/UCNmOH6L2xq6C15EkQlx_FpQ" target="_blank">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" width="18" height="18"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+        </a>
+
+        <a class="social-icon instagram" href="https://instagram.com/ypinurulhadina" target="_blank">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" width="18" height="18"><path d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.319 1.347 20.651.935 19.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.015 3.585-.074 4.85c-.061 1.17-.256 1.805-.421 2.227-.224.562-.479.96-.899 1.382-.419.419-.824.679-1.38.896-.42.164-1.065.36-2.235.413-1.274.057-1.649.07-4.859.07-3.211 0-3.586-.015-4.859-.074-1.171-.061-1.816-.256-2.236-.421-.569-.224-.96-.479-1.379-.899-.421-.419-.69-.824-.9-1.38-.165-.42-.359-1.065-.42-2.235-.045-1.26-.061-1.649-.061-4.844 0-3.196.016-3.586.061-4.861.061-1.17.255-1.814.42-2.234.21-.57.479-.96.9-1.381.419-.419.81-.689 1.379-.898.42-.166 1.051-.361 2.221-.421 1.275-.045 1.65-.06 4.859-.06l.045.03zm0 3.678c-3.405 0-6.162 2.76-6.162 6.162 0 3.405 2.76 6.162 6.162 6.162 3.405 0 6.162-2.76 6.162-6.162 0-3.405-2.76-6.162-6.162-6.162zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm7.846-10.405c0 .795-.646 1.44-1.44 1.44-.795 0-1.44-.646-1.44-1.44 0-.794.646-1.439 1.44-1.439.793-.001 1.44.645 1.44 1.439z"/></svg>
+        </a>
+
+        <a class="social-icon facebook" href="https://www.facebook.com/fauzan.reza.7" target="_blank">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" width="18" height="18"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        </a>
+      </div>
+
+      <p style="margin-top: 0.6rem; font-size: 0.7rem; opacity: 0.85;">©2025 Portal Siswa Informatika. MA PLUS & SMP IT.<br>Oleh : <strong>Fauzan Reza, S.T</strong> (Guru Informatika)</p>
+    </div>
+  </footer>
+
+</body>
+</html>

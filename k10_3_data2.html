@@ -1,0 +1,1344 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kelas X • Analisis & Interpretasi Data</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary-color: #EC4899;
+      --secondary-color: #DB2777;
+      --accent-color: #F472B6;
+      --success-color: #10B981;
+      --warning-color: #F59E0B;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
+      line-height: 1.6;
+      color: #1F2937;
+      background: #F8F9FA;
+    }
+
+    /* NAVBAR */
+    .navbar {
+      background: linear-gradient(135deg, #EC4899 0%, #DB2777 100%);
+      color: #fff;
+      padding: 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+    }
+
+    .navbar-content {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .navbar-title {
+      font-size: 2rem;
+      font-weight: 800;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.35);
+    }
+
+    .navbar-sub {
+      font-size: 0.9rem;
+      opacity: 0.95;
+      font-weight: 600;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.35);
+    }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(135deg, #EC4899 0%, #DB2777 100%);
+      color: #fff;
+      padding: 2rem 1rem;
+      text-align: center;
+      border-bottom: 5px solid #FFE66D;
+    }
+
+    .hero-emoji {
+      font-size: 2.3rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .hero h1 {
+      font-size: 1.9rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .hero p {
+      opacity: 0.98;
+      font-size: 1.05rem;
+    }
+
+    /* CONTAINER */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    section {
+      margin: 2rem 0;
+    }
+
+    section h2 {
+      color: var(--primary-color);
+      font-size: 1.6rem;
+      margin-bottom: 1rem;
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+      border-left: 5px solid var(--secondary-color);
+      padding-left: 0.8rem;
+    }
+
+    /* CARDS */
+    .card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 1.2rem;
+      margin-bottom: 1.2rem;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      border-left: 5px solid var(--secondary-color);
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.25);
+    }
+
+    .card h3 {
+      color: var(--primary-color);
+      margin-bottom: 0.7rem;
+      font-size: 1.2rem;
+    }
+
+    .card p {
+      color: #4B5563;
+      margin-bottom: 0.6rem;
+    }
+
+    .content-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem;
+      margin: 0.8rem 0 1.2rem 0;
+    }
+
+    .content-box {
+      background: #fff;
+      padding: 1.2rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+      border-top: 4px solid var(--primary-color);
+      transition: all 0.3s ease;
+    }
+
+    .content-box:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    }
+
+    .content-box h4 {
+      color: var(--primary-color);
+      margin-bottom: 0.6rem;
+      font-size: 1.1rem;
+    }
+
+    .example-box {
+      background: #FDF2F8;
+      border: 2px solid #F9A8D4;
+      padding: 1rem;
+      border-radius: 8px;
+      margin: 1rem 0;
+    }
+
+    .example-box h4 {
+      color: #DB2777;
+      margin-bottom: 0.5rem;
+      font-size: 1rem;
+    }
+
+    .chart-demo {
+      background: #F9FAFB;
+      padding: 1.5rem;
+      border-radius: 10px;
+      margin: 1rem 0;
+      text-align: center;
+      border: 2px dashed #E5E7EB;
+    }
+
+    .chart-placeholder {
+      background: linear-gradient(135deg, #FDF2F8, #FCE7F3);
+      height: 200px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      margin: 1rem 0;
+    }
+
+    .tip-box {
+      background: linear-gradient(135deg, #8B5CF6 0%, #EC4899 100%);
+      color: #fff;
+      padding: 1.1rem;
+      border-radius: 10px;
+      margin: 1rem 0;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    .tip-box h4 {
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .fact-box {
+      background: linear-gradient(135deg, #1E88E5 0%, #00ACC1 100%);
+      color: #fff;
+      padding: 1.1rem;
+      border-radius: 10px;
+      margin: 1rem 0;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    .warning-box {
+      background: linear-gradient(135deg, #F59E0B 0%, #EF4444 100%);
+      color: #fff;
+      padding: 1.1rem;
+      border-radius: 10px;
+      margin: 1rem 0;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    .success-box {
+      background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+      color: #fff;
+      padding: 1.1rem;
+      border-radius: 10px;
+      margin: 1rem 0;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    .steps-box {
+      background: #fff;
+      border-left: 5px solid #EC4899;
+      padding: 1.2rem;
+      border-radius: 8px;
+      margin: 1rem 0;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    }
+
+    .steps-box h4 {
+      color: #EC4899;
+      margin-bottom: 0.8rem;
+    }
+
+    .step-number {
+      display: inline-block;
+      background: linear-gradient(135deg, #EC4899, #DB2777);
+      color: #fff;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 30px;
+      font-weight: 700;
+      margin-right: 0.5rem;
+    }
+
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+      background: #fff;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    }
+
+    .comparison-table th {
+      background: linear-gradient(135deg, #EC4899, #DB2777);
+      color: #fff;
+      padding: 0.8rem;
+      text-align: left;
+      font-weight: 700;
+    }
+
+    .comparison-table td {
+      padding: 0.8rem;
+      border-bottom: 1px solid #E5E7EB;
+    }
+
+    .comparison-table tr:hover {
+      background: #FDF2F8;
+    }
+
+    .download-box {
+      background: linear-gradient(135deg, #EC4899 0%, #DB2777 100%);
+      color: #fff;
+      padding: 1.5rem;
+      border-radius: 12px;
+      margin: 1.5rem 0;
+      text-align: center;
+      box-shadow: 0 6px 20px rgba(236,72,153,0.3);
+    }
+
+    .download-box h4 {
+      font-size: 1.3rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .btn-download {
+      display: inline-block;
+      background: #fff;
+      color: #EC4899;
+      padding: 0.8rem 1.5rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.1rem;
+      margin: 0.5rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    .btn-download:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+    }
+
+    /* VIDEO */
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1rem;
+    }
+
+    .video-card {
+      background: #fff;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .video-card:hover {
+      transform: translateY(-8px);
+    }
+
+    .video-thumbnail {
+      width: 100%;
+      height: 150px;
+      background: linear-gradient(135deg, #EC4899, #DB2777);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.4rem;
+      color: #fff;
+    }
+
+    .video-info {
+      padding: 0.9rem;
+    }
+
+    .video-info h4 {
+      margin-bottom: 0.4rem;
+      font-size: 1rem;
+      color: #111827;
+    }
+
+    .video-info p {
+      font-size: 0.85rem;
+      color: #6B7280;
+      margin-bottom: 0.6rem;
+    }
+
+    .video-link {
+      display: inline-block;
+      background: #EC4899;
+      color: #fff;
+      padding: 0.45rem 0.8rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: all 0.25s ease;
+    }
+
+    .video-link:hover {
+      background: #DB2777;
+      transform: translateY(-2px);
+    }
+
+    /* QUIZ */
+    .game-section {
+      background: linear-gradient(135deg, #EC4899 0%, #DB2777 100%);
+      color: #fff;
+      padding: 1.25rem 1rem;
+      border-radius: 14px;
+      margin: 1.4rem 0;
+    }
+
+    .game-section h3 {
+      color: #fff;
+      margin-bottom: 0.9rem;
+      font-size: 1.2rem;
+    }
+
+    .game-container {
+      background: rgba(255,255,255,0.96);
+      color: #111827;
+      padding: 0.9rem;
+      border-radius: 10px;
+      margin-bottom: 0.8rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .game-question {
+      font-weight: 700;
+      margin-bottom: 0.6rem;
+      font-size: 1rem;
+      color: #111827;
+    }
+
+    .quiz-options {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0.6rem;
+    }
+
+    .quiz-option {
+      background: #f3f4f6;
+      border: 2px solid #e5e7eb;
+      padding: 0.7rem 0.8rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-weight: 600;
+      font-size: 0.92rem;
+      color: #1F2937;
+    }
+
+    .quiz-option:hover {
+      background: #FDF2F8;
+      border-color: #EC4899;
+      transform: translateX(4px);
+    }
+
+    .quiz-option.correct {
+      background: var(--success-color);
+      border-color: var(--success-color);
+      color: #fff;
+    }
+
+    .quiz-option.incorrect {
+      background: #EF4444;
+      border-color: #EF4444;
+      color: #fff;
+    }
+
+    .result-message {
+      margin-top: 0.6rem;
+      padding: 0.7rem;
+      border-radius: 8px;
+      text-align: center;
+      font-weight: 700;
+      font-size: 0.95rem;
+      display: none;
+    }
+
+    .result-message.show {
+      display: block;
+    }
+
+    .result-message.correct {
+      background: var(--success-color);
+      color: #fff;
+    }
+
+    .result-message.incorrect {
+      background: #EF4444;
+      color: #fff;
+    }
+
+    .progress-container {
+      background: #e5e7eb;
+      border-radius: 10px;
+      margin: 0.8rem 0 1rem 0;
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      height: 20px;
+      background: linear-gradient(90deg, #EC4899, #DB2777);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.8rem;
+      transition: width 0.25s ease;
+    }
+
+    .score-display {
+      text-align: center;
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--primary-color);
+      margin: 0.6rem 0;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #111827;
+      color: #fff;
+      text-align: center;
+      padding: 1rem 0.8rem;
+      margin-top: 2rem;
+    }
+
+    .footer-content h3 {
+      color: #FFD700;
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+    }
+
+    .footer-content p {
+      opacity: 0.9;
+      font-size: 0.8rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .social-media {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin: 0.8rem 0 0.5rem 0;
+      flex-wrap: wrap;
+    }
+
+    .social-icon {
+      width: 34px;
+      height: 34px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      transition: all 0.25s ease;
+      text-decoration: none;
+    }
+
+    .social-icon.whatsapp {
+      background: #25D366;
+      color: #fff;
+    }
+
+    .social-icon.whatsapp:hover {
+      background: #128C7E;
+      transform: scale(1.08) rotate(3deg);
+    }
+
+    .social-icon.youtube {
+      background: #FF0000;
+      color: #fff;
+    }
+
+    .social-icon.youtube:hover {
+      background: #CC0000;
+      transform: scale(1.08) rotate(-3deg);
+    }
+
+    .social-icon.instagram {
+      background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+      color: #fff;
+    }
+
+    .social-icon.instagram:hover {
+      transform: scale(1.08);
+    }
+
+    .social-icon.facebook {
+      background: #1877F2;
+      color: #fff;
+    }
+
+    .social-icon.facebook:hover {
+      background: #145DBF;
+      transform: scale(1.08) rotate(-2deg);
+    }
+
+    @media (max-width: 768px) {
+      .navbar-title {
+        font-size: 1.6rem;
+      }
+
+      .hero h1 {
+        font-size: 1.4rem;
+      }
+
+      section h2 {
+        font-size: 1.3rem;
+      }
+
+      .content-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .comparison-table {
+        font-size: 0.85rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="navbar-content">
+      <div class="navbar-title">📊 Analisis & Interpretasi Data</div>
+      <div class="navbar-sub">Kelas X • Teknik Menganalisis dan Menginterpretasi Data</div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-emoji">📊📈🔍</div>
+      <h1>Analisis dan Interpretasi Data</h1>
+      <p>Menggali insight dari data mentah, menemukan pola tersembunyi, dan mengubah angka menjadi informasi yang bermakna untuk pengambilan keputusan</p>
+    </div>
+  </section>
+
+  <div class="container">
+    <!-- PENGERTIAN -->
+    <section>
+      <h2>📚 Pengertian Analisis dan Interpretasi Data</h2>
+
+      <div class="card">
+        <h3>Analisis Data vs Interpretasi Data</h3>
+        
+        <div class="content-grid">
+          <div class="content-box">
+            <h4>Analisis Data</h4>
+            <p style="font-size: 0.9rem; margin-bottom: 0.7rem;"><strong>Analisis data</strong> adalah proses sistematis memeriksa, membersihkan, mentransformasi, dan memodelkan data untuk menemukan informasi berguna.</p>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>Fokus:</strong> Mengolah dan mengeksplorasi data</li>
+              <li>• <strong>Aktivitas:</strong> Menghitung statistik, membuat grafik, menemukan pola</li>
+              <li>• <strong>Output:</strong> Tabel, chart, grafik, model matematis</li>
+              <li>• <strong>Contoh:</strong> Menghitung rata-rata nilai kelas = 75</li>
+            </ul>
+          </div>
+
+          <div class="content-box">
+            <h4>Interpretasi Data</h4>
+            <p style="font-size: 0.9rem; margin-bottom: 0.7rem;"><strong>Interpretasi data</strong> adalah proses memberikan makna dan konteks pada hasil analisis data untuk menarik kesimpulan.</p>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>Fokus:</strong> Memahami dan menjelaskan hasil analisis</li>
+              <li>• <strong>Aktivitas:</strong> Menafsirkan, menyimpulkan, memberikan rekomendasi</li>
+              <li>• <strong>Output:</strong> Insight, kesimpulan, rekomendasi aksi</li>
+              <li>• <strong>Contoh:</strong> "Rata-rata 75 menunjukkan kelas perlu perbaikan karena di bawah target 80"</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="success-box">
+          <h4>🔄 Hubungan Analisis & Interpretasi</h4>
+          <p style="margin-bottom: 0;"><strong>Analisis</strong> adalah "apa yang terjadi?" (what), sedangkan <strong>Interpretasi</strong> adalah "mengapa terjadi?" dan "apa artinya?" (why & meaning). Keduanya saling melengkapi: Analisis tanpa interpretasi hanya menghasilkan angka tanpa makna, interpretasi tanpa analisis hanya asumsi tanpa bukti. Together, they transform data into actionable insights!</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- TEKNIK ANALISIS -->
+    <section>
+      <h2>🔍 Teknik-Teknik Analisis Data</h2>
+
+      <div class="card">
+        <h3>1. Analisis Statistik Deskriptif</h3>
+        <p>Merangkum dan mendeskripsikan karakteristik data menggunakan ukuran statistik.</p>
+
+        <div class="content-grid">
+          <div class="content-box">
+            <h4>Ukuran Pemusatan Data</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>Mean (Rata-rata):</strong> ∑x / n</li>
+              <li>• <strong>Median:</strong> Nilai tengah setelah data diurutkan</li>
+              <li>• <strong>Modus:</strong> Nilai yang paling sering muncul</li>
+              <li>• <strong>Kegunaan:</strong> Mengetahui nilai tipikal dari data</li>
+            </ul>
+          </div>
+
+          <div class="content-box">
+            <h4>Ukuran Penyebaran Data</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>Range:</strong> Nilai max - min</li>
+              <li>• <strong>Varians:</strong> Rata-rata kuadrat deviasi dari mean</li>
+              <li>• <strong>Standar Deviasi:</strong> Akar kuadrat varians</li>
+              <li>• <strong>Kegunaan:</strong> Mengukur variabilitas/keragaman data</li>
+            </ul>
+          </div>
+
+          <div class="content-box">
+            <h4>Ukuran Posisi Data</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>Kuartil:</strong> Q1 (25%), Q2 (50%), Q3 (75%)</li>
+              <li>• <strong>Persentil:</strong> Membagi data jadi 100 bagian</li>
+              <li>• <strong>Desil:</strong> Membagi data jadi 10 bagian</li>
+              <li>• <strong>Kegunaan:</strong> Mengetahui posisi relatif suatu nilai</li>
+            </ul>
+          </div>
+
+          <div class="content-box">
+            <h4>Distribusi Data</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>Frekuensi:</strong> Berapa kali nilai muncul</li>
+              <li>• <strong>Persentase:</strong> Proporsi tiap kategori</li>
+              <li>• <strong>Histogram:</strong> Visualisasi distribusi data kontinu</li>
+              <li>• <strong>Kegunaan:</strong> Memahami pola sebaran data</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="example-box">
+          <h4>📝 Contoh Perhitungan Statistik Deskriptif</h4>
+          <p style="margin-bottom: 0.8rem;"><strong>Data Nilai Ujian 10 Siswa:</strong> 70, 75, 80, 80, 85, 85, 85, 90, 90, 95</p>
+          
+          <ul style="list-style-position: inside; font-size: 0.9rem; line-height: 1.8;">
+            <li>• <strong>Mean:</strong> (70+75+80+80+85+85+85+90+90+95) / 10 = 835 / 10 = <strong>83.5</strong></li>
+            <li>• <strong>Median:</strong> Nilai tengah antara 85 dan 85 = <strong>85</strong></li>
+            <li>• <strong>Modus:</strong> Nilai yang paling sering muncul = <strong>85</strong> (muncul 3x)</li>
+            <li>• <strong>Range:</strong> 95 - 70 = <strong>25</strong></li>
+            <li>• <strong>Q1:</strong> 80, <strong>Q2:</strong> 85, <strong>Q3:</strong> 90</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>2. Analisis Korelasi</h3>
+        <p>Mengukur hubungan atau keterkaitan antara dua variabel atau lebih.</p>
+
+        <div class="content-grid">
+          <div class="content-box">
+            <h4>Koefisien Korelasi Pearson (r)</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>Range:</strong> -1 hingga +1</li>
+              <li>• <strong>r = +1:</strong> Korelasi positif sempurna</li>
+              <li>• <strong>r = 0:</strong> Tidak ada korelasi</li>
+              <li>• <strong>r = -1:</strong> Korelasi negatif sempurna</li>
+              <li>• <strong>Contoh:</strong> Hubungan jam belajar dengan nilai ujian</li>
+            </ul>
+          </div>
+
+          <div class="content-box">
+            <h4>Interpretasi Korelasi</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>0.00 - 0.20:</strong> Sangat lemah/tidak ada</li>
+              <li>• <strong>0.21 - 0.40:</strong> Lemah</li>
+              <li>• <strong>0.41 - 0.60:</strong> Sedang</li>
+              <li>• <strong>0.61 - 0.80:</strong> Kuat</li>
+              <li>• <strong>0.81 - 1.00:</strong> Sangat kuat</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="warning-box">
+          <h4>⚠️ Correlation ≠ Causation</h4>
+          <p style="margin-bottom: 0;"><strong>Korelasi tidak berarti sebab-akibat!</strong> Contoh: Ada korelasi positif antara penjualan es krim dan kematian akibat tenggelam. Tapi es krim tidak menyebabkan tenggelam! Keduanya sama-sama meningkat di musim panas (confounding variable). Always consider context!</p>
+        </div>
+
+        <div class="example-box">
+          <h4>📝 Contoh Analisis Korelasi</h4>
+          <p style="margin-bottom: 0.5rem;"><strong>Data Jam Belajar vs Nilai Ujian (5 siswa):</strong></p>
+          <ul style="list-style-position: inside; font-size: 0.85rem; margin-bottom: 0.8rem;">
+            <li>• Siswa A: 2 jam → Nilai 60</li>
+            <li>• Siswa B: 4 jam → Nilai 70</li>
+            <li>• Siswa C: 6 jam → Nilai 80</li>
+            <li>• Siswa D: 8 jam → Nilai 90</li>
+            <li>• Siswa E: 10 jam → Nilai 95</li>
+          </ul>
+          <p style="font-size: 0.9rem;">Hasil: <strong>r = +0.98</strong> (korelasi positif sangat kuat). Interpretasi: Semakin banyak jam belajar, semakin tinggi nilai ujian. Tapi ingat, ini korelasi, bukan jaminan!</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>3. Analisis Trend (Time Series)</h3>
+        <p>Menganalisis pola perubahan data dari waktu ke waktu untuk melihat tren, musiman, dan prediksi masa depan.</p>
+
+        <div class="content-grid">
+          <div class="content-box">
+            <h4>Komponen Time Series</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>Trend:</strong> Pola naik/turun jangka panjang</li>
+              <li>• <strong>Seasonal:</strong> Pola berulang per periode (harian, bulanan, tahunan)</li>
+              <li>• <strong>Cyclical:</strong> Fluktuasi jangka panjang (ekonomi, politik)</li>
+              <li>• <strong>Random:</strong> Variasi acak/noise</li>
+            </ul>
+          </div>
+
+          <div class="content-box">
+            <h4>Teknik Analisis Trend</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>Moving Average:</strong> Rata-rata bergerak untuk smoothing</li>
+              <li>• <strong>Linear Regression:</strong> Garis tren linear</li>
+              <li>• <strong>Exponential Smoothing:</strong> Bobot lebih besar untuk data terbaru</li>
+              <li>• <strong>ARIMA:</strong> Model statistik advanced untuk forecasting</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="example-box">
+          <h4>📝 Contoh Analisis Trend Penjualan</h4>
+          <p style="margin-bottom: 0.5rem;"><strong>Data Penjualan Bulanan (6 bulan):</strong></p>
+          <ul style="list-style-position: inside; font-size: 0.85rem; margin-bottom: 0.8rem;">
+            <li>• Jan: 100 unit</li>
+            <li>• Feb: 120 unit</li>
+            <li>• Mar: 140 unit</li>
+            <li>• Apr: 160 unit</li>
+            <li>• Mei: 180 unit</li>
+            <li>• Jun: 200 unit</li>
+          </ul>
+          <p style="font-size: 0.9rem;"><strong>Analisis:</strong> Ada tren naik konsisten +20 unit per bulan. <strong>Prediksi Juli:</strong> 220 unit. <strong>Interpretasi:</strong> Bisnis bertumbuh stabil, dapat meningkatkan stok untuk bulan depan.</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>4. Analisis Perbandingan</h3>
+        <p>Membandingkan data antar kategori, grup, atau periode waktu untuk melihat perbedaan dan persamaan.</p>
+
+        <div class="content-grid">
+          <div class="content-box">
+            <h4>Jenis Perbandingan</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>Antar Kategori:</strong> Nilai Kelas A vs Kelas B</li>
+              <li>• <strong>Antar Waktu:</strong> Penjualan Q1 vs Q2</li>
+              <li>• <strong>Before-After:</strong> Sebelum vs sesudah treatment</li>
+              <li>• <strong>Benchmark:</strong> Performa vs target/standar</li>
+            </ul>
+          </div>
+
+          <div class="content-box">
+            <h4>Visualisasi Perbandingan</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>Bar Chart:</strong> Perbandingan antar kategori</li>
+              <li>• <strong>Line Graph:</strong> Perbandingan tren waktu</li>
+              <li>• <strong>Stacked Bar:</strong> Komposisi & perbandingan</li>
+              <li>• <strong>Radar Chart:</strong> Multi-dimensi comparison</li>
+            </ul>
+          </div>
+        </div>
+
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th>Kelas</th>
+              <th>Rata-rata Nilai</th>
+              <th>Nilai Tertinggi</th>
+              <th>Nilai Terendah</th>
+              <th>Lulus (%)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Kelas X-A</strong></td>
+              <td>85</td>
+              <td>95</td>
+              <td>70</td>
+              <td>95%</td>
+            </tr>
+            <tr>
+              <td><strong>Kelas X-B</strong></td>
+              <td>78</td>
+              <td>90</td>
+              <td>60</td>
+              <td>85%</td>
+            </tr>
+            <tr>
+              <td><strong>Kelas X-C</strong></td>
+              <td>82</td>
+              <td>92</td>
+              <td>65</td>
+              <td>90%</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="fact-box">
+          <h4>📊 Interpretasi Tabel Perbandingan</h4>
+          <p style="margin-bottom: 0;"><strong>Insight:</strong> Kelas X-A memiliki performa terbaik dengan rata-rata 85 dan tingkat kelulusan 95%. Kelas X-B perlu perhatian khusus karena rata-rata terendah (78) dan kelulusan hanya 85%. Rekomendasi: Berikan remedial dan bimbingan tambahan untuk Kelas X-B, terutama untuk siswa dengan nilai di bawah 70.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- INTERPRETASI DATA -->
+    <section>
+      <h2>💡 Teknik Interpretasi Data</h2>
+
+      <div class="card">
+        <h3>Langkah-Langkah Interpretasi Data</h3>
+
+        <div class="steps-box">
+          <h4><span class="step-number">1</span> Pahami Konteks Data</h4>
+          <p style="font-size: 0.9rem; margin-left: 2.5rem;">Sebelum interpretasi, pahami dulu: Dari mana data? Bagaimana dikumpulkan? Apa tujuan analisis? Siapa target audience? Konteks sangat penting untuk interpretasi yang akurat.</p>
+        </div>
+
+        <div class="steps-box">
+          <h4><span class="step-number">2</span> Identifikasi Pola & Tren</h4>
+          <p style="font-size: 0.9rem; margin-left: 2.5rem;">Cari pola yang muncul dari data: Apakah ada tren naik/turun? Apakah ada outlier? Apakah ada pola musiman? Apakah ada clustering? Pattern recognition is key!</p>
+        </div>
+
+        <div class="steps-box">
+          <h4><span class="step-number">3</span> Buat Perbandingan</h4>
+          <p style="font-size: 0.9rem; margin-left: 2.5rem;">Bandingkan dengan: Target/standar yang ditetapkan, data periode sebelumnya, benchmark industri, atau data kompetitor. Perbandingan memberikan perspektif.</p>
+        </div>
+
+        <div class="steps-box">
+          <h4><span class="step-number">4</span> Analisis Penyebab (Root Cause)</h4>
+          <p style="font-size: 0.9rem; margin-left: 2.5rem;">Jangan hanya jelaskan "apa", tapi juga "mengapa". Gunakan teknik 5 Whys: Tanya "mengapa" 5 kali untuk sampai ke akar masalah. Contoh: Penjualan turun → Kenapa? Customer menurun → Kenapa? dst.</p>
+        </div>
+
+        <div class="steps-box">
+          <h4><span class="step-number">5</span> Pertimbangkan Alternatif Interpretasi</h4>
+          <p style="font-size: 0.9rem; margin-left: 2.5rem;">Jangan buru-buru simpulkan! Pertimbangkan interpretasi alternatif. Apakah ada penjelasan lain yang masuk akal? Berpikir kritis dan objektif.</p>
+        </div>
+
+        <div class="steps-box">
+          <h4><span class="step-number">6</span> Tarik Kesimpulan & Buat Rekomendasi</h4>
+          <p style="font-size: 0.9rem; margin-left: 2.5rem;">Berdasarkan analisis, tarik kesimpulan yang jelas dan konkret. Kemudian berikan rekomendasi aksi: Apa yang harus dilakukan? Siapa yang bertanggung jawab? Kapan deadline?</p>
+        </div>
+
+        <div class="steps-box">
+          <h4><span class="step-number">7</span> Komunikasikan dengan Jelas</h4>
+          <p style="font-size: 0.9rem; margin-left: 2.5rem;">Sampaikan hasil interpretasi dengan bahasa yang mudah dipahami audiens. Gunakan visualisasi (grafik, infografis) untuk memperjelas. Tell a story with data!</p>
+        </div>
+
+        <div class="tip-box">
+          <h4>💡 Tips Interpretasi Data yang Baik</h4>
+          <ul style="list-style-position: inside; margin-left: 0.6rem;">
+            <li>• <strong>Be objective:</strong> Jangan biarkan bias pribadi mempengaruhi interpretasi</li>
+            <li>• <strong>Support with evidence:</strong> Setiap kesimpulan harus didukung data</li>
+            <li>• <strong>Consider limitations:</strong> Akui keterbatasan data atau metode analisis</li>
+            <li>• <strong>Use multiple perspectives:</strong> Lihat dari berbagai sudut pandang</li>
+            <li>• <strong>Actionable insights:</strong> Fokus pada insight yang bisa dieksekusi</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- VISUALISASI DATA -->
+    <section>
+      <h2>📊 Visualisasi Data untuk Interpretasi</h2>
+
+      <div class="card">
+        <h3>Jenis-Jenis Grafik dan Penggunaannya</h3>
+
+        <div class="content-grid">
+          <div class="content-box">
+            <h4>Bar Chart / Column Chart</h4>
+            <div class="chart-placeholder">📊</div>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>Untuk:</strong> Perbandingan antar kategori</li>
+              <li>• <strong>Contoh:</strong> Penjualan per produk, nilai per kelas</li>
+              <li>• <strong>Best practice:</strong> Urutkan dari tertinggi ke terendah</li>
+            </ul>
+          </div>
+
+          <div class="content-box">
+            <h4>Line Graph</h4>
+            <div class="chart-placeholder">📈</div>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>Untuk:</strong> Trend/perubahan dari waktu ke waktu</li>
+              <li>• <strong>Contoh:</strong> Penjualan bulanan, harga saham</li>
+              <li>• <strong>Best practice:</strong> Mulai sumbu Y dari 0 untuk akurasi</li>
+            </ul>
+          </div>
+
+          <div class="content-box">
+            <h4>Pie Chart</h4>
+            <div class="chart-placeholder">🥧</div>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>Untuk:</strong> Proporsi/persentase dari keseluruhan</li>
+              <li>• <strong>Contoh:</strong> Market share, komposisi budget</li>
+              <li>• <strong>Best practice:</strong> Max 5-6 kategori, urutkan clockwise</li>
+            </ul>
+          </div>
+
+          <div class="content-box">
+            <h4>Scatter Plot</h4>
+            <div class="chart-placeholder">⚫⚫</div>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>Untuk:</strong> Korelasi antara 2 variabel</li>
+              <li>• <strong>Contoh:</strong> Jam belajar vs nilai, iklan vs penjualan</li>
+              <li>• <strong>Best practice:</strong> Tambahkan trendline untuk lihat korelasi</li>
+            </ul>
+          </div>
+
+          <div class="content-box">
+            <h4>Histogram</h4>
+            <div class="chart-placeholder">📊</div>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>Untuk:</strong> Distribusi frekuensi data kontinu</li>
+              <li>• <strong>Contoh:</strong> Distribusi nilai ujian, distribusi usia</li>
+              <li>• <strong>Best practice:</strong> Pilih bin size yang tepat (tidak terlalu banyak/sedikit)</li>
+            </ul>
+          </div>
+
+          <div class="content-box">
+            <h4>Heatmap</h4>
+            <div class="chart-placeholder">🌡️</div>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <strong>Untuk:</strong> Intensitas data dalam matriks</li>
+              <li>• <strong>Contoh:</strong> Korelasi antar variabel, traffic website per jam</li>
+              <li>• <strong>Best practice:</strong> Gunakan skala warna yang intuitif</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="warning-box">
+          <h4>⚠️ Common Visualization Mistakes</h4>
+          <ul style="list-style-position: inside; margin-left: 0.6rem;">
+            <li>• <strong>Manipulative Y-axis:</strong> Memulai sumbu Y tidak dari 0 untuk exaggerate perbedaan</li>
+            <li>• <strong>Too many colors:</strong> Membingungkan mata dan mengurangi fokus</li>
+            <li>• <strong>3D charts:</strong> Terlihat keren tapi sulit dibaca akurat</li>
+            <li>• <strong>Wrong chart type:</strong> Pie chart untuk tren waktu (harusnya line graph)</li>
+            <li>• <strong>No labels:</strong> Grafik tanpa judul, label sumbu, atau legend</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- STUDI KASUS -->
+    <section>
+      <h2>📋 Studi Kasus: Analisis & Interpretasi Data Lengkap</h2>
+
+      <div class="card">
+        <h3>Case Study: Analisis Performa Akademik Siswa</h3>
+
+        <div class="example-box">
+          <h4>🎯 Konteks & Data</h4>
+          <p style="margin-bottom: 0.8rem;"><strong>Situasi:</strong> Sekolah XYZ ingin mengevaluasi performa akademik siswa kelas X semester 1. Data yang tersedia:</p>
+          <ul style="list-style-position: inside; font-size: 0.9rem; margin-bottom: 0.8rem;">
+            <li>• Nilai ujian matematika 60 siswa (3 kelas)</li>
+            <li>• Data absensi (hadir/tidak hadir)</li>
+            <li>• Data jam belajar mandiri per minggu</li>
+            <li>• Data partisipasi les tambahan (ya/tidak)</li>
+          </ul>
+        </div>
+
+        <div class="steps-box">
+          <h4>Step 1: Analisis Statistik Deskriptif</h4>
+          <p style="font-size: 0.9rem; margin-bottom: 0.8rem; margin-left: 0;">Hasil perhitungan:</p>
+          <ul style="list-style-position: inside; font-size: 0.9rem; margin-left: 0;">
+            <li>• <strong>Mean (rata-rata):</strong> 75</li>
+            <li>• <strong>Median:</strong> 77</li>
+            <li>• <strong>Modus:</strong> 80</li>
+            <li>• <strong>Standar Deviasi:</strong> 12.5</li>
+            <li>• <strong>Nilai Tertinggi:</strong> 95</li>
+            <li>• <strong>Nilai Terendah:</strong> 45</li>
+          </ul>
+        </div>
+
+        <div class="steps-box">
+          <h4>Step 2: Analisis Korelasi</h4>
+          <p style="font-size: 0.9rem; margin-bottom: 0.8rem; margin-left: 0;">Koefisien korelasi Pearson:</p>
+          <ul style="list-style-position: inside; font-size: 0.9rem; margin-left: 0;">
+            <li>• <strong>Nilai vs Jam Belajar:</strong> r = +0.75 (korelasi kuat positif)</li>
+            <li>• <strong>Nilai vs Absensi:</strong> r = -0.60 (korelasi sedang negatif)</li>
+            <li>• <strong>Nilai vs Les Tambahan:</strong> Siswa ikut les rata-rata 82, tidak ikut 68</li>
+          </ul>
+        </div>
+
+        <div class="steps-box">
+          <h4>Step 3: Analisis Perbandingan Antar Kelas</h4>
+          <table class="comparison-table" style="margin-top: 0.8rem; margin-left: 0;">
+            <thead>
+              <tr>
+                <th>Kelas</th>
+                <th>Rata-rata</th>
+                <th>Lulus (≥70)</th>
+                <th>Guru</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>X-A</td>
+                <td>82</td>
+                <td>90%</td>
+                <td>Bu Ani</td>
+              </tr>
+              <tr>
+                <td>X-B</td>
+                <td>73</td>
+                <td>75%</td>
+                <td>Pak Budi</td>
+              </tr>
+              <tr>
+                <td>X-C</td>
+                <td>70</td>
+                <td>70%</td>
+                <td>Bu Citra</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="success-box">
+          <h4>✅ Interpretasi & Insight</h4>
+          <ol style="list-style-position: inside; margin-left: 0.6rem; line-height: 1.9;">
+            <li>1. <strong>Performa Umum:</strong> Rata-rata 75 menunjukkan performa cukup baik, namun standar deviasi 12.5 menunjukkan variasi cukup tinggi (ada gap antara siswa pintar dan kurang pintar)</li>
+            <li>2. <strong>Faktor Keberhasilan:</strong> Jam belajar memiliki pengaruh kuat (r=0.75) terhadap nilai. Siswa yang belajar 8+ jam/minggu cenderung dapat nilai 80+</li>
+            <li>3. <strong>Absensi Penting:</strong> Korelasi negatif -0.60 menunjukkan semakin banyak absen, semakin rendah nilai. Siswa dengan absensi >5x cenderung nilai di bawah 70</li>
+            <li>4. <strong>Les Tambahan Efektif:</strong> Siswa ikut les rata-rata 14 poin lebih tinggi (82 vs 68). Les tambahan terbukti membantu</li>
+            <li>5. <strong>Gap Antar Kelas:</strong> Kelas X-A unggul (82), X-B & X-C perlu improvement. Mungkin karena metode mengajar atau motivasi siswa</li>
+          </ol>
+        </div>
+
+        <div class="tip-box">
+          <h4>🎯 Rekomendasi Aksi</h4>
+          <ol style="list-style-position: inside; margin-left: 0.6rem; line-height: 1.9;">
+            <li>1. <strong>Program Bimbingan:</strong> Fokus ke siswa dengan nilai <70 (25% siswa). Berikan bimbingan intensif & remedial</li>
+            <li>2. <strong>Kampanye "8 Jam Belajar":</strong> Edukasi pentingnya belajar mandiri minimal 8 jam/minggu. Buat study planner untuk siswa</li>
+            <li>3. <strong>Monitor Absensi:</strong> Follow-up siswa dengan absensi tinggi. Cari tahu penyebab (sakit, malas, masalah keluarga?)</li>
+            <li>4. <strong>Expand Les Program:</strong> Tawarkan les tambahan gratis/bersubsidi untuk siswa kurang mampu</li>
+            <li>5. <strong>Teacher Training:</strong> Sharing best practice dari Bu Ani (guru X-A) ke guru lain. Workshop metode mengajar efektif</li>
+            <li>6. <strong>Set Target Q2:</strong> Target rata-rata naik jadi 80, tingkat kelulusan 90%+. Monitor progress bulanan</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIDEO -->
+    <section>
+      <h2>🎥 Video Pembelajaran</h2>
+      <div class="video-grid">
+        <div class="video-card">
+          <div class="video-thumbnail">📊</div>
+          <div class="video-info">
+            <h4>Analisis Data untuk Pemula</h4>
+            <p>Teknik dasar menganalisis data dengan Excel.</p>
+            <a class="video-link" href="https://www.youtube.com/results?search_query=analisis+data+excel+pemula" target="_blank">Tonton</a>
+          </div>
+        </div>
+
+        <div class="video-card">
+          <div class="video-thumbnail">📈</div>
+          <div class="video-info">
+            <h4>Interpretasi Statistik</h4>
+            <p>Cara menginterpretasi hasil statistik deskriptif.</p>
+            <a class="video-link" href="https://www.youtube.com/results?search_query=interpretasi+statistik+deskriptif" target="_blank">Tonton</a>
+          </div>
+        </div>
+
+        <div class="video-card">
+          <div class="video-thumbnail">🔍</div>
+          <div class="video-info">
+            <h4>Analisis Korelasi</h4>
+            <p>Tutorial koefisien korelasi Pearson.</p>
+            <a class="video-link" href="https://www.youtube.com/results?search_query=korelasi+pearson+tutorial" target="_blank">Tonton</a>
+          </div>
+        </div>
+
+        <div class="video-card">
+          <div class="video-thumbnail">📉</div>
+          <div class="video-info">
+            <h4>Data Visualization Best Practices</h4>
+            <p>Tips membuat grafik yang efektif dan mudah dipahami.</p>
+            <a class="video-link" href="https://www.youtube.com/results?search_query=data+visualization+best+practices" target="_blank">Tonton</a>
+          </div>
+        </div>
+
+        <div class="video-card">
+          <div class="video-thumbnail">💡</div>
+          <div class="video-info">
+            <h4>Studi Kasus Analisis Data</h4>
+            <p>Contoh real-world data analysis project.</p>
+            <a class="video-link" href="https://www.youtube.com/results?search_query=studi+kasus+analisis+data" target="_blank">Tonton</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- QUIZ -->
+    <section>
+      <h2>🎮 Kuis Analisis & Interpretasi Data</h2>
+      <div class="game-section">
+        <h3>Uji Pemahaman Materi</h3>
+
+        <div class="progress-container">
+          <div id="progressBar" class="progress-bar" style="width: 0%;">0%</div>
+        </div>
+
+        <div class="game-container">
+          <div class="game-question">1. Proses memberikan makna dan konteks pada hasil analisis data disebut...</div>
+          <div class="quiz-options" onclick="checkAnswer(event, 'interpretasi', 1)">
+            <div class="quiz-option">A) Analisis Data</div>
+            <div class="quiz-option">B) Interpretasi Data</div>
+            <div class="quiz-option">C) Visualisasi Data</div>
+            <div class="quiz-option">D) Validasi Data</div>
+          </div>
+          <div id="result1" class="result-message"></div>
+        </div>
+
+        <div class="game-container">
+          <div class="game-question">2. Koefisien korelasi Pearson dengan nilai r = +0.85 menunjukkan korelasi...</div>
+          <div class="quiz-options" onclick="checkAnswer(event, 'sangat kuat', 2)">
+            <div class="quiz-option">A) Lemah</div>
+            <div class="quiz-option">B) Sedang</div>
+            <div class="quiz-option">C) Kuat</div>
+            <div class="quiz-option">D) Sangat Kuat</div>
+          </div>
+          <div id="result2" class="result-message"></div>
+        </div>
+
+        <div class="game-container">
+          <div class="game-question">3. Jenis grafik yang paling tepat untuk menampilkan trend penjualan bulanan adalah...</div>
+          <div class="quiz-options" onclick="checkAnswer(event, 'line', 3)">
+            <div class="quiz-option">A) Pie Chart</div>
+            <div class="quiz-option">B) Bar Chart</div>
+            <div class="quiz-option">C) Line Graph</div>
+            <div class="quiz-option">D) Scatter Plot</div>
+          </div>
+          <div id="result3" class="result-message"></div>
+        </div>
+
+        <div class="game-container">
+          <div class="game-question">4. Ukuran statistik yang menunjukkan seberapa jauh data menyebar dari rata-rata adalah...</div>
+          <div class="quiz-options" onclick="checkAnswer(event, 'standar deviasi', 4)">
+            <div class="quiz-option">A) Mean</div>
+            <div class="quiz-option">B) Median</div>
+            <div class="quiz-option">C) Standar Deviasi</div>
+            <div class="quiz-option">D) Modus</div>
+          </div>
+          <div id="result4" class="result-message"></div>
+        </div>
+
+        <div class="game-container">
+          <div class="game-question">5. Pernyataan "Korelasi tidak berarti sebab-akibat" maksudnya adalah...</div>
+          <div class="quiz-options" onclick="checkAnswer(event, 'hubungan', 5)">
+            <div class="quiz-option">A) Korelasi tidak penting untuk dianalisis</div>
+            <div class="quiz-option">B) Dua variabel bisa berkorelasi tanpa satu menyebabkan yang lain</div>
+            <div class="quiz-option">C) Korelasi selalu menunjukkan hubungan sebab-akibat</div>
+            <div class="quiz-option">D) Analisis korelasi tidak akurat</div>
+          </div>
+          <div id="result5" class="result-message"></div>
+        </div>
+
+        <div id="scoreDisplay" class="score-display">Skor: 0/5</div>
+      </div>
+    </section>
+
+    <!-- DOWNLOAD -->
+    <section>
+      <h2>📥 Download Materi</h2>
+      
+      <div class="download-box">
+        <h4>📄 Panduan Lengkap Analisis & Interpretasi Data</h4>
+        <p style="margin-bottom: 1rem;">Download template analisis, cheat sheet statistik, dan studi kasus lengkap!</p>
+        <a href="#" class="btn-download" onclick="alert('File akan segera tersedia. Hubungi guru untuk mendapatkan file.'); return false;">
+          📥 Download Materi PDF
+        </a>
+        <a href="#" class="btn-download" onclick="alert('File akan segera tersedia. Hubungi guru untuk mendapatkan file.'); return false;">
+          📥 Download Template Excel
+        </a>
+      </div>
+    </section>
+
+    <!-- CLOSING -->
+    <section>
+      <div class="card" style="background: linear-gradient(135deg, rgba(236,72,153,0.06), rgba(219,39,119,0.08)); border-left: 5px solid #EC4899; text-align: center;">
+        <h3 style="margin-bottom: 0.6rem;">Kesimpulan</h3>
+        <p style="text-align: center; line-height: 1.8;">
+          Analisis dan interpretasi data adalah dua sisi mata uang yang tidak dapat dipisahkan dalam mengubah data mentah menjadi informasi berharga. Analisis memberikan angka dan pola, sementara interpretasi memberikan makna dan konteks. Dengan menguasai teknik analisis (statistik deskriptif, korelasi, trend, perbandingan) dan interpretasi (memahami konteks, identifikasi pola, analisis penyebab, membuat kesimpulan), Anda dapat mengekstrak insight yang actionable dari data untuk mendukung pengambilan keputusan yang lebih baik. Remember: Data is not just numbers - it's stories waiting to be told! Master the art of data analysis and interpretation, and you'll have a superpower in the digital age.
+        </p>
+        <p style="text-align: center; margin-top: 0.8rem; font-weight: 600; color: var(--primary-color);">
+          "Without data, you're just another person with an opinion!" - W. Edwards Deming 📊💡
+        </p>
+      </div>
+    </section>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-content">
+      <h3>Platform Pembelajaran Interaktif untuk Siswa & Siswi <strong>Ypi Nurul Hadina</strong></h3>
+
+      <div class="social-media">
+        <a class="social-icon whatsapp" href="https://wa.me/6289504440411" target="_blank">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" width="18" height="18"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884"/></svg>
+        </a>
+
+        <a class="social-icon youtube" href="https://www.youtube.com/channel/UCNmOH6L2xq6C15EkQlx_FpQ" target="_blank">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" width="18" height="18"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+        </a>
+
+        <a class="social-icon instagram" href="https://instagram.com/ypinurulhadina" target="_blank">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" width="18" height="18"><path d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.319 1.347 20.651.935 19.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.015 3.585-.074 4.85c-.061 1.17-.256 1.805-.421 2.227-.224.562-.479.96-.899 1.382-.419.419-.824.679-1.38.896-.42.164-1.065.36-2.235.413-1.274.057-1.649.07-4.859.07-3.211 0-3.586-.015-4.859-.074-1.171-.061-1.816-.256-2.236-.421-.569-.224-.96-.479-1.379-.899-.421-.419-.69-.824-.9-1.38-.165-.42-.359-1.065-.42-2.235-.045-1.26-.061-1.649-.061-4.844 0-3.196.016-3.586.061-4.861.061-1.17.255-1.814.42-2.234.21-.57.479-.96.9-1.381.419-.419.81-.689 1.379-.898.42-.166 1.051-.361 2.221-.421 1.275-.045 1.65-.06 4.859-.06l.045.03zm0 3.678c-3.405 0-6.162 2.76-6.162 6.162 0 3.405 2.76 6.162 6.162 6.162 3.405 0 6.162-2.76 6.162-6.162 0-3.405-2.76-6.162-6.162-6.162zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm7.846-10.405c0 .795-.646 1.44-1.44 1.44-.795 0-1.44-.646-1.44-1.44 0-.794.646-1.439 1.44-1.439.793-.001 1.44.645 1.44 1.439z"/></svg>
+        </a>
+
+        <a class="social-icon facebook" href="https://www.facebook.com/fauzan.reza.7" target="_blank">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" width="18" height="18"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        </a>
+      </div>
+
+      <p style="margin-top: 0.6rem; font-size: 0.7rem; opacity: 0.85;">©2025 Portal Siswa Informatika. MA PLUS & SMP IT.<br>Oleh : <strong>Fauzan Reza, S.T</strong> (Guru Informatika)</p>
+    </div>
+  </footer>
+
+  <script>
+    let score = 0;
+
+    function checkAnswer(event, key, questionNumber) {
+      if (!event.target.classList.contains('quiz-option')) return;
+
+      const options = event.target.parentElement.querySelectorAll('.quiz-option');
+      const resultMsg = document.getElementById('result' + questionNumber);
+
+      options.forEach(opt => {
+        opt.classList.remove('correct', 'incorrect');
+        opt.style.pointerEvents = 'none';
+      });
+
+      const selectedText = event.target.textContent.toLowerCase();
+
+      if (selectedText.includes(key.toLowerCase())) {
+        event.target.classList.add('correct');
+        resultMsg.textContent = '✅ Benar! Bagus sekali! 🎉';
+        resultMsg.classList.add('show', 'correct');
+        score++;
+      } else {
+        event.target.classList.add('incorrect');
+        options.forEach(opt => {
+          if (opt.textContent.toLowerCase().includes(key.toLowerCase())) {
+            opt.classList.add('correct');
+          }
+        });
+        resultMsg.textContent = '❌ Kurang tepat. Lihat jawaban yang hijau!';
+        resultMsg.classList.add('show', 'incorrect');
+      }
+
+      updateScore();
+      updateProgress();
+    }
+
+    function updateScore() {
+      document.getElementById('scoreDisplay').textContent = `Skor: ${score}/5`;
+    }
+
+    function updateProgress() {
+      const progress = Math.round((score / 5) * 100);
+      const bar = document.getElementById('progressBar');
+      bar.style.width = progress + '%';
+      bar.textContent = progress + '%';
+    }
+  </script>
+</body>
+</html>

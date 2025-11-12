@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Survey Harian - Portal Siswa</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  
+  <style>
+    /* Main Container - Konsisten dengan Dashboard */
+    .main-container {
+      padding: 1.5rem;
+      max-width: 900px;
+      margin: 80px auto 0;
+      position: relative;
+      z-index: 10;
+      min-height: calc(100vh - 200px);
+    }
+    
+    /* Page Header */
+    .page-header {
+      background: var(--glass-bg);
+      backdrop-filter: blur(15px);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      padding: 2.5rem 2rem;
+      margin-bottom: 2rem;
+      text-align: center;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    }
+    
+    .page-header i {
+      font-size: 3.5rem;
+      color: var(--accent-color);
+      margin-bottom: 1rem;
+      display: block;
+      filter: drop-shadow(0 0 20px rgba(0, 229, 255, 0.5));
+    }
+    
+    .page-header h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--accent-color);
+      margin-bottom: 0.75rem;
+      text-shadow: 0 0 20px rgba(0, 229, 255, 0.3);
+    }
+    
+    .page-header p {
+      font-size: 1rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    /* Instructions Box */
+    .instructions-box {
+      background: var(--glass-bg);
+      backdrop-filter: blur(15px);
+      border: 1px solid var(--glass-border);
+      border-radius: 16px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    }
+    
+    .instructions-box h3 {
+      font-size: 1.3rem;
+      color: var(--accent-color);
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    
+    .instructions-box ul {
+      margin-left: 1.5rem;
+      color: var(--text-muted);
+      line-height: 2;
+    }
+    
+    .instructions-box li {
+      margin-bottom: 0.75rem;
+      font-size: 0.95rem;
+    }
+    
+    .instructions-box li strong {
+      color: var(--text-color);
+    }
+    
+    /* Survey Card */
+    .survey-card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(15px);
+      border: 1px solid var(--glass-border);
+      border-radius: 16px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .survey-card::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0, 229, 255, 0.1), transparent);
+      transform: translate(-50%, -50%);
+      transition: width 0.6s ease, height 0.6s ease;
+    }
+    
+    .survey-card:hover::after {
+      width: 400px;
+      height: 400px;
+    }
+    
+    .survey-icon {
+      font-size: 4rem;
+      color: var(--accent-color);
+      margin-bottom: 1.5rem;
+      filter: drop-shadow(0 0 15px rgba(0, 229, 255, 0.4));
+      position: relative;
+      z-index: 1;
+    }
+    
+    .survey-card h3 {
+      font-size: 1.5rem;
+      color: var(--text-color);
+      margin-bottom: 1rem;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .survey-card p {
+      font-size: 1rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-bottom: 2rem;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .btn-survey {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 1rem 2.5rem;
+      background: linear-gradient(135deg, rgba(0, 229, 255, 0.2), rgba(159, 47, 255, 0.2));
+      backdrop-filter: blur(15px);
+      border: 2px solid var(--accent-color);
+      border-radius: 12px;
+      color: var(--accent-color);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.05rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 20px rgba(0, 229, 255, 0.2);
+      position: relative;
+      z-index: 1;
+    }
+    
+    .btn-survey:hover {
+      background: linear-gradient(135deg, rgba(0, 229, 255, 0.3), rgba(159, 47, 255, 0.3));
+      transform: translateY(-5px);
+      box-shadow: 0 8px 30px rgba(0, 229, 255, 0.4);
+    }
+    
+    .btn-survey i {
+      font-size: 1.2rem;
+    }
+    
+    /* Info Box */
+    .info-box {
+      background: linear-gradient(135deg, rgba(0, 200, 83, 0.1), rgba(0, 229, 255, 0.05));
+      backdrop-filter: blur(15px);
+      border: 1px solid rgba(0, 200, 83, 0.3);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: start;
+      gap: 1rem;
+    }
+    
+    .info-box i {
+      font-size: 1.5rem;
+      color: var(--success-color);
+      margin-top: 0.25rem;
+    }
+    
+    .info-box-content h4 {
+      color: var(--success-color);
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .info-box-content p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+    
+    /* Back Button */
+    .back-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 2rem;
+      background: var(--glass-bg);
+      backdrop-filter: blur(15px);
+      border: 1px solid var(--glass-border);
+      border-radius: 12px;
+      color: var(--accent-color);
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      margin-bottom: 2rem;
+    }
+    
+    .back-button:hover {
+      background: rgba(0, 229, 255, 0.1);
+      border-color: var(--accent-color);
+      transform: translateX(-5px);
+      box-shadow: 0 6px 20px rgba(0, 229, 255, 0.3);
+    }
+    
+    /* Mobile Responsive */
+    @media (max-width: 768px) {
+      .main-container {
+        padding: 1rem;
+        margin-top: 70px;
+      }
+      
+      .page-header {
+        padding: 2rem 1.5rem;
+      }
+      
+      .page-header i {
+        font-size: 2.5rem;
+      }
+      
+      .page-header h1 {
+        font-size: 1.5rem;
+      }
+      
+      .page-header p {
+        font-size: 0.9rem;
+      }
+      
+      .instructions-box {
+        padding: 1.5rem;
+      }
+      
+      .instructions-box h3 {
+        font-size: 1.1rem;
+      }
+      
+      .instructions-box li {
+        font-size: 0.85rem;
+      }
+      
+      .survey-card {
+        padding: 1.75rem 1.25rem;
+      }
+      
+      .survey-icon {
+        font-size: 3rem;
+      }
+      
+      .survey-card h3 {
+        font-size: 1.2rem;
+      }
+      
+      .survey-card p {
+        font-size: 0.9rem;
+      }
+      
+      .btn-survey {
+        padding: 0.85rem 2rem;
+        font-size: 0.95rem;
+        width: 100%;
+        justify-content: center;
+      }
+      
+      .info-box {
+        flex-direction: column;
+        padding: 1.25rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Canvas Background Jaringan Live -->
+  <canvas id="particle-network"></canvas>
+
+  <nav class="navbar">
+    <a href="dashboard.html" class="logo">PORTAL WEB <span>INFORMATIKA</span></a>
+    
+    <div class="profile-dropdown">
+      <button class="profile-trigger" id="profile-trigger-btn">
+        <span id="welcome-name">Memuat...</span> 
+        <i class="fas fa-chevron-down" style="font-size: 0.8em;"></i>
+      </button>
+      <div class="dropdown-content" id="dropdown-content">
+        <div class="profile-info">
+          <div><strong>Nama:</strong> <span id="profile-name">...</span></div>
+          <div><strong>NIS:</strong> <span id="profile-nis">...</span></div>
+          <div><strong>Kelas:</strong> <span id="profile-kelas">...</span></div>
+        </div>
+        <div class="dropdown-links">
+          <a id="change-password-btn">Ganti Password</a>
+          <a id="logout-btn">Logout</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="main-container">
+
+    <div class="page-header">
+      <i class="fas fa-clipboard-check"></i>
+      <h1>Survey Harian</h1>
+      <p>Isi survey harian untuk mencatat kehadiran dan aktivitas pembelajaran Anda hari ini.</p>
+    </div>
+
+    <div class="instructions-box">
+      <h3><i class="fas fa-info-circle"></i> Petunjuk Pengisian Survey</h3>
+      <ul>
+        <li><strong>Klik tombol "Isi Survey"</strong> di bawah untuk membuka formulir Google Forms.</li>
+        <li><strong>Isi semua data</strong> dengan lengkap dan jujur.</li>
+        <li><strong>Pastikan data identitas</strong> (nama, NIS, kelas) sudah benar.</li>
+        <li><strong>Submit formulir</strong> setelah selesai mengisi semua pertanyaan.</li>
+        <li><strong>Survey hanya perlu diisi sekali</strong> per hari pembelajaran.</li>
+      </ul>
+    </div>
+
+    <div class="info-box">
+      <i class="fas fa-clock"></i>
+      <div class="info-box-content">
+        <h4>Pengingat Penting</h4>
+        <p>Survey harian sebaiknya diisi pada awal atau akhir jam pelajaran. Data yang Anda isi akan membantu guru memantau kehadiran dan partisipasi Anda dalam pembelajaran.</p>
+      </div>
+    </div>
+
+    <div class="survey-card">
+      <div class="survey-icon">
+        <i class="fas fa-poll"></i>
+      </div>
+      <h3>Survey Harian Siswa</h3>
+      <p>Klik tombol di bawah ini untuk membuka formulir survey harian. Formulir akan terbuka di tab baru.</p>
+      <a href="https://forms.gle/bEZHRuc8wDDGpYru7" class="btn-survey" target="_blank">
+        <i class="fas fa-external-link-alt"></i>
+        Isi Survey Sekarang
+      </a>
+    </div>
+
+    <a class="back-button" href="dashboard.html">
+      <i class="fas fa-arrow-left"></i> Kembali ke Dashboard
+    </a>
+
+  </div>
+
+  <footer class="site-footer" style="background: var(--card-bg); backdrop-filter: blur(10px); border-top: 1px solid var(--glass-border); padding: 1.5rem 2rem; text-align: center; color: var(--text-muted); font-size: 0.9rem; position: relative; z-index: 100;">
+    &copy; 2025 Portal Siswa Informatika. MA PLUS & SMP IT YPI Nurul Hadina.<br>
+    Oleh: <strong style="color: var(--accent-color);">Fauzan Reza, S.T</strong> (Guru Informatika <strong style="color: var(--accent-color);">YPI Nurul Hadina</strong>)
+  </footer>
+
+  <script src="database.js"></script>
+  <script src="auth.js"></script>
+  
+  <!-- Canvas Background Script -->
+  <script>
+    (function() {
+      const canvas = document.getElementById('particle-network');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      
+      function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+      
+      resizeCanvas();
+      
+      let particles = [];
+      const particleCount = 100, connectDistance = 150, mouse = { x: null, y: null, radius: 100 };
+      
+      window.addEventListener('resize', () => {
+        resizeCanvas();
+        init();
+      });
+      
+      window.addEventListener('mousemove', (event) => {
+        mouse.x = event.x; 
+        mouse.y = event.y;
+      });
+      
+      window.addEventListener('mouseout', () => {
+        mouse.x = null; 
+        mouse.y = null;
+      });
+      
+      class Particle {
+        constructor() {
+          this.x = Math.random() * canvas.width; 
+          this.y = Math.random() * canvas.height;
+          this.vx = (Math.random() - 0.5) * 0.5; 
+          this.vy = (Math.random() - 0.5) * 0.5;
+          this.radius = 2.5; 
+          this.color = 'rgba(0, 229, 255, 0.7)';
+        }
+        
+        update() {
+          if (this.x < 0 || this.x > canvas.width) this.vx = -this.vx;
+          if (this.y < 0 || this.y > canvas.height) this.vy = -this.vy;
+          this.x += this.vx; 
+          this.y += this.vy;
+        }
+        
+        draw() {
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+          ctx.fillStyle = this.color; 
+          ctx.fill();
+        }
+      }
+      
+      function init() {
+        particles = [];
+        for (let i = 0; i < particleCount; i++) particles.push(new Particle());
+      }
+      
+      function connect() {
+        for (let a = 0; a < particles.length; a++) {
+          for (let b = a + 1; b < particles.length; b++) {
+            const dx = particles[a].x - particles[b].x;
+            const dy = particles[a].y - particles[b].y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+            
+            if (distance < connectDistance) {
+              const opacity = 1 - (distance / connectDistance);
+              ctx.strokeStyle = `rgba(0, 229, 255, ${opacity * 0.3})`;
+              ctx.lineWidth = 1.5; 
+              ctx.beginPath();
+              ctx.moveTo(particles[a].x, particles[a].y);
+              ctx.lineTo(particles[b].x, particles[b].y); 
+              ctx.stroke();
+            }
+          }
+          
+          if (mouse.x) {
+            const dx = particles[a].x - mouse.x;
+            const dy = particles[a].y - mouse.y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+            
+            if (distance < mouse.radius) {
+              const opacity = 1 - (distance / mouse.radius);
+              ctx.strokeStyle = `rgba(159, 47, 255, ${opacity * 0.5})`;
+              ctx.lineWidth = 2; 
+              ctx.beginPath();
+              ctx.moveTo(particles[a].x, particles[a].y);
+              ctx.lineTo(mouse.x, mouse.y); 
+              ctx.stroke();
+            }
+          }
+        }
+      }
+      
+      function animate() {
+        if (!ctx) return;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        particles.forEach(p => { p.update(); p.draw(); });
+        connect(); 
+        requestAnimationFrame(animate);
+      }
+      
+      init();
+      animate();
+    })();
+  </script>
+  
+  <!-- User Authentication Script -->
+  <script>
+    // Protect page and get user data
+    const currentUser = getSession();
+    if (!currentUser) {
+      window.location.href = 'index.html';
+    }
+    
+    document.getElementById('welcome-name').textContent = `Halo, ${currentUser.nama.split(' ')[0]}`;
+    document.getElementById('profile-name').textContent = currentUser.nama;
+    document.getElementById('profile-nis').textContent = currentUser.nis;
+    document.getElementById('profile-kelas').textContent = `${currentUser.tingkatan} / Kelas ${currentUser.kelas}`;
+    
+    // Profile dropdown
+    const triggerBtn = document.getElementById('profile-trigger-btn');
+    const dropdownContent = document.getElementById('dropdown-content');
+    
+    triggerBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      dropdownContent.classList.toggle('show');
+    });
+    
+    document.addEventListener('click', (e) => {
+      if (!triggerBtn.contains(e.target) && !dropdownContent.contains(e.target)) {
+        dropdownContent.classList.remove('show');
+      }
+    });
+    
+    // Logout
+    document.getElementById('logout-btn').addEventListener('click', (e) => {
+      e.preventDefault();
+      handleLogout();
+    });
+  </script>
+
+</body>
+</html>

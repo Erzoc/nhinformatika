@@ -1,0 +1,1129 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kelas X - Literasi Digital - Rangkuman Lengkap</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary-color: #FF6B6B;
+      --secondary-color: #4ECDC4;
+      --accent-color: #FFE66D;
+      --dark-color: #111827;
+      --light-color: #F8F9FA;
+      --success-color: #10B981;
+      --danger-color: #EF4444;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
+      line-height: 1.6;
+      color: #1F2937;
+      background: var(--light-color);
+    }
+
+    /* NAVBAR */
+    .navbar {
+      background: linear-gradient(135deg, #1B5E20 0%, #FFD700 100%);
+      color: #fff;
+      padding: 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+    }
+
+    .navbar-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .navbar-title {
+      font-size: 2rem;
+      font-weight: 800;
+      letter-spacing: 0.3px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.35);
+      animation: navPulse 2.4s ease-in-out infinite;
+    }
+
+    .navbar-sub {
+      font-size: 0.9rem;
+      opacity: 0.95;
+      font-weight: 600;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.35);
+    }
+
+    @keyframes navPulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.03); }
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+    }
+
+    .nav-link {
+      background: rgba(255,255,255,0.2);
+      padding: 0.35rem 0.7rem;
+      border-radius: 6px;
+      text-decoration: none;
+      color: #fff;
+      font-size: 0.8rem;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .nav-link:hover {
+      background: rgba(255,255,255,0.3);
+      transform: translateY(-2px);
+    }
+
+    .nav-link.active {
+      background: #FFD700;
+      color: #1B5E20;
+    }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: #fff;
+      padding: 2.5rem 1rem;
+      text-align: center;
+      border-bottom: 5px solid #FFD700;
+    }
+
+    .hero-content {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .hero-emoji {
+      font-size: 2.5rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .hero h1 {
+      font-size: 2.2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero p {
+      opacity: 0.98;
+      font-size: 1.1rem;
+    }
+
+    .badge {
+      display: inline-block;
+      background: #FFD700;
+      color: #1B5E20;
+      padding: 0.4rem 1rem;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      margin-top: 0.8rem;
+    }
+
+    /* CONTAINER */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    section {
+      margin: 2rem 0;
+    }
+
+    section h2 {
+      color: var(--primary-color);
+      font-size: 1.7rem;
+      margin-bottom: 1rem;
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+      border-left: 5px solid var(--secondary-color);
+      padding-left: 0.8rem;
+    }
+
+    /* CARDS */
+    .card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 1.3rem;
+      margin-bottom: 1.2rem;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      border-left: 5px solid var(--secondary-color);
+      transition: transform 0.35s ease, box-shadow 0.35s ease, border-left-color 0.35s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.2);
+      border-left-color: #FFD700;
+    }
+
+    .card h3 {
+      color: var(--primary-color);
+      margin-bottom: 0.7rem;
+      font-size: 1.3rem;
+      display: flex;
+      gap: 0.4rem;
+      align-items: center;
+    }
+
+    .card p {
+      color: #4B5563;
+      margin-bottom: 0.6rem;
+    }
+
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.2rem;
+      margin: 1rem 0;
+    }
+
+    .summary-card {
+      background: #fff;
+      padding: 1.2rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+      border-top: 5px solid var(--primary-color);
+      transition: all 0.3s ease;
+    }
+
+    .summary-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    }
+
+    .summary-card h4 {
+      color: var(--primary-color);
+      margin-bottom: 0.6rem;
+      font-size: 1.1rem;
+    }
+
+    .tip-box {
+      background: linear-gradient(135deg, #8B5CF6 0%, #EC4899 100%);
+      color: #fff;
+      padding: 1.2rem;
+      border-radius: 10px;
+      margin: 1rem 0;
+      border-left: 5px solid #1F2937;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    .tip-box h4 {
+      font-size: 1.15rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .fact-box {
+      background: linear-gradient(135deg, #1E88E5 0%, #00ACC1 100%);
+      color: #fff;
+      padding: 1.2rem;
+      border-radius: 10px;
+      margin: 1rem 0;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    .warning-box {
+      background: linear-gradient(135deg, #F59E0B 0%, #EF4444 100%);
+      color: #fff;
+      padding: 1.2rem;
+      border-radius: 10px;
+      margin: 1rem 0;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    .success-box {
+      background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+      color: #fff;
+      padding: 1.2rem;
+      border-radius: 10px;
+      margin: 1rem 0;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    .download-box {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: #fff;
+      padding: 2rem;
+      border-radius: 12px;
+      margin: 1.5rem 0;
+      text-align: center;
+      box-shadow: 0 6px 20px rgba(102,126,234,0.4);
+    }
+
+    .download-box h4 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .btn-download {
+      display: inline-block;
+      background: #fff;
+      color: #667eea;
+      padding: 0.9rem 1.8rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.1rem;
+      margin: 0.5rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    .btn-download:hover {
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+    }
+
+    .chapter-nav {
+      background: #f9fafb;
+      padding: 1.5rem;
+      border-radius: 12px;
+      margin: 1.5rem 0;
+      border: 2px solid #e5e7eb;
+    }
+
+    .chapter-nav h4 {
+      color: #1F2937;
+      margin-bottom: 1rem;
+      font-size: 1.2rem;
+    }
+
+    .chapter-links {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem;
+    }
+
+    .chapter-link {
+      background: #fff;
+      padding: 1rem;
+      border-radius: 8px;
+      text-decoration: none;
+      color: #1F2937;
+      border: 2px solid #e5e7eb;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .chapter-link:hover {
+      border-color: #1B5E20;
+      transform: translateY(-3px);
+      box-shadow: 0 4px 12px rgba(27,94,32,0.2);
+    }
+
+    .chapter-icon {
+      font-size: 2rem;
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(135deg, #1B5E20, #FFD700);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .chapter-text h5 {
+      font-size: 1rem;
+      margin-bottom: 0.2rem;
+      color: #1B5E20;
+    }
+
+    .chapter-text p {
+      font-size: 0.85rem;
+      color: #6B7280;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #111827;
+      color: #fff;
+      text-align: center;
+      padding: 1rem 0.8rem 0.8rem 0.8rem;
+      margin-top: 2rem;
+    }
+
+    .footer-content {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .footer-content h3 {
+      margin-bottom: 0.3rem;
+      color: #FFD700;
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
+    .footer-content p {
+      margin-bottom: 0.3rem;
+      opacity: 0.9;
+      font-size: 0.8rem;
+    }
+
+    .social-media {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin: 0.8rem 0 0.5rem 0;
+      flex-wrap: wrap;
+    }
+
+    .social-icon {
+      width: 34px;
+      height: 34px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      transition: all 0.25s ease;
+      text-decoration: none;
+    }
+
+    .social-icon svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .social-icon.whatsapp {
+      background: #25D366;
+      color: #fff;
+    }
+
+    .social-icon.whatsapp:hover {
+      background: #128C7E;
+      transform: scale(1.08) rotate(3deg);
+    }
+
+    .social-icon.youtube {
+      background: #FF0000;
+      color: #fff;
+    }
+
+    .social-icon.youtube:hover {
+      background: #CC0000;
+      transform: scale(1.08) rotate(-3deg);
+    }
+
+    .social-icon.instagram {
+      background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+      color: #fff;
+    }
+
+    .social-icon.instagram:hover {
+      transform: scale(1.08);
+      box-shadow: 0 6px 16px rgba(188,24,136,0.4);
+    }
+
+    .social-icon.facebook {
+      background: #1877F2;
+      color: #fff;
+    }
+
+    .social-icon.facebook:hover {
+      background: #145DBF;
+      transform: scale(1.08) rotate(-2deg);
+    }
+
+    .footer-small {
+      margin-top: 0.6rem;
+      font-size: 0.7rem;
+      opacity: 0.85;
+    }
+
+    @media (max-width: 768px) {
+      .navbar-title {
+        font-size: 1.5rem;
+      }
+
+      .nav-links {
+        gap: 0.4rem;
+      }
+
+      .nav-link {
+        font-size: 0.7rem;
+        padding: 0.3rem 0.5rem;
+      }
+
+      .hero h1 {
+        font-size: 1.5rem;
+      }
+
+      section h2 {
+        font-size: 1.3rem;
+      }
+
+      .summary-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .chapter-links {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="navbar-content">
+      <div>
+        <div class="navbar-title">📚 Rangkuman Literasi Digital</div>
+      </div>
+      <div class="nav-links">
+        <a href="k10_4_literasi1.html" class="nav-link">Materi</a>
+        <a href="#" class="nav-link active">Rangkuman</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-emoji">🌐💻📱</div>
+      <h1>Rangkuman: Literasi Digital</h1>
+      <p>Ringkasan lengkap tentang keterampilan digital - dari pencarian informasi, validasi data, hingga pemanfaatan media digital secara produktif dan aman</p>
+      <span class="badge">✅ RANGKUMAN LENGKAP</span>
+    </div>
+  </section>
+
+  <div class="container">
+    <!-- NAVIGASI CHAPTER -->
+    <section>
+      <div class="chapter-nav">
+        <h4>📖 Materi Literasi Digital</h4>
+        <div class="chapter-links">
+          <a href="#literasi" class="chapter-link">
+            <div class="chapter-icon">🔍</div>
+            <div class="chapter-text">
+              <h5>Bagian 1</h5>
+              <p>Literasi Digital & Pencarian Informasi</p>
+            </div>
+          </a>
+
+          <a href="#validasi" class="chapter-link">
+            <div class="chapter-icon">✅</div>
+            <div class="chapter-text">
+              <h5>Bagian 2</h5>
+              <p>Cek & Validasi Data</p>
+            </div>
+          </a>
+
+          <a href="#pemanfaatan" class="chapter-link">
+            <div class="chapter-icon">🚀</div>
+            <div class="chapter-text">
+              <h5>Bagian 3</h5>
+              <p>Pemanfaatan Media Digital</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- BAGIAN 1: LITERASI DIGITAL -->
+    <section id="literasi">
+      <h2>🔍 Ringkasan: Literasi Digital & Pencarian Informasi</h2>
+
+      <div class="card">
+        <h3>📚 Apa Itu Literasi Digital?</h3>
+        <p><strong>Literasi digital</strong> adalah kemampuan untuk menemukan, mengevaluasi, memanfaatkan, dan membuat informasi menggunakan teknologi digital dan internet dengan bijak, kritis, dan bertanggung jawab.</p>
+
+        <div class="summary-grid">
+          <div class="summary-card">
+            <h4>4 Pilar Literasi Digital</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li><strong>1. Digital Skills:</strong> Keterampilan teknis menggunakan perangkat & aplikasi</li>
+              <li><strong>2. Digital Culture:</strong> Memahami etika & budaya digital</li>
+              <li><strong>3. Digital Ethics:</strong> Bertindak etis dan bertanggung jawab online</li>
+              <li><strong>4. Digital Safety:</strong> Melindungi diri dari ancaman digital</li>
+            </ul>
+          </div>
+
+          <div class="summary-card">
+            <h4>Mengapa Penting?</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>✓ Akses informasi tanpa batas di era digital</li>
+              <li>✓ Menghindari hoax dan disinformasi</li>
+              <li>✓ Produktivitas kerja & belajar meningkat</li>
+              <li>✓ Keamanan data pribadi terjaga</li>
+              <li>✓ Persaingan global di dunia kerja</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>🔎 Teknik Pencarian Informasi di Internet</h3>
+
+        <div class="summary-grid">
+          <div class="summary-card">
+            <h4>Search Engine Populer</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li><strong>Google:</strong> Paling populer, algoritma canggih (90% market share)</li>
+              <li><strong>Bing:</strong> Dari Microsoft, integrasi dengan Windows</li>
+              <li><strong>DuckDuckGo:</strong> Privacy-focused, tidak track user</li>
+              <li><strong>Yahoo:</strong> Portal berita + search engine</li>
+            </ul>
+          </div>
+
+          <div class="summary-card">
+            <h4>Operator Pencarian Google</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li><strong>"keyword"</strong> → Exact match (kata persis)</li>
+              <li><strong>site:detik.com</strong> → Cari di website tertentu</li>
+              <li><strong>filetype:pdf</strong> → Cari file PDF saja</li>
+              <li><strong>-kata</strong> → Exclude kata tertentu</li>
+              <li><strong>OR</strong> → Salah satu keyword</li>
+              <li><strong>intitle:</strong> → Kata di judul halaman</li>
+            </ul>
+          </div>
+
+          <div class="summary-card">
+            <h4>Tips Pencarian Efektif</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>✓ Gunakan keyword spesifik, bukan kalimat panjang</li>
+              <li>✓ Manfaatkan operator pencarian advanced</li>
+              <li>✓ Filter hasil by date untuk info terbaru</li>
+              <li>✓ Cek halaman 2-3 Google, bukan hanya halaman 1</li>
+              <li>✓ Gunakan Google Scholar untuk jurnal ilmiah</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="tip-box">
+          <h4>💡 Pro Tips Pencarian</h4>
+          <ul style="list-style-position: inside; margin-left: 0.6rem;">
+            <li>🔥 <strong>Google Images:</strong> Reverse image search untuk cek keaslian foto</li>
+            <li>🔥 <strong>Google Trends:</strong> Lihat trending topics dan perbandingan popularitas</li>
+            <li>🔥 <strong>Google Dataset Search:</strong> Cari dataset untuk research</li>
+            <li>🔥 <strong>Cache:</strong> Akses versi tersimpan halaman web yang sudah dihapus</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>📖 Sumber Informasi Terpercaya</h3>
+
+        <div class="summary-grid">
+          <div class="summary-card">
+            <h4>Portal Berita Terpercaya</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• Kompas.com, Detik.com, Tempo.co</li>
+              <li>• BBC Indonesia, CNN Indonesia</li>
+              <li>• Antara News (kantor berita resmi)</li>
+              <li>• The Jakarta Post (English)</li>
+            </ul>
+          </div>
+
+          <div class="summary-card">
+            <h4>Sumber Akademik</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• Google Scholar (jurnal & paper)</li>
+              <li>• ResearchGate (networking researcher)</li>
+              <li>• Academia.edu (paper repository)</li>
+              <li>• Wikipedia (rujukan awal, cek footnote)</li>
+            </ul>
+          </div>
+
+          <div class="summary-card">
+            <h4>Pemerintah & Resmi</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• Website .go.id (pemerintah Indonesia)</li>
+              <li>• WHO, UNESCO (organisasi internasional)</li>
+              <li>• Data.go.id (open data pemerintah)</li>
+              <li>• BPS (Badan Pusat Statistik)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BAGIAN 2: VALIDASI DATA -->
+    <section id="validasi">
+      <h2>✅ Ringkasan: Cek & Validasi Data</h2>
+
+      <div class="card">
+        <h3>🚨 Mengenal Hoax & Disinformasi</h3>
+
+        <div class="summary-grid">
+          <div class="summary-card">
+            <h4>Jenis Informasi Menyesatkan</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li><strong>Hoax:</strong> Berita bohong sengaja disebarkan</li>
+              <li><strong>Misinformasi:</strong> Info salah tanpa niat buruk</li>
+              <li><strong>Disinformasi:</strong> Info salah untuk manipulasi</li>
+              <li><strong>Satire:</strong> Parodi/sindiran yang disalahartikan</li>
+              <li><strong>Clickbait:</strong> Judul sensasional menyesatkan</li>
+            </ul>
+          </div>
+
+          <div class="summary-card">
+            <h4>Ciri-Ciri Hoax</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>❌ Judul sensasional ALL CAPS!!!</li>
+              <li>❌ Tidak ada sumber atau sumber meragukan</li>
+              <li>❌ Tanggal tidak jelas atau lama</li>
+              <li>❌ Banyak typo dan grammar buruk</li>
+              <li>❌ Provokasi emosi (marah, takut, benci)</li>
+              <li>❌ Minta di-share/forward tanpa verifikasi</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="warning-box">
+          <h4>⚠️ Bahaya Hoax</h4>
+          <ul style="list-style-position: inside; margin-left: 0.6rem;">
+            <li>• Memecah belah masyarakat (SARA)</li>
+            <li>• Kerugian finansial (investasi bodong)</li>
+            <li>• Kesehatan terancam (obat palsu, anti-vaksin)</li>
+            <li>• Kepanikan massal (panic buying)</li>
+            <li>• Reputasi rusak (karakter assassination)</li>
+            <li>• Tindak pidana (UU ITE)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>🔍 Cara Cek Fakta (Fact-Checking)</h3>
+
+        <div class="summary-card">
+          <h4>Langkah-Langkah Verifikasi</h4>
+          <ol style="list-style-position: inside; margin-left: 0.6rem; font-size: 0.9rem; line-height: 1.9;">
+            <li><strong>1. Cek Sumber:</strong> Apakah dari media terpercaya? Cek profil penulis</li>
+            <li><strong>2. Cek Tanggal:</strong> Berita lama sering di-recycle sebagai berita baru</li>
+            <li><strong>3. Cek Gambar:</strong> Reverse image search di Google/TinEye</li>
+            <li><strong>4. Cross-Check:</strong> Bandingkan dengan sumber lain (min 3 sumber)</li>
+            <li><strong>5. Cek Fact-Checker:</strong> Gunakan Turnbackhoax.id, Cekfakta.com</li>
+            <li><strong>6. Baca Seluruh Artikel:</strong> Jangan hanya baca judul</li>
+            <li><strong>7. Cek Domain:</strong> .com.co, .net.id sering hoax (bukan .com atau .id asli)</li>
+          </ol>
+        </div>
+
+        <div class="success-box">
+          <h4>🛠️ Tools Cek Fakta</h4>
+          <ul style="list-style-position: inside; margin-left: 0.6rem;">
+            <li><strong>TurnBackHoax.id:</strong> Database hoax Indonesia terlengkap</li>
+            <li><strong>Cekfakta.com:</strong> Fact-checking berita Indonesia</li>
+            <li><strong>Google Reverse Image:</strong> Cek keaslian foto</li>
+            <li><strong>TinEye:</strong> Reverse image search alternatif</li>
+            <li><strong>Snopes.com:</strong> Fact-checker internasional (English)</li>
+            <li><strong>MediaBias/FactCheck:</strong> Rating kredibilitas media</li>
+          </ul>
+        </div>
+
+        <div class="tip-box">
+          <h4>💡 Prinsip SIFT</h4>
+          <p style="margin-bottom: 0.5rem;">Framework untuk evaluasi informasi cepat:</p>
+          <ul style="list-style-position: inside; margin-left: 0.6rem;">
+            <li><strong>S - Stop:</strong> Jangan langsung percaya & share</li>
+            <li><strong>I - Investigate:</strong> Cek sumber dan reputasinya</li>
+            <li><strong>F - Find:</strong> Cari coverage dari sumber lain</li>
+            <li><strong>T - Trace:</strong> Lacak klaim ke sumber aslinya</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- BAGIAN 3: PEMANFAATAN MEDIA DIGITAL -->
+    <section id="pemanfaatan">
+      <h2>🚀 Ringkasan: Pemanfaatan Media Digital</h2>
+
+      <div class="card">
+        <h3>💻 Produktivitas & Tools Digital</h3>
+
+        <div class="summary-grid">
+          <div class="summary-card">
+            <h4>Komunikasi & Kolaborasi</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li><strong>Email:</strong> Gmail, Outlook (formal)</li>
+              <li><strong>Messaging:</strong> WhatsApp, Telegram, Discord</li>
+              <li><strong>Video Call:</strong> Zoom, Google Meet, Teams</li>
+              <li><strong>Kolaborasi:</strong> Slack, Microsoft Teams</li>
+            </ul>
+          </div>
+
+          <div class="summary-card">
+            <h4>Produktivitas & Office</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li><strong>Document:</strong> Google Docs, Microsoft Word</li>
+              <li><strong>Spreadsheet:</strong> Google Sheets, Excel</li>
+              <li><strong>Presentation:</strong> Google Slides, PowerPoint</li>
+              <li><strong>Note-taking:</strong> Notion, Evernote, OneNote</li>
+            </ul>
+          </div>
+
+          <div class="summary-card">
+            <h4>Desain & Kreativitas</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li><strong>Grafis:</strong> Canva, Figma, Adobe Express</li>
+              <li><strong>Video:</strong> CapCut, Adobe Premiere Rush</li>
+              <li><strong>Foto:</strong> Snapseed, Lightroom Mobile</li>
+              <li><strong>3D:</strong> Blender, SketchUp Free</li>
+            </ul>
+          </div>
+
+          <div class="summary-card">
+            <h4>Belajar & Edukasi</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li><strong>E-Learning:</strong> Google Classroom, Moodle</li>
+              <li><strong>Video Course:</strong> YouTube, Coursera, Udemy</li>
+              <li><strong>Language:</strong> Duolingo, Memrise</li>
+              <li><strong>Coding:</strong> Codecademy, SoloLearn</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>📱 Media Sosial: Bijak & Produktif</h3>
+
+        <div class="summary-grid">
+          <div class="summary-card">
+            <h4>Platform Media Sosial</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li><strong>Facebook:</strong> Networking, grup, marketplace</li>
+              <li><strong>Instagram:</strong> Visual content, story, reels</li>
+              <li><strong>Twitter/X:</strong> Microblogging, trending news</li>
+              <li><strong>TikTok:</strong> Short video, entertainment</li>
+              <li><strong>LinkedIn:</strong> Professional networking</li>
+              <li><strong>YouTube:</strong> Video long-form, tutorial</li>
+            </ul>
+          </div>
+
+          <div class="summary-card">
+            <h4>Etika Bermedia Sosial</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>✓ Berpikir sebelum posting (think before you post)</li>
+              <li>✓ Hormati privasi orang lain</li>
+              <li>✓ Tidak menyebarkan hoax & hate speech</li>
+              <li>✓ Bijak berkomentar (no cyberbullying)</li>
+              <li>✓ Jaga reputasi digital (digital footprint)</li>
+              <li>✓ Setting privasi akun dengan benar</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="warning-box">
+          <h4>⚠️ Bahaya Media Sosial</h4>
+          <ul style="list-style-position: inside; margin-left: 0.6rem;">
+            <li>• <strong>Kecanduan:</strong> Doomscrolling, FOMO (Fear of Missing Out)</li>
+            <li>• <strong>Mental Health:</strong> Depresi, anxiety, body image issue</li>
+            <li>• <strong>Cyberbullying:</strong> Pelecehan online, hate speech</li>
+            <li>• <strong>Privacy Leak:</strong> Data pribadi tersebar</li>
+            <li>• <strong>Scam:</strong> Penipuan online, phishing</li>
+            <li>• <strong>Produktivitas:</strong> Prokrastinasi, buang waktu</li>
+          </ul>
+        </div>
+
+        <div class="success-box">
+          <h4>✅ Tips Sehat Bermedia Sosial</h4>
+          <ul style="list-style-position: inside; margin-left: 0.6rem;">
+            <li>✓ Batasi screen time (gunakan timer/app tracker)</li>
+            <li>✓ Nonaktifkan notifikasi yang tidak penting</li>
+            <li>✓ Unfollow akun toxic atau tidak bermanfaat</li>
+            <li>✓ Jangan compare hidup Anda dengan orang lain</li>
+            <li>✓ Ikuti akun edukatif dan inspiring</li>
+            <li>✓ Digital detox secara berkala (1 hari tanpa medsos)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>🔒 Keamanan Digital (Digital Safety)</h3>
+
+        <div class="summary-grid">
+          <div class="summary-card">
+            <h4>Praktik Keamanan Dasar</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li><strong>Password Kuat:</strong> Min 12 karakter, campur huruf/angka/simbol</li>
+              <li><strong>2FA/MFA:</strong> Two-Factor Authentication wajib aktif</li>
+              <li><strong>Update Software:</strong> Selalu update OS & aplikasi</li>
+              <li><strong>Antivirus:</strong> Windows Defender atau antivirus lain</li>
+              <li><strong>HTTPS:</strong> Cek gembok di browser saat transaksi</li>
+              <li><strong>Public WiFi:</strong> Hindari login akun penting di WiFi publik</li>
+            </ul>
+          </div>
+
+          <div class="summary-card">
+            <h4>Ancaman Digital</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li><strong>Phishing:</strong> Email/SMS palsu minta data pribadi</li>
+              <li><strong>Malware:</strong> Virus, ransomware, spyware</li>
+              <li><strong>Social Engineering:</strong> Manipulasi psikologis</li>
+              <li><strong>Identity Theft:</strong> Pencurian identitas</li>
+              <li><strong>Data Breach:</strong> Kebocoran data perusahaan</li>
+            </ul>
+          </div>
+
+          <div class="summary-card">
+            <h4>Jika Terkena Scam/Hack</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>1. <strong>Ganti password</strong> semua akun segera</li>
+              <li>2. <strong>Aktifkan 2FA</strong> di semua akun</li>
+              <li>3. <strong>Hubungi bank</strong> jika kartu/rekening</li>
+              <li>4. <strong>Lapor polisi</strong> cybercrimes</li>
+              <li>5. <strong>Scan malware</strong> dengan antivirus</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- KEY TAKEAWAYS -->
+    <section>
+      <h2>🎯 Key Takeaways (Poin Penting)</h2>
+
+      <div class="card" style="background: linear-gradient(135deg, rgba(102,126,234,0.05), rgba(118,75,162,0.05)); border-left: 5px solid #667eea;">
+        <h3>💡 20 Hal yang Harus Dikuasai</h3>
+        <ol style="list-style-position: inside; margin-left: 0.6rem; line-height: 2.2; font-size: 0.95rem;">
+          <li><strong>Literasi digital adalah skill wajib</strong> di era modern untuk bekerja dan belajar</li>
+          <li><strong>4 pilar literasi digital:</strong> Skills, Culture, Ethics, Safety</li>
+          <li><strong>Search engine bukan hanya Google</strong> - ada Bing, DuckDuckGo (privacy)</li>
+          <li><strong>Gunakan operator pencarian</strong> untuk hasil lebih spesifik dan akurat</li>
+          <li><strong>Reverse image search</strong> untuk cek keaslian foto/gambar</li>
+          <li><strong>Sumber terpercaya:</strong> Media mainstream, .go.id, Google Scholar</li>
+          <li><strong>Hoax memiliki ciri khas:</strong> sensasional, typo, provokasi emosi</li>
+          <li><strong>SIFT framework:</strong> Stop, Investigate, Find, Trace</li>
+          <li><strong>Fact-checking wajib</strong> sebelum share informasi (TurnBackHoax, Cekfakta)</li>
+          <li><strong>Cross-check minimal 3 sumber</strong> untuk verifikasi berita</li>
+          <li><strong>Tools digital meningkatkan produktivitas</strong> - Google Workspace, Canva, Notion</li>
+          <li><strong>Media sosial pedang bermata dua</strong> - bermanfaat tapi bisa toxic</li>
+          <li><strong>Think before you post</strong> - digital footprint permanen</li>
+          <li><strong>Batasi screen time</strong> untuk kesehatan mental</li>
+          <li><strong>Password kuat + 2FA</strong> adalah pertahanan utama akun</li>
+          <li><strong>Phishing semakin canggih</strong> - selalu cek sender & URL</li>
+          <li><strong>HTTPS wajib</strong> saat input data sensitif (login, transaksi)</li>
+          <li><strong>Update software secara rutin</strong> untuk patch keamanan</li>
+          <li><strong>Privacy setting</strong> di media sosial harus dikonfigurasi</li>
+          <li><strong>Digital detox berkala</strong> untuk keseimbangan hidup</li>
+        </ol>
+      </div>
+
+      <div class="fact-box">
+        <h4>📊 Fakta Menarik Literasi Digital:</h4>
+        <ul style="list-style-position: inside; margin-left: 0.6rem;">
+          <li>• 90% pencarian internet menggunakan Google (market dominance)</li>
+          <li>• Rata-rata orang spend 6-7 jam/hari di internet</li>
+          <li>• 1 dari 5 berita di media sosial adalah hoax atau misinformasi</li>
+          <li>• Phishing attack meningkat 400% sejak pandemi COVID-19</li>
+          <li>• 81% data breach disebabkan password lemah atau curian</li>
+          <li>• Indonesia peringkat 5 besar pengguna media sosial dunia</li>
+          <li>• Digital footprint Anda dapat diakses calon employer saat hiring</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- TIPS PENTING -->
+    <section>
+      <h2>⚠️ DO & DON'T dalam Dunia Digital</h2>
+
+      <div class="card">
+        <h3>✅ DO (Yang Harus Dilakukan)</h3>
+        <ul style="list-style-position: inside; margin-left: 0.6rem; line-height: 1.9;">
+          <li>✅ Verifikasi informasi sebelum share (fact-check)</li>
+          <li>✅ Gunakan password unik untuk setiap akun</li>
+          <li>✅ Aktifkan 2FA di semua akun penting</li>
+          <li>✅ Update software dan antivirus secara rutin</li>
+          <li>✅ Baca privacy policy sebelum accept</li>
+          <li>✅ Backup data penting secara berkala</li>
+          <li>✅ Think before you post di media sosial</li>
+          <li>✅ Laporkan hoax dan akun scammer</li>
+          <li>✅ Edukasi keluarga tentang digital safety</li>
+          <li>✅ Batasi screen time dan digital detox</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>❌ DON'T (Yang Harus Dihindari)</h3>
+        <ul style="list-style-position: inside; margin-left: 0.6rem; line-height: 1.9;">
+          <li>❌ Share berita tanpa verifikasi (jadi penyebar hoax)</li>
+          <li>❌ Gunakan password sama untuk banyak akun</li>
+          <li>❌ Klik link mencurigakan dari email/SMS</li>
+          <li>❌ Login akun penting di WiFi publik tanpa VPN</li>
+          <li>❌ Posting data pribadi sensitif (KTP, rekening, alamat)</li>
+          <li>❌ Accept friend request dari stranger tanpa verifikasi</li>
+          <li>❌ Download aplikasi dari sumber tidak resmi</li>
+          <li>❌ Cyberbullying atau hate speech</li>
+          <li>❌ Oversharing di media sosial (TMI - Too Much Information)</li>
+          <li>❌ Abaikan update security patch</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- DOWNLOAD SECTION -->
+    <section>
+      <h2>📥 Download Materi Lengkap</h2>
+      
+      <div class="download-box">
+        <h4>📚 Paket Lengkap: Literasi Digital Kelas X</h4>
+        <p style="margin-bottom: 1.5rem; font-size: 1.05rem;">Download rangkuman lengkap, checklist fact-checking, dan panduan keamanan digital!</p>
+        
+        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+          <a href="#" class="btn-download" onclick="alert('File akan segera tersedia. Hubungi guru untuk mendapatkan file lengkap.'); return false;">
+            📥 Download Rangkuman PDF
+          </a>
+          <a href="#" class="btn-download" onclick="alert('File akan segera tersedia. Hubungi guru untuk mendapatkan file lengkap.'); return false;">
+            📥 Download Checklist
+          </a>
+          <a href="#" class="btn-download" onclick="alert('File akan segera tersedia. Hubungi guru untuk mendapatkan file lengkap.'); return false;">
+            📥 Download Infografis
+          </a>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>📖 Isi Paket Download</h3>
+        <div class="summary-grid">
+          <div class="summary-card">
+            <h4>📄 Rangkuman Lengkap</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• 20+ tips pencarian efektif</li>
+              <li>• Panduan fact-checking step-by-step</li>
+              <li>• Daftar tools digital produktif</li>
+              <li>• Best practices media sosial</li>
+            </ul>
+          </div>
+
+          <div class="summary-card">
+            <h4>✅ Checklist Praktis</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• Checklist verifikasi berita</li>
+              <li>• Security checklist akun online</li>
+              <li>• Privacy setting guide</li>
+              <li>• Digital detox checklist</li>
+            </ul>
+          </div>
+
+          <div class="summary-card">
+            <h4>📊 Infografis</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• Operator pencarian Google</li>
+              <li>• Ciri-ciri hoax (visual)</li>
+              <li>• SIFT framework</li>
+              <li>• Password strength meter</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NEXT STEPS -->
+    <section>
+      <h2>🚀 Langkah Selanjutnya</h2>
+
+      <div class="card">
+        <h3>📈 Tingkatkan Literasi Digital Anda</h3>
+        <div class="summary-grid">
+          <div class="summary-card">
+            <h4>🎯 Level Pemula</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• Master operator pencarian Google</li>
+              <li>• Praktik fact-checking 1 berita/hari</li>
+              <li>• Setup 2FA di 5 akun utama</li>
+              <li>• Clean up media sosial lama</li>
+            </ul>
+          </div>
+
+          <div class="summary-card">
+            <h4>⚡ Level Menengah</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• Gunakan password manager</li>
+              <li>• Explore tools produktivitas baru</li>
+              <li>• Buat konten edukatif di medsos</li>
+              <li>• Join komunitas tech/digital</li>
+            </ul>
+          </div>
+
+          <div class="summary-card">
+            <h4>🏆 Level Advanced</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• Jadi fact-checker volunteer</li>
+              <li>• Edukasi orang tua tentang digital</li>
+              <li>• Create digital campaign positif</li>
+              <li>• Learn cybersecurity basics</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PENUTUP -->
+    <section>
+      <div class="card" style="background: linear-gradient(135deg, rgba(27,94,32,0.06), rgba(255,215,0,0.08)); border-left: 5px solid #FFD700; text-align: center; padding: 2rem;">
+        <h3 style="margin-bottom: 1rem; font-size: 1.5rem;">🎉 Selamat! Anda Telah Menguasai Literasi Digital</h3>
+        <p style="margin-bottom: 1.5rem; line-height: 1.9; font-size: 1.05rem;">
+          Anda sekarang memiliki keterampilan penting untuk navigasi dunia digital dengan aman, kritis, dan produktif. Terus praktikkan dan tingkatkan literasi digital Anda setiap hari!
+        </p>
+
+        <div style="background: rgba(255,215,0,0.15); padding: 1.5rem; border-radius: 10px; margin: 1.5rem 0;">
+          <p style="font-weight: 700; color: #1B5E20; font-size: 1.3rem; margin-bottom: 0.8rem;">💡 Ingat Selalu:</p>
+          <p style="font-size: 1.1rem; line-height: 1.8;">
+            <em>"With great power comes great responsibility."</em><br/>
+            <span style="font-size: 0.9rem; opacity: 0.8;">- Uncle Ben (Spider-Man)</span>
+          </p>
+          <p style="font-size: 0.95rem; margin-top: 0.8rem;">
+            Teknologi adalah tool yang powerful. Gunakan dengan bijak dan bertanggung jawab! 🌐
+          </p>
+        </div>
+
+        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem;">
+          <a href="k10_4_literasi1.html" style="display: inline-block; background: #6B7280; color: #fff; padding: 0.8rem 1.8rem; border-radius: 8px; text-decoration: none; font-weight: 600;">
+            🔄 Review Materi Lengkap
+          </a>
+          <a href="#" style="display: inline-block; background: #1B5E20; color: #fff; padding: 0.8rem 1.8rem; border-radius: 8px; text-decoration: none; font-weight: 700;" onclick="alert('Mantap! Sekarang terapkan literasi digital dalam kehidupan sehari-hari!'); return false;">
+            ✅ Siap Jadi Digital Citizen!
+          </a>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-content">
+      <h3>Platform Pembelajaran Interaktif untuk Siswa & Siswi <strong>Ypi Nurul Hadina</strong></h3>
+
+      <div class="social-media">
+        <a class="social-icon whatsapp" href="https://wa.me/6289504440411" target="_blank">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884"/></svg>
+        </a>
+
+        <a class="social-icon youtube" href="https://www.youtube.com/channel/UCNmOH6L2xq6C15EkQlx_FpQ" target="_blank">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+        </a>
+
+        <a class="social-icon instagram" href="https://instagram.com/ypinurulhadina" target="_blank">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.319 1.347 20.651.935 19.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.015 3.585-.074 4.85c-.061 1.17-.256 1.805-.421 2.227-.224.562-.479.96-.899 1.382-.419.419-.824.679-1.38.896-.42.164-1.065.36-2.235.413-1.274.057-1.649.07-4.859.07-3.211 0-3.586-.015-4.859-.074-1.171-.061-1.816-.256-2.236-.421-.569-.224-.96-.479-1.379-.899-.421-.419-.69-.824-.9-1.38-.165-.42-.359-1.065-.42-2.235-.045-1.26-.061-1.649-.061-4.844 0-3.196.016-3.586.061-4.861.061-1.17.255-1.814.42-2.234.21-.57.479-.96.9-1.381.419-.419.81-.689 1.379-.898.42-.166 1.051-.361 2.221-.421 1.275-.045 1.65-.06 4.859-.06l.045.03zm0 3.678c-3.405 0-6.162 2.76-6.162 6.162 0 3.405 2.76 6.162 6.162 6.162 3.405 0 6.162-2.76 6.162-6.162 0-3.405-2.76-6.162-6.162-6.162zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm7.846-10.405c0 .795-.646 1.44-1.44 1.44-.795 0-1.44-.646-1.44-1.44 0-.794.646-1.439 1.44-1.439.793-.001 1.44.645 1.44 1.439z"/></svg>
+        </a>
+
+        <a class="social-icon facebook" href="https://www.facebook.com/fauzan.reza.7" target="_blank">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        </a>
+      </div>
+
+      <p class="footer-small">©2025 Portal Siswa Informatika. MA PLUS & SMP IT.<br>Oleh : <strong>Fauzan Reza, S.T</strong> (Guru Informatika)</p>
+    </div>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kelas 7 - Portal Siswa</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  
+  <style>
+    .main-container {
+      padding: 1.5rem;
+      max-width: 1200px;
+      margin: 80px auto 0;
+      position: relative;
+      z-index: 10;
+      min-height: calc(100vh - 200px);
+    }
+    
+    .page-header {
+      background: var(--glass-bg);
+      backdrop-filter: blur(15px);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      text-align: center;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    }
+    
+    .page-header i {
+      font-size: 3rem;
+      color: var(--accent-color);
+      margin-bottom: 1rem;
+      filter: drop-shadow(0 0 20px rgba(0, 229, 255, 0.5));
+    }
+    
+    .page-header h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--accent-color);
+      margin-bottom: 0.5rem;
+      text-shadow: 0 0 20px rgba(0, 229, 255, 0.3);
+    }
+    
+    .page-header p {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+    }
+    
+    /* Grid 2 Kolom untuk Bab Materi */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    
+    .card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(15px);
+      border: 1px solid var(--glass-border);
+      border-radius: 16px;
+      padding: 2rem;
+      text-decoration: none;
+      transition: all 0.4s ease;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .card::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0, 229, 255, 0.1), transparent);
+      transform: translate(-50%, -50%);
+      transition: width 0.6s ease, height 0.6s ease;
+    }
+    
+    .card:hover::after {
+      width: 400px;
+      height: 400px;
+    }
+    
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 40px rgba(0, 229, 255, 0.3);
+      border-color: var(--accent-color);
+    }
+    
+    .card h3 {
+      font-size: 1.2rem;
+      color: var(--accent-color);
+      margin-bottom: 1rem;
+      font-weight: 700;
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    
+    .card p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.7;
+      position: relative;
+      z-index: 1;
+      margin: 0;
+    }
+    
+    .back-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 2rem;
+      background: var(--glass-bg);
+      backdrop-filter: blur(15px);
+      border: 1px solid var(--glass-border);
+      border-radius: 12px;
+      color: var(--accent-color);
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      margin-top: 2rem;
+    }
+    
+    .back-button:hover {
+      background: rgba(0, 229, 255, 0.1);
+      border-color: var(--accent-color);
+      transform: translateX(-5px);
+      box-shadow: 0 6px 20px rgba(0, 229, 255, 0.3);
+    }
+    
+    @media (max-width: 768px) {
+      .main-container {
+        padding: 1rem;
+        margin-top: 70px;
+      }
+      
+      .page-header {
+        padding: 1.5rem;
+      }
+      
+      .page-header i {
+        font-size: 2.5rem;
+      }
+      
+      .page-header h1 {
+        font-size: 1.5rem;
+      }
+      
+      .grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+      
+      .card {
+        padding: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <canvas id="particle-network"></canvas>
+
+  <nav class="navbar">
+    <a href="dashboard.html" class="logo">PORTAL WEB <span>INFORMATIKA</span></a>
+    
+    <div class="profile-dropdown">
+      <button class="profile-trigger" id="profile-trigger-btn">
+        <span id="welcome-name">Memuat...</span> 
+        <i class="fas fa-chevron-down" style="font-size: 0.8em;"></i>
+      </button>
+      <div class="dropdown-content" id="dropdown-content">
+        <div class="profile-info">
+          <div><strong>Nama:</strong> <span id="profile-name">...</span></div>
+          <div><strong>NIS:</strong> <span id="profile-nis">...</span></div>
+          <div><strong>Kelas:</strong> <span id="profile-kelas">...</span></div>
+        </div>
+        <div class="dropdown-links">
+          <a href="#" id="change-password-btn">Ganti Password</a>
+          <a href="#" id="logout-btn">Logout</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div id="password-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.8); z-index: 1000; justify-content: center; align-items: center;">
+    <div style="background: var(--card-bg); backdrop-filter: blur(15px); border: 1px solid var(--glass-border); border-radius: 16px; padding: 2rem; max-width: 400px; width: 90%;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+        <h3 style="color: var(--accent-color); margin: 0;">Ganti Password</h3>
+        <button onclick="closePasswordModal()" style="background: none; border: none; color: var(--text-muted); font-size: 1.5rem; cursor: pointer;">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      
+      <form id="change-password-form">
+        <div style="margin-bottom: 1rem;">
+          <label style="display: block; color: var(--accent-color); margin-bottom: 0.5rem; font-size: 0.9rem;">Password Baru</label>
+          <input type="password" id="new-password" placeholder="Minimal 4 karakter" required style="width: 100%; padding: 0.75rem; background: rgba(0, 0, 0, 0.4); border: 1px solid var(--glass-border); border-radius: 8px; color: var(--text-color); font-family: 'Poppins', sans-serif;">
+        </div>
+        
+        <div style="margin-bottom: 1.5rem;">
+          <label style="display: block; color: var(--accent-color); margin-bottom: 0.5rem; font-size: 0.9rem;">Konfirmasi Password</label>
+          <input type="password" id="confirm-password" placeholder="Ketik ulang password" required style="width: 100%; padding: 0.75rem; background: rgba(0, 0, 0, 0.4); border: 1px solid var(--glass-border); border-radius: 8px; color: var(--text-color); font-family: 'Poppins', sans-serif;">
+        </div>
+        
+        <button type="submit" style="width: 100%; padding: 0.75rem; background: linear-gradient(135deg, rgba(0, 229, 255, 0.2), rgba(159, 47, 255, 0.2)); border: 2px solid var(--accent-color); border-radius: 10px; color: var(--accent-color); font-weight: 700; cursor: pointer; font-family: 'Poppins', sans-serif;">
+          <i class="fas fa-save"></i> Simpan Password
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <div class="main-container">
+
+    <div class="page-header">
+      <i class="fas fa-graduation-cap"></i>
+      <h1>Kelas 7 - Informatika</h1>
+      <p>Ringkasan materi dan tautan bahan ajar</p>
+    </div>
+
+    <!-- Grid Cards - Materi Kelas 7 -->
+    <div class="grid">
+      <a class="card" href="blmtersedia.html">
+        <h3><i class="fas fa-project-diagram"></i> Bab 1: Algoritma</h3>
+        <p>Fungsi, Representasi Data dan Penyelesaian Persoalan dengan Algoritma</p>
+      </a>
+
+      <a class="card" href="blmtersedia.html">
+        <h3><i class="fas fa-table"></i> Bab 2: Aplikasi Pengolah Data</h3>
+        <p>Aplikasi Pengolah Data, Mengenal Microsoft Excel dan Mengolah Data dengan Microsoft Excel</p>
+      </a>
+
+      <a class="card" href="blmtersedia.html">
+        <h3><i class="fas fa-network-wired"></i> Bab 3: Jaringan Komputer</h3>
+        <p>Pengenalan Jaringan Komputer, Konfigurasi dan Jaringan Nirkabel</p>
+      </a>
+
+      <a class="card" href="blmtersedia.html">
+        <h3><i class="fas fa-shield-alt"></i> Bab 4: Keamanan Digital</h3>
+        <p>Keterbukaan Informasi, Kejahatan Siber dan Berinternet dengan Aman</p>
+      </a>
+
+      <a class="card" href="blmtersedia.html">
+        <h3><i class="fas fa-lightbulb"></i> Bab 5: Praktik Lintas Bidang</h3>
+        <p>Mengenal Praktik Lintas Bidang dan Proyek Informatika</p>
+      </a>
+    </div>
+
+    <a class="back-button" href="kelas-smp.html">
+      <i class="fas fa-arrow-left"></i> Kembali ke Daftar Kelas SMP
+    </a>
+
+  </div>
+
+  <footer class="site-footer" style="background: var(--card-bg); backdrop-filter: blur(10px); border-top: 1px solid var(--glass-border); padding: 1.5rem 2rem; text-align: center; color: var(--text-muted); font-size: 0.9rem; position: relative; z-index: 100;">
+    &copy; 2025 Portal Siswa Informatika. MA PLUS & SMP IT YPI Nurul Hadina.<br>
+    Oleh: <strong style="color: var(--accent-color);">Fauzan Reza, S.T</strong> (Guru Informatika <strong style="color: var(--accent-color);">YPI Nurul Hadina</strong>)
+  </footer>
+
+  <script src="database.js"></script>
+  <script src="auth.js"></script>
+  
+  <script>
+    (function() {
+      const canvas = document.getElementById('particle-network');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      
+      function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+      
+      resizeCanvas();
+      
+      let particles = [];
+      const particleCount = 100, connectDistance = 150, mouse = { x: null, y: null, radius: 100 };
+      
+      window.addEventListener('resize', () => {
+        resizeCanvas();
+        init();
+      });
+      
+      window.addEventListener('mousemove', (event) => {
+        mouse.x = event.x; 
+        mouse.y = event.y;
+      });
+      
+      window.addEventListener('mouseout', () => {
+        mouse.x = null; 
+        mouse.y = null;
+      });
+      
+      class Particle {
+        constructor() {
+          this.x = Math.random() * canvas.width; 
+          this.y = Math.random() * canvas.height;
+          this.vx = (Math.random() - 0.5) * 0.5; 
+          this.vy = (Math.random() - 0.5) * 0.5;
+          this.radius = 2.5; 
+          this.color = 'rgba(0, 229, 255, 0.7)';
+        }
+        
+        update() {
+          if (this.x < 0 || this.x > canvas.width) this.vx = -this.vx;
+          if (this.y < 0 || this.y > canvas.height) this.vy = -this.vy;
+          this.x += this.vx; 
+          this.y += this.vy;
+        }
+        
+        draw() {
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+          ctx.fillStyle = this.color; 
+          ctx.fill();
+        }
+      }
+      
+      function init() {
+        particles = [];
+        for (let i = 0; i < particleCount; i++) particles.push(new Particle());
+      }
+      
+      function connect() {
+        for (let a = 0; a < particles.length; a++) {
+          for (let b = a + 1; b < particles.length; b++) {
+            const dx = particles[a].x - particles[b].x;
+            const dy = particles[a].y - particles[b].y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+            
+            if (distance < connectDistance) {
+              const opacity = 1 - (distance / connectDistance);
+              ctx.strokeStyle = `rgba(0, 229, 255, ${opacity * 0.3})`;
+              ctx.lineWidth = 1.5; 
+              ctx.beginPath();
+              ctx.moveTo(particles[a].x, particles[a].y);
+              ctx.lineTo(particles[b].x, particles[b].y); 
+              ctx.stroke();
+            }
+          }
+          
+          if (mouse.x) {
+            const dx = particles[a].x - mouse.x;
+            const dy = particles[a].y - mouse.y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+            
+            if (distance < mouse.radius) {
+              const opacity = 1 - (distance / mouse.radius);
+              ctx.strokeStyle = `rgba(159, 47, 255, ${opacity * 0.5})`;
+              ctx.lineWidth = 2; 
+              ctx.beginPath();
+              ctx.moveTo(particles[a].x, particles[a].y);
+              ctx.lineTo(mouse.x, mouse.y); 
+              ctx.stroke();
+            }
+          }
+        }
+      }
+      
+      function animate() {
+        if (!ctx) return;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        particles.forEach(p => { p.update(); p.draw(); });
+        connect(); 
+        requestAnimationFrame(animate);
+      }
+      
+      init();
+      animate();
+    })();
+  </script>
+  
+  <script>
+    const currentUser = getSession();
+    if (!currentUser) {
+      window.location.href = 'index.html';
+    }
+    
+    document.getElementById('welcome-name').textContent = `Halo, ${currentUser.nama.split(' ')[0]}`;
+    document.getElementById('profile-name').textContent = currentUser.nama;
+    document.getElementById('profile-nis').textContent = currentUser.nis;
+    document.getElementById('profile-kelas').textContent = `${currentUser.tingkatan} / Kelas ${currentUser.kelas}`;
+    
+    const triggerBtn = document.getElementById('profile-trigger-btn');
+    const dropdownContent = document.getElementById('dropdown-content');
+    
+    triggerBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      dropdownContent.classList.toggle('show');
+    });
+    
+    document.addEventListener('click', (e) => {
+      if (!triggerBtn.contains(e.target) && !dropdownContent.contains(e.target)) {
+        dropdownContent.classList.remove('show');
+      }
+    });
+    
+    const passwordModal = document.getElementById('password-modal');
+    
+    document.getElementById('change-password-btn').addEventListener('click', (e) => {
+      e.preventDefault();
+      passwordModal.style.display = 'flex';
+      dropdownContent.classList.remove('show');
+    });
+    
+    function closePasswordModal() {
+      passwordModal.style.display = 'none';
+      document.getElementById('change-password-form').reset();
+    }
+    
+    document.getElementById('change-password-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const newPassword = document.getElementById('new-password').value;
+      const confirmPassword = document.getElementById('confirm-password').value;
+      
+      if (newPassword.length < 4) {
+        alert('Password minimal 4 karakter!');
+        return;
+      }
+      
+      if (newPassword !== confirmPassword) {
+        alert('Password tidak cocok!');
+        return;
+      }
+      
+      const users = getAllUsers();
+      const userIndex = users.findIndex(u => u.nis === currentUser.nis);
+      
+      if (userIndex !== -1) {
+        users[userIndex].password = newPassword;
+        localStorage.setItem('users', JSON.stringify(users));
+        
+        currentUser.password = newPassword;
+        setSession(currentUser);
+        
+        alert('✓ Password berhasil diubah!');
+        closePasswordModal();
+      } else {
+        alert('❌ Gagal mengubah password!');
+      }
+    });
+    
+    document.getElementById('logout-btn').addEventListener('click', (e) => {
+      e.preventDefault();
+      handleLogout();
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,1088 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ujian Virtual - Portal Siswa</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  
+  <style>
+    /* Main Container */
+    .main-container {
+      padding: 1.5rem;
+      max-width: 1400px;
+      margin: 80px auto 0;
+      position: relative;
+      z-index: 10;
+      min-height: calc(100vh - 200px);
+    }
+    
+    /* Page Header */
+    .page-header {
+      background: var(--glass-bg);
+      backdrop-filter: blur(15px);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      text-align: center;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    }
+    
+    .page-header i {
+      font-size: 3rem;
+      color: var(--accent-color);
+      margin-bottom: 1rem;
+      filter: drop-shadow(0 0 20px rgba(0, 229, 255, 0.5));
+    }
+    
+    .page-header h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--accent-color);
+      margin-bottom: 0.5rem;
+      text-shadow: 0 0 20px rgba(0, 229, 255, 0.3);
+    }
+    
+    .page-header p {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+    }
+    
+    /* Stats Cards */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    
+    .stat-card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(15px);
+      border: 1px solid var(--glass-border);
+      border-radius: 16px;
+      padding: 1.75rem;
+      text-align: center;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    
+    .stat-card::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0, 229, 255, 0.1), transparent);
+      transform: translate(-50%, -50%);
+      transition: width 0.6s ease, height 0.6s ease;
+    }
+    
+    .stat-card:hover::after {
+      width: 300px;
+      height: 300px;
+    }
+    
+    .stat-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 40px rgba(0, 229, 255, 0.25);
+    }
+    
+    .stat-card i {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .stat-card.active i {
+      color: var(--success-color);
+    }
+    
+    .stat-card.completed i {
+      color: var(--accent-color);
+    }
+    
+    .stat-card.average i {
+      color: #ffd700;
+    }
+    
+    .stat-card h3 {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .stat-card.active .stat-number {
+      color: var(--success-color);
+    }
+    
+    .stat-card.completed .stat-number {
+      color: var(--accent-color);
+    }
+    
+    .stat-card.average .stat-number {
+      color: #ffd700;
+    }
+    
+    .stat-label {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      position: relative;
+      z-index: 1;
+    }
+    
+    /* Filter Section */
+    .filter-section {
+      background: var(--glass-bg);
+      backdrop-filter: blur(15px);
+      border: 1px solid var(--glass-border);
+      border-radius: 16px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    }
+    
+    .filter-group {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+    
+    .filter-item {
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .filter-item label {
+      font-size: 0.85rem;
+      color: var(--accent-color);
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+    
+    .filter-item select,
+    .filter-item input {
+      width: 100%;
+      padding: 0.65rem;
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid var(--glass-border);
+      border-radius: 8px;
+      color: var(--text-color);
+      font-size: 0.9rem;
+      font-family: 'Poppins', sans-serif;
+      transition: all 0.3s ease;
+    }
+    
+    .filter-item select:focus,
+    .filter-item input:focus {
+      outline: none;
+      border-color: var(--accent-color);
+      box-shadow: 0 0 15px rgba(0, 229, 255, 0.3);
+    }
+    
+    /* Tabs */
+    .tabs {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+    
+    .tab-btn {
+      padding: 0.75rem 1.5rem;
+      background: var(--glass-bg);
+      backdrop-filter: blur(15px);
+      border: 1px solid var(--glass-border);
+      border-radius: 12px;
+      color: var(--text-muted);
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-family: 'Poppins', sans-serif;
+    }
+    
+    .tab-btn:hover {
+      border-color: var(--accent-color);
+      color: var(--accent-color);
+    }
+    
+    .tab-btn.active {
+      background: linear-gradient(135deg, rgba(0, 229, 255, 0.2), rgba(159, 47, 255, 0.2));
+      border-color: var(--accent-color);
+      color: var(--accent-color);
+    }
+    
+    /* Exam Cards Grid */
+    .exam-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    
+    .exam-card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(15px);
+      border: 1px solid var(--glass-border);
+      border-radius: 16px;
+      padding: 1.75rem;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    
+    .exam-card::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0, 229, 255, 0.1), transparent);
+      transform: translate(-50%, -50%);
+      transition: width 0.6s ease, height 0.6s ease;
+    }
+    
+    .exam-card:hover::after {
+      width: 400px;
+      height: 400px;
+    }
+    
+    .exam-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 40px rgba(0, 229, 255, 0.25);
+      border-color: var(--accent-color);
+    }
+    
+    .exam-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: start;
+      margin-bottom: 1rem;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .exam-badge {
+      padding: 0.4rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    .exam-badge.live {
+      background: rgba(0, 200, 83, 0.2);
+      border: 1px solid var(--success-color);
+      color: var(--success-color);
+      animation: pulse-live 2s infinite;
+    }
+    
+    @keyframes pulse-live {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.6; }
+    }
+    
+    .exam-badge.soon {
+      background: rgba(255, 215, 0, 0.2);
+      border: 1px solid #ffd700;
+      color: #ffd700;
+    }
+    
+    .exam-badge.done {
+      background: rgba(0, 229, 255, 0.2);
+      border: 1px solid var(--accent-color);
+      color: var(--accent-color);
+    }
+    
+    .exam-card h3 {
+      font-size: 1.2rem;
+      color: var(--text-color);
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .exam-mapel {
+      font-size: 0.85rem;
+      color: var(--accent-color);
+      margin-bottom: 1rem;
+      font-weight: 600;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .exam-info {
+      margin-bottom: 1rem;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .exam-info p {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 0.5rem;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+    
+    .exam-info i {
+      width: 20px;
+      color: var(--accent-color);
+    }
+    
+    .exam-timer {
+      background: rgba(255, 215, 0, 0.1);
+      border: 1px solid #ffd700;
+      border-radius: 8px;
+      padding: 0.75rem;
+      margin-bottom: 1rem;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .exam-timer.warning {
+      background: rgba(255, 61, 0, 0.1);
+      border-color: var(--error-color);
+      animation: pulse-warning 1s infinite;
+    }
+    
+    @keyframes pulse-warning {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.7; }
+    }
+    
+    .exam-timer i {
+      color: #ffd700;
+      margin-right: 0.5rem;
+    }
+    
+    .exam-timer.warning i {
+      color: var(--error-color);
+    }
+    
+    .timer-text {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+    
+    .timer-countdown {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #ffd700;
+      margin-top: 0.25rem;
+    }
+    
+    .exam-timer.warning .timer-countdown {
+      color: var(--error-color);
+    }
+    
+    .exam-score {
+      background: rgba(0, 200, 83, 0.1);
+      border: 1px solid var(--success-color);
+      border-radius: 8px;
+      padding: 0.75rem;
+      text-align: center;
+      margin-bottom: 1rem;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .score-label {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+    
+    .score-value {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--success-color);
+    }
+    
+    .btn-exam {
+      width: 100%;
+      padding: 0.85rem;
+      background: linear-gradient(135deg, rgba(0, 229, 255, 0.2), rgba(159, 47, 255, 0.2));
+      backdrop-filter: blur(15px);
+      border: 2px solid var(--accent-color);
+      border-radius: 12px;
+      color: var(--accent-color);
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      font-family: 'Poppins', sans-serif;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .btn-exam:hover {
+      background: linear-gradient(135deg, rgba(0, 229, 255, 0.3), rgba(159, 47, 255, 0.3));
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 229, 255, 0.4);
+    }
+    
+    .btn-exam.disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+    
+    .btn-exam.success {
+      border-color: var(--success-color);
+      color: var(--success-color);
+    }
+    
+    .back-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 2rem;
+      background: var(--glass-bg);
+      backdrop-filter: blur(15px);
+      border: 1px solid var(--glass-border);
+      border-radius: 12px;
+      color: var(--accent-color);
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+    
+    .back-button:hover {
+      background: rgba(0, 229, 255, 0.1);
+      border-color: var(--accent-color);
+      transform: translateX(-5px);
+      box-shadow: 0 6px 20px rgba(0, 229, 255, 0.3);
+    }
+    
+    /* Empty State */
+    .empty-state {
+      text-align: center;
+      padding: 3rem 2rem;
+      background: var(--glass-bg);
+      backdrop-filter: blur(15px);
+      border: 1px solid var(--glass-border);
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      grid-column: 1 / -1;
+    }
+    
+    .empty-state i {
+      font-size: 4rem;
+      color: var(--accent-color);
+      margin-bottom: 1rem;
+      opacity: 0.5;
+    }
+    
+    .empty-state p {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+    }
+    
+    /* Mobile Responsive */
+    @media (max-width: 768px) {
+      .main-container {
+        padding: 1rem;
+        margin-top: 70px;
+      }
+      
+      .page-header {
+        padding: 1.5rem;
+      }
+      
+      .page-header i {
+        font-size: 2.5rem;
+      }
+      
+      .page-header h1 {
+        font-size: 1.5rem;
+      }
+      
+      .stats-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+      
+      .stat-card {
+        padding: 1.5rem;
+      }
+      
+      .stat-number {
+        font-size: 2rem;
+      }
+      
+      .filter-group {
+        grid-template-columns: 1fr;
+      }
+      
+      .tabs {
+        flex-direction: column;
+      }
+      
+      .tab-btn {
+        width: 100%;
+      }
+      
+      .exam-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+      
+      .exam-card {
+        padding: 1.5rem;
+      }
+      
+      .exam-header {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Canvas Background -->
+  <canvas id="particle-network"></canvas>
+
+  <nav class="navbar">
+    <a href="dashboard.html" class="logo">PORTAL WEB <span>INFORMATIKA</span></a>
+    
+    <div class="profile-dropdown">
+      <button class="profile-trigger" id="profile-trigger-btn">
+        <span id="welcome-name">Memuat...</span> 
+        <i class="fas fa-chevron-down" style="font-size: 0.8em;"></i>
+      </button>
+      <div class="dropdown-content" id="dropdown-content">
+        <div class="profile-info">
+          <div><strong>Nama:</strong> <span id="profile-name">...</span></div>
+          <div><strong>NIS:</strong> <span id="profile-nis">...</span></div>
+          <div><strong>Kelas:</strong> <span id="profile-kelas">...</span></div>
+        </div>
+        <div class="dropdown-links">
+          <a id="change-password-btn">Ganti Password</a>
+          <a id="logout-btn">Logout</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="main-container">
+
+    <div class="page-header">
+      <i class="fas fa-file-alt"></i>
+      <h1>Ujian Virtual</h1>
+      <p>Akses bank soal dan persiapan ujian Anda</p>
+    </div>
+
+    <!-- Stats Cards -->
+    <div class="stats-grid">
+      <div class="stat-card active">
+        <i class="fas fa-play-circle"></i>
+        <h3>Ujian Aktif</h3>
+        <p class="stat-number" id="active-count">0</p>
+        <p class="stat-label">Sedang berlangsung</p>
+      </div>
+      
+      <div class="stat-card completed">
+        <i class="fas fa-check-circle"></i>
+        <h3>Ujian Selesai</h3>
+        <p class="stat-number" id="completed-count">0</p>
+        <p class="stat-label">Sudah dikerjakan</p>
+      </div>
+      
+      <div class="stat-card average">
+        <i class="fas fa-star"></i>
+        <h3>Rata-rata Nilai</h3>
+        <p class="stat-number" id="average-score">0</p>
+        <p class="stat-label">Dari ujian selesai</p>
+      </div>
+    </div>
+
+    <!-- Filter Section -->
+    <div class="filter-section">
+      <div class="filter-group">
+        <div class="filter-item">
+          <label><i class="fas fa-filter"></i> Status</label>
+          <select id="status-filter">
+            <option value="all">Semua Status</option>
+            <option value="aktif">Aktif</option>
+            <option value="selesai">Selesai</option>
+            <option value="akan-datang">Akan Datang</option>
+          </select>
+        </div>
+        
+        <div class="filter-item">
+          <label><i class="fas fa-book"></i> Mata Pelajaran</label>
+          <select id="mapel-filter">
+            <option value="all">Semua Mapel</option>
+            <option value="Matematika">Matematika</option>
+            <option value="Fisika">Fisika</option>
+            <option value="Kimia">Kimia</option>
+            <option value="Bahasa Indonesia">Bahasa Indonesia</option>
+          </select>
+        </div>
+        
+        <div class="filter-item">
+          <label><i class="fas fa-search"></i> Cari Ujian</label>
+          <input type="text" id="search-exam" placeholder="Ketik nama ujian...">
+        </div>
+      </div>
+    </div>
+
+    <!-- Tabs -->
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="all">Semua</button>
+      <button class="tab-btn" data-tab="aktif">Aktif</button>
+      <button class="tab-btn" data-tab="selesai">Selesai</button>
+    </div>
+
+    <!-- Exam Cards Grid -->
+    <div class="exam-grid" id="exam-container">
+      <!-- Cards will be inserted here by JavaScript -->
+    </div>
+
+    <a class="back-button" href="dashboard.html">
+      <i class="fas fa-arrow-left"></i> Kembali ke Dashboard
+    </a>
+
+  </div>
+
+  <footer class="site-footer" style="background: var(--card-bg); backdrop-filter: blur(10px); border-top: 1px solid var(--glass-border); padding: 1.5rem 2rem; text-align: center; color: var(--text-muted); font-size: 0.9rem; position: relative; z-index: 100;">
+    &copy; 2025 Portal Siswa Informatika. MA PLUS & SMP IT YPI Nurul Hadina.<br>
+    Oleh: <strong style="color: var(--accent-color);">Fauzan Reza, S.T</strong> (Guru Informatika <strong style="color: var(--accent-color);">YPI Nurul Hadina</strong>)
+  </footer>
+
+  <script src="database.js"></script>
+  <script src="auth.js"></script>
+  
+  <!-- Canvas Background Script -->
+  <script>
+    (function() {
+      const canvas = document.getElementById('particle-network');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      
+      function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+      
+      resizeCanvas();
+      
+      let particles = [];
+      const particleCount = 100, connectDistance = 150, mouse = { x: null, y: null, radius: 100 };
+      
+      window.addEventListener('resize', () => {
+        resizeCanvas();
+        init();
+      });
+      
+      window.addEventListener('mousemove', (event) => {
+        mouse.x = event.x; 
+        mouse.y = event.y;
+      });
+      
+      window.addEventListener('mouseout', () => {
+        mouse.x = null; 
+        mouse.y = null;
+      });
+      
+      class Particle {
+        constructor() {
+          this.x = Math.random() * canvas.width; 
+          this.y = Math.random() * canvas.height;
+          this.vx = (Math.random() - 0.5) * 0.5; 
+          this.vy = (Math.random() - 0.5) * 0.5;
+          this.radius = 2.5; 
+          this.color = 'rgba(0, 229, 255, 0.7)';
+        }
+        
+        update() {
+          if (this.x < 0 || this.x > canvas.width) this.vx = -this.vx;
+          if (this.y < 0 || this.y > canvas.height) this.vy = -this.vy;
+          this.x += this.vx; 
+          this.y += this.vy;
+        }
+        
+        draw() {
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+          ctx.fillStyle = this.color; 
+          ctx.fill();
+        }
+      }
+      
+      function init() {
+        particles = [];
+        for (let i = 0; i < particleCount; i++) particles.push(new Particle());
+      }
+      
+      function connect() {
+        for (let a = 0; a < particles.length; a++) {
+          for (let b = a + 1; b < particles.length; b++) {
+            const dx = particles[a].x - particles[b].x;
+            const dy = particles[a].y - particles[b].y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+            
+            if (distance < connectDistance) {
+              const opacity = 1 - (distance / connectDistance);
+              ctx.strokeStyle = `rgba(0, 229, 255, ${opacity * 0.3})`;
+              ctx.lineWidth = 1.5; 
+              ctx.beginPath();
+              ctx.moveTo(particles[a].x, particles[a].y);
+              ctx.lineTo(particles[b].x, particles[b].y); 
+              ctx.stroke();
+            }
+          }
+          
+          if (mouse.x) {
+            const dx = particles[a].x - mouse.x;
+            const dy = particles[a].y - mouse.y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+            
+            if (distance < mouse.radius) {
+              const opacity = 1 - (distance / mouse.radius);
+              ctx.strokeStyle = `rgba(159, 47, 255, ${opacity * 0.5})`;
+              ctx.lineWidth = 2; 
+              ctx.beginPath();
+              ctx.moveTo(particles[a].x, particles[a].y);
+              ctx.lineTo(mouse.x, mouse.y); 
+              ctx.stroke();
+            }
+          }
+        }
+      }
+      
+      function animate() {
+        if (!ctx) return;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        particles.forEach(p => { p.update(); p.draw(); });
+        connect(); 
+        requestAnimationFrame(animate);
+      }
+      
+      init();
+      animate();
+    })();
+  </script>
+  
+  <!-- Functionality Script -->
+  <script>
+    // Protect page
+    const currentUser = getSession();
+    if (!currentUser) {
+      window.location.href = 'index.html';
+    }
+    
+    document.getElementById('welcome-name').textContent = `Halo, ${currentUser.nama.split(' ')[0]}`;
+    document.getElementById('profile-name').textContent = currentUser.nama;
+    document.getElementById('profile-nis').textContent = currentUser.nis;
+    document.getElementById('profile-kelas').textContent = `${currentUser.tingkatan} / Kelas ${currentUser.kelas}`;
+    
+    // Profile dropdown
+    const triggerBtn = document.getElementById('profile-trigger-btn');
+    const dropdownContent = document.getElementById('dropdown-content');
+    
+    triggerBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      dropdownContent.classList.toggle('show');
+    });
+    
+    document.addEventListener('click', (e) => {
+      if (!triggerBtn.contains(e.target) && !dropdownContent.contains(e.target)) {
+        dropdownContent.classList.remove('show');
+      }
+    });
+    
+    // Logout
+    document.getElementById('logout-btn').addEventListener('click', (e) => {
+      e.preventDefault();
+      handleLogout();
+    });
+    
+    // Sample exam data (replace with API/database data)
+    const examData = [
+      {
+        id: 'ujian-001',
+        nama: 'UTS Matematika',
+        mapel: 'Matematika',
+        tanggal: '15 Nov 2025',
+        waktu: '08:00 WIB',
+        durasi: 90,
+        jumlahSoal: 30,
+        status: 'aktif',
+        sisaWaktu: 3600, // in seconds
+        nilai: null
+      },
+      {
+        id: 'ujian-002',
+        nama: 'Quiz Fisika Bab 3',
+        mapel: 'Fisika',
+        tanggal: '10 Nov 2025',
+        waktu: '10:00 WIB',
+        durasi: 45,
+        jumlahSoal: 20,
+        status: 'selesai',
+        nilai: 85
+      },
+      {
+        id: 'ujian-003',
+        nama: 'UAS Kimia',
+        mapel: 'Kimia',
+        tanggal: '20 Nov 2025',
+        waktu: '13:00 WIB',
+        durasi: 120,
+        jumlahSoal: 40,
+        status: 'akan-datang',
+        nilai: null
+      },
+      {
+        id: 'ujian-004',
+        nama: 'Kuis Bahasa Indonesia',
+        mapel: 'Bahasa Indonesia',
+        tanggal: '08 Nov 2025',
+        waktu: '14:00 WIB',
+        durasi: 30,
+        jumlahSoal: 15,
+        status: 'selesai',
+        nilai: 92
+      }
+    ];
+    
+    let currentFilter = {
+      tab: 'all',
+      status: 'all',
+      mapel: 'all',
+      search: ''
+    };
+    
+    // Format time from seconds
+    function formatTime(seconds) {
+      const hours = Math.floor(seconds / 3600);
+      const minutes = Math.floor((seconds % 3600) / 60);
+      const secs = seconds % 60;
+      
+      if (hours > 0) {
+        return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+      }
+      return `${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+    }
+    
+    // Create exam card HTML
+    function createExamCard(exam) {
+      const badgeClass = exam.status === 'aktif' ? 'live' : exam.status === 'akan-datang' ? 'soon' : 'done';
+      const badgeText = exam.status === 'aktif' ? '🔴 Live' : exam.status === 'akan-datang' ? '⏰ Akan Datang' : '✓ Selesai';
+      
+      let contentHTML = '';
+      
+      if (exam.status === 'aktif') {
+        const isWarning = exam.sisaWaktu < 600; // Less than 10 minutes
+        contentHTML = `
+          <div class="exam-timer ${isWarning ? 'warning' : ''}">
+            <i class="fas fa-hourglass-half"></i>
+            <span class="timer-text">Sisa waktu:</span>
+            <div class="timer-countdown" data-time="${exam.sisaWaktu}">${formatTime(exam.sisaWaktu)}</div>
+          </div>
+          <button class="btn-exam" onclick="mulaiUjian('${exam.id}')">
+            <i class="fas fa-play"></i> Mulai Ujian
+          </button>
+        `;
+      } else if (exam.status === 'selesai') {
+        contentHTML = `
+          <div class="exam-score">
+            <p class="score-label">Nilai Anda</p>
+            <p class="score-value">${exam.nilai}</p>
+          </div>
+          <button class="btn-exam success" onclick="lihatHasil('${exam.id}')">
+            <i class="fas fa-eye"></i> Lihat Hasil
+          </button>
+        `;
+      } else {
+        contentHTML = `
+          <button class="btn-exam disabled">
+            <i class="fas fa-clock"></i> Belum Dimulai
+          </button>
+        `;
+      }
+      
+      return `
+        <div class="exam-card" data-status="${exam.status}" data-mapel="${exam.mapel}">
+          <div class="exam-header">
+            <div>
+              <h3>${exam.nama}</h3>
+              <p class="exam-mapel">${exam.mapel}</p>
+            </div>
+            <span class="exam-badge ${badgeClass}">${badgeText}</span>
+          </div>
+          
+          <div class="exam-info">
+            <p><i class="fas fa-calendar"></i> ${exam.tanggal}</p>
+            <p><i class="fas fa-clock"></i> ${exam.waktu} | ${exam.durasi} menit</p>
+            <p><i class="fas fa-list"></i> ${exam.jumlahSoal} soal</p>
+          </div>
+          
+          ${contentHTML}
+        </div>
+      `;
+    }
+    
+    // Update stats
+    function updateStats() {
+      const aktifCount = examData.filter(e => e.status === 'aktif').length;
+      const selesaiCount = examData.filter(e => e.status === 'selesai').length;
+      
+      const selesaiExams = examData.filter(e => e.status === 'selesai' && e.nilai);
+      const avgScore = selesaiExams.length > 0 
+        ? (selesaiExams.reduce((sum, e) => sum + e.nilai, 0) / selesaiExams.length).toFixed(1)
+        : 0;
+      
+      document.getElementById('active-count').textContent = aktifCount;
+      document.getElementById('completed-count').textContent = selesaiCount;
+      document.getElementById('average-score').textContent = avgScore;
+    }
+    
+    // Filter and display exams
+    function displayExams() {
+      let filtered = examData;
+      
+      // Filter by tab
+      if (currentFilter.tab !== 'all') {
+        filtered = filtered.filter(e => e.status === currentFilter.tab);
+      }
+      
+      // Filter by status
+      if (currentFilter.status !== 'all') {
+        filtered = filtered.filter(e => e.status === currentFilter.status);
+      }
+      
+      // Filter by mapel
+      if (currentFilter.mapel !== 'all') {
+        filtered = filtered.filter(e => e.mapel === currentFilter.mapel);
+      }
+      
+      // Filter by search
+      if (currentFilter.search) {
+        filtered = filtered.filter(e => 
+          e.nama.toLowerCase().includes(currentFilter.search.toLowerCase()) ||
+          e.mapel.toLowerCase().includes(currentFilter.search.toLowerCase())
+        );
+      }
+      
+      const container = document.getElementById('exam-container');
+      
+      if (filtered.length === 0) {
+        container.innerHTML = `
+          <div class="empty-state">
+            <i class="fas fa-folder-open"></i>
+            <p>Tidak ada ujian yang ditemukan</p>
+          </div>
+        `;
+        return;
+      }
+      
+      container.innerHTML = filtered.map(exam => createExamCard(exam)).join('');
+      
+      // Start countdown timers
+      startTimers();
+    }
+    
+    // Start countdown timers
+    function startTimers() {
+      const timers = document.querySelectorAll('.timer-countdown');
+      
+      timers.forEach(timer => {
+        let timeLeft = parseInt(timer.dataset.time);
+        
+        const interval = setInterval(() => {
+          timeLeft--;
+          timer.textContent = formatTime(timeLeft);
+          
+          if (timeLeft <= 0) {
+            clearInterval(interval);
+            timer.textContent = 'Waktu Habis';
+          }
+          
+          // Add warning class if less than 10 minutes
+          if (timeLeft < 600) {
+            timer.closest('.exam-timer').classList.add('warning');
+          }
+        }, 1000);
+      });
+    }
+    
+    // Tab click handler
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        currentFilter.tab = this.dataset.tab;
+        displayExams();
+      });
+    });
+    
+    // Filter change handlers
+    document.getElementById('status-filter').addEventListener('change', function() {
+      currentFilter.status = this.value;
+      displayExams();
+    });
+    
+    document.getElementById('mapel-filter').addEventListener('change', function() {
+      currentFilter.mapel = this.value;
+      displayExams();
+    });
+    
+    document.getElementById('search-exam').addEventListener('input', function() {
+      currentFilter.search = this.value;
+      displayExams();
+    });
+    
+    // Exam action functions
+    function mulaiUjian(id) {
+      alert(`Memulai ujian dengan ID: ${id}\n\nFitur ujian interaktif sedang dalam pengembangan.`);
+      // Redirect to exam page: window.location.href = `ujian-soal.html?id=${id}`;
+    }
+    
+    function lihatHasil(id) {
+      alert(`Melihat hasil ujian dengan ID: ${id}\n\nFitur review hasil sedang dalam pengembangan.`);
+      // Redirect to result page: window.location.href = `ujian-hasil.html?id=${id}`;
+    }
+    
+    // Initial load
+    updateStats();
+    displayExams();
+  </script>
+
+</body>
+</html>

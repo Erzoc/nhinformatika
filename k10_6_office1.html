@@ -1,0 +1,1244 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Kelas X • Integrasi Microsoft Office</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary-color: #0078D4;
+      --secondary-color: #00A4EF;
+      --excel-color: #217346;
+      --word-color: #2B579A;
+      --powerpoint-color: #D24726;
+      --success-color: #10B981;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
+      line-height: 1.6;
+      color: #1F2937;
+      background: #F8F9FA;
+    }
+
+    /* NAVBAR */
+    .navbar {
+      background: linear-gradient(135deg, #0078D4 0%, #00A4EF 100%);
+      color: #fff;
+      padding: 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+    }
+
+    .navbar-content {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .navbar-title {
+      font-size: 2rem;
+      font-weight: 800;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.35);
+    }
+
+    .navbar-sub {
+      font-size: 0.9rem;
+      opacity: 0.95;
+      font-weight: 600;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.35);
+    }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(135deg, #0078D4 0%, #00A4EF 100%);
+      color: #fff;
+      padding: 2rem 1rem;
+      text-align: center;
+      border-bottom: 5px solid #FFE66D;
+    }
+
+    .hero-emoji {
+      font-size: 2.3rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .hero h1 {
+      font-size: 1.9rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .hero p {
+      opacity: 0.98;
+      font-size: 1.05rem;
+    }
+
+    /* CONTAINER */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    section {
+      margin: 2rem 0;
+    }
+
+    section h2 {
+      color: var(--primary-color);
+      font-size: 1.6rem;
+      margin-bottom: 1rem;
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+      border-left: 5px solid var(--secondary-color);
+      padding-left: 0.8rem;
+    }
+
+    /* CARDS */
+    .card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 1.2rem;
+      margin-bottom: 1.2rem;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      border-left: 5px solid var(--secondary-color);
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.25);
+    }
+
+    .card h3 {
+      color: var(--primary-color);
+      margin-bottom: 0.7rem;
+      font-size: 1.2rem;
+    }
+
+    .card p {
+      color: #4B5563;
+      margin-bottom: 0.6rem;
+    }
+
+    .step-box {
+      background: #f9fafb;
+      padding: 1rem;
+      border-radius: 8px;
+      margin: 0.8rem 0;
+      border-left: 4px solid var(--primary-color);
+    }
+
+    .step-box h4 {
+      color: var(--primary-color);
+      margin-bottom: 0.5rem;
+      font-size: 1rem;
+    }
+
+    .step-list {
+      list-style-position: inside;
+      margin-left: 0.6rem;
+    }
+
+    .step-list li {
+      margin-bottom: 0.5rem;
+      font-size: 0.9rem;
+    }
+
+    .tip-box {
+      background: linear-gradient(135deg, #8B5CF6 0%, #EC4899 100%);
+      color: #fff;
+      padding: 1.1rem;
+      border-radius: 10px;
+      margin: 1rem 0;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    .tip-box h4 {
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .warning-box {
+      background: linear-gradient(135deg, #F59E0B 0%, #EF4444 100%);
+      color: #fff;
+      padding: 1.1rem;
+      border-radius: 10px;
+      margin: 1rem 0;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    .success-box {
+      background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+      color: #fff;
+      padding: 1.1rem;
+      border-radius: 10px;
+      margin: 1rem 0;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    .office-icon {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      font-weight: 700;
+      margin: 0.3rem;
+      font-size: 0.9rem;
+    }
+
+    .excel-icon {
+      background: #217346;
+      color: #fff;
+    }
+
+    .word-icon {
+      background: #2B579A;
+      color: #fff;
+    }
+
+    .powerpoint-icon {
+      background: #D24726;
+      color: #fff;
+    }
+
+    .method-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem;
+      margin: 1rem 0;
+    }
+
+    .method-card {
+      background: #fff;
+      padding: 1rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+      border-top: 4px solid var(--primary-color);
+    }
+
+    .method-card h4 {
+      color: var(--primary-color);
+      margin-bottom: 0.6rem;
+    }
+
+    .download-box {
+      background: linear-gradient(135deg, #0078D4 0%, #00A4EF 100%);
+      color: #fff;
+      padding: 1.5rem;
+      border-radius: 12px;
+      margin: 1.5rem 0;
+      text-align: center;
+      box-shadow: 0 6px 20px rgba(0,120,212,0.3);
+    }
+
+    .download-box h4 {
+      font-size: 1.3rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .btn-download {
+      display: inline-block;
+      background: #fff;
+      color: #0078D4;
+      padding: 0.8rem 1.5rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.1rem;
+      margin: 0.5rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    .btn-download:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+    }
+
+    /* VIDEO */
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1rem;
+    }
+
+    .video-card {
+      background: #fff;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .video-card:hover {
+      transform: translateY(-8px);
+    }
+
+    .video-thumbnail {
+      width: 100%;
+      height: 150px;
+      background: linear-gradient(135deg, #0078D4, #00A4EF);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.4rem;
+      color: #fff;
+    }
+
+    .video-info {
+      padding: 0.9rem;
+    }
+
+    .video-info h4 {
+      margin-bottom: 0.4rem;
+      font-size: 1rem;
+      color: #111827;
+    }
+
+    .video-info p {
+      font-size: 0.85rem;
+      color: #6B7280;
+      margin-bottom: 0.6rem;
+    }
+
+    .video-link {
+      display: inline-block;
+      background: #0078D4;
+      color: #fff;
+      padding: 0.45rem 0.8rem;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: all 0.25s ease;
+    }
+
+    .video-link:hover {
+      background: #00A4EF;
+      transform: translateY(-2px);
+    }
+
+    /* QUIZ */
+    .game-section {
+      background: linear-gradient(135deg, #0078D4 0%, #00A4EF 100%);
+      color: #fff;
+      padding: 1.25rem 1rem;
+      border-radius: 14px;
+      margin: 1.4rem 0;
+    }
+
+    .game-section h3 {
+      color: #fff;
+      margin-bottom: 0.9rem;
+      font-size: 1.2rem;
+    }
+
+    .game-container {
+      background: rgba(255,255,255,0.96);
+      color: #111827;
+      padding: 0.9rem;
+      border-radius: 10px;
+      margin-bottom: 0.8rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .game-question {
+      font-weight: 700;
+      margin-bottom: 0.6rem;
+      font-size: 1rem;
+      color: #111827;
+    }
+
+    .quiz-options {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0.6rem;
+    }
+
+    .quiz-option {
+      background: #f3f4f6;
+      border: 2px solid #e5e7eb;
+      padding: 0.7rem 0.8rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-weight: 600;
+      font-size: 0.92rem;
+      color: #1F2937;
+    }
+
+    .quiz-option:hover {
+      background: #DBEAFE;
+      border-color: #0078D4;
+      transform: translateX(4px);
+    }
+
+    .quiz-option.correct {
+      background: var(--success-color);
+      border-color: var(--success-color);
+      color: #fff;
+    }
+
+    .quiz-option.incorrect {
+      background: #EF4444;
+      border-color: #EF4444;
+      color: #fff;
+    }
+
+    .result-message {
+      margin-top: 0.6rem;
+      padding: 0.7rem;
+      border-radius: 8px;
+      text-align: center;
+      font-weight: 700;
+      font-size: 0.95rem;
+      display: none;
+    }
+
+    .result-message.show {
+      display: block;
+    }
+
+    .result-message.correct {
+      background: var(--success-color);
+      color: #fff;
+    }
+
+    .result-message.incorrect {
+      background: #EF4444;
+      color: #fff;
+    }
+
+    .progress-container {
+      background: #e5e7eb;
+      border-radius: 10px;
+      margin: 0.8rem 0 1rem 0;
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      height: 20px;
+      background: linear-gradient(90deg, #0078D4, #00A4EF);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.8rem;
+      transition: width 0.25s ease;
+    }
+
+    .score-display {
+      text-align: center;
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--primary-color);
+      margin: 0.6rem 0;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #111827;
+      color: #fff;
+      text-align: center;
+      padding: 1rem 0.8rem;
+      margin-top: 2rem;
+    }
+
+    .footer-content h3 {
+      color: #FFD700;
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+    }
+
+    .footer-content p {
+      opacity: 0.9;
+      font-size: 0.8rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .social-media {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin: 0.8rem 0 0.5rem 0;
+      flex-wrap: wrap;
+    }
+
+    .social-icon {
+      width: 34px;
+      height: 34px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      transition: all 0.25s ease;
+      text-decoration: none;
+    }
+
+    .social-icon.whatsapp {
+      background: #25D366;
+      color: #fff;
+    }
+
+    .social-icon.whatsapp:hover {
+      background: #128C7E;
+      transform: scale(1.08) rotate(3deg);
+    }
+
+    .social-icon.youtube {
+      background: #FF0000;
+      color: #fff;
+    }
+
+    .social-icon.youtube:hover {
+      background: #CC0000;
+      transform: scale(1.08) rotate(-3deg);
+    }
+
+    .social-icon.instagram {
+      background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+      color: #fff;
+    }
+
+    .social-icon.instagram:hover {
+      transform: scale(1.08);
+    }
+
+    .social-icon.facebook {
+      background: #1877F2;
+      color: #fff;
+    }
+
+    .social-icon.facebook:hover {
+      background: #145DBF;
+      transform: scale(1.08) rotate(-2deg);
+    }
+
+    @media (max-width: 768px) {
+      .navbar-title {
+        font-size: 1.6rem;
+      }
+
+      .hero h1 {
+        font-size: 1.4rem;
+      }
+
+      section h2 {
+        font-size: 1.3rem;
+      }
+
+      .method-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="navbar-content">
+      <div class="navbar-title">🔗 Integrasi Microsoft Office</div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-emoji">📊📄📽️</div>
+      <h1>Integrasi Antaraplikasi Microsoft Office</h1>
+      <p>Menguasai teknik integrasi data antara Excel, Word, dan PowerPoint untuk produktivitas maksimal dalam pekerjaan dan presentasi</p>
+    </div>
+  </section>
+
+  <div class="container">
+    <!-- INTRO -->
+    <section>
+      <h2>📚 Pengenalan Integrasi Office</h2>
+
+      <div class="card">
+        <h3>Apa itu Integrasi Antaraplikasi Office?</h3>
+        <p><strong>Integrasi antaraplikasi</strong> adalah kemampuan untuk menghubungkan dan berbagi data antara aplikasi Microsoft Office (Excel, Word, PowerPoint) sehingga data dapat digunakan secara efisien tanpa duplikasi atau retyping manual.</p>
+
+        <div style="text-align: center; margin: 1.5rem 0;">
+          <span class="office-icon excel-icon">📊 Excel</span>
+          <span style="font-size: 1.5rem;">↔️</span>
+          <span class="office-icon word-icon">📄 Word</span>
+          <span style="font-size: 1.5rem;">↔️</span>
+          <span class="office-icon powerpoint-icon">📽️ PowerPoint</span>
+        </div>
+
+        <div class="success-box">
+          <h4>✅ Manfaat Integrasi Office</h4>
+          <ul style="list-style-position: inside; margin-left: 0.6rem;">
+            <li>• <strong>Efisiensi waktu:</strong> Tidak perlu input data berulang kali</li>
+            <li>• <strong>Data konsisten:</strong> Satu sumber data untuk semua dokumen</li>
+            <li>• <strong>Update otomatis:</strong> Perubahan di sumber akan update di semua link</li>
+            <li>• <strong>Profesional:</strong> Laporan dan presentasi lebih terstruktur</li>
+            <li>• <strong>Kolaborasi:</strong> Tim bisa bekerja pada file berbeda yang terintegrasi</li>
+          </ul>
+        </div>
+
+        <div class="tip-box">
+          <h4>💡 Metode Integrasi Office</h4>
+          <ul style="list-style-position: inside; margin-left: 0.6rem;">
+            <li>• <strong>Copy-Paste:</strong> Salin data sederhana tanpa link</li>
+            <li>• <strong>Copy-Paste Special:</strong> Paste dengan format/link tertentu</li>
+            <li>• <strong>Embed (Sisipkan):</strong> Masukkan objek ke dalam dokumen</li>
+            <li>• <strong>Link:</strong> Hubungkan data dengan sumber asli (dynamic)</li>
+            <li>• <strong>Import/Export:</strong> Transfer data antar aplikasi</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXCEL TO WORD -->
+    <section>
+      <h2>📊➡️📄 Menyalin Spreadsheet Excel ke Dokumen Word</h2>
+
+      <div class="card">
+        <h3>Cara Menyalin Data Excel ke Word</h3>
+        <p>Ada beberapa metode untuk menyalin data dari Excel ke Word, tergantung kebutuhan apakah data bersifat statis atau perlu update otomatis.</p>
+
+        <div class="method-grid">
+          <div class="method-card">
+            <h4>Metode 1: Copy-Paste Biasa</h4>
+            <p style="font-size: 0.85rem; margin-bottom: 0.5rem;"><strong>Untuk:</strong> Data statis, tidak perlu update</p>
+            <ol class="step-list">
+              <li>Buka file Excel, pilih range data yang ingin dicopy</li>
+              <li>Tekan <code>Ctrl + C</code> untuk copy</li>
+              <li>Buka dokumen Word, klik posisi yang diinginkan</li>
+              <li>Tekan <code>Ctrl + V</code> untuk paste</li>
+              <li>Data akan muncul sebagai tabel di Word</li>
+            </ol>
+          </div>
+
+          <div class="method-card">
+            <h4>Metode 2: Paste Special - Keep Source Formatting</h4>
+            <p style="font-size: 0.85rem; margin-bottom: 0.5rem;"><strong>Untuk:</strong> Pertahankan format Excel</p>
+            <ol class="step-list">
+              <li>Copy data dari Excel (<code>Ctrl + C</code>)</li>
+              <li>Di Word, klik <strong>Home → Paste → Paste Special</strong></li>
+              <li>Pilih <strong>"Microsoft Excel Worksheet Object"</strong></li>
+              <li>Klik <strong>OK</strong></li>
+              <li>Tabel akan muncul dengan format Excel asli</li>
+            </ol>
+          </div>
+
+          <div class="method-card">
+            <h4>Metode 3: Paste Link (Dynamic)</h4>
+            <p style="font-size: 0.85rem; margin-bottom: 0.5rem;"><strong>Untuk:</strong> Data yang perlu update otomatis</p>
+            <ol class="step-list">
+              <li>Copy data dari Excel (<code>Ctrl + C</code>)</li>
+              <li>Di Word, klik <strong>Home → Paste → Paste Special</strong></li>
+              <li>Centang <strong>"Paste Link"</strong></li>
+              <li>Pilih <strong>"Microsoft Excel Worksheet Object"</strong></li>
+              <li>Klik <strong>OK</strong></li>
+              <li>Data akan ter-link: jika Excel berubah, Word ikut update!</li>
+            </ol>
+          </div>
+
+          <div class="method-card">
+            <h4>Metode 4: Insert Object</h4>
+            <p style="font-size: 0.85rem; margin-bottom: 0.5rem;"><strong>Untuk:</strong> Embed seluruh file Excel</p>
+            <ol class="step-list">
+              <li>Di Word, klik <strong>Insert → Object</strong></li>
+              <li>Pilih tab <strong>"Create from File"</strong></li>
+              <li>Klik <strong>Browse</strong>, pilih file Excel</li>
+              <li>Centang <strong>"Link to file"</strong> jika ingin dynamic</li>
+              <li>Klik <strong>OK</strong></li>
+              <li>Spreadsheet akan muncul sebagai objek di Word</li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="tip-box">
+          <h4>💡 Tips Update Data yang Ter-Link</h4>
+          <ul style="list-style-position: inside; margin-left: 0.6rem;">
+            <li>• Klik kanan pada objek ter-link → <strong>Update Link</strong></li>
+            <li>• Atau: <strong>File → Info → Edit Links to Files → Update Now</strong></li>
+            <li>• Data akan refresh sesuai dengan file Excel terbaru</li>
+          </ul>
+        </div>
+
+        <div class="warning-box">
+          <h4>⚠️ Perhatian!</h4>
+          <ul style="list-style-position: inside; margin-left: 0.6rem;">
+            <li>• Paste Link memerlukan file Excel tetap di lokasi yang sama</li>
+            <li>• Jika file Excel dipindah/dihapus, link akan error</li>
+            <li>• Untuk dokumen yang dibagikan, gunakan <strong>Copy-Paste biasa</strong> (tidak perlu link)</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXCEL TO POWERPOINT -->
+    <section>
+      <h2>📊➡️📽️ Menyisipkan Spreadsheet ke Presentasi PowerPoint</h2>
+
+      <div class="card">
+        <h3>Cara Menyisipkan Data Excel ke PowerPoint</h3>
+        <p>Menyisipkan data Excel ke PowerPoint sangat berguna untuk presentasi yang menampilkan tabel, data, atau laporan keuangan.</p>
+
+        <div class="method-grid">
+          <div class="method-card">
+            <h4>Metode 1: Copy-Paste Langsung</h4>
+            <ol class="step-list">
+              <li>Buka Excel, pilih dan copy data (<code>Ctrl + C</code>)</li>
+              <li>Buka PowerPoint, pilih slide yang diinginkan</li>
+              <li>Tekan <code>Ctrl + V</code> untuk paste</li>
+              <li>Tabel akan muncul di slide PowerPoint</li>
+              <li>Resize dan posisikan sesuai kebutuhan</li>
+            </ol>
+          </div>
+
+          <div class="method-card">
+            <h4>Metode 2: Paste Special - Keep Source Formatting</h4>
+            <ol class="step-list">
+              <li>Copy data dari Excel</li>
+              <li>Di PowerPoint, klik <strong>Home → Paste → Paste Special</strong></li>
+              <li>Pilih <strong>"Microsoft Excel Worksheet Object"</strong></li>
+              <li>Klik <strong>OK</strong></li>
+              <li>Data akan embed dengan format Excel</li>
+            </ol>
+          </div>
+
+          <div class="method-card">
+            <h4>Metode 3: Paste as Picture</h4>
+            <p style="font-size: 0.85rem; margin-bottom: 0.5rem;"><strong>Untuk:</strong> Tampilan statis sebagai gambar</p>
+            <ol class="step-list">
+              <li>Copy data dari Excel</li>
+              <li>Di PowerPoint, klik <strong>Home → Paste → Paste Special</strong></li>
+              <li>Pilih <strong>"Picture (Enhanced Metafile)"</strong> atau <strong>"PNG"</strong></li>
+              <li>Klik <strong>OK</strong></li>
+              <li>Data menjadi gambar (tidak bisa diedit)</li>
+            </ol>
+          </div>
+
+          <div class="method-card">
+            <h4>Metode 4: Paste Link (Dynamic)</h4>
+            <ol class="step-list">
+              <li>Copy data dari Excel</li>
+              <li>Di PowerPoint, klik <strong>Home → Paste → Paste Special</strong></li>
+              <li>Centang <strong>"Paste Link"</strong></li>
+              <li>Pilih <strong>"Microsoft Excel Worksheet Object"</strong></li>
+              <li>Klik <strong>OK</strong></li>
+              <li>Data akan update otomatis jika Excel berubah</li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="success-box">
+          <h4>✅ Best Practice untuk Presentasi</h4>
+          <ul style="list-style-position: inside; margin-left: 0.6rem;">
+            <li>• Gunakan <strong>font besar</strong> (minimal 18pt) agar tabel terbaca dari jauh</li>
+            <li>• <strong>Highlight data penting</strong> dengan warna atau bold</li>
+            <li>• Jangan terlalu banyak kolom/baris - <strong>simplify!</strong></li>
+            <li>• Gunakan <strong>Paste as Picture</strong> jika file akan dibagikan/dipresentasi di komputer lain</li>
+            <li>• Test presentasi mode untuk memastikan tabel terlihat jelas</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- WORD TO POWERPOINT -->
+    <section>
+      <h2>📄➡️📽️ Menyisipkan Dokumen Word ke PowerPoint</h2>
+
+      <div class="card">
+        <h3>Cara Menyisipkan Konten Word ke PowerPoint</h3>
+        <p>Menyisipkan teks, tabel, atau gambar dari Word ke PowerPoint untuk membuat presentasi lebih efisien.</p>
+
+        <div class="method-grid">
+          <div class="method-card">
+            <h4>Metode 1: Copy-Paste Text</h4>
+            <ol class="step-list">
+              <li>Buka dokumen Word, pilih text yang ingin dicopy</li>
+              <li>Tekan <code>Ctrl + C</code></li>
+              <li>Buka PowerPoint, klik text box atau placeholder</li>
+              <li>Tekan <code>Ctrl + V</code></li>
+              <li>Text akan muncul di slide</li>
+              <li>Format ulang jika perlu (font, size, alignment)</li>
+            </ol>
+          </div>
+
+          <div class="method-card">
+            <h4>Metode 2: Copy Table dari Word</h4>
+            <ol class="step-list">
+              <li>Pilih tabel di Word</li>
+              <li>Copy dengan <code>Ctrl + C</code></li>
+              <li>Di PowerPoint, paste dengan <code>Ctrl + V</code></li>
+              <li>Tabel akan muncul dengan format Word</li>
+              <li>Resize dan adjust layout sesuai slide</li>
+            </ol>
+          </div>
+
+          <div class="method-card">
+            <h4>Metode 3: Import Outline (Buat Slide Otomatis)</h4>
+            <p style="font-size: 0.85rem; margin-bottom: 0.5rem;"><strong>Syarat:</strong> Dokumen Word menggunakan Heading Styles</p>
+            <ol class="step-list">
+              <li>Di PowerPoint, klik <strong>Home → New Slide → Slides from Outline</strong></li>
+              <li>Pilih file Word yang ingin diimport</li>
+              <li>PowerPoint akan buat slide otomatis berdasarkan heading</li>
+              <li>Heading 1 = judul slide baru</li>
+              <li>Heading 2 & 3 = bullet points di slide</li>
+            </ol>
+          </div>
+
+          <div class="method-card">
+            <h4>Metode 4: Insert Object (Embed)</h4>
+            <ol class="step-list">
+              <li>Di PowerPoint, klik <strong>Insert → Object</strong></li>
+              <li>Pilih <strong>"Create from File"</strong></li>
+              <li>Browse dan pilih file Word</li>
+              <li>Centang <strong>"Display as icon"</strong> jika ingin icon saja</li>
+              <li>Klik <strong>OK</strong></li>
+              <li>Double-click icon untuk buka dokumen Word</li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="tip-box">
+          <h4>💡 Tips Konversi Word ke PowerPoint</h4>
+          <ul style="list-style-position: inside; margin-left: 0.6rem;">
+            <li>• Gunakan <strong>Heading Styles</strong> di Word untuk struktur yang baik</li>
+            <li>• <strong>Heading 1</strong> = Slide title</li>
+            <li>• <strong>Heading 2</strong> = Bullet level 1</li>
+            <li>• <strong>Heading 3</strong> = Bullet level 2</li>
+            <li>• Hindari terlalu banyak text per slide - <strong>6x6 rule</strong> (max 6 bullets, 6 words per bullet)</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXCEL CHART TO WORD -->
+    <section>
+      <h2>📊➡️📄 Menyisipkan Chart Excel ke Word</h2>
+
+      <div class="card">
+        <h3>Cara Menyisipkan Grafik Excel ke Dokumen Word</h3>
+        <p>Chart (grafik) dari Excel sangat berguna untuk laporan, proposal, atau dokumen analisis di Word.</p>
+
+        <div class="method-grid">
+          <div class="method-card">
+            <h4>Metode 1: Copy-Paste Chart</h4>
+            <ol class="step-list">
+              <li>Buka Excel, klik chart yang ingin dicopy</li>
+              <li>Tekan <code>Ctrl + C</code></li>
+              <li>Buka Word, klik posisi yang diinginkan</li>
+              <li>Tekan <code>Ctrl + V</code></li>
+              <li>Chart akan muncul di Word</li>
+              <li>Pilih paste option:
+                <ul style="margin-left: 1rem; margin-top: 0.3rem;">
+                  <li>- <strong>Use Destination Theme</strong>: Chart ikuti theme Word</li>
+                  <li>- <strong>Keep Source Formatting</strong>: Chart tetap format Excel</li>
+                  <li>- <strong>Picture</strong>: Chart jadi gambar statis</li>
+                </ul>
+              </li>
+            </ol>
+          </div>
+
+          <div class="method-card">
+            <h4>Metode 2: Paste Special - Keep Link</h4>
+            <p style="font-size: 0.85rem; margin-bottom: 0.5rem;"><strong>Untuk:</strong> Chart yang perlu update otomatis</p>
+            <ol class="step-list">
+              <li>Copy chart dari Excel (<code>Ctrl + C</code>)</li>
+              <li>Di Word, klik <strong>Home → Paste → Paste Special</strong></li>
+              <li>Centang <strong>"Paste Link"</strong></li>
+              <li>Pilih <strong>"Microsoft Excel Chart Object"</strong></li>
+              <li>Klik <strong>OK</strong></li>
+              <li>Chart akan ter-link: jika data Excel berubah, chart di Word juga update!</li>
+            </ol>
+          </div>
+
+          <div class="method-card">
+            <h4>Metode 3: Paste as Picture</h4>
+            <p style="font-size: 0.85rem; margin-bottom: 0.5rem;"><strong>Untuk:</strong> Chart statis (tidak perlu edit)</p>
+            <ol class="step-list">
+              <li>Copy chart dari Excel</li>
+              <li>Di Word, klik <strong>Home → Paste → Paste Special</strong></li>
+              <li>Pilih <strong>"Picture (Enhanced Metafile)"</strong> atau <strong>"PNG"</strong></li>
+              <li>Klik <strong>OK</strong></li>
+              <li>Chart menjadi gambar (ukuran file lebih kecil)</li>
+            </ol>
+          </div>
+
+          <div class="method-card">
+            <h4>Metode 4: Insert Chart Langsung di Word</h4>
+            <p style="font-size: 0.85rem; margin-bottom: 0.5rem;"><strong>Untuk:</strong> Buat chart baru di Word</p>
+            <ol class="step-list">
+              <li>Di Word, klik <strong>Insert → Chart</strong></li>
+              <li>Pilih jenis chart (Column, Line, Pie, dll)</li>
+              <li>Klik <strong>OK</strong></li>
+              <li>Excel mini akan terbuka untuk input data</li>
+              <li>Edit data di Excel mini, chart akan update otomatis</li>
+              <li>Close Excel mini jika sudah selesai</li>
+            </ol>
+          </div>
+        </div>
+
+        <div class="success-box">
+          <h4>✅ Tips Chart di Word</h4>
+          <ul style="list-style-position: inside; margin-left: 0.6rem;">
+            <li>• <strong>Resize proporsional:</strong> Hold <code>Shift</code> sambil drag corner untuk maintain aspect ratio</li>
+            <li>• <strong>Edit chart:</strong> Klik chart → klik kanan → <strong>Edit Data</strong></li>
+            <li>• <strong>Format chart:</strong> Klik chart → tab <strong>Chart Design</strong> & <strong>Format</strong> akan muncul</li>
+            <li>• <strong>Caption:</strong> Klik kanan chart → <strong>Insert Caption</strong> untuk beri label (Gambar 1, dll)</li>
+            <li>• Gunakan <strong>Paste as Picture</strong> jika dokumen akan dikirim/diprint (tidak perlu link Excel)</li>
+          </ul>
+        </div>
+
+        <div class="warning-box">
+          <h4>⚠️ Common Issues</h4>
+          <ul style="list-style-position: inside; margin-left: 0.6rem;">
+            <li>• <strong>Chart pecah/blur:</strong> Jangan resize terlalu besar, gunakan paste as picture dengan resolusi tinggi</li>
+            <li>• <strong>Link error:</strong> File Excel harus tetap di lokasi asli, jangan dipindah/dihapus</li>
+            <li>• <strong>Chart tidak update:</strong> Klik kanan chart → <strong>Update Link</strong> atau <strong>Edit Data</strong></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXCEL CHART TO POWERPOINT -->
+    <section>
+      <h2>📊➡️📽️ Menyisipkan Chart Excel ke PowerPoint</h2>
+
+      <div class="card">
+        <h3>Cara Menyisipkan Grafik Excel ke Presentasi PowerPoint</h3>
+        <p>Chart Excel sangat efektif untuk presentasi data, trend, dan analisis dalam slide PowerPoint.</p>
+
+        <div class="step-box">
+          <h4>Metode 1: Copy-Paste Chart (Recommended)</h4>
+          <ol class="step-list">
+            <li>Buka Excel, klik chart yang ingin dicopy</li>
+            <li>Tekan <code>Ctrl + C</code></li>
+            <li>Buka PowerPoint, pilih slide yang diinginkan</li>
+            <li>Tekan <code>Ctrl + V</code></li>
+            <li>Pilih paste option yang muncul:
+              <ul style="margin-left: 1rem; margin-top: 0.3rem;">
+                <li>- <strong>Use Destination Theme & Embed Workbook:</strong> Chart ikuti theme PowerPoint, data embed</li>
+                <li>- <strong>Keep Source Formatting & Embed Workbook:</strong> Chart tetap format Excel, data embed</li>
+                <li>- <strong>Use Destination Theme & Link Data:</strong> Chart ikuti theme PowerPoint, data ter-link</li>
+                <li>- <strong>Keep Source Formatting & Link Data:</strong> Chart tetap format Excel, data ter-link</li>
+                <li>- <strong>Picture:</strong> Chart jadi gambar statis</li>
+              </ul>
+            </li>
+            <li>Resize dan posisikan chart di slide</li>
+          </ol>
+        </div>
+
+        <div class="step-box">
+          <h4>Metode 2: Insert Chart Langsung di PowerPoint</h4>
+          <ol class="step-list">
+            <li>Di PowerPoint, klik <strong>Insert → Chart</strong></li>
+            <li>Pilih jenis chart (Column, Bar, Line, Pie, dll)</li>
+            <li>Klik <strong>OK</strong></li>
+            <li>Excel mini akan terbuka untuk input data</li>
+            <li>Edit data, chart akan update real-time</li>
+            <li>Close Excel mini jika sudah selesai</li>
+          </ol>
+        </div>
+
+        <div class="success-box">
+          <h4>✅ Best Practice Chart di Presentasi</h4>
+          <ul style="list-style-position: inside; margin-left: 0.6rem;">
+            <li>• <strong>Simplify:</strong> Jangan terlalu banyak data series, max 3-5</li>
+            <li>• <strong>Large font:</strong> Chart title & axis label minimal 18-20pt</li>
+            <li>• <strong>High contrast:</strong> Gunakan warna kontras agar terlihat jelas</li>
+            <li>• <strong>Legend:</strong> Posisikan legend yang tidak menghalangi data</li>
+            <li>• <strong>Animation:</strong> Bisa tambah animation untuk highlight trend (optional)</li>
+            <li>• <strong>Embed vs Link:</strong> Untuk presentasi final, gunakan <strong>Embed</strong> agar tidak perlu file Excel terpisah</li>
+          </ul>
+        </div>
+
+        <div class="tip-box">
+          <h4>💡 Edit Chart di PowerPoint</h4>
+          <ul style="list-style-position: inside; margin-left: 0.6rem;">
+            <li>• Klik chart → klik kanan → <strong>Edit Data</strong> (akan buka Excel atau Excel mini)</li>
+            <li>• <strong>Chart Design tab:</strong> Ubah chart type, color scheme, style</li>
+            <li>• <strong>Format tab:</strong> Format individual elements (bars, legend, axis)</li>
+            <li>• <strong>Add elements:</strong> Chart Design → Add Chart Element (data labels, trendline, dll)</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SHORTCUTS -->
+    <section>
+      <h2>⌨️ Keyboard Shortcuts Penting</h2>
+
+      <div class="card">
+        <h3>Shortcut untuk Integrasi Office</h3>
+
+        <div class="method-grid">
+          <div class="method-card">
+            <h4>Copy-Paste Universal</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <code>Ctrl + C</code> = Copy</li>
+              <li>• <code>Ctrl + X</code> = Cut</li>
+              <li>• <code>Ctrl + V</code> = Paste</li>
+              <li>• <code>Ctrl + Z</code> = Undo</li>
+              <li>• <code>Ctrl + Y</code> = Redo</li>
+            </ul>
+          </div>
+
+          <div class="method-card">
+            <h4>Paste Special</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <code>Ctrl + Alt + V</code> = Paste Special dialog</li>
+              <li>• <code>Alt, H, V, S</code> = Paste Special (alternative)</li>
+              <li>• Setelah paste biasa, tekan <code>Ctrl</code> untuk lihat paste options</li>
+            </ul>
+          </div>
+
+          <div class="method-card">
+            <h4>Selection</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <code>Ctrl + A</code> = Select All</li>
+              <li>• <code>Shift + Arrow</code> = Extend selection</li>
+              <li>• <code>Ctrl + Shift + Arrow</code> = Select to edge</li>
+              <li>• Di Excel: <code>Ctrl + Shift + End</code> = Select to last cell</li>
+            </ul>
+          </div>
+
+          <div class="method-card">
+            <h4>Object Manipulation</h4>
+            <ul style="list-style-position: inside; font-size: 0.85rem;">
+              <li>• <code>Shift + Drag</code> = Resize proporsional</li>
+              <li>• <code>Ctrl + Drag</code> = Duplicate object</li>
+              <li>• <code>Alt + Drag</code> = Resize from center</li>
+              <li>• <code>Ctrl + Shift + Drag</code> = Resize proporsional dari center</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIDEO -->
+    <section>
+      <h2>🎥 Video Tutorial</h2>
+      <div class="video-grid">
+        <div class="video-card">
+          <div class="video-thumbnail">📊📄</div>
+          <div class="video-info">
+            <h4>Excel ke Word</h4>
+            <p>Tutorial lengkap integrasi Excel ke Word.</p>
+            <a class="video-link" href="https://www.youtube.com/results?search_query=excel+ke+word+tutorial" target="_blank">Tonton</a>
+          </div>
+        </div>
+
+        <div class="video-card">
+          <div class="video-thumbnail">📊📽️</div>
+          <div class="video-info">
+            <h4>Excel ke PowerPoint</h4>
+            <p>Cara menyisipkan data Excel ke slide.</p>
+            <a class="video-link" href="https://www.youtube.com/results?search_query=excel+ke+powerpoint+tutorial" target="_blank">Tonton</a>
+          </div>
+        </div>
+
+        <div class="video-card">
+          <div class="video-thumbnail">📄📽️</div>
+          <div class="video-info">
+            <h4>Word ke PowerPoint</h4>
+            <p>Import outline dan konten Word ke slide.</p>
+            <a class="video-link" href="https://www.youtube.com/results?search_query=word+ke+powerpoint+tutorial" target="_blank">Tonton</a>
+          </div>
+        </div>
+
+        <div class="video-card">
+          <div class="video-thumbnail">📈</div>
+          <div class="video-info">
+            <h4>Chart Excel Integration</h4>
+            <p>Sisipkan grafik Excel ke Word & PowerPoint.</p>
+            <a class="video-link" href="https://www.youtube.com/results?search_query=insert+excel+chart+word+powerpoint" target="_blank">Tonton</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- QUIZ -->
+    <section>
+      <h2>🎮 Kuis Integrasi Office</h2>
+      <div class="game-section">
+        <h3>Uji Pemahaman Materi</h3>
+
+        <div class="progress-container">
+          <div id="progressBar" class="progress-bar" style="width: 0%;">0%</div>
+        </div>
+
+        <div class="game-container">
+          <div class="game-question">1. Untuk paste data dengan link ke sumber asli, gunakan...</div>
+          <div class="quiz-options" onclick="checkAnswer(event, 'paste special', 1)">
+            <div class="quiz-option">A) Ctrl + V biasa</div>
+            <div class="quiz-option">B) Paste Special → Paste Link</div>
+            <div class="quiz-option">C) Ctrl + X</div>
+            <div class="quiz-option">D) Insert → Object</div>
+          </div>
+          <div id="result1" class="result-message"></div>
+        </div>
+
+        <div class="game-container">
+          <div class="game-question">2. Shortcut untuk membuka dialog Paste Special adalah...</div>
+          <div class="quiz-options" onclick="checkAnswer(event, 'ctrl + alt + v', 2)">
+            <div class="quiz-option">A) Ctrl + V</div>
+            <div class="quiz-option">B) Ctrl + Alt + V</div>
+            <div class="quiz-option">C) Ctrl + Shift + V</div>
+            <div class="quiz-option">D) Alt + V</div>
+          </div>
+          <div id="result2" class="result-message"></div>
+        </div>
+
+        <div class="game-container">
+          <div class="game-question">3. Untuk membuat slide otomatis dari dokumen Word, gunakan...</div>
+          <div class="quiz-options" onclick="checkAnswer(event, 'outline', 3)">
+            <div class="quiz-option">A) Copy-Paste biasa</div>
+            <div class="quiz-option">B) New Slide → Slides from Outline</div>
+            <div class="quiz-option">C) Insert → Object</div>
+            <div class="quiz-option">D) Export to PowerPoint</div>
+          </div>
+          <div id="result3" class="result-message"></div>
+        </div>
+
+        <div class="game-container">
+          <div class="game-question">4. Untuk chart yang tidak perlu update otomatis, paste sebagai...</div>
+          <div class="quiz-options" onclick="checkAnswer(event, 'picture', 4)">
+            <div class="quiz-option">A) Excel Worksheet Object</div>
+            <div class="quiz-option">B) Paste Link</div>
+            <div class="quiz-option">C) Picture (gambar statis)</div>
+            <div class="quiz-option">D) HTML Format</div>
+          </div>
+          <div id="result4" class="result-message"></div>
+        </div>
+
+        <div class="game-container">
+          <div class="game-question">5. Keuntungan utama Paste Link adalah...</div>
+          <div class="quiz-options" onclick="checkAnswer(event, 'update', 5)">
+            <div class="quiz-option">A) File lebih kecil</div>
+            <div class="quiz-option">B) Data update otomatis saat sumber berubah</div>
+            <div class="quiz-option">C) Tidak perlu Excel</div>
+            <div class="quiz-option">D) Lebih cepat</div>
+          </div>
+          <div id="result5" class="result-message"></div>
+        </div>
+
+        <div id="scoreDisplay" class="score-display">Skor: 0/5</div>
+      </div>
+    </section>
+
+    <!-- DOWNLOAD -->
+    <section>
+      <h2>📥 Download Materi</h2>
+      
+      <div class="download-box">
+        <h4>📄 Panduan Lengkap Integrasi Office</h4>
+        <p style="margin-bottom: 1rem;">Download tutorial, cheat sheet, dan latihan integrasi Microsoft Office.</p>
+        <a href="#" class="btn-download" onclick="alert('File akan segera tersedia. Hubungi guru untuk mendapatkan file.'); return false;">
+          📥 Download Panduan PDF
+        </a>
+        <a href="#" class="btn-download" onclick="alert('File akan segera tersedia. Hubungi guru untuk mendapatkan file.'); return false;">
+          📥 Download Cheat Sheet
+        </a>
+      </div>
+    </section>
+
+    <!-- CLOSING -->
+    <section>
+      <div class="card" style="background: linear-gradient(135deg, rgba(0,120,212,0.06), rgba(0,164,239,0.08)); border-left: 5px solid #0078D4; text-align: center;">
+        <h3 style="margin-bottom: 0.6rem;">Kesimpulan</h3>
+        <p style="text-align: center; line-height: 1.8;">
+          Menguasai integrasi antaraplikasi Microsoft Office (Excel, Word, PowerPoint) adalah skill penting untuk produktivitas di dunia kerja dan akademik. Dengan teknik copy-paste, paste special, paste link, dan embed object, Anda dapat membuat dokumen dan presentasi yang profesional dengan data yang konsisten dan mudah di-update.
+        </p>
+        <p style="text-align: center; margin-top: 0.8rem; font-weight: 600; color: var(--primary-color);">
+          "Master the tools, master the work!" 💼✨
+        </p>
+      </div>
+    </section>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-content">
+      <h3>Platform Pembelajaran Interaktif untuk Siswa & Siswi <strong>Ypi Nurul Hadina</strong></h3>
+
+      <div class="social-media">
+        <a class="social-icon whatsapp" href="https://wa.me/6289504440411" target="_blank">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" width="18" height="18"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884"/></svg>
+        </a>
+
+        <a class="social-icon youtube" href="https://www.youtube.com/channel/UCNmOH6L2xq6C15EkQlx_FpQ" target="_blank">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" width="18" height="18"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+        </a>
+
+        <a class="social-icon instagram" href="https://instagram.com/ypinurulhadina" target="_blank">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" width="18" height="18"><path d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.319 1.347 20.651.935 19.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.015 3.585-.074 4.85c-.061 1.17-.256 1.805-.421 2.227-.224.562-.479.96-.899 1.382-.419.419-.824.679-1.38.896-.42.164-1.065.36-2.235.413-1.274.057-1.649.07-4.859.07-3.211 0-3.586-.015-4.859-.074-1.171-.061-1.816-.256-2.236-.421-.569-.224-.96-.479-1.379-.899-.421-.419-.69-.824-.9-1.38-.165-.42-.359-1.065-.42-2.235-.045-1.26-.061-1.649-.061-4.844 0-3.196.016-3.586.061-4.861.061-1.17.255-1.814.42-2.234.21-.57.479-.96.9-1.381.419-.419.81-.689 1.379-.898.42-.166 1.051-.361 2.221-.421 1.275-.045 1.65-.06 4.859-.06l.045.03zm0 3.678c-3.405 0-6.162 2.76-6.162 6.162 0 3.405 2.76 6.162 6.162 6.162 3.405 0 6.162-2.76 6.162-6.162 0-3.405-2.76-6.162-6.162-6.162zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm7.846-10.405c0 .795-.646 1.44-1.44 1.44-.795 0-1.44-.646-1.44-1.44 0-.794.646-1.439 1.44-1.439.793-.001 1.44.645 1.44 1.439z"/></svg>
+        </a>
+
+        <a class="social-icon facebook" href="https://www.facebook.com/fauzan.reza.7" target="_blank">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" width="18" height="18"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        </a>
+      </div>
+
+      <p style="margin-top: 0.6rem; font-size: 0.7rem; opacity: 0.85;">©2025 Portal Siswa Informatika. MA PLUS & SMP IT.<br>Oleh : <strong>Fauzan Reza, S.T</strong> (Guru Informatika)</p>
+    </div>
+  </footer>
+
+  <script>
+    let score = 0;
+
+    function checkAnswer(event, key, questionNumber) {
+      if (!event.target.classList.contains('quiz-option')) return;
+
+      const options = event.target.parentElement.querySelectorAll('.quiz-option');
+      const resultMsg = document.getElementById('result' + questionNumber);
+
+      options.forEach(opt => {
+        opt.classList.remove('correct', 'incorrect');
+        opt.style.pointerEvents = 'none';
+      });
+
+      const selectedText = event.target.textContent.toLowerCase();
+
+      if (selectedText.includes(key.toLowerCase())) {
+        event.target.classList.add('correct');
+        resultMsg.textContent = '✅ Benar! Bagus sekali! 🎉';
+        resultMsg.classList.add('show', 'correct');
+        score++;
+      } else {
+        event.target.classList.add('incorrect');
+        options.forEach(opt => {
+          if (opt.textContent.toLowerCase().includes(key.toLowerCase())) {
+            opt.classList.add('correct');
+          }
+        });
+        resultMsg.textContent = '❌ Kurang tepat. Lihat jawaban yang hijau!';
+        resultMsg.classList.add('show', 'incorrect');
+      }
+
+      updateScore();
+      updateProgress();
+    }
+
+    function updateScore() {
+      document.getElementById('scoreDisplay').textContent = `Skor: ${score}/5`;
+    }
+
+    function updateProgress() {
+      const progress = Math.round((score / 5) * 100);
+      const bar = document.getElementById('progressBar');
+      bar.style.width = progress + '%';
+      bar.textContent = progress + '%';
+    }
+  </script>
+</body>
+</html>
