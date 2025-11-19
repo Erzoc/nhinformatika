@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Match the Excel parts with the right facts!</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { 
+      font-family: 'Comic Sans MS', 'Segoe UI', sans-serif; 
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      background-image: url('GEDUNG MA PLUS.png');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      padding: 20px;
+      min-height: 100vh;
+    }
+    /* Overlay transparan sangat tipis agar background terlihat */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(255, 255, 255, 0.15); /* Sangat transparan */
+      backdrop-filter: blur(3px); /* Blur halus */
+      z-index: -1;
+    }
+    
+    /* Welcome Screen */
+    .welcome-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.7); /* Semi-transparan */
+      backdrop-filter: blur(5px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+    .welcome-screen.hidden {
+      display: none;
+    }
+    .welcome-box {
+      background: rgba(255, 255, 255, 0.95); /* Agak transparan */
+      backdrop-filter: blur(10px);
+      padding: 40px;
+      border-radius: 25px;
+      box-shadow: 0 15px 50px rgba(0,0,0,0.5);
+      max-width: 500px;
+      width: 90%;
+      text-align: center;
+      border: 2px solid rgba(255,255,255,0.3);
+    }
+    .welcome-title {
+      font-size: 32px;
+      color: #667eea;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+    .welcome-subtitle {
+      font-size: 18px;
+      color: #666;
+      margin-bottom: 30px;
+    }
+    .form-group {
+      margin-bottom: 20px;
+      text-align: left;
+    }
+    .form-label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+      color: #333;
+      font-size: 16px;
+    }
+    .form-input {
+      width: 100%;
+      padding: 12px 15px;
+      border: 3px solid #667eea;
+      border-radius: 10px;
+      font-size: 16px;
+      transition: all 0.3s;
+      background: rgba(255,255,255,0.9);
+    }
+    .form-input:focus {
+      outline: none;
+      border-color: #FFA500;
+      box-shadow: 0 0 10px rgba(255,165,0,0.3);
+      background: #fff;
+    }
+    .start-btn {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: #fff;
+      padding: 15px 40px;
+      border: none;
+      border-radius: 15px;
+      font-size: 20px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s;
+      margin-top: 10px;
+      box-shadow: 0 5px 20px rgba(102,126,234,0.4);
+    }
+    .start-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px rgba(102,126,234,0.6);
+    }
+    
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      background: rgba(255,255,255,0.92); /* Lebih transparan */
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+      overflow: hidden;
+      border: 2px solid rgba(255,255,255,0.4);
+    }
+    .header {
+      background: linear-gradient(90deg, rgba(255,215,0,0.95) 0%, rgba(255,165,0,0.95) 100%);
+      backdrop-filter: blur(10px);
+      padding: 20px 30px;
+      display: flex;
+      align-items: center;
+      position: relative;
+    }
+    .header-number {
+      background: rgba(255,228,225,0.95);
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      font-weight: bold;
+      border-radius: 10px;
+      margin-right: 20px;
+      border: 3px solid #FF6347;
+    }
+    .header-title {
+      font-size: 28px;
+      font-weight: bold;
+      color: #000;
+      flex: 1;
+      text-shadow: 1px 1px 2px rgba(255,255,255,0.5);
+    }
+    .search-icon {
+      width: 50px;
+      height: 50px;
+      background: rgba(255,255,255,0.95);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 30px;
+      border: 3px solid #FF6347;
+    }
+    .timer-container {
+      background: linear-gradient(135deg, rgba(102,126,234,0.95) 0%, rgba(118,75,162,0.95) 100%);
+      backdrop-filter: blur(10px);
+      color: #fff;
+      padding: 12px 22px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      position: absolute;
+      right: 100px;
+      top: 50%;
+      transform: translateY(-50%);
+      border: 2px solid rgba(255,255,255,0.3);
+    }
+    .timer-icon {
+      font-size: 28px;
+    }
+    .timer-display {
+      font-size: 24px;
+      font-weight: bold;
+      font-family: 'Courier New', monospace;
+      min-width: 90px;
+    }
+    .timer-label {
+      font-size: 12px;
+      opacity: 0.9;
+    }
+    .content {
+      display: flex;
+      padding: 30px;
+      gap: 30px;
+      background: rgba(255,255,255,0.5); /* Transparan */
+    }
+    .left-section {
+      flex: 0 0 280px;
+      font-size: 15px;
+      line-height: 1.6;
+      color: #000;
+      background: rgba(255,255,255,0.8);
+      padding: 20px;
+      border-radius: 15px;
+      backdrop-filter: blur(5px);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    .left-section strong {
+      color: #000;
+    }
+    .left-section em {
+      font-style: italic;
+      color: #333;
+    }
+    .right-section {
+      flex: 1;
+    }
+    .game-area {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .row {
+      display: flex;
+      gap: 12px;
+      justify-content: space-between;
+    }
+    .card {
+      flex: 1;
+      min-height: 100px;
+      border-radius: 15px;
+      padding: 15px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      cursor: move;
+      transition: all 0.3s;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+      position: relative;
+      user-select: none;
+      backdrop-filter: blur(5px);
+    }
+    .card.top {
+      background: linear-gradient(135deg, rgba(227,242,253,0.95) 0%, rgba(187,222,251,0.95) 100%);
+      border: 3px solid #2196F3;
+    }
+    .card.top:hover {
+      transform: scale(1.05);
+      box-shadow: 0 5px 15px rgba(33,150,243,0.4);
+    }
+    .card.top.dragging {
+      opacity: 0.5;
+      transform: rotate(5deg) scale(1.1);
+      cursor: grabbing;
+    }
+    .card.bottom {
+      background: linear-gradient(135deg, rgba(225,245,254,0.95) 0%, rgba(179,229,252,0.95) 100%);
+      border: 3px solid #03a9f4;
+      font-size: 13px;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+    .card.bottom.drag-over {
+      background: linear-gradient(135deg, rgba(255,249,196,0.95) 0%, rgba(255,241,118,0.95) 100%);
+      border: 3px dashed #FF8C00;
+      transform: scale(1.05);
+    }
+    .card.matched {
+      background: linear-gradient(135deg, rgba(129,199,132,0.95) 0%, rgba(102,187,106,0.95) 100%);
+      border: 3px solid #388e3c;
+      color: #fff;
+      cursor: default;
+      pointer-events: none;
+    }
+    .card-image {
+      background: linear-gradient(135deg, rgba(165,214,167,0.95) 0%, rgba(102,187,106,0.95) 100%);
+      height: 60px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      color: #1b5e20;
+      text-align: center;
+      padding: 5px;
+      border: 2px solid #4caf50;
+    }
+    .card-label {
+      background: rgba(255,215,0,0.95);
+      padding: 8px;
+      border-radius: 8px;
+      text-align: center;
+      font-weight: bold;
+      font-size: 14px;
+      color: #000;
+    }
+    .arrow {
+      font-size: 32px;
+      align-self: center;
+      margin-top: -10px;
+    }
+    .arrow.orange { color: #FF8C00; }
+    .arrow.blue { color: #03a9f4; }
+    .arrow.yellow { color: #FFD700; }
+    .warning {
+      margin-top: 20px;
+      padding: 15px;
+      background: rgba(255,243,205,0.95);
+      backdrop-filter: blur(5px);
+      border: 2px solid #ffc107;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+    }
+    .warning-icon {
+      font-size: 24px;
+    }
+    .score {
+      margin-top: 20px;
+      padding: 15px;
+      background: rgba(212,237,218,0.95);
+      backdrop-filter: blur(5px);
+      border: 2px solid #28a745;
+      border-radius: 10px;
+      text-align: center;
+      font-size: 18px;
+      font-weight: bold;
+      color: #155724;
+    }
+    
+    /* Congratulation Modal */
+    .congrats-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.85);
+      backdrop-filter: blur(8px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+      animation: fadeIn 0.5s;
+    }
+    .congrats-overlay.show {
+      display: flex;
+    }
+    .congrats-box {
+      background: linear-gradient(135deg, rgba(255,215,0,0.98) 0%, rgba(255,165,0,0.98) 100%);
+      backdrop-filter: blur(15px);
+      padding: 50px;
+      border-radius: 30px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+      text-align: center;
+      max-width: 600px;
+      width: 90%;
+      position: relative;
+      animation: scaleIn 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      border: 3px solid rgba(255,255,255,0.5);
+    }
+    .congrats-trophy {
+      font-size: 100px;
+      animation: bounce 1s infinite;
+    }
+    .congrats-title {
+      font-size: 48px;
+      font-weight: bold;
+      color: #fff;
+      text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+      margin: 20px 0;
+    }
+    .congrats-name {
+      font-size: 36px;
+      font-weight: bold;
+      color: #FF6347;
+      background: rgba(255,255,255,0.95);
+      padding: 15px 30px;
+      border-radius: 15px;
+      margin: 20px 0;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+    .congrats-class {
+      font-size: 24px;
+      color: #fff;
+      margin-bottom: 20px;
+      font-weight: bold;
+    }
+    .congrats-time {
+      font-size: 56px;
+      font-weight: bold;
+      font-family: 'Courier New', monospace;
+      color: #fff;
+      text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+      margin: 20px 0;
+    }
+    .congrats-rank {
+      font-size: 32px;
+      font-weight: bold;
+      margin: 15px 0;
+      padding: 15px 30px;
+      background: rgba(255,255,255,0.3);
+      border-radius: 15px;
+      color: #fff;
+    }
+    .congrats-message {
+      font-size: 20px;
+      color: #fff;
+      margin: 20px 0;
+      line-height: 1.6;
+    }
+    .congrats-btn {
+      background: rgba(255,255,255,0.95);
+      color: #FFA500;
+      padding: 15px 40px;
+      border: none;
+      border-radius: 15px;
+      font-size: 20px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s;
+      margin-top: 20px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+    }
+    .congrats-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+    }
+    
+    /* Confetti Animation */
+    .confetti {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      background: #f00;
+      position: absolute;
+      animation: confetti-fall 3s linear infinite;
+    }
+    @keyframes confetti-fall {
+      to {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes scaleIn {
+      from {
+        transform: scale(0.5);
+        opacity: 0;
+      }
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-10px); }
+      75% { transform: translateX(10px); }
+    }
+    
+    @media (max-width: 768px) {
+      .content { flex-direction: column; }
+      .left-section { flex: none; }
+      .row { flex-wrap: wrap; }
+      .card { min-width: 150px; }
+      .timer-container {
+        position: static;
+        transform: none;
+        margin: 15px auto 0;
+        width: fit-content;
+      }
+      .congrats-box {
+        padding: 30px 20px;
+      }
+      .congrats-title {
+        font-size: 32px;
+      }
+      .congrats-name {
+        font-size: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Welcome Screen -->
+<div class="welcome-screen" id="welcomeScreen">
+  <div class="welcome-box">
+    <div class="welcome-title">🎮 Game Edukasi Excel</div>
+    <div class="welcome-subtitle">Masukkan data Anda untuk memulai</div>
+    <form onsubmit="startGame(event)">
+      <div class="form-group">
+        <label class="form-label">Nama Lengkap:</label>
+        <input type="text" id="studentName" class="form-input" placeholder="Masukkan nama Anda" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Kelas:</label>
+        <select id="studentClass" class="form-input" required>
+          <option value="">Pilih Kelas</option>
+          <option value="7">Kelas 7</option>
+          <option value="8">Kelas 8</option>
+          <option value="9">Kelas 9</option>
+          <option value="10">Kelas 10</option>
+          <option value="11">Kelas 11</option>
+          <option value="12">Kelas 12</option>
+        </select>
+      </div>
+      <button type="submit" class="start-btn">🚀 Mulai Permainan</button>
+    </form>
+  </div>
+</div>
+
+<!-- Congratulation Overlay -->
+<div class="congrats-overlay" id="congratsOverlay">
+  <div class="congrats-box">
+    <div class="congrats-trophy">🏆</div>
+    <div class="congrats-title">SELAMAT!</div>
+    <div class="congrats-name" id="congratsName">NAMA SISWA</div>
+    <div class="congrats-class" id="congratsClass">Kelas X</div>
+    <div class="congrats-message">Anda telah menyelesaikan tantangan dengan sempurna!</div>
+    <div class="congrats-time" id="congratsTime">00:00</div>
+    <div class="congrats-rank" id="congratsRank">🚀 Sangat Cepat!</div>
+    <div class="congrats-message">Kerja bagus! Terus tingkatkan kemampuanmu!</div>
+    <button class="congrats-btn" onclick="resetGame()">🔄 Main Lagi</button>
+  </div>
+</div>
+
+<div class="container" id="gameContainer" style="display:none;">
+  <div class="header">
+    <div class="header-number">1</div>
+    <div class="header-title">Drag & Drop<br>Seret lalu letakkan bagian Excel dengan fakta!</div>
+    <div class="timer-container">
+      <span class="timer-icon">⏱️</span>
+      <div>
+        <div class="timer-label">Waktu</div>
+        <div class="timer-display" id="timer">00:00</div>
+      </div>
+    </div>
+    <div class="search-icon">🔍</div>
+  </div>
+  
+  <div class="content">
+    <div class="left-section">
+      <p><strong><em>Microsoft Excel</em></strong> adalah alat yang digunakan siswa di sekolah untuk mengetik angka, membuat tabel, dan mencatat data.</p><br>
+      <p><strong>Mempelajari <em>Excel</em></strong> membantu Anda menyelesaikan proyek, tugas matematika, dan bahkan daftar kegiatan klub.</p><br>
+      <p><strong>Pelajari</strong> <em>Ribbon, Formula Bar, Worksheet, Sheet Tabs, Columns</em>, and <em>Rows</em> untuk menjelajahi layar Excel dan mulai bekerja dengan data.</p><br>
+      <p><strong>Mengenali</strong> setiap bagian akan membantu Anda bekerja lebih cepat dan merasa lebih yakin pada tugas berikutnya.</p><br>
+    </div>
+    
+    <div class="right-section">
+      <div class="game-area">
+        <!-- Top Row - will be filled dynamically -->
+        <div class="row" id="topRow"></div>
+        
+        <!-- Arrows -->
+        <div class="row">
+          <div class="arrow orange">↓</div>
+          <div class="arrow blue">↓</div>
+          <div class="arrow yellow">↓</div>
+          <div class="arrow blue">↓</div>
+          <div class="arrow yellow">↓</div>
+          <div class="arrow orange">↓</div>
+        </div>
+        
+        <!-- Bottom Row - will be filled dynamically -->
+        <div class="row" id="bottomRow"></div>
+      </div>
+      
+      <div class="warning">
+        <span class="warning-icon">⚠️</span>
+        <span><strong>Salah satu opsi ini tidak memiliki kecocokan — dapatkah Anda menemukannya?</strong></span>
+      </div>
+      
+      <div class="score" id="score">Score: 0 / 6 matched</div>
+    </div>
+  </div>
+</div>
+
+<script>
+  let draggedCard = null;
+  let matched = new Set();
+  let startTime = null;
+  let timerInterval = null;
+  let elapsedSeconds = 0;
+  let studentName = '';
+  let studentClass = '';
+  
+  const questions = [
+    { id: 'ribbon', label: 'Ribbon', answer: 'Panel perintah utama di bagian atas jendela yang berisi semua alat dan fungsi (Tab, Group, Perintah).' },
+    { id: 'worksheet', label: 'Worksheet', answer: '(Lembar Kerja) Area utama tempat Anda memasukkan dan menyimpan data, terdiri dari baris dan kolom.' },
+    { id: 'formulabar', label: 'Formula Bar', answer: 'Area di atas lembar kerja yang digunakan untuk menampilkan dan mengedit isi sel (nilai, teks, atau rumus).' },
+    { id: 'sheettabs', label: 'Sheet', answer: 'Dokumen individual dalam sebuah workbook (buku kerja), yang merupakan sebuah Worksheet.' },
+    { id: 'columns', label: 'Columns', answer: 'Baris vertikal sel (Cell) yang diidentifikasi oleh huruf (misalnya, A, B, C...).' },
+    { id: 'rows', label: 'Rows', answer: 'Baris horizontal sel (Cell) yang diidentifikasi oleh angka (misalnya, 1, 2, 3...).' }
+  ];
+  
+  function shuffleArray(array) {
+    const newArray = [...array];
+    for (let i = newArray.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+    }
+    return newArray;
+  }
+  
+  function startGame(event) {
+    event.preventDefault();
+    studentName = document.getElementById('studentName').value;
+    studentClass = document.getElementById('studentClass').value;
+    
+    document.getElementById('welcomeScreen').classList.add('hidden');
+    document.getElementById('gameContainer').style.display = 'block';
+    
+    initializeGame();
+    startTimer();
+  }
+  
+  function initializeGame() {
+    const shuffledQuestions = shuffleArray(questions);
+    const shuffledAnswers = shuffleArray(questions.map(q => ({ id: q.id, answer: q.answer })));
+    
+    const topRow = document.getElementById('topRow');
+    topRow.innerHTML = '';
+    shuffledQuestions.forEach(q => {
+      const card = document.createElement('div');
+      card.className = 'card top';
+      card.draggable = true;
+      card.dataset.id = q.id;
+      card.innerHTML = `
+        <div class="card-image">Add a related image here.</div>
+        <div class="card-label">${q.label}</div>
+      `;
+      topRow.appendChild(card);
+    });
+    
+    const bottomRow = document.getElementById('bottomRow');
+    bottomRow.innerHTML = '';
+    shuffledAnswers.forEach(a => {
+      const card = document.createElement('div');
+      card.className = 'card bottom';
+      card.dataset.answer = a.id;
+      card.textContent = a.answer;
+      bottomRow.appendChild(card);
+    });
+    
+    setupDragAndDrop();
+  }
+  
+  function setupDragAndDrop() {
+    document.querySelectorAll('.card.top').forEach(card => {
+      card.addEventListener('dragstart', function(e) {
+        draggedCard = this;
+        this.classList.add('dragging');
+        e.dataTransfer.effectAllowed = 'move';
+      });
+      
+      card.addEventListener('dragend', function(e) {
+        this.classList.remove('dragging');
+      });
+      
+      card.addEventListener('touchstart', function(e) {
+        e.preventDefault();
+        draggedCard = this;
+        this.classList.add('dragging');
+      });
+      
+      card.addEventListener('touchend', function(e) {
+        this.classList.remove('dragging');
+      });
+    });
+    
+    document.querySelectorAll('.card.bottom').forEach(zone => {
+      zone.addEventListener('dragover', function(e) {
+        e.preventDefault();
+        if (!this.classList.contains('matched')) {
+          this.classList.add('drag-over');
+        }
+      });
+      
+      zone.addEventListener('dragleave', function(e) {
+        this.classList.remove('drag-over');
+      });
+      
+      zone.addEventListener('drop', function(e) {
+        e.preventDefault();
+        dropOnCard(this);
+      });
+      
+      zone.addEventListener('touchstart', function(e) {
+        if (draggedCard && !this.classList.contains('matched')) {
+          e.preventDefault();
+          dropOnCard(this);
+        }
+      });
+    });
+  }
+  
+  function startTimer() {
+    startTime = Date.now();
+    timerInterval = setInterval(updateTimer, 100);
+  }
+  
+  function updateTimer() {
+    const elapsed = Math.floor((Date.now() - startTime) / 1000);
+    elapsedSeconds = elapsed;
+    const minutes = Math.floor(elapsed / 60);
+    const seconds = elapsed % 60;
+    document.getElementById('timer').textContent = 
+      `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+  }
+  
+  function stopTimer() {
+    clearInterval(timerInterval);
+  }
+  
+  function getRank(seconds) {
+    if (seconds <= 30) {
+      return { text: '⚡ Luar Biasa Cepat!', emoji: '🏆' };
+    } else if (seconds <= 60) {
+      return { text: '🚀 Sangat Cepat!', emoji: '🥇' };
+    } else if (seconds <= 90) {
+      return { text: '👍 Cepat!', emoji: '🥈' };
+    } else if (seconds <= 120) {
+      return { text: '✅ Bagus!', emoji: '🥉' };
+    } else {
+      return { text: '💪 Terus Berlatih!', emoji: '⭐' };
+    }
+  }
+  
+  function dropOnCard(bottomCard) {
+    if (!draggedCard) return;
+    
+    bottomCard.classList.remove('drag-over');
+    
+    const draggedId = draggedCard.dataset.id;
+    const bottomAnswer = bottomCard.dataset.answer;
+    
+    if (draggedId === bottomAnswer) {
+      bottomCard.classList.add('matched');
+      draggedCard.classList.add('matched');
+      matched.add(draggedId);
+      updateScore();
+      
+      if (matched.size === 6) {
+        gameCompleted();
+      }
+    } else {
+      bottomCard.style.animation = 'shake 0.5s';
+      setTimeout(() => {
+        bottomCard.style.animation = '';
+      }, 500);
+    }
+    
+    draggedCard.classList.remove('dragging');
+    draggedCard = null;
+  }
+  
+  function updateScore() {
+    document.getElementById('score').textContent = `Score: ${matched.size} / 6 matched`;
+  }
+  
+  function gameCompleted() {
+    stopTimer();
+    
+    const minutes = Math.floor(elapsedSeconds / 60);
+    const seconds = elapsedSeconds % 60;
+    const timeString = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+    
+    const rank = getRank(elapsedSeconds);
+    
+    document.getElementById('congratsName').textContent = studentName.toUpperCase();
+    document.getElementById('congratsClass').textContent = `Kelas ${studentClass}`;
+    document.getElementById('congratsTime').textContent = timeString;
+    document.getElementById('congratsRank').textContent = rank.text + ' ' + rank.emoji;
+    
+    document.getElementById('congratsOverlay').classList.add('show');
+    createConfetti();
+    
+    document.getElementById('score').textContent = 'Score: 6 / 6 matched 🎉 Perfect!';
+    document.getElementById('score').style.background = 'rgba(129,199,132,0.95)';
+    document.getElementById('score').style.color = '#fff';
+  }
+  
+  function createConfetti() {
+    const colors = ['#FFD700', '#FFA500', '#FF6347', '#4CAF50', '#2196F3', '#9C27B0'];
+    for (let i = 0; i < 100; i++) {
+      setTimeout(() => {
+        const confetti = document.createElement('div');
+        confetti.className = 'confetti';
+        confetti.style.left = Math.random() * 100 + '%';
+        confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+        confetti.style.animationDelay = Math.random() * 3 + 's';
+        confetti.style.animationDuration = (Math.random() * 3 + 2) + 's';
+        document.body.appendChild(confetti);
+        
+        setTimeout(() => confetti.remove(), 5000);
+      }, i * 30);
+    }
+  }
+  
+  function resetGame() {
+  // Tutup layar congratulation
+  document.getElementById('congratsOverlay').classList.remove('show');
+
+  // Hentikan timer lama
+  stopTimer();
+
+  // Reset data game
+  matched.clear();
+  draggedCard = null;
+  elapsedSeconds = 0;
+  document.getElementById('timer').textContent = '00:00';
+  document.getElementById('score').textContent = 'Score: 0 / 6 matched';
+  document.getElementById('score').style.background = 'rgba(212,237,218,0.95)';
+  document.getElementById('score').style.color = '#155724';
+
+  // Sembunyikan game, tampilkan form input siswa lagi
+  document.getElementById('gameContainer').style.display = 'none';
+  document.getElementById('welcomeScreen').classList.remove('hidden');
+
+  // Kosongkan input nama & kelas (opsional)
+  document.getElementById('studentName').value = '';
+  document.getElementById('studentClass').value = '';
+}
+
+</script>
+</body>
+</html>
