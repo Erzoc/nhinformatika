@@ -660,54 +660,97 @@
   }
   
   function setupDragAndDrop() {
-    document.querySelectorAll('.card.top').forEach(card => {
-      card.addEventListener('dragstart', function(e) {
-        draggedCard = this;
-        this.classList.add('dragging');
-        e.dataTransfer.effectAllowed = 'move';
-      });
-      
-      card.addEventListener('dragend', function(e) {
-        this.classList.remove('dragging');
-      });
-      
-      card.addEventListener('touchstart', function(e) {
-        e.preventDefault();
-        draggedCard = this;
-        this.classList.add('dragging');
-      });
-      
-      card.addEventListener('touchend', function(e) {
-        this.classList.remove('dragging');
-      });
+  let touchedElement = null;
+  
+  // Setup untuk card atas (draggable)
+  document.querySelectorAll('.card.top').forEach(card => {
+    // Desktop drag events
+    card.addEventListener('dragstart', function(e) {
+      draggedCard = this;
+      this.classList.add('dragging');
+      e.dataTransfer.effectAllowed = 'move';
     });
     
-    document.querySelectorAll('.card.bottom').forEach(zone => {
-      zone.addEventListener('dragover', function(e) {
-        e.preventDefault();
-        if (!this.classList.contains('matched')) {
-          this.classList.add('drag-over');
-        }
-      });
-      
-      zone.addEventListener('dragleave', function(e) {
-        this.classList.remove('drag-over');
-      });
-      
-      zone.addEventListener('drop', function(e) {
-        e.preventDefault();
-        dropOnCard(this);
-      });
-      
-      zone.addEventListener('touchstart', function(e) {
-        if (draggedCard && !this.classList.contains('matched')) {
-          e.preventDefault();
-          dropOnCard(this);
-        }
-      });
+    card.addEventListener('dragend', function(e) {
+      this.classList.remove('dragging');
     });
-  }
+    
+    // Touch events untuk mobile/tablet
+    card.addEventListener('touchstart', function(e) {
+      e.preventDefault();
+      draggedCard = this;
+      touchedElement = this;
+      this.classList.add('dragging');
+      
+      // Tampilkan visual feedback
+      this.style.opacity = '0.7';
+      this.style.transform = 'scale(1.1)';
+    });
+    
+    card.addEventListener('touchmove', function(e) {
+      e.preventDefault();
+      // Optional: bisa tambahkan visual effect saat move
+    });
+    
+    card.addEventListener('touchend', function(e) {
+      e.preventDefault();
+      this.classList.remove('dragging');
+      this.style.opacity = '';
+      this.style.transform = '';
+      
+      // Cek apakah touch end di atas bottom card
+      const touch = e.changedTouches[0];
+      const elementBelow = document.elementFromPoint(touch.clientX, touch.clientY);
+      const bottomCard = elementBelow?.closest('.card.bottom');
+      
+      if (bottomCard && !bottomCard.classList.contains('matched')) {
+        dropOnCard(bottomCard);
+      }
+      
+      touchedElement = null;
+    });
+  });
   
+  // Setup untuk card bawah (drop zones)
+  document.querySelectorAll('.card.bottom').forEach(zone => {
+    // Desktop drag events
+    zone.addEventListener('dragover', function(e) {
+      e.preventDefault();
+      if (!this.classList.contains('matched')) {
+        this.classList.add('drag-over');
+      }
+    });
+    
+    zone.addEventListener('dragleave', function(e) {
+      this.classList.remove('drag-over');
+    });
+    
+    zone.addEventListener('drop', function(e) {
+      e.preventDefault();
+      dropOnCard(this);
+    });
+    
+    // Touch events untuk mobile/tablet
+    zone.addEventListener('touchstart', function(e) {
+      if (draggedCard && !this.classList.contains('matched')) {
+        e.preventDefault();
+        this.classList.add('drag-over');
+      }
+    });
+    
+    zone.addEventListener('touchmove', function(e) {
+      if (draggedCard) {
+        e.preventDefault();
+      }
+    });
+    
+    zone.addEventListener('touchend', function(e) {
+      e.preventDefault();
+      this.classList.remove('drag-over');
+    });
+  });
+}
+
   function startTimer() {
     startTime = Date.now();
     timerInterval = setInterval(updateTimer, 100);
@@ -839,3 +882,4 @@
 </script>
 </body>
 </html>
+
